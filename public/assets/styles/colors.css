@@ -1,0 +1,44 @@
+:root {
+    --primarycolor: #0066FF;
+    --primarycolor-rgb: 0, 102, 255;
+    --primaryColorHover: #0049B6;
+    --DarkprimaryColor: #0049B6;
+    --primarycoloropacity: #0049B617;
+    --seccolor: #dfbf4d;
+    --secColoropacity: #dfbf4d17;
+    --thirdColor: #00aaff;
+    --thirdColoropacity: #00aaff17;
+    --fourthColor: #fa8b0c;
+    --fourthColoropacity: #fa8b0c17;
+    --whiteColoropacity: rgba(255, 255, 255, 0.1);
+    --h2color: #170c6b;
+    --textcolor: #2A292F;
+    --consttextcolor: #4c4e6499;
+    --darkcolor: #2A292F;
+    --darkcolorTransparent: #2a292fc7;
+    --graycolor: ##152233b5;
+    --constgraycolor: #404040;
+    --white: white;
+    --BlocksBackground: #F4F4F7;
+    --FloatingBlocksBackground: white;
+    --LightBgColor : #F4F4F7 ;
+    --black: #000000;
+    --adminsidebar: rgba(255, 255, 255, 0.4);
+    --formtextcolor: #a8afc7;
+    --navbariconscolor: #fff;
+    --bgbodycolor: white;
+    --InputBorderColor: #ACB8C7;
+    --LightGrayColor: #6D6D83;
+
+    --color-success: #01b81a;
+    --color-danger: #ff0f0f;
+    --color-orange: #FFA800;
+    --listAttributesColor : #627c93;
+    --BadgeGrayColor : #e6f2fd;
+    --ListingLineHRColor : #152233;
+    --ListingLineHRColor-RGBA : rgba(21, 34, 51 , 0.25);
+
+
+    --pfont: 16px;
+    --dark-box-shadow: rgba(20, 21, 33, 0.15) 0px 2px 10px 0px;
+}

@@ -1,0 +1,212 @@
+/* START blog css */
+
+
+.blogCards a {
+    text-decoration: none !important;
+}
+
+.blogCards a h4 {
+    transition: 0.6s;
+}
+
+.blogCards a h4:hover {
+    text-decoration: underline !important;
+}
+
+/* END blog css */
+
+
+
+
+/* START WatchOurVideo css */
+
+.WatchOurVideo {
+    background-image: url("https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.WatchOurVideo .WatchOurVideoLayer {
+    background-color: var(--darkcolorTransparent);
+
+}
+
+
+
+
+
+
+.WatchOurVideo .video-popup a {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    display: inline-block;
+    background: var(--white);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    text-align: center;
+    line-height: 65px;
+    color: var(--primarycolor);
+    transition: 0.6s;
+  
+  }
+  .WatchOurVideo .video-popup a i {
+    margin-left: 8%;
+  }
+  .WatchOurVideo .video-popup a i:before {
+    font-size: 21px;
+    transition: 0.6s;
+  
+  }
+  .WatchOurVideo .video-popup a:hover {
+    background: var(--primarycolor);
+    color: var(--white);
+  }
+  .WatchOurVideo .video-popup a:hover span {
+    border-color: var(--primarycolor);
+  }
+  .WatchOurVideo .video-popup a span {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: circle-fade-before 2s infinite ease-in-out;
+    -webkit-animation: circle-fade-before 2s infinite ease-in-out;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+  }
+  .WatchOurVideo .video-popup a .circle-2 {
+    animation: circle-fade-after 2s infinite ease-in-out;
+    -webkit-animation: circle-fade-after 2s infinite ease-in-out;
+  }
+  .WatchOurVideo .video-popup > span {
+    margin-left: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #1b1d21;
+    letter-spacing: 0.5px;
+  }
+  .WatchOurVideo .video-popup .btn-inner {
+    display: inline-block;
+    border-radius: 50%;
+  }
+  
+  @keyframes circle-fade-before {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  @keyframes circle-fade-after {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+  @keyframes slide-up{
+    0%{height:0;} 
+  }
+  
+  
+
+/* END WatchOurVideo css */
+
+
+
+
+/* START OurServices css */
+  
+
+  @media (min-width: 768px) {
+    .OurServices .col-md-6 {
+        flex: 0 0 auto;
+        width: 48%;
+      }
+  }
+
+
+/* END OurServices css */
+
+
+/* START Lesmodeleslesplusdemandes */
+
+  .theSliderdivParent {
+  width: 250px;
+
+  }
+       .theSliderdiv {
+            width: 100%;
+            /* height: 200px; */
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.23) !important;
+        }
+
+        .theSliderdiv::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 10%;
+            background: var(--LightBgColor);
+            transition: width 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .theSliderdiv:hover::before {
+            width: 100%;
+        }
+
+        .theSliderdiv * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .theSliderdiv img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .theSliderdiv p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .theSliderdivParent {
+         text-decoration: none;
+      }
+
+        .Lesmodeleslesplusdemandes img {
+          z-index: 3;
+          top: -29px;
+        }
+
+
+        @media (min-width: 992px) {
+          .Lesmodeleslesplusdemandes img {
+            z-index: 3;
+            top: -50px;
+          }
+        }
+      
+
+/* END Lesmodeleslesplusdemandes */

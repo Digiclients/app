@@ -1,0 +1,43 @@
+.FooterLogo {
+    color:var(--white) !important ;
+    font-size: 37px !important;
+    font-weight: 900;
+    text-decoration: none;
+    }
+
+
+
+    .FooterHeadings {
+        border-bottom: 2px solid var(--white);
+        padding-bottom: 8px;
+        color: var(--white);
+        font-weight: bold;
+    }
+
+
+    footer hr {
+        opacity: 1 !important;
+    }
+
+    footer ul li {
+ 
+  list-style: none !important;
+  margin: 8px 0px !important;
+  border: 0px !important;
+  padding: 0px !important;
+  background-color: transparent !important;
+
+}
+footer ul li a {
+color: var(--white) !important;
+font-size: 14px !important;
+font-family: var(--primaryfont), sans-serif !important;
+text-decoration: none;
+
+transition: 0.6s;
+
+}
+
+footer ul li a:hover{
+text-decoration: underline;
+}

@@ -1,0 +1,114 @@
+.NavBarLogo {
+    color: var(--primarycolor) !important ;
+    font-size: 37px !important;
+    font-weight: 900;
+}
+
+.offcanvas-start {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.offcanvas-start.show {
+    transform: translateX(0);
+}
+
+/* ///////////////////////////////////////////////////// */
+/* //////////// START  NavBar link  /////////// */
+/* ////////////////////////////////////////////////// */
+
+.NavBarIcon {
+    transition: 0.6s;
+    margin: 0px 4px;
+}
+.NavBarIcon a {
+    color: var(--darkcolor) !important;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    transition: 0.6s;
+}
+
+.activeNavBarIcon a {
+    color: var(--primarycolor) !important;
+    transition: 0.6s;
+}
+
+.NavBarIcon a:hover {
+    color: var(--primarycolor) !important;
+}
+
+.NavBarlink {
+    transition: 0.6s;
+    margin: 0px 4px;
+}
+
+.activeNavBarlink {
+    box-shadow: inset 0 -2px 0 var(--primarycolor); /* Creates the bottom border effect */
+}
+
+.NavBarlink:hover {
+    /* border-bottom: 2px solid var(--primarycolor); */
+    box-shadow: inset 0 -2px 0 var(--primarycolor); /* Creates the bottom border effect */
+}
+
+.NavBarlink a {
+    color: var(--darkcolor) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    transition: 0.6s;
+}
+
+.activeNavBarlink a {
+    color: var(--primarycolor) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    transition: 0.6s;
+}
+
+.NavBarlink a:hover {
+    color: var(--primarycolor) !important;
+    /* text-decoration: underline; */
+}
+
+/* ///////////////////////////////////////////////////// */
+/* //////////// END  NavBar link  /////////// */
+/* ////////////////////////////////////////////////// */
+
+.FrontNavbar {
+    background-color: var(--white) !important;
+    box-shadow: rgba(109, 109, 131, 0.2) 0px 2px 6px 0px;
+}
+
+.NavBarline {
+    margin: 2px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+.miniLine {
+    background-color: var(--primarycolor);
+    width: 4px;
+    height: 70%;
+    /* margin: auto; */
+    margin: auto;
+}
+
+/* SELECT2 */
+
+.select2-container--bootstrap-5
+    .select2-dropdown
+    .select2-results__options
+    .select2-results__option[role="group"]
+    .select2-results__group {
+    font-weight: bold !important;
+    color: #333 !important;
+}
+
+
+
+@media (min-width: 992px) {
+    .FrontNavbar .offcanvas {
+        display: none !important;
+    }
+
+
+}

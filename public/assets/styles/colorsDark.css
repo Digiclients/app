@@ -1,0 +1,39 @@
+
+:root {
+    --primarycolor: #6259ca;
+    --primarycolor-RBG : 98,89,202;
+    --primarycoloropacity: #6259ca17;
+    --seccolor: #DFBF4D;
+    --secColoropacity : #DFBF4D17;
+    --thirdColor : #00AAFF;
+    --thirdColoropacity : #00AAFF17;
+    --fourthColor : #FA8B0C;
+    --fourthColoropacity : #FA8B0C17;
+    --whiteColoropacity : rgba(255, 255, 255, .10);
+    --h2color : #170c6b ;
+    --textcolor: #ebebeb;
+    --consttextcolor: #4c4e6499;
+    --darkcolor: #fff;
+    --graycolor: #fff;
+    --constgraycolor: #404040;
+    --white: white;
+    --BlocksBackground :rgba(255, 255, 255, .10) ;
+    --FloatingBlocksBackground : #1b1e2b ;
+    --black: #000000;
+    --adminsidebar: rgba(255, 255, 255, 0.4);
+    --formtextcolor : #a8afc7 ;
+    --navbariconscolor : #fff ;
+    --bgbodycolor: #010413 ;
+
+
+    --color-success: #01B81A ;
+    --color-danger: #FF0F0F ;
+    
+
+
+
+    --pfont: 14px;
+    --dark-box-shadow : rgba(20, 21, 33, 0.15) 0px 2px 10px 0px; 
+  
+  }
+

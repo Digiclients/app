@@ -1,0 +1,196 @@
+
+
+
+.profileRow {
+        --bs-gutter-x: 1.5rem !important;
+}
+
+.candidate-info ul {
+    padding: 0px;
+}
+.candidate-info .candidate-detail{
+	padding: 30px 0px;
+	box-shadow: 0 0 10px 0 rgba(0,24,128,0.1);
+	background-color: var(--white);
+	border-radius: 4px 4px 0 0;
+}
+.candidate-info.onepage ul{
+	border-radius: 4px;
+}
+.candidate-info.onepage ul li:first-child a{
+	border-top: 0;
+}
+.canditate-des  {
+	position: relative;
+	display: inline-block;
+	border: 2px solid var(--primarycolor);
+	outline-offset: 3px;
+	border-radius: 100%;
+	width: 150px;
+	height: 150px;
+}
+.canditate-des .upload-link {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	background: #fff;
+	top: 0;
+	right: 0;
+	box-shadow: 0 0 10px 0 rgba(0,24,128,0.1);
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+
+.canditate-des .upload-link i {
+    color: var(--primarycolor) !important;
+}
+
+
+.candidate-info img {
+	border-radius: 100%;
+	width: 100%;
+	background-color: #fff;
+	padding: 5px;
+}
+.candidate-title {
+	margin-top: 25px;
+}
+.candidate-info ul {
+	list-style: none;
+    margin-bottom: 0px;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+}
+.candidate-info ul li a {
+	width: 100%;
+	padding: 15px 20px;
+	display: inline-block;
+	border-top: 1px solid var(--ListingLineHRColor-RGBA);
+	color: var(--darkcolor);
+	border-left: 3px solid rgba(0,0,0,0);
+    text-decoration: none !important;
+}
+.nav-link:focus, .nav-link:hover {
+    color: var(--primarycolor);
+}
+.candidate-info ul li a i {
+	margin-right: 5px;
+}
+.candidate-info ul li a:hover,
+.candidate-info ul li a.active {
+    background: rgba(var(--primarycolor-rgb) , 0.11);
+	border-left-color: var(--primarycolor);
+
+}
+
+.candidate-info ul li a.active span {
+  color: var(--primarycolor) !important;
+}
+
+.candidate-info ul li a span{
+	transition: all 0.5s;
+}
+.candidate-info ul li a:hover span{
+	margin-left: 10px;
+	transition: all 0.5s;
+    color: var(--primarycolor) !important;
+}
+.candidate-info ul li a:hover span.logOut{
+	margin-left: 10px;
+	transition: all 0.5s;
+    color: var(--color-danger) !important;
+}
+.job-post-info .posted-info {
+    background-color: rgba(var(--primarycolor-rgb) , 0.11);
+    padding: 10px;
+	border-radius: 4px;
+}
+.browse-job-title .widget-title{
+	margin: 10px 0;
+}
+.upload-link:hover{
+	cursor: pointer;
+}
+.tooltip{
+    border-radius: 5px;
+    font-size: 13px;
+    text-transform: capitalize;
+    font-family: roboto;
+	z-index: 99;
+}
+.update-flie {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    width: 100px;
+    cursor: pointer;
+	left: 0;
+}
+.canditate-des::before {
+    content: "";
+    position: absolute;
+    background-color: var(--primarycolor);
+    height: 115%;
+    width: 2px;
+    left: 50%;
+    top: -10px;
+    z-index: -1;
+}
+.canditate-des{
+	background-color: var(--white);
+	z-index: 99;
+}
+.canditate-des::after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 120%;
+    background-color: var(--primarycolor);
+    height: 2px;
+    z-index: -1;
+}
+
+
+
+
+.profileContainer {
+	box-shadow: 0 0 10px 0 rgba(0,24,128,0.1);
+	padding: 20px 30px;
+	border-radius: 4px;
+	background-color: var(--white);
+}
+
+
+
+.right-arrow {
+    background-color: var(--primarycolor);
+  background-image: url(/assets/images/sap.png);
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: var(--white);
+  text-decoration: none !important;
+}
+
+.right-arrow:hover {
+    color: var(--white) !important;
+
+}
+.site-button, .site-button-secondry {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  vertical-align: middle;
+
+}
+.button-sm {
+  padding: 5px 10px;
+    padding-left: 22px;
+  font-size: 12px;
+}

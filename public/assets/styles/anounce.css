@@ -1,0 +1,125 @@
+ 
+ 
+  
+  @media (max-width: 801px) {
+    .ad-card {
+      display: flex;
+  
+      flex-direction: column !important;
+  
+      height: 647px !important;
+    }
+  
+  
+  
+    .ad-card .image-container {
+    min-width: 100% !important;
+  }
+          }
+  
+    .ad-card {
+      display: flex;
+      flex-direction: column;
+      flex-direction: row;
+      /* border: 1px solid #dee2e6; */
+      /* border-radius: 0.25rem; */
+      overflow: hidden;
+      /* min-height: 21.5rem; */
+      height: 215px;
+      text-decoration: none !important;
+      transition: 0.6s;
+  
+    }
+  
+    .ad-card:hover h5 {
+    color: var(--primarycolor) !important;
+  }
+    .ad-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ad-card .image-container {
+      position: relative;
+      overflow: hidden;
+      min-width: 310px;
+      border-radius: 0.4rem;
+  
+    }
+    .ad-card .image-container .badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: #6f42c1;
+    }
+  
+  
+  
+  
+  
+    .ad-card .favorite-button {
+      position: absolute;
+      top: 9px;
+      right: 1rem;
+      background-color: var(--white);
+      border: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.6s;
+  
+    }
+    .ad-card .favorite-button .TheFavIcon {
+  color: var(--darkcolor);
+  transition: 0.6s;
+  
+    }
+    .ad-card .favorite-button:hover {
+      background-color: var(--primarycolor);
+    }
+    .ad-card .favorite-button:hover .TheFavIcon {
+      color: var(--white);
+    }
+  
+    .ad-card .content {
+      padding: 0.4rem 1rem;
+      /* display: flex; */
+      /* flex-direction: column; */
+      /* justify-content: space-between; */
+      width: 100%;
+    }
+    .ad-card .content h5 {
+      /* margin: 0; */
+      font-weight: bold;
+      color: var(--darkcolor);
+      font-size: 16px !important;
+      /* line-height: 0px; */
+    }
+    .ad-card .content h6 {
+      /* margin: 0; */
+      color: var(--darkcolor);
+      font-weight: bold;
+      font-size: 22px !important;
+      /* line-height: 0px; */
+  
+    }
+    .ad-card .content .details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .ad-card .content .details p {
+      /* background-color: #e9ecef; */
+      /* border-radius: 0.25rem; */
+      /* padding: 0.25rem 0.5rem; */
+      font-size: 14px;
+    }
+    .ad-card .content p.location {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
+  
+  
+  
+ 
