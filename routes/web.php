@@ -25,7 +25,11 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/save-user-info', [App\Http\Controllers\HomeController::class, 'saveUserInfo'])->name('saveUserInfo');
 // *************************** LISTINGS *********************
-Route::get('/voitures', [AnnonceController::class, 'listings'])->name('listings');
+// Route::get('/voitures', [AnnonceController::class, 'listings'])->name('listings');
+Route::get('/voitures', function () {
+    return view('errors.maintenance');
+})->name('listings');
+
 Route::get('voitures/{annonceId}', [AnnonceController::class, 'show'])->name('annonce.show');
 // *********************** LINK SHARED **************************
 Route::get('/result/{id}', [ShareableLinkController::class, 'redirectToOriginal'])->name('shareable.redirect');
@@ -34,7 +38,11 @@ Route::get('/result/{id}', [ShareableLinkController::class, 'redirectToOriginal'
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
 
 // ******************* CREATE ANNONCE *******************
-Route::get('/deposer-une-annonce', [AnnonceController::class, 'create'])->name('create-annonce');
+// Route::get('/deposer-une-annonce', [AnnonceController::class, 'create'])->name('create-annonce');
+Route::get('/deposer-une-annonce', function () {
+    return view('errors.maintenance');
+})->name('create-annonce');
+
 Route::middleware(['auth', 'role:particulier|professionnel'])->group(function () {
     Route::post('/deposer-une-annonce', [AnnonceController::class, 'store'])->name('store-annonce');
     Route::get('/deposer-une-annonce/{annonceId}/images', [AnnonceController::class, 'validateAnnonce'])->name('images-annonce');

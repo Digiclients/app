@@ -5,7 +5,7 @@
         <div class="TopFooter  row py-5">
 
             <div class="col-md-6 col-lg-4 col-xl-3 pe-5 py-2 mb-4 py-md-0 mx-auto">
-                <a class="FooterLogo" href="/">AutoPrix</a>
+                <a class="FooterLogo" href="/">LautoPrix</a>
                 <p class="font14 whitecolor">AutoPrix Brief About Lorem ipsum dolor sit amet consectetur. Vulputate sem
                     ultrices iaculis sit amet ultricies sit blandit. .</p>
 

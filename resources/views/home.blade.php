@@ -88,7 +88,7 @@
 @section('content')
     <!-- START ADS -->
     <br>
-    <section class="ADS px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center" style="width: 98%;margin: 0 auto;">
+    <section   class="ADS px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center" style="width: 98%;margin: 0 auto;">
 
         <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
 
@@ -102,6 +102,9 @@
 
     <!-- END ADS -->
     <!-- START AverageSearch And Average Result -->
+
+
+   
 
 
     <section id="PrixMoyen" class="AverageSearch px-4 px-xl-0 py-5 container-fluid row justify-content-center">
@@ -127,7 +130,7 @@
                         <div class="d-flex justify-content-center row d-grid gap-3">
                             <div class="autocompleteInput input-container col-sm position-relative">
                                 <input type="text" data-array="location" name="location"
-                                    class="form-control @error('location') is-invalid @enderror" placeholder="Location"
+                                    class="form-control @error('location') is-invalid @enderror" placeholder="localisation"
                                     readonly value="{{ request()->input('location') }}" required>
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
@@ -212,7 +215,7 @@
                             <div class="MaxMin input-container col-sm position-relative">
                                 <input type="text" name="annee_modele"
                                     class="form-control @error('annee_modele') is-invalid @enderror"
-                                    placeholder="annee modele" readonly value="{{ request()->input('annee_modele') }}"
+                                    placeholder="année modèle" readonly value="{{ request()->input('annee_modele') }}"
                                     required>
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
@@ -327,7 +330,7 @@
                     </div>
                     <br>
 
-                    <button type="submit" class="primarybtn d-block mx-auto">Obtenez le prix moyen</button>
+                    <button type="submit" class="primarybtn d-block mx-auto">Obtenir le prix moyen</button>
                 </form>
             </div>
             @if (isset($priceStatistics))
@@ -410,7 +413,7 @@
 
 
     <!-- START Lesmodeleslesplusdemandes -->
-    <section class="Lesmodeleslesplusdemandes py-5 container-fluid row justify-content-center">
+    <section class="Lesmodeleslesplusdemandes d-none py-5 container-fluid row justify-content-center">
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
 
             <div class="d-block d-lg-flex justify-content-between align-items-end text-center text-lg-left mb-5 pb-4">
@@ -492,7 +495,7 @@
 
 
     <!-- START MostPopularCars -->
-    <section class="MostPopularCars py-5 container-fluid row justify-content-center">
+    <section class="MostPopularCars d-none py-5 container-fluid row justify-content-center">
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
 
             <div class="d-block d-lg-flex justify-content-between align-items-end text-center text-lg-left mb-5 pb-4">
@@ -629,7 +632,7 @@
 
     <!-- ################  START WatchOurVideo ################ -->
 
-    <section class="WatchOurVideo  container-fluid row justify-content-center">
+    <section class="WatchOurVideo d-none  container-fluid row justify-content-center">
         <div class="WatchOurVideoLayer w100 py-5  text-center">
 
             <br>
@@ -693,7 +696,7 @@
 
     <!-- ################  START BLOGS ################ -->
 
-    <section class="SectionsBlog py-5 container-fluid row justify-content-center">
+    <section class="SectionsBlog d-none py-5 container-fluid row justify-content-center">
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
             <div class="d-block d-lg-flex justify-content-between align-items-end text-center text-lg-left mb-4 pb-1">
                 <h2 class="darkcolor fontwbold font30 mb-0">Plongez au cœur de l'actualité des véhicules d'occasion</h2>

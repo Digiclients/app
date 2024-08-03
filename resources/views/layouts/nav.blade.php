@@ -6,40 +6,39 @@
             aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand mx-auto me-lg-3 NavBarLogo" href="{{ route('home') }}">AutoPrix</a>
+        <a class="navbar-brand mx-auto me-lg-3 NavBarLogo" href="{{ route('home') }}">LautoPrix</a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <a type="button" href="#PrixMoyen" class="primarybtn  ms-4 me-2 me-lg-0  me-xxl-2">Obtenez le prix
-                moyen</a>
+            <a type="button" href="/#PrixMoyen" class="primarybtn  ms-4 me-2 me-lg-0  me-xxl-2">Obtenir le prix moyen</a>
 
             <ul class="navbar-nav ms-auto" id="navbarContent">
-                <li class="nav-item NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item d-none NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('home') }}">Estimation</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('voitures') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('listings') }}">Acheter</a>
                 </li>
-                <li class="nav-item NavBarlink {{ Request::is('deposer-une-annonce*') ? 'activeNavBarlink' : '' }}">
+                <li class="nav-item  NavBarlink {{ Request::is('deposer-une-annonce*') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('create-annonce') }}">Vendre</a>
                 </li>
-                <li class="nav-item NavBarlink">
+                <li class="nav-item  d-none NavBarlink">
                     <a class="nav-link" href="#">Vous conseiller</a>
                 </li>
-                <li class="nav-item d-flex NavBarline">
+                <li class="nav-item d-none  d-flex NavBarline">
                     <div class="miniLine">
                     </div>
                 </li>
-                <li class="nav-item NavBarIcon">
+                <li class="nav-item d-none NavBarIcon">
                     <a class="nav-link" href="#">
                         <iconify-icon icon="tabler:search" height="24"></iconify-icon>
                     </a>
                 </li>
-                <li class="nav-item NavBarIcon">
+                <li class="nav-item d-none  NavBarIcon">
                     <a class="nav-link" href="#">
                         <iconify-icon icon="tabler:heart" height="24"></iconify-icon>
                     </a>
                 </li>
                 @guest
-                    <li class="nav-item NavBarIcon">
+                    <li class="nav-item d-none  NavBarIcon">
                         <a class="nav-link" href="{{ route('login') }}">
                             <iconify-icon icon="tabler:user-circle" height="24"></iconify-icon>
                         </a>

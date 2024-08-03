@@ -144,7 +144,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function buildQueryString(event) {
         event.preventDefault();
 
-        if (validateFilterForm()) {
+        // if validateFilterForm()
+        if (true) {
             hideAlert(); // Hide any previous alerts
             checkUserStatus((authenticated, cookiePresent) => {
                 if (authenticated || cookiePresent) {
