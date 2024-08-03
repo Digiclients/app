@@ -14,6 +14,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app-56d27ad2.css') }}">
+    <script src="{{ asset('build/assets/app-cf30c0d9.js') }}"></script>
+    
     @stack('third_party_stylesheets')
     @stack('page_css')
 </head>
