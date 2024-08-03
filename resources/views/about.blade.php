@@ -222,7 +222,7 @@
                         </p>
                         
                         <div>
-            <a href="/" class="primarybtn  my-3 minibtn">Contactez-nous</a>
+            <a href="{{ route('contact') }}" class="primarybtn  my-3 minibtn">Contactez-nous</a>
 
                         </div>
 
