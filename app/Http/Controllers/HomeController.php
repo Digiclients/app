@@ -27,7 +27,9 @@ class HomeController extends Controller
             $hasUserAccessCookie = Cookie::get('user_access') === 'true';
             // If neither authentication nor cookie is present, show the error
             if (!$isAuthenticated && !$hasUserAccessCookie) {
-                return view('home')->with('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
+                session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
+                return view('home');
+                // return view('home')->with('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
             }
             $filters = $request->only([
                 'location',
@@ -97,24 +99,39 @@ class HomeController extends Controller
     private function saveOrUpdateAveragePrice($filters, $priceStatistics)
     {
         // Split range values
-        $anneeModeleRange = explode('-', $filters['annee_modele'] ?? '');
-        $kilometrageRange = explode('-', $filters['kilometrage'] ?? '');
+        if (!empty($filters['annee_modele'])) {
+            $anneeModeleRange = explode('-', $filters['annee_modele']);
+            $anneeModeleMin = $anneeModeleRange[0] === 'min' ? null : $anneeModeleRange[0];
+            $anneeModeleMax = $anneeModeleRange[1] === 'max' ? null : $anneeModeleRange[1];
+        } else {
+            $anneeModeleMin = null;
+            $anneeModeleMax = null;
+        }
 
+        if (!empty($filters['kilometrage'])) {
+            $kilometrageRange = explode('-', $filters['kilometrage']);
+            $kilometrageMin = $kilometrageRange[0] === 'min' ? null : $kilometrageRange[0];
+            $kilometrageMax = $kilometrageRange[1] === 'max' ? null : $kilometrageRange[1];
+        } else {
+            $kilometrageMin = null;
+            $kilometrageMax = null;
+        }
         $data = [
             'location' => $filters['location'] ?? null,
             'marque' => $filters['marque'] ?? null,
             'modele' => $filters['modele'] ?? null,
-            'annee_modele_min' => $anneeModeleRange[0] ?? null,
-            'annee_modele_max' => $anneeModeleRange[1] ?? null,
+            'annee_modele_min' => $anneeModeleMin ?? null,
+            'annee_modele_max' => $anneeModeleMax ?? null,
             'carburant' => $filters['carburant'] ?? null,
             'boite_vitesse' => $filters['boite_vitesse'] ?? null,
-            'kilometrage_min' => $kilometrageRange[0] ?? null,
-            'kilometrage_max' => $kilometrageRange[1] ?? null,
+            'kilometrage_min' => $kilometrageMin ?? null,
+            'kilometrage_max' => $kilometrageMax ?? null,
             'average_price' => $priceStatistics['avg_price'] ?? null,
             'min_price' => $priceStatistics['min_price'] ?? null,
             'max_price' => $priceStatistics['max_price'] ?? null,
         ];
 
+        // dd($data);
         AveragePrice::updateOrCreate(
             [
                 'location' => $data['location'],

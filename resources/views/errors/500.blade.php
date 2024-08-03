@@ -51,7 +51,7 @@
 
 <body>
     <div class="error-container">
-        <h1 class="error-code">404</h1>
+        <h1 class="error-code">500</h1>
         <h2 class="error-message">Erreur interne du serveur.</h2>
     </div>
 </body>
