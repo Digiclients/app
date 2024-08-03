@@ -90,7 +90,7 @@
         <div class="BottomFooter">
             <hr class="bgwhite">
             <p class="text-center pt-2 whitecolor">
-                AutoPrix - 2024
+                LautoPrix - 2024
             </p>
         </div>
 

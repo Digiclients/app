@@ -15,10 +15,10 @@
                 <li class="nav-item NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('home') }}">Accueil</a>
                 </li>
-                <li class="nav-item d-none NavBarlink {{ Request::is('/Estimation') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item d-none NavBarlink {{ Request::is('Estimation') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('home') }}">Estimation</a>
                 </li>
-                <li class="nav-item NavBarlink {{ Request::is('/Qui-sommes-nous') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item NavBarlink {{ Request::is('Qui-sommes-nous') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('about') }}">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('voitures') ? 'activeNavBarlink' : '' }}">
@@ -26,6 +26,9 @@
                 </li>
                 <li class="nav-item  NavBarlink {{ Request::is('deposer-une-annonce*') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('create-annonce') }}">Vendre</a>
+                </li>
+                <li class="nav-item  NavBarlink {{ Request::is('Contactez-nous') ? 'activeNavBarlink' : '' }}">
+                    <a class="nav-link" href="{{ route('contact') }}">Contactez-nous</a>
                 </li>
                 <li class="nav-item  d-none NavBarlink">
                     <a class="nav-link" href="#">Vous conseiller</a>

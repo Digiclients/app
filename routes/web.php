@@ -74,6 +74,11 @@ Route::get('/Qui-sommes-nous', function () {
 })->name('about');
 
 
+Route::get('/Contactez-nous', function () {
+    return view('contact');
+})->name('contact');
+
+
 
 
 // ******************** ADMIN ROUTES *************************
