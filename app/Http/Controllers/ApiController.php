@@ -12,18 +12,36 @@ class ApiController extends Controller
 {
     public function getLeboncoinData(Request $request)
     {
-        $LeboncoindData = LeboncoinData::select(
-            'city',
-            'u_car_brand',
-            'u_car_model',
-            'regdate',
-            'fuel',
-            'gearbox'
-        )->distinct()->get();
+        // $LeboncoindData = LeboncoinData::select(
+        //     'city',
+        //     'u_car_brand',
+        //     'u_car_model',
+        //     'regdate',
+        //     'fuel',
+        //     'gearbox'
+        // )->distinct()->get();
 
-        return response()->json([
-            'LeboncoindData' => $LeboncoindData
-        ]);
+        // return response()->json([
+        //     'LeboncoindData' => $LeboncoindData
+        // ]);
+        try {
+            $LeboncoindData = LeboncoinData::select(
+                'city',
+                'u_car_brand',
+                'u_car_model',
+                'regdate',
+                'fuel',
+                'gearbox'
+            )->distinct()->get();
+
+            return response()->json([
+                'LeboncoindData' => $LeboncoindData
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
 
