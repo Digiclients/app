@@ -227,6 +227,9 @@ h6 {
     background-color: var(--BadgeGrayColor) !important ;
 }
 
+.bgdarkcolorTransparent {
+    background-color: var(--darkcolorTransparent);
+}
 
 
 /*/fonts*/

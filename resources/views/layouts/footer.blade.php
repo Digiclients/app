@@ -36,7 +36,7 @@
 
 
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Qui sommes-nous ?</a></li>
+                    <li class="list-group-item"><a href="{{ route('about') }}">Qui sommes-nous ?</a></li>
                     <li class="list-group-item"><a href="#">Nous rejoindre</a></li>
                     <li class="list-group-item"><a href="#">Nos engagements</a></li>
                     <li class="list-group-item"><a href="#">L’Avenir a du bon</a></li>
