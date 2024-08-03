@@ -139,12 +139,12 @@
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
-                                <ul class="dropdown-menu w-100 p-2">
+                                <ul class="dropdown-menu w-100 " style="padding: 0;">
                                     <div class="search-container">
                                         <input type="text" class="form-control search-input"
                                             placeholder="Rechercher un lieu">
                                     </div>
-                                    <div class="model-list">
+                                    <div class="model-list" style="padding: 10px;">
                                         <!-- Location items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -163,7 +163,7 @@
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
-                                <ul class="dropdown-menu w-100 p-2">
+                                <ul class="dropdown-menu w-100 " style="padding: 0;">
                                     <div class="sticky-container">
                                         <div class="search-container">
                                             <input type="text" class="form-control search-input"
@@ -173,7 +173,7 @@
                                             <!-- Selected models will appear here as badges -->
                                         </div>
                                     </div>
-                                    <div id="marques" class="model-list">
+                                    <div id="marques" class="model-list" style="padding: 10px;">
                                         <!-- Model items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -192,7 +192,7 @@
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
-                                <ul class="dropdown-menu w-100 p-2">
+                                <ul class="dropdown-menu w-100 " style="padding: 0;">
                                     <div class="sticky-container">
                                         <div class="search-container">
                                             <input type="text" class="form-control search-input"
@@ -202,7 +202,7 @@
                                             <!-- Selected models will appear here as badges -->
                                         </div>
                                     </div>
-                                    <div class="model-list">
+                                    <div class="model-list" style="padding: 10px;">
                                         <!-- Model items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -250,7 +250,7 @@
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
-                                <ul class="dropdown-menu w-100 p-2">
+                                <ul class="dropdown-menu w-100" style="padding: 0;">
                                     <div class="sticky-container">
                                         <div class="search-container">
                                             <input type="text" class="form-control search-input"
@@ -260,7 +260,7 @@
                                             <!-- Selected carburant will appear here as badges -->
                                         </div>
                                     </div>
-                                    <div class="model-list">
+                                    <div class="model-list" style="padding: 10px;">
                                         <!-- carburant items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -280,7 +280,7 @@
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
-                                <ul class="dropdown-menu w-100 p-2">
+                                <ul class="dropdown-menu w-100" style="padding: 0;">
                                     <div class="sticky-container">
                                         <div class="search-container">
                                             <input type="text" class="form-control search-input"
@@ -290,7 +290,7 @@
                                             <!-- Selected boite-vitesse will appear here as badges -->
                                         </div>
                                     </div>
-                                    <div class="model-list">
+                                    <div class="model-list" style="padding: 10px;">
                                         <!-- boite-vitesse items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -430,7 +430,6 @@
                     </div>
 
                 </div>
-
             @endif
         </div>
     </section>
