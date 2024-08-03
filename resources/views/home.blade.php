@@ -339,7 +339,9 @@
                     <p class="text-center font18 darkcolor"> Ce prix moyen a été extrait de
                         <span>{{ $priceStatistics->count }}</span>
                     </p>
-                    <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
+                    {{-- result with min --}}
+
+                    {{-- <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
                         <div class="col-md-4 pt-4 pb-4 border-end border-bottom">
                             <p class="m-0 darkcolor fontwbold font22">Prix</p>
                             <p class="m-0 successcolor fontwbold font24">Minimum</p>
@@ -358,8 +360,30 @@
                             <p class="m-0 darkcolor fontwbold font24">
                                 {{ number_format($priceStatistics->max_price, 2, ',', ' ') }} €</p>
                         </div>
-                    </div>
+                    </div> --}}
 
+                    {{-- result without min --}}
+                    <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
+                        {{-- <div class="col-md-4 pt-4 pb-4 border-end border-bottom">
+                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
+                            <p class="m-0 successcolor fontwbold font24">Minimum</p>
+                            <p class="m-0 darkcolor fontwbold font24">
+                                {{ number_format($priceStatistics->min_price, 2, ',', ' ') }} €</p>
+                        </div> --}}
+                        <div class="pt-2 pb-2">
+                            <p class="m-0  darkcolor fontwbold font26">Prix</p>
+                            <p class="m-0 primarycolor fontwbold font26">Moyen</p>
+                            <p class="m-0 darkcolor fontwbold font30">
+                                {{ number_format($priceStatistics->avg_price, 2, ',', ' ') }} €</p>
+                        </div>
+                        <hr class="LineHR">
+                        <div class="pt-2 pb-2">
+                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
+                            <p class="m-0 orangecolor fontwbold font24">Maximum</p>
+                            <p class="m-0 darkcolor fontwbold font24">
+                                {{ number_format($priceStatistics->max_price, 2, ',', ' ') }} €</p>
+                        </div>
+                    </div>
                     <h4 class="darkcolor font18 fontw600 text-center">Partagez les résultats avec vos clients ou amis <br>
                         et
                         révélez à 100% le prix moyen réel de n'importe quelle voiture.</h4>
@@ -405,6 +429,7 @@
                     </div>
 
                 </div>
+
             @endif
         </div>
     </section>
