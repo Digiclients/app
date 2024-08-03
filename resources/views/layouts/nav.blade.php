@@ -8,13 +8,17 @@
         </button>
         <a class="navbar-brand mx-auto me-lg-3 NavBarLogo" href="{{ route('home') }}">LautoPrix</a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <a type="button" href="/#PrixMoyen" class="primarybtn  ms-4 me-2 me-lg-0  me-xxl-2">Obtenir le prix moyen</a>
+            <a type="button" href="/#PrixMoyen" class="primarybtn  ms-4 me-2 me-lg-0  me-xxl-2">Obtenir le prix
+                moyen</a>
 
             <ul class="navbar-nav ms-auto" id="navbarContent">
-                <li class="nav-item d-none NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
+                    <a class="nav-link" href="{{ route('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item d-none NavBarlink {{ Request::is('/Estimation') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('home') }}">Estimation</a>
                 </li>
-                <li class="nav-item NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item NavBarlink {{ Request::is('/Qui-sommes-nous') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('about') }}">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('voitures') ? 'activeNavBarlink' : '' }}">
