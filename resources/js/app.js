@@ -96,27 +96,27 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
 
-    function validateFilterForm() {
-        const form = document.getElementById("filterForm");
-        const inputs = form.querySelectorAll("input[name]");
-        const requiredFields = Array.from(inputs).filter((input) =>
-            input.hasAttribute("required")
-        );
-        let isValid = true;
+    // function validateFilterForm() {
+    //     const form = document.getElementById("filterForm");
+    //     const inputs = form.querySelectorAll("input[name]");
+    //     const requiredFields = Array.from(inputs).filter((input) =>
+    //         input.hasAttribute("required")
+    //     );
+    //     let isValid = true;
 
-        // Clear previous validation styles
-        inputs.forEach((input) => (input.style.borderColor = ""));
+    //     // Clear previous validation styles
+    //     inputs.forEach((input) => (input.style.borderColor = ""));
 
-        // Validate required fields
-        requiredFields.forEach((input) => {
-            if (input.value.trim() === "") {
-                isValid = false;
-                input.style.borderColor = "red"; // Highlight empty required fields
-            }
-        });
+    //     // Validate required fields
+    //     requiredFields.forEach((input) => {
+    //         if (input.value.trim() === "") {
+    //             isValid = false;
+    //             input.style.borderColor = "red"; // Highlight empty required fields
+    //         }
+    //     });
 
-        return isValid;
-    }
+    //     return isValid;
+    // }
 
     function showAlert(message) {
         const alert = document.getElementById("validationAlert");
@@ -143,26 +143,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function buildQueryString(event) {
         event.preventDefault();
-
-        // if validateFilterForm()
-        if (true) {
-            hideAlert(); // Hide any previous alerts
-            checkUserStatus((authenticated, cookiePresent) => {
-                if (authenticated || cookiePresent) {
-                    submitFilterForm();
-                } else {
-                    console.log(
-                        "User is not authenticated and cookie not found."
-                    );
-                    const modal = new Modal(
-                        document.getElementById("infoUser")
-                    );
-                    modal.show();
-                }
-            });
-        } else {
-            showAlert("Veuillez remplir tous les champs requis."); // Show the Bootstrap alert
-        }
+        checkUserStatus((authenticated, cookiePresent) => {
+            if (authenticated || cookiePresent) {
+                submitFilterForm();
+            } else {
+                console.log("User is not authenticated and cookie not found.");
+                const modal = new Modal(document.getElementById("infoUser"));
+                modal.show();
+            }
+        });
     }
 
     function submitFilterForm() {
@@ -192,11 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => {
                 if (response.data.success) {
                     // After saving user info, validate and submit the filter form
-                    if (validateFilterForm()) {
-                        submitFilterForm();
-                    } else {
-                        showAlert("Please fill in all required fields."); // Show the Bootstrap alert
-                    }
+                    submitFilterForm();
                 } else {
                     alert("Failed to save user info.");
                 }

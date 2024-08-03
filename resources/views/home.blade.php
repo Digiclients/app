@@ -18,12 +18,12 @@
         }
 
         .close-icon {
-            display: none;
+            display: block;
             /* Hide initially */
         }
 
         .down-icon {
-            display: block;
+            display: none;
             /* Show initially */
         }
 
@@ -88,7 +88,7 @@
 @section('content')
     <!-- START ADS -->
     <br>
-    <section   class="ADS px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center" style="width: 98%;margin: 0 auto;">
+    <section class="ADS px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center" style="width: 98%;margin: 0 auto;">
 
         <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
 
@@ -104,7 +104,7 @@
     <!-- START AverageSearch And Average Result -->
 
 
-   
+
 
 
     <section id="PrixMoyen" class="AverageSearch px-4 px-xl-0 py-5 container-fluid row justify-content-center">
@@ -121,17 +121,20 @@
 
 
             <div class="bgwhite my-5 py-5 rounded">
-                <div id="validationAlert" class="text-center alert alert-warning container col-sm-9 col-md-6 d-none text-center"
-                    role="alert">
+                <div id="validationAlert"
+                    class="text-center alert alert-danger container col-sm-9 col-md-6 d-none text-center" role="alert">
+                    @if (session('error'))
+                        {{ session('error') }}
+                    @endif
                 </div>
 
                 <form id="filterForm" action="{{ route('home') }}" method="GET" onsubmit="buildQueryString(event)">
                     <div class="container">
                         <div class="d-flex justify-content-center row d-grid gap-3">
-                            <div class="autocompleteInput input-container col-sm position-relative">
+                            <div class="autocompleteInput input-container col-sm position-relative d-none">
                                 <input type="text" data-array="location" name="location"
                                     class="form-control @error('location') is-invalid @enderror" placeholder="localisation"
-                                    readonly value="{{ request()->input('location') }}" required>
+                                    readonly value="{{ request()->input('location') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -155,7 +158,7 @@
                             <div class="SearchandCheck  input-container col-sm position-relative">
                                 <input type="text" data-array="marque" name="marque"
                                     class="form-control @error('marque') is-invalid @enderror" placeholder="Marque" readonly
-                                    value="{{ request()->input('marque') }}" required>
+                                    value="{{ request()->input('marque') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -184,7 +187,7 @@
                             <div class="SearchandCheck SearchandCheck-models col-sm input-container position-relative">
                                 <input type="text" data-array="modele" name="modele"
                                     class="form-control @error('modele') is-invalid @enderror" placeholder="Modèle" readonly
-                                    value="{{ request()->input('modele') }}" required>
+                                    value="{{ request()->input('modele') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -215,8 +218,7 @@
                             <div class="MaxMin input-container col-sm position-relative">
                                 <input type="text" name="annee_modele"
                                     class="form-control @error('annee_modele') is-invalid @enderror"
-                                    placeholder="année modèle" readonly value="{{ request()->input('annee_modele') }}"
-                                    required>
+                                    placeholder="année modèle" readonly value="{{ request()->input('annee_modele') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -243,7 +245,7 @@
                             <div class="SearchandCheck input-container col-sm position-relative">
                                 <input type="text" data-array="carburant" name="carburant"
                                     class="form-control @error('carburant') is-invalid @enderror" placeholder="Carburant"
-                                    readonly value="{{ request()->input('carburant') }}" required>
+                                    readonly value="{{ request()->input('carburant') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -273,7 +275,7 @@
                                 <input type="text" data-array="boiteVitesse" name="boite_vitesse"
                                     class="form-control @error('boite_vitesse') is-invalid @enderror"
                                     placeholder="Boite de vitesse" readonly
-                                    value="{{ request()->input('boite_vitesse') }}" required>
+                                    value="{{ request()->input('boite_vitesse') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -302,8 +304,7 @@
                             <div class="MaxMin input-container col-sm position-relative">
                                 <input type="text" name="kilometrage"
                                     class="form-control @error('kilometrage') is-invalid @enderror"
-                                    placeholder="Kilométrage" readonly value="{{ request()->input('kilometrage') }}"
-                                    required>
+                                    placeholder="Kilométrage" readonly value="{{ request()->input('kilometrage') }}">
                                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                                     class="close-icon position-absolute"></iconify-icon>
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
