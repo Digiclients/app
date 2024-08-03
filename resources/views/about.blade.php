@@ -52,9 +52,9 @@
 
         <div class="col-lg-12 col-xl-11 col-xxl-9  py-4 bgLight rounded row px-5 text-center">
 
-        <h2 class="primarycolor font35 fontw900  pt-4 mb-4">Bienvenue chez AutoPrix !</h2>
+        <h2 class="primarycolor font35 fontw900  pt-4 mb-4">Bienvenue chez LautoPrix !</h2>
         <p class="darkcolor font18 fontw600  mb-4">
-            Nous sommes une équipe passionnée d'experts en technologie et en automobiles, déterminés à simplifier et optimiser vos transactions automobiles. Chez AutoPrix, notre mission est claire : vous fournir un outil innovant et fiable pour évaluer la valeur de votre véhicule avec précision.
+            Nous sommes une équipe passionnée d'experts en technologie et en automobiles, déterminés à simplifier et optimiser vos transactions automobiles. Chez LautoPrix, notre mission est claire : vous fournir un outil innovant et fiable pour évaluer la valeur de votre véhicule avec précision.
         </p>
         <div>
 
@@ -83,7 +83,7 @@
                         <h2 class="darkcolor fontwbold font30 mb-4 mt-4 CustomleftBorder">Notre Vision</h2>
 
                         <p class="darkcolor font18 fontw600 lh-lg mb-4">
-                            Chez AutoPrix, nous croyons que chaque transaction automobile devrait être transparente et équitable. Que vous soyez vendeur ou acheteur, vous méritez une estimation précise et actualisée pour prendre des décisions éclairées. Nous avons créé AutoPrix pour vous offrir cette clarté, en utilisant les dernières technologies d'analyse de données de sites d’annonces les plus connus en France pour vous fournir les informations les plus pertinentes.
+                            Chez LautoPrix, nous croyons que chaque transaction automobile devrait être transparente et équitable. Que vous soyez vendeur ou acheteur, vous méritez une estimation précise et actualisée pour prendre des décisions éclairées. Nous avons créé LautoPrix pour vous offrir cette clarté, en utilisant les dernières technologies d'analyse de données de sites d’annonces les plus connus en France pour vous fournir les informations les plus pertinentes.
                         </p>
                         
 
@@ -163,7 +163,7 @@
 
                 
 
-                        <h2 class="darkcolor fontwbold font30 mb-4 mt-4 CustomleftBorder">Pourquoi choisir AutoPrix ?</h2>
+                        <h2 class="darkcolor fontwbold font30 mb-4 mt-4 CustomleftBorder">Pourquoi choisir LautoPrix ?</h2>
 
                         <ul class="darkcolor fontw600 font18 list-unstyled">
                             <li> <b class="primarycolor fontwbold">Précision</b> : Des données réelles pour des évaluations exactes.</li>
@@ -172,7 +172,7 @@
                           </ul>
 
                         <p class="darkcolor font18 fontw600 lh-lg mb-4">
-                            Nous sommes là pour vous accompagner à chaque étape de votre transaction automobile. Essayez AutoPrix aujourd'hui et découvrez la différence que fait une évaluation fiable et précise!
+                            Nous sommes là pour vous accompagner à chaque étape de votre transaction automobile. Essayez LautoPrix aujourd'hui et découvrez la différence que fait une évaluation fiable et précise!
                         </p>
                         
 
@@ -218,7 +218,7 @@
                         <h2 class="darkcolor fontwbold font30 mb-4 mt-4 CustomleftBorder">Contactez-nous</h2>
 
                         <p class="darkcolor font18 fontw600 lh-lg mb-4">
-                            Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter. Nous sommes toujours ravis d'échanger avec nos utilisateurs et de vous aider à tirer le meilleur parti de votre expérience avec AutoPrix.
+                            Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter. Nous sommes toujours ravis d'échanger avec nos utilisateurs et de vous aider à tirer le meilleur parti de votre expérience avec LautoPrix.
                         </p>
                         
                         <div>
