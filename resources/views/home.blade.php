@@ -93,7 +93,7 @@
         <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
 
 
-            <p class="LightGrayColor font35 fontw900 m-0 pt-5">AutoPrix</p>
+            <p class="LightGrayColor font35 fontw900 m-0 pt-5">LautoPrix</p>
             <p class="LightGrayColor font20 fontw900 m-0  pb-5">publicité</p>
 
 
