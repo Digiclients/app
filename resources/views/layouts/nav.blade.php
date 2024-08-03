@@ -14,7 +14,7 @@
                 <li class="nav-item d-none NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('home') }}">Estimation</a>
                 </li>
-                <li class="nav-item NavBarlink {{ Request::is('/*') ? 'activeNavBarlink' : '' }} ">
+                <li class="nav-item NavBarlink {{ Request::is('Qui-sommes-nous') ? 'activeNavBarlink' : '' }} ">
                     <a class="nav-link" href="{{ route('about') }}">Qui sommes-nous ?</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('voitures') ? 'activeNavBarlink' : '' }}">

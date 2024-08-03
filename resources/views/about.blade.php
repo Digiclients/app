@@ -113,7 +113,14 @@
           <div class="col-md-6   innerbg4" style="background-image: url(https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&amp;w=2671&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);background-position: center;background-repeat: no-repeat;background-size: cover;">
           
           <div class="bgdarkcolorTransparent h-100 w-100 px-5 py-5">
-        <div class="my-5"></div>
+        <div class="my-5">
+<div class="d-block d-md-none ">
+
+    <br><br><br><br><br>
+</div>
+
+
+        </div>
         
           </div>
           
