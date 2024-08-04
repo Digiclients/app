@@ -8,7 +8,7 @@ import "@popperjs/core";
 // Default Laravel bootstrapper, installs axios
 
 import "./bootstrap";
-
+console.log('test')
 // Wait until the DOM is fully loaded
 
 // document.addEventListener("DOMContentLoaded", function () {
