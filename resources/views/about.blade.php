@@ -369,7 +369,7 @@
 
 
        
-                    <div class="col-md-6 px-2">
+                    <div class="col-md-6 px-2 mt-4 mt-md-0 ">
 
                         <div class="accordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item CustomAccordion">
