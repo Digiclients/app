@@ -202,7 +202,7 @@
                                             <!-- Selected models will appear here as badges -->
                                         </div>
                                     </div>
-                                    <div class="model-list" style="padding: 10px;">
+                                    <div id="models" class="model-list" style="padding: 10px;">
                                         <!-- Model items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -904,117 +904,6 @@
     </script>
 
     <script>
-        // let autocompleteData = {
-        //     location: [],
-        //     marque: [],
-        //     modele: [],
-        //     carburant: [],
-        //     boiteVitesse: [],
-        // };
-        // document.addEventListener("DOMContentLoaded", () => {
-
-        //     axios
-        //         .get('/api/leboncoin-data')
-        //         .then((responseMaruqe) => {
-        //             console.log(responseMaruqe);
-
-
-
-        //             const data = responseMaruqe.data.LeboncoindData;
-
-
-        //             autocompleteData = {
-        //                 location: [...new Set(data.map((item) => item.localization))],
-        //                 marque: [...new Set(data.map((item) => item.u_car_brand))],
-        //                 modele: [...new Set(data.map((item) => item.u_car_model))],
-        //                 carburant: [...new Set(data.map((item) => item.fuel))],
-        //                 boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-        //             };
-        //             console.log(autocompleteData);
-
-
-
-
-
-
-        //             // fillAutocompleteComponent(autocompleteData);
-
-        //             document.querySelectorAll(".SearchandCheck").forEach((container) => {
-        //                 CreateSearchandCheck(container);
-        //             });
-
-        //             // AutocompleteInput initialization
-
-        //             document.querySelectorAll(".autocompleteInput").forEach((container) => {
-        //                 CreateAutocompleteInput(container);
-        //             });
-
-
-
-        //             var getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
-
-        //             var marquesDiv = document.querySelector('#marques');
-        //             var checkboxes = marquesDiv.querySelectorAll('.form-check-input');
-        //             console.log(checkboxes)
-        //             checkboxes.forEach(function(checkbox) {
-        //                 checkbox.addEventListener('change', function() {
-        //                     console.log("A checkbox within #marques was changed");
-
-        //                     checkboxes.forEach(function(cb) {
-        //                         if (cb.checked) {
-        //                             console.log(cb.value);
-
-        //                             var url = getModelsRoute.replace(
-        //                                 ':marque',
-        //                                 encodeURIComponent(cb.value));
-
-        //                             axios
-        //                                 .get(url)
-        //                                 .then((responseModeles) => {
-        //                                     console.log(
-        //                                         "responseModeles",
-        //                                         responseModeles
-        //                                         .data.modeles);
-
-        //                                     autocompleteData.modele = [
-        //                                         ...new Set(
-        //                                             responseModeles
-        //                                             .data.modeles.map((
-        //                                                     item) =>
-        //                                                 item
-        //                                                 .u_car_model
-        //                                             ))
-        //                                     ]
-
-        //                                     console.log(
-        //                                         autocompleteData);
-
-
-        //                                     document.querySelectorAll(
-        //                                             ".SearchandCheck-models"
-        //                                         )
-        //                                         .forEach((
-        //                                             container) => {
-        //                                             CreateSearchandCheck
-        //                                                 (container);
-        //                                         });
-
-        //                                 })
-        //                                 .catch((error) => {
-        //                                     console.error(error);
-        //                                 });
-        //                         } else {
-        //                             console.log("else");
-        //                         }
-        //                     });
-        //                 });
-        //             });
-        //         }).catch((error) => {
-        //             console.error(error);
-        //         });
-        // });
-
-
         let autocompleteData = {
             location: [],
             marque: [],
@@ -1035,11 +924,74 @@
                 return storedData ? JSON.parse(storedData) : null;
             }
 
+            // Function to compare two objects
+            function isDataDifferent(data1, data2) {
+                return JSON.stringify(data1) !== JSON.stringify(data2);
+            }
+            // Check if data is already in local storage
+            // const storedData = getAutocompleteData();
+            // if (storedData) {
+            //     autocompleteData = storedData;
+            //     initializeComponents();
+            // } else {
+            //     axios.get('/api/leboncoin-data')
+            //         .then((responseMarque) => {
+            //             const data = responseMarque.data.LeboncoindData;
+
+            //             autocompleteData = {
+            //                 location: [...new Set(data.map((item) => item.city))],
+            //                 marque: [...new Set(data.map((item) => item.u_car_brand))],
+            //                 modele: [...new Set(data.map((item) => item.u_car_model))],
+            //                 carburant: [...new Set(data.map((item) => item.fuel))],
+            //                 boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+            //             };
+
+            //             // Store the data in local storage
+            //             storeAutocompleteData(autocompleteData);
+
+            //             checkAndDeleteAutocompleteData()
+
+            //             initializeComponents();
+            //         })
+            //         .catch((error) => {
+            //             console.error(error);
+            //         });
+            // }
+
+
             // Check if data is already in local storage
             const storedData = getAutocompleteData();
             if (storedData) {
                 autocompleteData = storedData;
                 initializeComponents();
+
+                // Fetch new data from the API to check for updates
+                axios.get('/api/leboncoin-data')
+                    .then((responseMarque) => {
+                        const data = responseMarque.data.LeboncoindData;
+
+                        const newAutocompleteData = {
+                            location: [...new Set(data.map((item) => item.city))],
+                            marque: [...new Set(data.map((item) => item.u_car_brand))],
+                            modele: [...new Set(data.map((item) => item.u_car_model))],
+                            carburant: [...new Set(data.map((item) => item.fuel))],
+                            boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+                        };
+
+                        // Check if the new data is different from the stored data
+                        if (isDataDifferent(autocompleteData, newAutocompleteData)) {
+                            // Store the new data in local storage if it's different
+                            storeAutocompleteData(newAutocompleteData);
+                            autocompleteData = newAutocompleteData;
+                            initializeComponents(); // Reinitialize components with new data
+                            console.log("autocompleteData has been updated in localStorage.");
+                        } else {
+                            console.log("No changes detected in autocompleteData.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             } else {
                 axios.get('/api/leboncoin-data')
                     .then((responseMarque) => {
@@ -1053,11 +1005,8 @@
                             boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
                         };
 
-                        // Store the data in local storage
+                        // Store the data in local storage if not empty
                         storeAutocompleteData(autocompleteData);
-                        
-                        checkAndDeleteAutocompleteData()
-
 
                         initializeComponents();
                     })
@@ -1065,6 +1014,7 @@
                         console.error(error);
                     });
             }
+
 
             function initializeComponents() {
 
@@ -1079,6 +1029,7 @@
                 var getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
                 var marquesDiv = document.querySelector('#marques');
                 var checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+                var modelListDiv = document.querySelector('#models');
 
                 checkboxes.forEach(function(checkbox) {
                     checkbox.addEventListener('change', function() {
@@ -1086,6 +1037,11 @@
                             if (cb.checked) {
                                 var url = getModelsRoute.replace(':marque',
                                     encodeURIComponent(cb.value));
+
+                                modelListDiv.innerHTML = `
+                                            <div class="spinner-border text-primary" role="status">
+                                            <span class="sr-only"></span>
+                                            </div>`;
 
                                 axios.get(url)
                                     .then((responseModeles) => {
@@ -1097,6 +1053,9 @@
                                         // Update the stored data in local storage
                                         storeAutocompleteData(autocompleteData);
 
+                                        // Clear the loader
+                                        modelListDiv.innerHTML = '';
+
                                         document.querySelectorAll(
                                             ".SearchandCheck-models").forEach((
                                             container) => {
@@ -1105,6 +1064,8 @@
                                     })
                                     .catch((error) => {
                                         console.error(error);
+                                        modelListDiv.innerHTML =
+                                            '<p>Failed to load models.</p>';
                                     });
                             }
                         });
