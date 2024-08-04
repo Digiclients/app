@@ -69,7 +69,7 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
 
     // ************************ about pages ****************************
 
-Route::get('/Qui-sommes-nous', function () {
+Route::get('/à-propos', function () {
     return view('about');
 })->name('about');
 

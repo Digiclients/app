@@ -112,10 +112,10 @@
 
             <div class="TheHeading text-center py-4">
 
-                <h1 class="darkcolor fontwbold font30">Obtenez le prix moyen actuel pour vendre ou acheter votre voiture</h1>
-                <p class="darkcolor font18 fontw600 m-0">Une analyse des Moyennes de </p>
+                <h1 class="darkcolor fontwbold font30">Obtenir le prix moyen actuel pour vendre ou acheter votre voiture</h1>
+                {{-- <p class="darkcolor font18 fontw600 m-0">Une analyse des Moyennes de </p>
                 <p class="primarycolor font30 fontw900 m-0">842 985</p>
-                <p class="darkcolor font18 fontw600 m-0">prix d'annonces à travers la France.</p>
+                <p class="darkcolor font18 fontw600 m-0">prix d'annonces à travers la France.</p> --}}
             </div>
 
 
@@ -601,7 +601,7 @@
 
 
             <div class="col-lg-5 pe-3">
-                <img class="img-fluid rounded position-relative" style="top: -38px;"
+                <img class="img-fluid rounded position-relative"
                     src="https://images.unsplash.com/photo-1535762900610-81f13b658b73?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="">
 
@@ -609,8 +609,8 @@
 
             <div class="col-lg-7 pt-2">
 
-                <h2 style="font-size: 1.4rem !important;" class="darkcolor fontwbold">Estimation Précise pour Optimiser
-                    Votre Achat ou Vente de Voiture
+                <h2 style="font-size: 1.4rem !important;" class="darkcolor fontwbold">
+                    Estimation Précise pour Optimiser Votre Achat ou Vente de Voiture
                 </h2>
                 <div class="row mt-4">
 
@@ -625,7 +625,7 @@
 
                             <h4 class="darkcolor font18 fontw600">Optimisez Votre Achat ou Vente de Voiture</h4>
                             <p class="mb-0">
-                                Notre service vous aide à trouver le prix idéal en vous fournissant une estimation précise.
+                                Notre outil vous aide à trouver le prix idéal en vous fournissant une estimation précise basée sur une vaste base de données de plus d'un million d'annonces.
                             </p>
                         </div>
 
@@ -641,14 +641,34 @@
 
                         <div class="">
 
-                            <h4 class="darkcolor font18 fontw600">Profitez de données fiables pour faire le bon choix !
+                            <h4 class="darkcolor font18 fontw600">
+                                Pourquoi Choisir LautoPrix ?
                             </h4>
-                            <p class="mb-0">Nos calculs vous offrent une vue d'ensemble des tendances actuelles des prix
-                                des voitures en France.</p>
+                            <ul class="darkcolor list-unstyled">
+                                <li> <b class="primarycolor fontw900">Données Fiables et Complètes</b> : Notre analyse s’appuie sur plus d'un million d'annonces pour vous offrir une vue d'ensemble complète du marché de l'occasion en France.</li>
+                                <li> <b class="primarycolor fontw900">Facilité d'Utilisation</b> : Entrez simplement les détails de votre véhicule et obtenez une estimation instantanée et précise.</li>
+                                <li> <b class="primarycolor fontw900">Décisions Éclairées</b> : Utilisez nos données pour faire des choix informés, que vous achetiez ou vendiez.</li>
+                              </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-md-10 bgwhite rounded text-center mx-auto px-3 py-4 my-4 mb-4">
+
+
+          
+
+                    <h4 class="darkcolor font18 fontw600 mb-4 mt-2">Profitez de notre expertise pour acheter ou vendre en toute confiance !</h4>
+                
+                    <div>
+                        <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto">Essayez Maintenant</a>
+                    </div>
+            
+
+            </div>
+
 
         </div>
     </section>

@@ -6,8 +6,9 @@
 
             <div class="col-md-6 col-lg-4 col-xl-3 pe-5 py-2 mb-4 py-md-0 mx-auto">
                 <a class="FooterLogo" href="/">LautoPrix</a>
-                <p class="font14 whitecolor">AutoPrix Brief About Lorem ipsum dolor sit amet consectetur. Vulputate sem
-                    ultrices iaculis sit amet ultricies sit blandit. .</p>
+                <p class="font14 whitecolor">
+                    LautoPrix est votre outil de référence pour évaluer la valeur des véhicules d'occasion en France. Grâce à notre technologie avancée d'analyse de données, nous vous offrons des estimations précises et actualisées basées sur des milliers d'annonces. Que vous soyez acheteur, vendeur, concessionnaire, ou professionnel du secteur, notre mission est de vous fournir des informations fiables pour des transactions transparentes et équitables. Testez LautoPrix et prenez des décisions informées dès aujourd'hui.
+                </p>
 
                 <div class="d-flex gap-4">
                     <a href="">
@@ -32,11 +33,11 @@
 
             <div class="col-md-6 col-lg-4 col-xl-3 pe-5 mx-auto py-2 py-md-0">
 
-                <p class="FooterHeadings">à propos du boncoin</p>
+                <p class="FooterHeadings">à propos</p>
 
 
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('about') }}">Qui sommes-nous ?</a></li>
+                    <li class="list-group-item"><a href="{{ route('about') }}">à propos</a></li>
                     <li class="list-group-item"><a href="#">Nous rejoindre</a></li>
                     <li class="list-group-item"><a href="#">Nos engagements</a></li>
                     <li class="list-group-item"><a href="#">L’Avenir a du bon</a></li>
@@ -53,11 +54,7 @@
 
                 <ul class="list-group">
                     <li class="list-group-item"><a href="#">Publicité</a></li>
-                    <li class="list-group-item"><a href="#">Professionnels de l’immobilier</a></li>
-                    <li class="list-group-item"><a href="#">Vos recrutements</a></li>
                     <li class="list-group-item"><a href="#">Professionnels de l’auto</a></li>
-                    <li class="list-group-item"><a href="#">Professionnels du tourisme</a></li>
-                    <li class="list-group-item"><a href="#">Autres solutions professionnelles</a></li>
                 </ul>
 
 
@@ -75,7 +72,6 @@
                     <li class="list-group-item"><a href="#">Vie privée / cookies</a></li>
                     <li class="list-group-item"><a href="#">Avis utilisateurs</a></li>
                     <li class="list-group-item"><a href="#">Charte de bonne conduite</a></li>
-                    <li class="list-group-item"><a href="#">Paiement en plusieurs fois</a></li>
                     <li class="list-group-item"><a href="#">Accessibilité</a></li>
                 </ul>
 
