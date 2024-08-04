@@ -1055,6 +1055,9 @@
 
                         // Store the data in local storage
                         storeAutocompleteData(autocompleteData);
+                        
+                        checkAndDeleteAutocompleteData()
+
 
                         initializeComponents();
                     })
@@ -1234,6 +1237,29 @@
 
             renderLocationList();
         }
+
+
+        function checkAndDeleteAutocompleteData() {
+            // Check if autocompleteData exists in localStorage
+            const autocompleteData = localStorage.getItem("autocompleteData");
+            if (autocompleteData) {
+                const parsedData = JSON.parse(autocompleteData);
+                // Check if all properties are empty arrays
+                const isEmpty = Object.values(parsedData).every(
+                    array => Array.isArray(array) && array.length === 0
+                );
+                if (isEmpty) {
+                    // Delete autocompleteData from localStorage
+                    localStorage.removeItem("autocompleteData");
+                    console.log("autocompleteData is empty and has been deleted from localStorage.");
+                } else {
+                    console.log("autocompleteData is not empty.");
+                }
+            } else {
+                console.log("autocompleteData not found in localStorage.");
+            }
+        }
+
 
         // MIN & MAX
 

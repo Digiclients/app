@@ -25,6 +25,14 @@ class ApiController extends Controller
         //     'LeboncoindData' => $LeboncoindData
         // ]);
         try {
+            // $LeboncoindData = LeboncoinData::select(
+            //     'city',
+            //     'u_car_brand',
+            //     'u_car_model',
+            //     'regdate',
+            //     'fuel',
+            //     'gearbox'
+            // )->distinct()->get();
             $LeboncoindData = LeboncoinData::select(
                 'city',
                 'u_car_brand',
@@ -32,7 +40,14 @@ class ApiController extends Controller
                 'regdate',
                 'fuel',
                 'gearbox'
-            )->distinct()->get();
+            )->orderBy('city')
+                ->orderBy('u_car_brand')
+                ->orderBy('u_car_model')
+                ->orderBy('regdate')
+                ->orderBy('fuel')
+                ->orderBy('gearbox')
+                ->get();
+
 
             return response()->json([
                 'LeboncoindData' => $LeboncoindData
