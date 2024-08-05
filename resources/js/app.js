@@ -157,14 +157,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function submitFilterForm() {
         const form = document.getElementById("filterForm");
         const inputs = form.querySelectorAll("input[name]");
+        // const queryParams = Array.from(inputs)
+        //     .filter((input) => input.value.trim() !== "")
+        //     .map(
+        //         (input) =>
+        //             `${encodeURIComponent(input.name)}=${encodeURIComponent(
+        //                 input.value.trim()
+        //             )}`
+        //     )
+        //     .join("&");
+        // Collect form inputs into a query string
         const queryParams = Array.from(inputs)
             .filter((input) => input.value.trim() !== "")
-            .map(
-                (input) =>
-                    `${encodeURIComponent(input.name)}=${encodeURIComponent(
-                        input.value.trim()
-                    )}`
-            )
+            .map((input) => {
+                // Special case handling for 'Toute-la-France'
+                if (
+                    input.name === "location" &&
+                    input.value.trim() === "Toute-la-France"
+                ) {
+                    return null; // Exclude this parameter from the query string
+                }
+                return `${encodeURIComponent(input.name)}=${encodeURIComponent(
+                    input.value.trim()
+                )}`;
+            })
+            .filter((param) => param !== null) // Remove null values
             .join("&");
 
         const action = form.getAttribute("action");

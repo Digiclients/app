@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="model-list" style="padding: 10px;">
+                                    <div id="searchResults" class="model-list" style="padding: 10px;">
                                         <!-- Location items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -1186,64 +1186,185 @@
             }
 
             // Function to fetch and update autocomplete data
+            // function fetchAndUpdateAutocompleteData() {
+            //     axios.get('/api/leboncoin-data')
+            //         .then((response) => {
+            //             const data = response.data.LeboncoindData;
+
+            //             // Fetch regions first
+            //             regions().then((regionsData) => {
+            //                 const newAutocompleteData = {
+            //                     // location: [...new Set(regionsData.concat(data.map((item) => item
+            //                     //     .city)))],
+            //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
+            //                     modele: [...new Set(data.map((item) => item.u_car_model))],
+            //                     carburant: [...new Set(data.map((item) => item.fuel))],
+            //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+            //                 };
+
+            //                 // Check if the new data is different from the stored data
+            //                 if (isDataDifferent(autocompleteData, newAutocompleteData)) {
+            //                     // Store the new data in local storage if it's different
+            //                     storeAutocompleteData(newAutocompleteData);
+            //                     autocompleteData = newAutocompleteData;
+            //                     initializeComponents(); // Reinitialize components with new data
+            //                     console.log("autocompleteData has been updated in localStorage.");
+            //                 } else {
+            //                     console.log("No changes detected in autocompleteData.");
+            //                 }
+            //             });
+            //         })
+            //         .catch((error) => {
+            //             console.error('Error fetching leboncoin data:', error);
+            //         });
+            // }
+
+            // Fetch leboncoin data and update other fields
             function fetchAndUpdateAutocompleteData() {
                 axios.get('/api/leboncoin-data')
                     .then((response) => {
                         const data = response.data.LeboncoindData;
 
-                        // Fetch regions first
-                        regions().then((regionsData) => {
-                            const newAutocompleteData = {
-                                location: [...new Set(regionsData.concat(data.map((item) => item
-                                    .city)))],
-                                marque: [...new Set(data.map((item) => item.u_car_brand))],
-                                modele: [...new Set(data.map((item) => item.u_car_model))],
-                                carburant: [...new Set(data.map((item) => item.fuel))],
-                                boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-                            };
+                        const newAutocompleteData = {
+                            ...autocompleteData,
+                            marque: [...new Set(data.map((item) => item.u_car_brand))],
+                            modele: [...new Set(data.map((item) => item.u_car_model))],
+                            carburant: [...new Set(data.map((item) => item.fuel))],
+                            boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+                        };
 
-                            // Check if the new data is different from the stored data
-                            if (isDataDifferent(autocompleteData, newAutocompleteData)) {
-                                // Store the new data in local storage if it's different
-                                storeAutocompleteData(newAutocompleteData);
-                                autocompleteData = newAutocompleteData;
-                                initializeComponents(); // Reinitialize components with new data
-                                console.log("autocompleteData has been updated in localStorage.");
-                            } else {
-                                console.log("No changes detected in autocompleteData.");
-                            }
-                        });
+                        // Check if the new data is different from the stored data
+                        if (isDataDifferent(autocompleteData, newAutocompleteData)) {
+                            // Store the new data in local storage if it's different
+                            storeAutocompleteData(newAutocompleteData);
+                            autocompleteData = newAutocompleteData;
+                            initializeComponents(); // Reinitialize components with new data
+                            console.log("autocompleteData has been updated in localStorage.");
+                        } else {
+                            console.log("No changes detected in autocompleteData.");
+                        }
                     })
                     .catch((error) => {
                         console.error('Error fetching leboncoin data:', error);
                     });
             }
 
-            function regions() {
+            // Fetch regions and update the location field
+            function fetchRegions() {
                 return axios.get('/api/regions')
-                    .then((response) => {
-                        return response.data; // Fixed the issue here
+                    .then(response => {
+                        autocompleteData.location = response.data;
+                        storeAutocompleteData(autocompleteData); // Update local storage
+                        initializeComponents();
+                        console.log('Regions loaded:', response.data); // Check the loaded data
+                        return response.data;
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         console.error('Error fetching regions:', error);
-                        return []; // Return an empty array in case of an error
+                        return [];
                     });
             }
 
+
+            function displayResults(data) {
+                let {
+                    cities,
+                    zipcodes
+                } = data;
+
+                console.log("cities (before conversion): ", cities);
+                console.log("zipcodes (before conversion): ", zipcodes);
+
+                // Convert objects to arrays
+                cities = Object.values(cities);
+                zipcodes = Object.values(zipcodes);
+
+                console.log("cities (after conversion): ", cities);
+                console.log("zipcodes (after conversion): ", zipcodes);
+
+                // Clear previous results
+                const resultsContainer = document.getElementById('searchResults');
+                resultsContainer.innerHTML = '';
+
+                // Display cities
+                if (cities.length > 0) {
+                    console.log("Displaying cities: ", cities);
+                    cities.forEach((city) => {
+                        const listItem = document.createElement("div");
+                        listItem.classList.add("dropdown-item");
+                        listItem.textContent = city;
+                        listItem.addEventListener("click", () => {
+                            document.querySelector('[name=location]').value =
+                                city; // Assuming 'searchCities' is the input element's id
+                            resultsContainer.classList.remove("show");
+                        });
+                        resultsContainer.appendChild(listItem);
+                    });
+                }
+
+                // Display zipcodes
+                if (zipcodes.length > 0) {
+                    console.log("Displaying zipcodes: ", zipcodes);
+                    zipcodes.forEach((zipcode) => {
+                        const listItem = document.createElement("div");
+                        listItem.classList.add("dropdown-item");
+                        listItem.textContent = zipcode;
+                        listItem.addEventListener("click", () => {
+                            document.querySelector('[name=location]').value =
+                                zipcode; // Assuming 'searchCities' is the input element's id
+                            resultsContainer.classList.remove("show");
+                        });
+                        resultsContainer.appendChild(listItem);
+                    });
+                }
+            }
+
+            // Check if data is already in local storage
+            // const storedData = getAutocompleteData();
+            // if (storedData) {
+            //     autocompleteData = storedData;
+            //     initializeComponents();
+
+            //     // Fetch new data from the API to check for updates
+            //     fetchAndUpdateAutocompleteData();
+            // } else {
+            //     // Fetch initial data from the API
+            //     fetchAndUpdateAutocompleteData();
+            // }
 
             // Check if data is already in local storage
             const storedData = getAutocompleteData();
             if (storedData) {
                 autocompleteData = storedData;
-                initializeComponents();
 
                 // Fetch new data from the API to check for updates
-                fetchAndUpdateAutocompleteData();
+                fetchRegions().then(() => fetchAndUpdateAutocompleteData());
+                initializeComponents();
+
             } else {
                 // Fetch initial data from the API
-                fetchAndUpdateAutocompleteData();
+                fetchRegions().then(() => fetchAndUpdateAutocompleteData());
             }
 
+
+            // Usage example
+            const searchCities = document.getElementById('searchCities');
+            searchCities.addEventListener('keyup', function() {
+                const query = this.value;
+
+                if (query === '') {
+                    initializeComponents();
+                } else {
+
+                    searchLeboncoinCities(query)
+                        .then(data => {
+                            console.log(data); // Process the data (cities and zipcodes)
+                            // You can update the UI with the data here
+                            displayResults(data);
+                        });
+                }
+
+            });
 
 
 
@@ -1286,6 +1407,9 @@
                     };
                 });
         }
+
+
+
 
 
 
@@ -1385,6 +1509,24 @@
 
             function renderLocationList(filter = "") {
                 modelList.innerHTML = "";
+                // Add default item
+                const defaultItem = document.createElement("div");
+                defaultItem.classList.add("dropdown-item");
+                defaultItem.textContent = "Toute-la-France";
+                defaultItem.addEventListener("click", () => {
+                    selectedInput.value = "Toute-la-France";
+                    container.querySelector(".dropdown-menu").classList.remove("show");
+                });
+                modelList.appendChild(defaultItem);
+
+                // Add "All Regions" header
+                const allRegionsHeader = document.createElement("div");
+                allRegionsHeader.style.fontSize = "1rem";
+                allRegionsHeader.style.fontWeight = "bolder";
+                allRegionsHeader.classList.add("m-2");
+                allRegionsHeader.textContent = "Régions";
+                modelList.appendChild(allRegionsHeader);
+
                 locations
                     .filter((location) => location.toLowerCase().includes(filter.toLowerCase()))
                     .forEach((location) => {
@@ -1399,9 +1541,9 @@
                     });
             }
 
-            searchInput.addEventListener("input", () => {
-                renderLocationList(searchInput.value);
-            });
+            // searchInput.addEventListener("input", () => {
+            //     renderLocationList(searchInput.value);
+            // });
 
             selectedInput.addEventListener("focus", () => {
                 container.querySelector(".dropdown-menu").classList.add("show");
