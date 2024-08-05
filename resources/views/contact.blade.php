@@ -69,7 +69,7 @@
                     class="darkcolor"></iconify-icon>
 
                 <div class="">
-                    <h4 class="darkcolor font18 mt-1  fontw600">0676767676</h4>
+                    <h4 class="darkcolor font18 mt-1  fontw600">0651530277</h4>
                 </div>
             </div>
         
