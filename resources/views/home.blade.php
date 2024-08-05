@@ -1108,8 +1108,6 @@
             boiteVitesse: [],
         };
         document.addEventListener("DOMContentLoaded", () => {
-            var modeslInput = document.querySelector('[name=modele]').disabled = true;
-
             // Function to store data in local storage
             function storeAutocompleteData(data) {
                 localStorage.setItem('autocompleteData', JSON.stringify(data));
