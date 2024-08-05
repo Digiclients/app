@@ -1108,6 +1108,7 @@
             boiteVitesse: [],
         };
         document.addEventListener("DOMContentLoaded", () => {
+            var modeslInput = document.querySelector('[name=modele]').disabled = true;
 
             // Function to store data in local storage
             function storeAutocompleteData(data) {
@@ -1144,7 +1145,10 @@
                 const marquesDiv = document.querySelector('#marques');
                 const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
                 const modelListDiv = document.querySelector('#models');
+                const modeleInput = document.querySelector('[name=modele]');
 
+                // Initially disable the modele input
+                modeleInput.disabled = true;
                 checkboxes.forEach((checkbox) => {
                     checkbox.addEventListener('change', () => {
                         checkboxes.forEach((cb) => {
@@ -1173,12 +1177,17 @@
                                             container) => {
                                             CreateSearchandCheck(container);
                                         });
+
+                                        // Enable the modele input field
+                                        modeleInput.disabled = false;
                                     })
                                     .catch((error) => {
                                         console.error('Error fetching models:', error);
                                         modelListDiv.innerHTML =
                                             '<p>Failed to load models.</p>';
                                     });
+                            } else {
+                                modeleInput.disabled = true;
                             }
                         });
                     });
@@ -1228,10 +1237,11 @@
                         const newAutocompleteData = {
                             ...autocompleteData,
                             marque: [...new Set(data.map((item) => item.u_car_brand))],
-                            modele: [...new Set(data.map((item) => item.u_car_model))],
+                            // modele: [...new Set(data.map((item) => item.u_car_model))],
                             carburant: [...new Set(data.map((item) => item.fuel))],
                             boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
                         };
+
 
                         // Check if the new data is different from the stored data
                         if (isDataDifferent(autocompleteData, newAutocompleteData)) {

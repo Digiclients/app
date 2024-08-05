@@ -28,7 +28,7 @@ class ApiController extends Controller
             $LeboncoindData = LeboncoinData::select(
                 // 'city',
                 'u_car_brand',
-                'u_car_model',
+                // 'u_car_model',
                 'regdate',
                 'fuel',
                 'gearbox'
