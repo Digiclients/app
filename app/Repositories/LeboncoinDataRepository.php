@@ -114,7 +114,6 @@ class LeboncoinDataRepository extends BaseRepository
 
 
     // TODO NEED TO REMOVE VEHICULE WHO DAMAGED
-    // TODO NEED TO GET THE COUNT OF THE DATA
     public function getPriceStatistics($search = [])
     {
         $query = $this->model->newQuery();
@@ -161,12 +160,62 @@ class LeboncoinDataRepository extends BaseRepository
 
 
 
-    protected function applyLocalizationFilter($query, $search)
+    // protected function applyLocalizationFilter($query, $search)
+    // {
+
+    //     if (!empty($search['location'])) {
+    //         $query->where('city', $search['location']);
+    //     }
+    // }
+
+    protected function applyLocalizationFilter(Builder $query, array $search)
     {
+        $regions = $this->model->getRegions();
+
         if (!empty($search['location'])) {
-            $query->where('city', $search['location']);
+            $location = $search['location'];
+            if (array_key_exists($location, $regions)) {
+                $cities = $regions[$location];
+                $query->whereIn('city', $cities);
+            } else {
+                // If the location is not a region, assume it is a city.
+                $query->where('city', $location);
+            }
         }
+
+        return $query;
     }
+
+
+    protected function applyAllCities($query, $search)
+    {
+
+    }
+
+
+
+
+    // protected function applyRegions($query, $region)
+    // {
+
+    //     $regions = LeboncoinData::getRegions();
+
+    //     // Check if the region exists in the $regions array
+    //     if (array_key_exists($region, $regions)) {
+    //         $cities = $regions[$region];
+    //         // Apply the query to filter by cities in the specified region
+    //         $query->whereIn('city', $cities);
+    //     } else {
+    //         // Handle the case where the region does not exist
+    //         // You can throw an exception, log an error, or simply do nothing
+    //         // For this example, we'll just log a warning
+    //     }
+
+    //     return $query;
+    // }
+
+
+
 
     protected function applyBrandFilter($query, $search)
     {

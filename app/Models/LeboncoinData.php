@@ -39,6 +39,111 @@ class LeboncoinData extends Model
         'ownerName',
     ];
 
+    protected $regions = [
+        "Île-de-France" => [
+            "Paris",
+            "Boulogne-Billancourt",
+            "Argenteuil",
+            "Montreuil",
+            "Versailles"
+        ],
+        "Provence-Alpes-Côte d'Azur" => [
+            "Marseille",
+            "Nice",
+            "Toulon",
+            "Aix-en-Provence",
+            "Avignon"
+        ],
+        "Auvergne-Rhône-Alpes" => [
+            "Lyon",
+            "Saint-Étienne",
+            "Grenoble",
+            "Clermont-Ferrand",
+            "Villeurbanne"
+        ],
+        "Hauts-de-France" => [
+            "Lille",
+            "Amiens",
+            "Roubaix",
+            "Tourcoing",
+            "Dunkirk"
+        ],
+        "Nouvelle-Aquitaine" => [
+            "Bordeaux",
+            "Limoges",
+            "Poitiers",
+            "Pau",
+            "La Rochelle"
+        ],
+        "Occitanie" => [
+            "Toulouse",
+            "Montpellier",
+            "Nîmes",
+            "Perpignan",
+            "Béziers"
+        ],
+        "Grand Est" => [
+            "Strasbourg",
+            "Reims",
+            "Metz",
+            "Mulhouse",
+            "Nancy"
+        ],
+        "Brittany" => [
+            "Rennes",
+            "Brest",
+            "Quimper",
+            "Lorient",
+            "Vannes"
+        ],
+        "Normandy" => [
+            "Rouen",
+            "Caen",
+            "Le Havre",
+            "Cherbourg",
+            "Évreux"
+        ],
+        "Pays de la Loire" => [
+            "Nantes",
+            "Angers",
+            "Le Mans",
+            "Saint-Nazaire",
+            "La Roche-sur-Yon"
+        ],
+        "Centre-Val de Loire" => [
+            "Orléans",
+            "Tours",
+            "Bourges",
+            "Châteauroux",
+            "Chartres"
+        ],
+        "Bourgogne-Franche-Comté" => [
+            "Dijon",
+            "Besançon",
+            "Belfort",
+            "Chalon-sur-Saône",
+            "Auxerre"
+        ],
+        "Corsica" => [
+            "Ajaccio",
+            "Bastia",
+            "Corte",
+            "Porto-Vecchio",
+            "Calvi"
+        ]
+    ];
+
+    /**
+     * Get the regions array.
+     *
+     * @return array
+     */
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+
+
 
     public function toSearchableArray()
     {

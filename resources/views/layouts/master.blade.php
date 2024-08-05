@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app-56d27ad2.css') }}">
     <script src="{{ asset('build/assets/app-33903afe.js') }}"></script>
     
+    @env('local')
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @endenv
+    @production
+        <link rel="stylesheet" href="{{ asset('build/assets/app-56d27ad2.css') }}">
+        <script src="{{ asset('build/assets/app-33903afe.js') }}"></script>
+    @endproduction
+
     @stack('third_party_stylesheets')
     @stack('page_css')
 </head>
