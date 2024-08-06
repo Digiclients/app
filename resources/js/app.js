@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const action = form.getAttribute("action");
         const queryString = queryParams ? `?${queryParams}` : "";
-        window.location.href = `${action}${queryString}`;
+        window.location.href = `${action}${queryString}#averageStatistics`;
     }
 
     function submitUserInfo() {
