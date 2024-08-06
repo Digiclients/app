@@ -30,10 +30,9 @@ class HomeController extends Controller
             // Convert searchCountCookie to integer
             $searchCount = (int) $searchCountCookie;
 
-            // Check if search count is less than 3
-            if ($searchCount >= 3) {
-                // Check if user is not authenticated and does not have user access cookie
-                if (!$isAuthenticated && !$hasUserAccessCookie) {
+            // Check if user needs to provide information
+            if (!$isAuthenticated && !$hasUserAccessCookie) {
+                if ($searchCount >= 3) {
                     session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
                     return view('home');
                 }
