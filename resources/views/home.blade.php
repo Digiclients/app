@@ -1241,7 +1241,7 @@
                         const newAutocompleteData = {
                             ...autocompleteData,
                             marque: [...new Set(data.map((item) => item.u_car_brand))],
-                            // modele: [...new Set(data.map((item) => item.u_car_model))],
+                            modele: [],
                             carburant: [...new Set(data.map((item) => item.fuel))],
                             boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
                         };
