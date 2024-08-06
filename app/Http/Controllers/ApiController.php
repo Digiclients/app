@@ -63,6 +63,7 @@ class ApiController extends Controller
     public function getLeboncoinModeles(string $marque)
     {
         $modeles = LeboncoinData::where('u_car_brand', $marque)
+            ->whereNotNull('u_car_model')
             ->select('u_car_model')
             ->distinct()
             ->get();
