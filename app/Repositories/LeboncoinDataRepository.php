@@ -174,6 +174,10 @@ class LeboncoinDataRepository extends BaseRepository
 
         if (!empty($search['location'])) {
             $location = $search['location'];
+            if ($location === 'Toute-la-France') {
+                // If the location is 'Toute-la-France', apply no location filter (show all cities).
+                return $query;
+            }
             if (array_key_exists($location, $regions)) {
                 $cities = $regions[$location];
                 $query->whereIn('city', $cities);

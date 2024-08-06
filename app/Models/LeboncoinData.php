@@ -96,7 +96,7 @@ class LeboncoinData extends Model
             "Lorient",
             "Vannes"
         ],
-        "Normandy" => [
+        "Normandie" => [
             "Rouen",
             "Caen",
             "Le Havre",

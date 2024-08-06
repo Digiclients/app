@@ -83,6 +83,19 @@
             background-color: green;
         }
     </style>
+
+
+    <style>
+        .dropdown-item {
+            transition: .4s ease-in-out;
+        }
+
+        .dropdown-item:hover {
+            cursor: pointer !important;
+            background-color: aliceblue !important;
+            border-radius: 10px !important;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -131,7 +144,7 @@
                 <form id="filterForm" action="{{ route('home') }}" method="GET" onsubmit="buildQueryString(event)">
                     <div class="container">
                         <div class="d-flex justify-content-center row d-grid gap-3">
-                            <div class="autocompleteInput input-container col-sm position-relative d-none">
+                            <div class="autocompleteInput input-container col-sm position-relative">
                                 <input type="text" data-array="location" name="location"
                                     class="form-control @error('location') is-invalid @enderror" placeholder="localisation"
                                     readonly value="{{ request()->input('location') }}">
@@ -140,11 +153,14 @@
                                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                     class="down-icon position-absolute"></iconify-icon>
                                 <ul class="dropdown-menu w-100 " style="padding: 0;">
-                                    <div class="search-container">
-                                        <input type="text" class="form-control search-input"
-                                            placeholder="Rechercher un lieu">
+                                    <div class="sticky-container">
+                                        <div class="search-container">
+                                            <input id="searchCities" type="text" class="form-control search-input"
+                                                placeholder="Rechercher un lieu">
+                                        </div>
                                     </div>
-                                    <div class="model-list" style="padding: 10px;">
+
+                                    <div id="searchResults" class="model-list" style="padding: 10px;">
                                         <!-- Location items will be dynamically inserted here -->
                                     </div>
                                 </ul>
@@ -625,7 +641,8 @@
 
                             <h4 class="darkcolor font18 fontw600">Optimisez Votre Achat ou Vente de Voiture</h4>
                             <p class="mb-0">
-                                Notre outil vous aide à trouver le prix idéal en vous fournissant une estimation précise basée sur une vaste base de données de plus d'un million d'annonces.
+                                Notre outil vous aide à trouver le prix idéal en vous fournissant une estimation précise
+                                basée sur une vaste base de données de plus d'un million d'annonces.
                             </p>
                         </div>
 
@@ -645,10 +662,14 @@
                                 Pourquoi Choisir LautoPrix ?
                             </h4>
                             <ul class="darkcolor list-unstyled">
-                                <li> <b class="primarycolor fontw900">Données Fiables et Complètes</b> : Notre analyse s’appuie sur plus d'un million d'annonces pour vous offrir une vue d'ensemble complète du marché de l'occasion en France.</li>
-                                <li> <b class="primarycolor fontw900">Facilité d'Utilisation</b> : Entrez simplement les détails de votre véhicule et obtenez une estimation instantanée et précise.</li>
-                                <li> <b class="primarycolor fontw900">Décisions Éclairées</b> : Utilisez nos données pour faire des choix informés, que vous achetiez ou vendiez.</li>
-                              </ul>
+                                <li> <b class="primarycolor fontw900">Données Fiables et Complètes</b> : Notre analyse
+                                    s’appuie sur plus d'un million d'annonces pour vous offrir une vue d'ensemble complète
+                                    du marché de l'occasion en France.</li>
+                                <li> <b class="primarycolor fontw900">Facilité d'Utilisation</b> : Entrez simplement les
+                                    détails de votre véhicule et obtenez une estimation instantanée et précise.</li>
+                                <li> <b class="primarycolor fontw900">Décisions Éclairées</b> : Utilisez nos données pour
+                                    faire des choix informés, que vous achetiez ou vendiez.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -658,14 +679,15 @@
             <div class="col-md-10 bgwhite rounded text-center mx-auto px-3 py-4 my-4 mb-4">
 
 
-          
 
-                    <h4 class="darkcolor font18 fontw600 mb-4 mt-2">Profitez de notre expertise pour acheter ou vendre en toute confiance !</h4>
-                
-                    <div>
-                        <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto">Essayez Maintenant</a>
-                    </div>
-            
+
+                <h4 class="darkcolor font18 fontw600 mb-4 mt-2">Profitez de notre expertise pour acheter ou vendre en toute
+                    confiance !</h4>
+
+                <div>
+                    <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto">Essayez Maintenant</a>
+                </div>
+
 
             </div>
 
@@ -924,6 +946,160 @@
     </script>
 
     <script>
+        // let autocompleteData = {
+        //     location: [],
+        //     marque: [],
+        //     modele: [],
+        //     carburant: [],
+        //     boiteVitesse: [],
+        // };
+
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     // Function to store data in local storage
+        //     function storeAutocompleteData(data) {
+        //         localStorage.setItem('autocompleteData', JSON.stringify(data));
+        //     }
+
+        //     // Function to retrieve data from local storage
+        //     function getAutocompleteData() {
+        //         const storedData = localStorage.getItem('autocompleteData');
+        //         return storedData ? JSON.parse(storedData) : null;
+        //     }
+
+        //     // Function to compare two objects
+        //     function isDataDifferent(data1, data2) {
+        //         return JSON.stringify(data1) !== JSON.stringify(data2);
+        //     }
+
+        //     axios.get('/api/regions')
+        //         .then(response => {
+        //             autocompleteData.location = response.data;
+        //             console.log(response); // Check the loaded data
+        //             // Here you can also initialize your autocomplete component with the data
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching regions:', error);
+        //         });
+
+        //     // Check if data is already in local storage
+        //     const storedData = getAutocompleteData();
+        //     if (storedData) {
+        //         autocompleteData = storedData;
+        //         initializeComponents();
+
+        //         // Fetch new data from the API to check for updates
+        //         axios.get('/api/leboncoin-data')
+        //             .then((responseMarque) => {
+        //                 const data = responseMarque.data.LeboncoindData;
+
+        //                 const newAutocompleteData = {
+        //                     location: [...new Set(data.map((item) => item.city))],
+        //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
+        //                     modele: [...new Set(data.map((item) => item.u_car_model))],
+        //                     carburant: [...new Set(data.map((item) => item.fuel))],
+        //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+        //                 };
+
+        //                 // Check if the new data is different from the stored data
+        //                 if (isDataDifferent(autocompleteData, newAutocompleteData)) {
+        //                     // Store the new data in local storage if it's different
+        //                     storeAutocompleteData(newAutocompleteData);
+        //                     autocompleteData = newAutocompleteData;
+        //                     initializeComponents(); // Reinitialize components with new data
+        //                     console.log("autocompleteData has been updated in localStorage.");
+        //                 } else {
+        //                     console.log("No changes detected in autocompleteData.");
+        //                 }
+        //             })
+        //             .catch((error) => {
+        //                 console.error(error);
+        //             });
+        //     } else {
+        //         axios.get('/api/leboncoin-data')
+        //             .then((responseMarque) => {
+        //                 const data = responseMarque.data.LeboncoindData;
+
+        //                 autocompleteData = {
+        //                     location: [...new Set(data.map((item) => item.city))],
+        //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
+        //                     modele: [...new Set(data.map((item) => item.u_car_model))],
+        //                     carburant: [...new Set(data.map((item) => item.fuel))],
+        //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+        //                 };
+
+        //                 // Store the data in local storage if not empty
+        //                 storeAutocompleteData(autocompleteData);
+
+        //                 initializeComponents();
+        //             })
+        //             .catch((error) => {
+        //                 console.error(error);
+        //             });
+        //     }
+
+
+        //     function initializeComponents() {
+
+        //         document.querySelectorAll(".SearchandCheck").forEach((container) => {
+        //             CreateSearchandCheck(container);
+        //         });
+
+        //         document.querySelectorAll(".autocompleteInput").forEach((container) => {
+        //             CreateAutocompleteInput(container);
+        //         });
+
+        //         var getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
+        //         var marquesDiv = document.querySelector('#marques');
+        //         var checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+        //         var modelListDiv = document.querySelector('#models');
+
+        //         checkboxes.forEach(function(checkbox) {
+        //             checkbox.addEventListener('change', function() {
+        //                 checkboxes.forEach(function(cb) {
+        //                     if (cb.checked) {
+        //                         var url = getModelsRoute.replace(':marque',
+        //                             encodeURIComponent(cb.value));
+
+        //                         modelListDiv.innerHTML = `
+    //                                     <div class="spinner-border text-primary" role="status">
+    //                                     <span class="sr-only"></span>
+    //                                     </div>`;
+
+        //                         axios.get(url)
+        //                             .then((responseModeles) => {
+        //                                 autocompleteData.modele = [
+        //                                     ...new Set(responseModeles.data.modeles
+        //                                         .map((item) => item.u_car_model))
+        //                                 ];
+
+        //                                 // Update the stored data in local storage
+        //                                 storeAutocompleteData(autocompleteData);
+
+        //                                 // Clear the loader
+        //                                 modelListDiv.innerHTML = '';
+
+        //                                 document.querySelectorAll(
+        //                                     ".SearchandCheck-models").forEach((
+        //                                     container) => {
+        //                                     CreateSearchandCheck(container);
+        //                                 });
+        //                             })
+        //                             .catch((error) => {
+        //                                 console.error(error);
+        //                                 modelListDiv.innerHTML =
+        //                                     '<p>Failed to load models.</p>';
+        //                             });
+        //                     }
+        //                 });
+        //             });
+        //         });
+        //     }
+        // });
+
+
+
+
+        // Data structure to hold autocomplete data
         let autocompleteData = {
             location: [],
             marque: [],
@@ -931,7 +1107,6 @@
             carburant: [],
             boiteVitesse: [],
         };
-
         document.addEventListener("DOMContentLoaded", () => {
             // Function to store data in local storage
             function storeAutocompleteData(data) {
@@ -948,55 +1123,129 @@
             function isDataDifferent(data1, data2) {
                 return JSON.stringify(data1) !== JSON.stringify(data2);
             }
-            // Check if data is already in local storage
-            // const storedData = getAutocompleteData();
-            // if (storedData) {
-            //     autocompleteData = storedData;
-            //     initializeComponents();
-            // } else {
+
+            // Function to initialize components with autocomplete data
+            function initializeComponents() {
+                document.querySelectorAll(".SearchandCheck").forEach((container) => {
+                    CreateSearchandCheck(container);
+                });
+
+                document.querySelectorAll(".autocompleteInput").forEach((container) => {
+                    CreateAutocompleteInput(container);
+                });
+
+                setupMarqueCheckboxListeners();
+            }
+
+            // Function to setup event listeners for marque checkboxes
+            function setupMarqueCheckboxListeners() {
+                const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
+                const marquesDiv = document.querySelector('#marques');
+                const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+                const modelListDiv = document.querySelector('#models');
+                const modeleInput = document.querySelector('[name=modele]');
+
+                // if (modeleInput.value.trim() !== '') {
+                //     modeleInput.disabled = false;
+                // } else {
+                //     modeleInput.disabled = true;
+                // }
+                checkboxes.forEach((checkbox) => {
+                    checkbox.addEventListener('change', () => {
+                        checkboxes.forEach((cb) => {
+                            if (cb.checked) {
+                                const url = getModelsRoute.replace(':marque',
+                                    encodeURIComponent(cb.value));
+                                modelListDiv.innerHTML = `
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only"></span>
+                            </div>`;
+
+                                axios.get(url)
+                                    .then((responseModeles) => {
+                                        autocompleteData.modele = [...new Set(
+                                            responseModeles.data.modeles.map((
+                                                item) => item.u_car_model))];
+
+                                        // Update the stored data in local storage
+                                        storeAutocompleteData(autocompleteData);
+
+                                        // Clear the loader
+                                        modelListDiv.innerHTML = '';
+
+                                        document.querySelectorAll(
+                                            ".SearchandCheck-models").forEach((
+                                            container) => {
+                                            CreateSearchandCheck(container);
+                                        });
+                                        // init input model
+                                        // modeleInput.value = ''
+                                        // // Enable the modele input field
+                                        // modeleInput.disabled = false;
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error fetching models:', error);
+                                        modelListDiv.innerHTML =
+                                            '<p>Failed to load models.</p>';
+                                    });
+                            } else {
+                                // init input model
+                                // modeleInput.value = ''
+                                // modeleInput.disabled = true;
+                            }
+                        });
+                    });
+                });
+            }
+
+            // Function to fetch and update autocomplete data
+            // function fetchAndUpdateAutocompleteData() {
             //     axios.get('/api/leboncoin-data')
-            //         .then((responseMarque) => {
-            //             const data = responseMarque.data.LeboncoindData;
+            //         .then((response) => {
+            //             const data = response.data.LeboncoindData;
 
-            //             autocompleteData = {
-            //                 location: [...new Set(data.map((item) => item.city))],
-            //                 marque: [...new Set(data.map((item) => item.u_car_brand))],
-            //                 modele: [...new Set(data.map((item) => item.u_car_model))],
-            //                 carburant: [...new Set(data.map((item) => item.fuel))],
-            //                 boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-            //             };
+            //             // Fetch regions first
+            //             regions().then((regionsData) => {
+            //                 const newAutocompleteData = {
+            //                     // location: [...new Set(regionsData.concat(data.map((item) => item
+            //                     //     .city)))],
+            //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
+            //                     modele: [...new Set(data.map((item) => item.u_car_model))],
+            //                     carburant: [...new Set(data.map((item) => item.fuel))],
+            //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
+            //                 };
 
-            //             // Store the data in local storage
-            //             storeAutocompleteData(autocompleteData);
-
-            //             checkAndDeleteAutocompleteData()
-
-            //             initializeComponents();
+            //                 // Check if the new data is different from the stored data
+            //                 if (isDataDifferent(autocompleteData, newAutocompleteData)) {
+            //                     // Store the new data in local storage if it's different
+            //                     storeAutocompleteData(newAutocompleteData);
+            //                     autocompleteData = newAutocompleteData;
+            //                     initializeComponents(); // Reinitialize components with new data
+            //                     console.log("autocompleteData has been updated in localStorage.");
+            //                 } else {
+            //                     console.log("No changes detected in autocompleteData.");
+            //                 }
+            //             });
             //         })
             //         .catch((error) => {
-            //             console.error(error);
+            //             console.error('Error fetching leboncoin data:', error);
             //         });
             // }
 
-
-            // Check if data is already in local storage
-            const storedData = getAutocompleteData();
-            if (storedData) {
-                autocompleteData = storedData;
-                initializeComponents();
-
-                // Fetch new data from the API to check for updates
+            // Fetch leboncoin data and update other fields
+            function fetchAndUpdateAutocompleteData() {
                 axios.get('/api/leboncoin-data')
-                    .then((responseMarque) => {
-                        const data = responseMarque.data.LeboncoindData;
+                    .then((response) => {
+                        const data = response.data.LeboncoindData;
 
                         const newAutocompleteData = {
-                            location: [...new Set(data.map((item) => item.city))],
+                            ...autocompleteData,
                             marque: [...new Set(data.map((item) => item.u_car_brand))],
-                            modele: [...new Set(data.map((item) => item.u_car_model))],
+                            modele: [],
                             carburant: [...new Set(data.map((item) => item.fuel))],
                             boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
                         };
+
 
                         // Check if the new data is different from the stored data
                         if (isDataDifferent(autocompleteData, newAutocompleteData)) {
@@ -1010,89 +1259,259 @@
                         }
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error('Error fetching leboncoin data:', error);
                     });
-            } else {
-                axios.get('/api/leboncoin-data')
-                    .then((responseMarque) => {
-                        const data = responseMarque.data.LeboncoindData;
+            }
 
-                        autocompleteData = {
-                            location: [...new Set(data.map((item) => item.city))],
-                            marque: [...new Set(data.map((item) => item.u_car_brand))],
-                            modele: [...new Set(data.map((item) => item.u_car_model))],
-                            carburant: [...new Set(data.map((item) => item.fuel))],
-                            boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-                        };
-
-                        // Store the data in local storage if not empty
-                        storeAutocompleteData(autocompleteData);
-
+            // Fetch regions and update the location field
+            function fetchRegions() {
+                return axios.get('/api/regions')
+                    .then(response => {
+                        autocompleteData.location = response.data;
+                        storeAutocompleteData(autocompleteData); // Update local storage
                         initializeComponents();
+                        console.log('Regions loaded:', response.data); // Check the loaded data
+                        return response.data;
                     })
-                    .catch((error) => {
-                        console.error(error);
+                    .catch(error => {
+                        console.error('Error fetching regions:', error);
+                        return [];
                     });
             }
 
 
-            function initializeComponents() {
+            function displayResults(data) {
+                let {
+                    cities,
+                    zipcodes
+                } = data;
 
-                document.querySelectorAll(".SearchandCheck").forEach((container) => {
-                    CreateSearchandCheck(container);
-                });
+                console.log("cities (before conversion): ", cities);
+                console.log("zipcodes (before conversion): ", zipcodes);
 
-                document.querySelectorAll(".autocompleteInput").forEach((container) => {
-                    CreateAutocompleteInput(container);
-                });
+                // Convert objects to arrays
+                cities = Object.values(cities);
+                zipcodes = Object.values(zipcodes);
 
-                var getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
-                var marquesDiv = document.querySelector('#marques');
-                var checkboxes = marquesDiv.querySelectorAll('.form-check-input');
-                var modelListDiv = document.querySelector('#models');
+                console.log("cities (after conversion): ", cities);
+                console.log("zipcodes (after conversion): ", zipcodes);
 
-                checkboxes.forEach(function(checkbox) {
-                    checkbox.addEventListener('change', function() {
-                        checkboxes.forEach(function(cb) {
-                            if (cb.checked) {
-                                var url = getModelsRoute.replace(':marque',
-                                    encodeURIComponent(cb.value));
+                // Clear previous results
+                const resultsContainer = document.getElementById('searchResults');
+                resultsContainer.innerHTML = '';
 
-                                modelListDiv.innerHTML = `
-                                            <div class="spinner-border text-primary" role="status">
-                                            <span class="sr-only"></span>
-                                            </div>`;
-
-                                axios.get(url)
-                                    .then((responseModeles) => {
-                                        autocompleteData.modele = [
-                                            ...new Set(responseModeles.data.modeles
-                                                .map((item) => item.u_car_model))
-                                        ];
-
-                                        // Update the stored data in local storage
-                                        storeAutocompleteData(autocompleteData);
-
-                                        // Clear the loader
-                                        modelListDiv.innerHTML = '';
-
-                                        document.querySelectorAll(
-                                            ".SearchandCheck-models").forEach((
-                                            container) => {
-                                            CreateSearchandCheck(container);
-                                        });
-                                    })
-                                    .catch((error) => {
-                                        console.error(error);
-                                        modelListDiv.innerHTML =
-                                            '<p>Failed to load models.</p>';
-                                    });
-                            }
+                // Display cities
+                if (cities.length > 0) {
+                    console.log("Displaying cities: ", cities);
+                    cities.forEach((city) => {
+                        const listItem = document.createElement("div");
+                        listItem.classList.add("dropdown-item");
+                        listItem.textContent = city;
+                        listItem.addEventListener("click", () => {
+                            document.querySelector('[name=location]').value =
+                                city; // Assuming 'searchCities' is the input element's id
+                            resultsContainer.classList.remove("show");
                         });
+                        resultsContainer.appendChild(listItem);
                     });
+                }
+
+                // Display zipcodes
+                if (zipcodes.length > 0) {
+                    console.log("Displaying zipcodes: ", zipcodes);
+                    zipcodes.forEach((zipcode) => {
+                        const listItem = document.createElement("div");
+                        listItem.classList.add("dropdown-item");
+                        listItem.textContent = zipcode;
+                        listItem.addEventListener("click", () => {
+                            document.querySelector('[name=location]').value =
+                                zipcode; // Assuming 'searchCities' is the input element's id
+                            resultsContainer.classList.remove("show");
+                        });
+                        resultsContainer.appendChild(listItem);
+                    });
+                }
+            }
+
+            // Check if data is already in local storage
+            // const storedData = getAutocompleteData();
+            // if (storedData) {
+            //     autocompleteData = storedData;
+            //     initializeComponents();
+
+            //     // Fetch new data from the API to check for updates
+            //     fetchAndUpdateAutocompleteData();
+            // } else {
+            //     // Fetch initial data from the API
+            //     fetchAndUpdateAutocompleteData();
+            // }
+
+            // Check if data is already in local storage
+            const storedData = getAutocompleteData();
+            if (storedData) {
+                autocompleteData = storedData;
+
+                // Fetch new data from the API to check for updates
+                fetchRegions().then(() => fetchAndUpdateAutocompleteData());
+                initializeComponents();
+
+            } else {
+                // Fetch initial data from the API
+                fetchRegions().then(() => fetchAndUpdateAutocompleteData());
+            }
+
+
+            // Usage example
+            const searchCities = document.getElementById('searchCities');
+            searchCities.addEventListener('keyup', function() {
+                const query = this.value;
+
+                if (query === '') {
+                    initializeComponents();
+                } else {
+
+                    searchLeboncoinCities(query)
+                        .then(data => {
+                            console.log(data); // Process the data (cities and zipcodes)
+                            // You can update the UI with the data here
+                            displayResults(data);
+                        });
+                }
+
+            });
+
+
+
+        });
+
+
+
+
+        /**
+         * Performs a search based on the given query and returns the data.
+         * @param {string} query - The search query.
+         * @returns {Promise<Object>} - A promise that resolves to the search results.
+         * THIS IS FUNCTION IS NOT USED YET
+         */
+        function searchLeboncoinCities(query) {
+            // Check if query length is at least 2 characters
+            if (query.length < 2) {
+                return Promise.resolve({
+                    cities: [],
+                    zipcodes: []
                 });
             }
-        });
+
+            // Perform the search using Axios
+            return axios.get('/api/search-leboncoin-cities', {
+                    params: {
+                        query
+                    }
+                })
+                .then(response => {
+                    // Return the data from the response
+                    return response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    // Return empty arrays on error
+                    return {
+                        cities: [],
+                        zipcodes: []
+                    };
+                });
+        }
+
+
+
+
+
+
+
+
+        // function CreateSearchandCheck(container) {
+        //     const dataArrayName = container.querySelector("input").getAttribute("data-array");
+        //     const models = autocompleteData[dataArrayName];
+        //     const modelList = container.querySelector(".model-list");
+        //     const searchInput = container.querySelector(".search-input");
+        //     const selectedModelsContainer = container.querySelector(".badge-container");
+        //     const selectedModelsInput = container.querySelector("input");
+        //     const selectedModelNames = new Set();
+
+        //     function renderModelList(filter = "") {
+        //         modelList.innerHTML = "";
+        //         models
+        //             .filter((model) => model.toLowerCase().includes(filter.toLowerCase()))
+        //             .forEach((model) => {
+        //                 const listItem = document.createElement("div");
+        //                 listItem.classList.add("form-check");
+        //                 listItem.innerHTML = `
+    //             <input class="form-check-input" type="checkbox" value="${model}" id="check-${dataArrayName}-${model}">
+    //             <label class="form-check-label" for="check-${dataArrayName}-${model}">
+    //                 ${model}
+    //             </label>
+    //         `;
+        //                 modelList.appendChild(listItem);
+
+        //                 listItem.querySelector("input").addEventListener("change", (e) => {
+        //                     if (e.target.checked) {
+        //                         // Uncheck all other checkboxes
+        //                         modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+        //                             if (checkbox !== e.target) {
+        //                                 checkbox.checked = false;
+        //                             }
+        //                         });
+
+        //                         // Clear the set and add the current model
+        //                         selectedModelNames.clear();
+        //                         selectedModelNames.add(model);
+        //                     } else {
+        //                         selectedModelNames.delete(model);
+        //                     }
+        //                     renderSelectedModels();
+        //                 });
+        //             });
+        //     }
+
+        //     function renderSelectedModels() {
+        //         selectedModelsContainer.innerHTML = "";
+        //         const selectedNamesArray = Array.from(selectedModelNames);
+        //         selectedModelsInput.value = selectedNamesArray.join(", ");
+        //         selectedNamesArray.forEach((name) => {
+        //             const badge = document.createElement("span");
+        //             badge.classList.add("badge", "bg-secondary");
+        //             badge.textContent = name;
+        //             const closeBtn = document.createElement("button");
+        //             closeBtn.classList.add("btn-close", "btn-close-white", "ms-2");
+        //             closeBtn.setAttribute("aria-label", "Close");
+        //             closeBtn.addEventListener("click", () => {
+        //                 selectedModelNames.delete(name);
+        //                 renderSelectedModels();
+        //                 document.getElementById(`check-${dataArrayName}-${name}`).checked = false;
+        //             });
+        //             badge.appendChild(closeBtn);
+        //             selectedModelsContainer.appendChild(badge);
+        //         });
+        //     }
+
+        //     searchInput.addEventListener("input", () => {
+        //         renderModelList(searchInput.value);
+        //     });
+
+        //     selectedModelsInput.addEventListener("focus", () => {
+        //         container.querySelector(".dropdown-menu").classList.add("show");
+        //     });
+
+        //     document.addEventListener("click", (event) => {
+        //         if (!container.contains(event.target)) {
+        //             container.querySelector(".dropdown-menu").classList.remove("show");
+
+        //         }
+        //     });
+
+        //     renderModelList();
+        // }
+
 
         function CreateSearchandCheck(container) {
             const dataArrayName = container.querySelector("input").getAttribute("data-array");
@@ -1103,8 +1522,16 @@
             const selectedModelsInput = container.querySelector("input");
             const selectedModelNames = new Set();
 
+            function getSelectedModelNames() {
+                // Get the value from the input and split it into an array
+                const values = selectedModelsInput.value.split(", ").filter(Boolean);
+                return new Set(values);
+            }
+
             function renderModelList(filter = "") {
                 modelList.innerHTML = "";
+                const selectedNames = getSelectedModelNames();
+
                 models
                     .filter((model) => model.toLowerCase().includes(filter.toLowerCase()))
                     .forEach((model) => {
@@ -1117,6 +1544,12 @@
                     </label>
                 `;
                         modelList.appendChild(listItem);
+
+                        // Check if the model should be pre-checked
+                        if (selectedNames.has(model)) {
+                            listItem.querySelector("input").checked = true;
+                            selectedModelNames.add(model);
+                        }
 
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
@@ -1170,10 +1603,10 @@
             document.addEventListener("click", (event) => {
                 if (!container.contains(event.target)) {
                     container.querySelector(".dropdown-menu").classList.remove("show");
-
                 }
             });
 
+            // Initial render with the pre-checked values
             renderModelList();
         }
 
@@ -1188,6 +1621,24 @@
 
             function renderLocationList(filter = "") {
                 modelList.innerHTML = "";
+                // Add default item
+                const defaultItem = document.createElement("div");
+                defaultItem.classList.add("dropdown-item");
+                defaultItem.textContent = "Toute-la-France";
+                defaultItem.addEventListener("click", () => {
+                    selectedInput.value = "Toute-la-France";
+                    container.querySelector(".dropdown-menu").classList.remove("show");
+                });
+                modelList.appendChild(defaultItem);
+
+                // Add "All Regions" header
+                const allRegionsHeader = document.createElement("div");
+                allRegionsHeader.style.fontSize = "1rem";
+                allRegionsHeader.style.fontWeight = "bolder";
+                allRegionsHeader.classList.add("m-2");
+                allRegionsHeader.textContent = "Régions";
+                modelList.appendChild(allRegionsHeader);
+
                 locations
                     .filter((location) => location.toLowerCase().includes(filter.toLowerCase()))
                     .forEach((location) => {
@@ -1202,9 +1653,9 @@
                     });
             }
 
-            searchInput.addEventListener("input", () => {
-                renderLocationList(searchInput.value);
-            });
+            // searchInput.addEventListener("input", () => {
+            //     renderLocationList(searchInput.value);
+            // });
 
             selectedInput.addEventListener("focus", () => {
                 container.querySelector(".dropdown-menu").classList.add("show");

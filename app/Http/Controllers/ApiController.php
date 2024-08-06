@@ -25,6 +25,14 @@ class ApiController extends Controller
         //     'LeboncoindData' => $LeboncoindData
         // ]);
         try {
+            $LeboncoindData = LeboncoinData::select(
+                // 'city',
+                'u_car_brand',
+                // 'u_car_model',
+                'regdate',
+                'fuel',
+                'gearbox'
+            )->distinct()->get();
             // $LeboncoindData = LeboncoinData::select(
             //     'city',
             //     'u_car_brand',
@@ -32,21 +40,13 @@ class ApiController extends Controller
             //     'regdate',
             //     'fuel',
             //     'gearbox'
-            // )->distinct()->get();
-            $LeboncoindData = LeboncoinData::select(
-                'city',
-                'u_car_brand',
-                'u_car_model',
-                'regdate',
-                'fuel',
-                'gearbox'
-            )->orderBy('city')
-                ->orderBy('u_car_brand')
-                ->orderBy('u_car_model')
-                ->orderBy('regdate')
-                ->orderBy('fuel')
-                ->orderBy('gearbox')
-                ->get();
+            // )->orderBy('city')
+            //     ->orderBy('u_car_brand')
+            //     ->orderBy('u_car_model')
+            //     ->orderBy('regdate')
+            //     ->orderBy('fuel')
+            //     ->orderBy('gearbox')
+            //     ->get();
 
 
             return response()->json([
@@ -91,6 +91,50 @@ class ApiController extends Controller
             ], 500);
         }
     }
+
+    public function getRegions()
+    {
+        $regions = (new LeboncoinData())->getRegions();
+        $regionKeys = array_keys($regions);
+        return response()->json($regionKeys);
+    }
+
+    // public function searchLeboncoinCities(Request $request)
+    // {
+    //     $query = $request->input('query');
+
+    //     // Perform the search in the database
+    //     $results = LeboncoinData::where('city', 'LIKE', "%{$query}%")
+    //         ->orWhere('zipcode', 'LIKE', "%{$query}%")
+    //         ->get();
+
+    //     return response()->json($results);
+    // }
+    public function searchLeboncoinCities(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Initialize the result array
+        $results = [
+            'cities' => [],
+            'zipcodes' => [],
+        ];
+
+        if (is_numeric($query)) {
+            // If the query is numeric, search for zipcodes
+            $results['zipcodes'] = LeboncoinData::where('zipcode', 'LIKE', "%{$query}%")
+                ->pluck('zipcode')
+                ->unique();
+        } else {
+            // If the query is not numeric, search for cities
+            $results['cities'] = LeboncoinData::where('city', 'LIKE', "%{$query}%")
+                ->pluck('city')
+                ->unique();
+        }
+
+        return response()->json($results);
+    }
+
 
 
     public function getMarques(string $parentCategorySlug = "voitures")
