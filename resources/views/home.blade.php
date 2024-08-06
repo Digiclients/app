@@ -1145,8 +1145,11 @@
                 const modelListDiv = document.querySelector('#models');
                 const modeleInput = document.querySelector('[name=modele]');
 
-                // Initially disable the modele input
-                modeleInput.disabled = true;
+                if (modeleInput.value.trim() !== '') {
+                    modeleInput.disabled = false;
+                } else {
+                    modeleInput.disabled = true;
+                }
                 checkboxes.forEach((checkbox) => {
                     checkbox.addEventListener('change', () => {
                         checkboxes.forEach((cb) => {
@@ -1175,7 +1178,8 @@
                                             container) => {
                                             CreateSearchandCheck(container);
                                         });
-
+                                        // init input model
+                                        modeleInput.value = ''
                                         // Enable the modele input field
                                         modeleInput.disabled = false;
                                     })
@@ -1185,6 +1189,8 @@
                                             '<p>Failed to load models.</p>';
                                     });
                             } else {
+                                        // init input model
+                                modeleInput.value = ''
                                 modeleInput.disabled = true;
                             }
                         });
@@ -1423,6 +1429,90 @@
 
 
 
+        // function CreateSearchandCheck(container) {
+        //     const dataArrayName = container.querySelector("input").getAttribute("data-array");
+        //     const models = autocompleteData[dataArrayName];
+        //     const modelList = container.querySelector(".model-list");
+        //     const searchInput = container.querySelector(".search-input");
+        //     const selectedModelsContainer = container.querySelector(".badge-container");
+        //     const selectedModelsInput = container.querySelector("input");
+        //     const selectedModelNames = new Set();
+
+        //     function renderModelList(filter = "") {
+        //         modelList.innerHTML = "";
+        //         models
+        //             .filter((model) => model.toLowerCase().includes(filter.toLowerCase()))
+        //             .forEach((model) => {
+        //                 const listItem = document.createElement("div");
+        //                 listItem.classList.add("form-check");
+        //                 listItem.innerHTML = `
+    //             <input class="form-check-input" type="checkbox" value="${model}" id="check-${dataArrayName}-${model}">
+    //             <label class="form-check-label" for="check-${dataArrayName}-${model}">
+    //                 ${model}
+    //             </label>
+    //         `;
+        //                 modelList.appendChild(listItem);
+
+        //                 listItem.querySelector("input").addEventListener("change", (e) => {
+        //                     if (e.target.checked) {
+        //                         // Uncheck all other checkboxes
+        //                         modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+        //                             if (checkbox !== e.target) {
+        //                                 checkbox.checked = false;
+        //                             }
+        //                         });
+
+        //                         // Clear the set and add the current model
+        //                         selectedModelNames.clear();
+        //                         selectedModelNames.add(model);
+        //                     } else {
+        //                         selectedModelNames.delete(model);
+        //                     }
+        //                     renderSelectedModels();
+        //                 });
+        //             });
+        //     }
+
+        //     function renderSelectedModels() {
+        //         selectedModelsContainer.innerHTML = "";
+        //         const selectedNamesArray = Array.from(selectedModelNames);
+        //         selectedModelsInput.value = selectedNamesArray.join(", ");
+        //         selectedNamesArray.forEach((name) => {
+        //             const badge = document.createElement("span");
+        //             badge.classList.add("badge", "bg-secondary");
+        //             badge.textContent = name;
+        //             const closeBtn = document.createElement("button");
+        //             closeBtn.classList.add("btn-close", "btn-close-white", "ms-2");
+        //             closeBtn.setAttribute("aria-label", "Close");
+        //             closeBtn.addEventListener("click", () => {
+        //                 selectedModelNames.delete(name);
+        //                 renderSelectedModels();
+        //                 document.getElementById(`check-${dataArrayName}-${name}`).checked = false;
+        //             });
+        //             badge.appendChild(closeBtn);
+        //             selectedModelsContainer.appendChild(badge);
+        //         });
+        //     }
+
+        //     searchInput.addEventListener("input", () => {
+        //         renderModelList(searchInput.value);
+        //     });
+
+        //     selectedModelsInput.addEventListener("focus", () => {
+        //         container.querySelector(".dropdown-menu").classList.add("show");
+        //     });
+
+        //     document.addEventListener("click", (event) => {
+        //         if (!container.contains(event.target)) {
+        //             container.querySelector(".dropdown-menu").classList.remove("show");
+
+        //         }
+        //     });
+
+        //     renderModelList();
+        // }
+
+
         function CreateSearchandCheck(container) {
             const dataArrayName = container.querySelector("input").getAttribute("data-array");
             const models = autocompleteData[dataArrayName];
@@ -1432,8 +1522,16 @@
             const selectedModelsInput = container.querySelector("input");
             const selectedModelNames = new Set();
 
+            function getSelectedModelNames() {
+                // Get the value from the input and split it into an array
+                const values = selectedModelsInput.value.split(", ").filter(Boolean);
+                return new Set(values);
+            }
+
             function renderModelList(filter = "") {
                 modelList.innerHTML = "";
+                const selectedNames = getSelectedModelNames();
+
                 models
                     .filter((model) => model.toLowerCase().includes(filter.toLowerCase()))
                     .forEach((model) => {
@@ -1446,6 +1544,12 @@
                     </label>
                 `;
                         modelList.appendChild(listItem);
+
+                        // Check if the model should be pre-checked
+                        if (selectedNames.has(model)) {
+                            listItem.querySelector("input").checked = true;
+                            selectedModelNames.add(model);
+                        }
 
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
@@ -1499,10 +1603,10 @@
             document.addEventListener("click", (event) => {
                 if (!container.contains(event.target)) {
                     container.querySelector(".dropdown-menu").classList.remove("show");
-
                 }
             });
 
+            // Initial render with the pre-checked values
             renderModelList();
         }
 
