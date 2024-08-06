@@ -1165,10 +1165,10 @@
                                     .then((responseModeles) => {
                                         autocompleteData.modele = [...new Set(
                                             responseModeles.data.modeles.map((
-                                                item) => item.u_car_model))];
+                                                item) => item.u_car_model)
+                                        )];
 
-
-                                        console.log('am in then')
+                                        console.log('am in then');
 
                                         // Update the stored data in local storage
                                         storeAutocompleteData(autocompleteData);
@@ -1179,19 +1179,22 @@
                                         document.querySelectorAll(
                                             ".SearchandCheck-models").forEach((
                                             container) => {
-                                            CreateSearchandCheck(container);
+                                            try {
+                                                CreateSearchandCheck(container);
+                                            } catch (err) {
+                                                console.error(
+                                                    'Error in CreateSearchandCheck:',
+                                                    err);
+                                            }
                                         });
-                                        // init input model
-                                        // modeleInput.value = ''
-                                        // // Enable the modele input field
-                                        // modeleInput.disabled = false;
                                     })
                                     .catch((error) => {
-                                        console.log('am in catch')
+                                        console.log('am in catch');
                                         console.error('Error fetching models:', error);
                                         modelListDiv.innerHTML =
                                             '<p>Failed to load models.</p>';
                                     });
+
                             } else {
                                 // init input model
                                 // modeleInput.value = ''
