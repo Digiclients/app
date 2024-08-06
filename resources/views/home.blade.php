@@ -1179,13 +1179,7 @@
                                         document.querySelectorAll(
                                             ".SearchandCheck-models").forEach((
                                             container) => {
-                                            try {
-                                                CreateSearchandCheck(container);
-                                            } catch (err) {
-                                                console.error(
-                                                    'Error in CreateSearchandCheck:',
-                                                    err);
-                                            }
+                                            CreateSearchandCheck(container);
                                         });
                                     })
                                     .catch((error) => {
@@ -1194,7 +1188,6 @@
                                         modelListDiv.innerHTML =
                                             '<p>Failed to load models.</p>';
                                     });
-
                             } else {
                                 // init input model
                                 // modeleInput.value = ''
@@ -1370,22 +1363,23 @@
 
             // Usage example
             const searchCities = document.getElementById('searchCities');
-            searchCities.addEventListener('keyup', function() {
-                const query = this.value;
+            searchCities.addEventListener('keyup',
+                function() {
+                    const query = this.value;
 
-                if (query === '') {
-                    initializeComponents();
-                } else {
+                    if (query === '') {
+                        initializeComponents();
+                    } else {
 
-                    searchLeboncoinCities(query)
-                        .then(data => {
-                            console.log(data); // Process the data (cities and zipcodes)
-                            // You can update the UI with the data here
-                            displayResults(data);
-                        });
-                }
+                        searchLeboncoinCities(query)
+                            .then(data => {
+                                console.log(data); // Process the data (cities and zipcodes)
+                                // You can update the UI with the data here
+                                displayResults(data);
+                            });
+                    }
 
-            });
+                });
 
 
 
