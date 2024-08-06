@@ -1145,11 +1145,11 @@
                 const modelListDiv = document.querySelector('#models');
                 const modeleInput = document.querySelector('[name=modele]');
 
-                if (modeleInput.value.trim() !== '') {
-                    modeleInput.disabled = false;
-                } else {
-                    modeleInput.disabled = true;
-                }
+                // if (modeleInput.value.trim() !== '') {
+                //     modeleInput.disabled = false;
+                // } else {
+                //     modeleInput.disabled = true;
+                // }
                 checkboxes.forEach((checkbox) => {
                     checkbox.addEventListener('change', () => {
                         checkboxes.forEach((cb) => {
@@ -1179,9 +1179,9 @@
                                             CreateSearchandCheck(container);
                                         });
                                         // init input model
-                                        modeleInput.value = ''
-                                        // Enable the modele input field
-                                        modeleInput.disabled = false;
+                                        // modeleInput.value = ''
+                                        // // Enable the modele input field
+                                        // modeleInput.disabled = false;
                                     })
                                     .catch((error) => {
                                         console.error('Error fetching models:', error);
@@ -1189,9 +1189,9 @@
                                             '<p>Failed to load models.</p>';
                                     });
                             } else {
-                                        // init input model
-                                modeleInput.value = ''
-                                modeleInput.disabled = true;
+                                // init input model
+                                // modeleInput.value = ''
+                                // modeleInput.disabled = true;
                             }
                         });
                     });
