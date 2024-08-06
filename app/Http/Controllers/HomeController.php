@@ -25,12 +25,20 @@ class HomeController extends Controller
             // Check authentication and cookie
             $isAuthenticated = Auth::check();
             $hasUserAccessCookie = Cookie::get('user_access') === 'true';
-            // If neither authentication nor cookie is present, show the error
-            if (!$isAuthenticated && !$hasUserAccessCookie) {
-                session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
-                return view('home');
-                // return view('home')->with('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
+            $searchCountCookie = Cookie::get('searchCount');
+
+            // Convert searchCountCookie to integer
+            $searchCount = (int) $searchCountCookie;
+
+            // Check if search count is less than 3
+            if ($searchCount >= 3) {
+                // Check if user is not authenticated and does not have user access cookie
+                if (!$isAuthenticated && !$hasUserAccessCookie) {
+                    session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
+                    return view('home');
+                }
             }
+
             $filters = $request->only([
                 'location',
                 'marque',
@@ -148,5 +156,20 @@ class HomeController extends Controller
         );
     }
 
+
+    public function incrementSearchCount(Request $request)
+    {
+        $searchCount = $request->cookie('searchCount', 0);
+        $searchCount++;
+        $minutes = 30 * 24 * 60; // 30 days
+
+        // Set the cookie
+        Cookie::queue('searchCount', $searchCount, $minutes);
+
+        return response()->json([
+            'success' => true,
+            'searchCount' => $searchCount,
+        ]);
+    }
 
 }

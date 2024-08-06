@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/save-user-info', [App\Http\Controllers\HomeController::class, 'saveUserInfo'])->name('saveUserInfo');
+Route::get('/increment-search-count', [App\Http\Controllers\HomeController::class, 'incrementSearchCount']);
 // *************************** LISTINGS *********************
 // Route::get('/voitures', [AnnonceController::class, 'listings'])->name('listings');
 Route::get('/voitures', function () {
