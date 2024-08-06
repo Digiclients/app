@@ -1167,6 +1167,9 @@
                                             responseModeles.data.modeles.map((
                                                 item) => item.u_car_model))];
 
+
+                                        console.log('am in then')
+
                                         // Update the stored data in local storage
                                         storeAutocompleteData(autocompleteData);
 
@@ -1184,6 +1187,7 @@
                                         // modeleInput.disabled = false;
                                     })
                                     .catch((error) => {
+                                        console.log('am in catch')
                                         console.error('Error fetching models:', error);
                                         modelListDiv.innerHTML =
                                             '<p>Failed to load models.</p>';
