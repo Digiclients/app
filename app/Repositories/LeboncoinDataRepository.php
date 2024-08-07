@@ -231,9 +231,8 @@ class LeboncoinDataRepository extends BaseRepository
     protected function applyModelFilter($query, $search)
     {
         // Split the string into an array by comma and trim any whitespace
-        $models = array_map('trim', explode(',', $search['modele']));
-
-        if (!empty($models)) {
+        if (!empty($search['modele'])) {
+            $models = array_map('trim', explode(',', $search['modele']));
             $query->whereIn('u_car_model', $models);
         }
     }
@@ -258,18 +257,16 @@ class LeboncoinDataRepository extends BaseRepository
 
     protected function applyFuelFilter($query, $search)
     {
-        $carburants = array_map('trim', explode(',', $search['carburant']));
-
         if (!empty($search['carburant'])) {
+            $carburants = array_map('trim', explode(',', $search['carburant']));
             $query->whereIn('fuel', $carburants);
         }
     }
 
     protected function applyGearboxFilter($query, $search)
     {
-        $boite_vitesses = array_map('trim', explode(',', $search['boite_vitesse']));
-
         if (!empty($search['boite_vitesse'])) {
+            $boite_vitesses = array_map('trim', explode(',', $search['boite_vitesse']));
             $query->whereIn('gearbox', $boite_vitesses);
         }
     }
