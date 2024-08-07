@@ -81,6 +81,167 @@
                         <ul>
 
 
+
+
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.analyticsv2') }}'>
+
+
+                                    <div class="insideacontainer sub-menu-active">
+                                        <i class="iconify iconaside" data-icon="material-symbols:home-outline-rounded"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">analytics</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.Users.List') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="uil:users-alt"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">utilisateurs</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.AverageData') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="material-symbols:add-chart-rounded"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">donnée moyenne</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+                            
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.dataRanges') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="material-symbols:arrow-range-rounded"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">data range</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+                      
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.options') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="iwwa:option"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">options</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+
+
+                                                  
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.importAnounces') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="uil:import"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">Importer data</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+                                        <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.publicite') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="tabler:ad"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">publicité</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+
+                            <li class='sub-menu'>
+
+                                <a class="sub-menu-container" href='{{ route('dashboard.leads') }}'>
+
+
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="mdi:leads-outline"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">leads</div>
+                                        </div>
+
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+
+
+                            
                             <li class='sub-menu Dropdown-menu'>
                                 <a class="sub-menu-container">
 
@@ -89,8 +250,8 @@
 
 
                                         {{-- <i class="fa-solid fa-house iconaside"  style="/*! padding: 10px 16px; *//*!  */background-color: var(--primarycolor);width: 35px;height: 35px;line-height: 35px;text-align: center;border-radius: 50%;color: var(--white) !important;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);"  ></i> 
-              <a style ="color: var(--primarycolor) !important;"> Dashboard <div class="fa-solid fa-angle-right rightarrow rightarrowinthebar  lilistarrow"></div>
-          </a> --}}
+                                                  <a style ="color: var(--primarycolor) !important;"> Dashboard <div class="fa-solid fa-angle-right rightarrow rightarrowinthebar  lilistarrow"></div>
+                                                                      </a> --}}
 
 
                                         {{-- <i class="fa-solid fa-house iconaside"  ></i>  --}}
@@ -108,12 +269,12 @@
 
 
 
-                                        {{-- 
-          <div class="toplop"><div class="intoplop"></div></div>
+                                                                                         {{-- 
+                                                                   <div class="toplop"><div class="intoplop"></div></div>
 
 
-          <div class="botlop"><div class="inbotlop"></div></div>
-   --}}
+                                                                                          <div class="botlop"><div class="inbotlop"></div></div>
+                                                                                                     --}}
 
 
 
