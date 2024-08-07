@@ -249,7 +249,7 @@
                                         <span class="input-group-text">Max</span>
                                         <input type="number" class="form-control max-input" placeholder="Max">
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-2 apply-btn">Apply</button>
+                                    <button type="button" class="btn btn-primary mt-2 apply-btn">Appliquer</button>
                                 </ul>
                                 @error('modele')
                                     <span class="invalid-feedback" role="alert">
@@ -335,7 +335,7 @@
                                         <span class="input-group-text">Max</span>
                                         <input type="number" class="form-control max-input" placeholder="Max">
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-2 apply-btn">Apply</button>
+                                    <button type="button" class="btn btn-primary mt-2 apply-btn">Appliquer</button>
                                 </ul>
                                 @error('kilometrage')
                                     <span class="invalid-feedback" role="alert">
@@ -351,100 +351,77 @@
                 </form>
             </div>
             @if (isset($priceStatistics))
-                <div class="bgwhite my-5 py-5 rounded">
+                <div class="bgwhite my-5 py-5 rounded" id="averageStatistics">
+                    @if ($priceStatistics->count <= 0)
+                        <p class="text-center font18 darkcolor"> Nous n'avons actuellement pas cette configuration dans
+                            notre base de données </p>
+                    @else
+                        <p class="text-center font18 darkcolor"> Ce prix moyen a été extrait de
+                            <span>{{ $priceStatistics->count }}</span>
+                        </p>
 
-                    <p class="text-center font18 darkcolor"> Ce prix moyen a été extrait de
-                        <span>{{ $priceStatistics->count }}</span>
-                    </p>
-                    {{-- result with min --}}
+                        {{-- result without min --}}
+                        <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
+                            <div class="pt-2 pb-2">
+                                <p class="m-0  darkcolor fontwbold font26">Prix</p>
+                                <p class="m-0 primarycolor fontwbold font26">Moyen</p>
+                                <p class="m-0 darkcolor fontwbold font30">
+                                    {{ number_format($priceStatistics->avg_price, 2, ',', ' ') }} €</p>
+                            </div>
+                            <hr class="LineHR">
+                            <div class="pt-2 pb-2">
+                                <p class="m-0 darkcolor fontwbold font22">Prix</p>
+                                <p class="m-0 orangecolor fontwbold font24">Maximum</p>
+                                <p class="m-0 darkcolor fontwbold font24">
+                                    {{ number_format($priceStatistics->max_price, 2, ',', ' ') }} €</p>
+                            </div>
+                        </div>
+                        <h4 class="darkcolor font18 fontw600 text-center">Partagez les résultats avec vos clients ou amis
+                            <br>
+                            et
+                            révélez à 100% le prix moyen réel de n'importe quelle voiture.
+                        </h4>
 
-                    {{-- <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
-                        <div class="col-md-4 pt-4 pb-4 border-end border-bottom">
-                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
-                            <p class="m-0 successcolor fontwbold font24">Minimum</p>
-                            <p class="m-0 darkcolor fontwbold font24">
-                                {{ number_format($priceStatistics->min_price, 2, ',', ' ') }} €</p>
-                        </div>
-                        <div class="col-md-4 border-bottom">
-                            <p class="m-0 darkcolor fontwbold font26">Prix</p>
-                            <p class="m-0 primarycolor fontwbold font26">Moyen</p>
-                            <p class="m-0 darkcolor fontwbold font30">
-                                {{ number_format($priceStatistics->avg_price, 2, ',', ' ') }} €</p>
-                        </div>
-                        <div class="col-md-4  pt-4 pb-4 border-start border-bottom">
-                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
-                            <p class="m-0 orangecolor fontwbold font24">Maximum</p>
-                            <p class="m-0 darkcolor fontwbold font24">
-                                {{ number_format($priceStatistics->max_price, 2, ',', ' ') }} €</p>
-                        </div>
-                    </div> --}}
-
-                    {{-- result without min --}}
-                    <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
-                        {{-- <div class="col-md-4 pt-4 pb-4 border-end border-bottom">
-                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
-                            <p class="m-0 successcolor fontwbold font24">Minimum</p>
-                            <p class="m-0 darkcolor fontwbold font24">
-                                {{ number_format($priceStatistics->min_price, 2, ',', ' ') }} €</p>
-                        </div> --}}
-                        <div class="pt-2 pb-2">
-                            <p class="m-0  darkcolor fontwbold font26">Prix</p>
-                            <p class="m-0 primarycolor fontwbold font26">Moyen</p>
-                            <p class="m-0 darkcolor fontwbold font30">
-                                {{ number_format($priceStatistics->avg_price, 2, ',', ' ') }} €</p>
-                        </div>
-                        <hr class="LineHR">
-                        <div class="pt-2 pb-2">
-                            <p class="m-0 darkcolor fontwbold font22">Prix</p>
-                            <p class="m-0 orangecolor fontwbold font24">Maximum</p>
-                            <p class="m-0 darkcolor fontwbold font24">
-                                {{ number_format($priceStatistics->max_price, 2, ',', ' ') }} €</p>
-                        </div>
-                    </div>
-                    <h4 class="darkcolor font18 fontw600 text-center">Partagez les résultats avec vos clients ou amis <br>
-                        et
-                        révélez à 100% le prix moyen réel de n'importe quelle voiture.</h4>
-
-                    <div class="d-flex gap-3 justify-content-center mt-4">
-                        {{-- <a href="" id="shareable-link-button">
+                        <div class="d-flex gap-3 justify-content-center mt-4">
+                            {{-- <a href="" id="shareable-link-button">
                             <iconify-icon icon="solar:copy-linear" class="darkcolor HoverColorToPrimary" height="30px"
                                 style="width: 30px;height: 30px;">
                             </iconify-icon>
                         </a> --}}
-                        <a href="" id="shareable-link-button" class="tooltip-container">
-                            <iconify-icon icon="solar:copy-linear" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                            <span class="tooltip-text" id="tooltip-text">Copy</span>
-                        </a>
+                            <a href="" id="shareable-link-button" class="tooltip-container">
+                                <iconify-icon icon="solar:copy-linear" class="darkcolor HoverColorToPrimary"
+                                    height="30px" style="width: 30px;height: 30px;"></iconify-icon>
+                                <span class="tooltip-text" id="tooltip-text">Copy</span>
+                            </a>
 
-                        <a href="">
-                            <iconify-icon icon="mdi-light:email" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
-                        <a href="">
-                            <iconify-icon icon="pajamas:twitter" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
-                        <a href="">
-                            <iconify-icon icon="mdi:instagram" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
+                            <a href="">
+                                <iconify-icon icon="mdi-light:email" class="darkcolor HoverColorToPrimary" height="30px"
+                                    style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
+                            <a href="">
+                                <iconify-icon icon="pajamas:twitter" class="darkcolor HoverColorToPrimary" height="30px"
+                                    style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
+                            <a href="">
+                                <iconify-icon icon="mdi:instagram" class="darkcolor HoverColorToPrimary" height="30px"
+                                    style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
 
-                        <a href="">
-                            <iconify-icon icon="mdi:linkedin" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
-                        <a href="">
-                            <iconify-icon icon="jam:facebook-circle" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
+                            <a href="">
+                                <iconify-icon icon="mdi:linkedin" class="darkcolor HoverColorToPrimary" height="30px"
+                                    style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
+                            <a href="">
+                                <iconify-icon icon="jam:facebook-circle" class="darkcolor HoverColorToPrimary"
+                                    height="30px" style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
 
-                        <a href="">
-                            <iconify-icon icon="ri:whatsapp-line" class="darkcolor HoverColorToPrimary" height="30px"
-                                style="width: 30px;height: 30px;"></iconify-icon>
-                        </a>
-                    </div>
-
+                            <a href="">
+                                <iconify-icon icon="ri:whatsapp-line" class="darkcolor HoverColorToPrimary"
+                                    height="30px" style="width: 30px;height: 30px;"></iconify-icon>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             @endif
         </div>
@@ -1138,65 +1115,196 @@
             }
 
             // Function to setup event listeners for marque checkboxes
+            // function setupMarqueCheckboxListeners() {
+            //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
+            //     const marquesDiv = document.querySelector('#marques');
+            //     const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+            //     const modelListDiv = document.querySelector('#models');
+            //     const modeleInput = document.querySelector('[name=modele]');
+
+            //     if (modeleInput.value.trim() !== '') {
+            //         modeleInput.disabled = false;
+            //     } else {
+            //         modeleInput.disabled = true;
+            //     }
+            //     checkboxes.forEach((checkbox) => {
+            //         checkbox.addEventListener('change', () => {
+            //             checkboxes.forEach((cb) => {
+            //                 if (cb.checked) {
+            //                     const url = getModelsRoute.replace(':marque',
+            //                         encodeURIComponent(cb.value));
+            //                     modelListDiv.innerHTML = `
+        //                 <div class="spinner-border text-primary" role="status">
+        //                     <span class="sr-only"></span>
+        //                 </div>`;
+
+
+
+            //                     axios.get(url)
+            //                         .then((responseModeles) => {
+            //                             autocompleteData.modele = [...new Set(
+            //                                 responseModeles.data.modeles.map((
+            //                                     item) => item.u_car_model)
+            //                             )];
+
+            //                             modeleInput.value = ''
+            //                             modeleInput.disabled = false;
+
+            //                             // Update the stored data in local storage
+            //                             storeAutocompleteData(autocompleteData);
+
+            //                             // Clear the loader
+            //                             modelListDiv.innerHTML = '';
+
+            //                             document.querySelectorAll(
+            //                                 ".SearchandCheck-models").forEach((
+            //                                 container) => {
+            //                                 CreateSearchandCheck(container);
+            //                             });
+            //                         })
+            //                         .catch((error) => {
+            //                             console.error('Error fetching models:', error);
+            //                             modelListDiv.innerHTML =
+            //                                 '<p>Failed to load models.</p>';
+            //                         });
+            //                 } else {
+            //                     // init input model
+            //                     modeleInput.value = ''
+            //                     modeleInput.disabled = true;
+            //                 }
+            //             });
+            //         });
+            //     });
+            // }
+
+
+            // function setupMarqueCheckboxListeners() {
+            //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
+            //     const marquesDiv = document.querySelector('#marques');
+            //     const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+            //     const modelListDiv = document.querySelector('#models');
+            //     const modeleInput = document.querySelector('[name=modele]');
+
+            //     function updateModeleInputState() {
+            //         const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+            //         modeleInput.disabled = !anyChecked;
+            //     }
+            //     console.log("checkboxes")
+            //     console.log(checkboxes)
+            //     checkboxes.forEach((checkbox) => {
+            //         checkbox.addEventListener('change', () => {
+            //             updateModeleInputState
+            //                 (); // Update the state of modeleInput based on checked checkboxes
+
+            //             if (checkbox.checked) {
+            //                 console.log(checkbox.checked)
+            //                 const url = getModelsRoute.replace(':marque', encodeURIComponent(
+            //                     checkbox.value));
+            //                 modelListDiv.innerHTML = `
+        //         <div class="spinner-border text-primary" role="status">
+        //             <span class="sr-only"></span>
+        //         </div>`;
+
+            //                 axios.get(url)
+            //                     .then((responseModeles) => {
+            //                         autocompleteData.modele = [...new Set(
+            //                             responseModeles.data.modeles.map(item => item
+            //                                 .u_car_model)
+            //                         )];
+
+            //                         modeleInput.value = ''; // Clear input value
+            //                         // Update the stored data in local storage
+            //                         storeAutocompleteData(autocompleteData);
+
+            //                         // Clear the loader
+            //                         modelListDiv.innerHTML = '';
+
+            //                         document.querySelectorAll(".SearchandCheck-models").forEach(
+            //                             (container) => {
+            //                                 CreateSearchandCheck(container);
+            //                             });
+            //                     })
+            //                     .catch((error) => {
+            //                         console.error('Error fetching models:', error);
+            //                         modelListDiv.innerHTML = '<p>Failed to load models.</p>';
+            //                     });
+            //             } else {
+            //                 console.log("i am in else")
+
+            //                 // Check if there are any other checkboxes still checked
+            //                 updateModeleInputState();
+            //             }
+            //         });
+            //     });
+
+            //     // Initial state of modeleInput
+            //     updateModeleInputState();
+            // }
+
             function setupMarqueCheckboxListeners() {
                 const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
                 const marquesDiv = document.querySelector('#marques');
-                const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
                 const modelListDiv = document.querySelector('#models');
                 const modeleInput = document.querySelector('[name=modele]');
 
-                // if (modeleInput.value.trim() !== '') {
-                //     modeleInput.disabled = false;
-                // } else {
-                //     modeleInput.disabled = true;
-                // }
-                checkboxes.forEach((checkbox) => {
-                    checkbox.addEventListener('change', () => {
-                        checkboxes.forEach((cb) => {
-                            if (cb.checked) {
-                                const url = getModelsRoute.replace(':marque',
-                                    encodeURIComponent(cb.value));
-                                modelListDiv.innerHTML = `
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="sr-only"></span>
-                            </div>`;
+                function updateModeleInputState() {
+                    const anyChecked = Array.from(marquesDiv.querySelectorAll('.form-check-input')).some(cb => cb
+                        .checked);
+                    modeleInput.disabled = !anyChecked;
+                }
 
-                                axios.get(url)
-                                    .then((responseModeles) => {
-                                        autocompleteData.modele = [...new Set(
-                                            responseModeles.data.modeles.map((
-                                                item) => item.u_car_model))];
+                function handleCheckboxChange(event) {
+                    const checkbox = event.target;
 
-                                        // Update the stored data in local storage
-                                        storeAutocompleteData(autocompleteData);
+                    updateModeleInputState(); // Update the state of modeleInput based on checked checkboxes
 
-                                        // Clear the loader
-                                        modelListDiv.innerHTML = '';
+                    if (checkbox.checked) {
+                        console.log(checkbox.checked);
+                        const url = getModelsRoute.replace(':marque', encodeURIComponent(checkbox.value));
+                        modelListDiv.innerHTML = `
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only"></span>
+                </div>`;
 
-                                        document.querySelectorAll(
-                                            ".SearchandCheck-models").forEach((
-                                            container) => {
-                                            CreateSearchandCheck(container);
-                                        });
-                                        // init input model
-                                        // modeleInput.value = ''
-                                        // // Enable the modele input field
-                                        // modeleInput.disabled = false;
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error fetching models:', error);
-                                        modelListDiv.innerHTML =
-                                            '<p>Failed to load models.</p>';
-                                    });
-                            } else {
-                                // init input model
-                                // modeleInput.value = ''
-                                // modeleInput.disabled = true;
-                            }
-                        });
-                    });
+                        axios.get(url)
+                            .then((responseModeles) => {
+                                autocompleteData.modele = [...new Set(
+                                    responseModeles.data.modeles.map(item => item.u_car_model)
+                                )];
+
+                                modeleInput.value = ''; // Clear input value
+                                // Update the stored data in local storage
+                                storeAutocompleteData(autocompleteData);
+
+                                // Clear the loader
+                                modelListDiv.innerHTML = '';
+
+                                document.querySelectorAll(".SearchandCheck-models").forEach((container) => {
+                                    CreateSearchandCheck(container);
+                                });
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching models:', error);
+                                modelListDiv.innerHTML = '<p>Failed to load models.</p>';
+                            });
+                    } else {
+                        // Check if there are any other checkboxes still checked
+                        updateModeleInputState();
+                    }
+                }
+
+                // Event delegation for dynamically added checkboxes
+                marquesDiv.addEventListener('change', (event) => {
+                    if (event.target.classList.contains('form-check-input')) {
+                        handleCheckboxChange(event);
+                    }
                 });
+
+                // Initial state of modeleInput
+                updateModeleInputState();
             }
+
+
 
             // Function to fetch and update autocomplete data
             // function fetchAndUpdateAutocompleteData() {
@@ -1353,32 +1461,35 @@
 
                 // Fetch new data from the API to check for updates
                 fetchRegions().then(() => fetchAndUpdateAutocompleteData());
+                setupMarqueCheckboxListeners();
                 initializeComponents();
 
             } else {
                 // Fetch initial data from the API
+                setupMarqueCheckboxListeners();
                 fetchRegions().then(() => fetchAndUpdateAutocompleteData());
             }
 
 
             // Usage example
             const searchCities = document.getElementById('searchCities');
-            searchCities.addEventListener('keyup', function() {
-                const query = this.value;
+            searchCities.addEventListener('keyup',
+                function() {
+                    const query = this.value;
 
-                if (query === '') {
-                    initializeComponents();
-                } else {
+                    if (query === '') {
+                        initializeComponents();
+                    } else {
 
-                    searchLeboncoinCities(query)
-                        .then(data => {
-                            console.log(data); // Process the data (cities and zipcodes)
-                            // You can update the UI with the data here
-                            displayResults(data);
-                        });
-                }
+                        searchLeboncoinCities(query)
+                            .then(data => {
+                                console.log(data); // Process the data (cities and zipcodes)
+                                // You can update the UI with the data here
+                                displayResults(data);
+                            });
+                    }
 
-            });
+                });
 
 
 
@@ -1446,11 +1557,11 @@
         //                 const listItem = document.createElement("div");
         //                 listItem.classList.add("form-check");
         //                 listItem.innerHTML = `
-    //             <input class="form-check-input" type="checkbox" value="${model}" id="check-${dataArrayName}-${model}">
-    //             <label class="form-check-label" for="check-${dataArrayName}-${model}">
-    //                 ${model}
-    //             </label>
-    //         `;
+    //         <input class="form-check-input" type="checkbox" value="${model}" id="check-${dataArrayName}-${model}">
+    //         <label class="form-check-label" for="check-${dataArrayName}-${model}">
+    //             ${model}
+    //         </label>
+    //     `;
         //                 modelList.appendChild(listItem);
 
         //                 listItem.querySelector("input").addEventListener("change", (e) => {
@@ -1554,14 +1665,25 @@
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
                                 // Uncheck all other checkboxes
-                                modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
-                                    if (checkbox !== e.target) {
-                                        checkbox.checked = false;
-                                    }
-                                });
+                                // modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                                //     if (checkbox !== e.target) {
+                                //         checkbox.checked = false;
+                                //     }
+                                // });
+                                // // Clear the set and add the current model
+                                // selectedModelNames.clear();
+                                // Uncheck all other checkboxes
+                                document.querySelector('#marques').querySelectorAll(".form-check-input")
+                                    .forEach((checkbox) => {
+                                        if (checkbox !== e.target) {
+                                            checkbox.checked = false;
+                                        }
+                                    });
+                                // Clear the set and add the current model only if the input's ID includes "check-marque"
+                                if (e.target.id.includes("check-marque")) {
+                                    selectedModelNames.clear();
+                                }
 
-                                // Clear the set and add the current model
-                                selectedModelNames.clear();
                                 selectedModelNames.add(model);
                             } else {
                                 selectedModelNames.delete(model);

@@ -48,6 +48,8 @@ class HomeController extends Controller
                 'kilometrage',
             ]);
 
+            // dd($filters);
+
             // Initialize the priceStatistics variable
             $priceStatistics = null;
 

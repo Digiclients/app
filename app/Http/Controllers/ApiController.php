@@ -32,7 +32,13 @@ class ApiController extends Controller
                 'regdate',
                 'fuel',
                 'gearbox'
-            )->distinct()->get();
+            )
+                ->whereNotNull('u_car_brand')
+                ->whereNotNull('regdate')
+                ->whereNotNull('fuel')
+                ->whereNotNull('gearbox')
+                ->distinct()
+                ->get();
             // $LeboncoindData = LeboncoinData::select(
             //     'city',
             //     'u_car_brand',
@@ -63,6 +69,7 @@ class ApiController extends Controller
     public function getLeboncoinModeles(string $marque)
     {
         $modeles = LeboncoinData::where('u_car_brand', $marque)
+            ->whereNotNull('u_car_model')
             ->select('u_car_model')
             ->distinct()
             ->get();
