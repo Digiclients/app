@@ -30,8 +30,7 @@ class ContactController extends Controller
             Mail::to($reciepent)->send(new ContactUs($data));
             return redirect()->back()->with('success', 'Votre message a été envoyé avec succès!');
         } catch (\Exception $e) {
-            dd($e);
-            return redirect()->back()->with('error', "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer ultérieurement.");
+            return redirect()->back()->with('error', "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer ultérieurement.$e");
         }
     }
 }
