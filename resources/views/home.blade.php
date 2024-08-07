@@ -1178,64 +1178,132 @@
             // }
 
 
+            // function setupMarqueCheckboxListeners() {
+            //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
+            //     const marquesDiv = document.querySelector('#marques');
+            //     const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
+            //     const modelListDiv = document.querySelector('#models');
+            //     const modeleInput = document.querySelector('[name=modele]');
+
+            //     function updateModeleInputState() {
+            //         const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+            //         modeleInput.disabled = !anyChecked;
+            //     }
+            //     console.log("checkboxes")
+            //     console.log(checkboxes)
+            //     checkboxes.forEach((checkbox) => {
+            //         checkbox.addEventListener('change', () => {
+            //             updateModeleInputState
+            //                 (); // Update the state of modeleInput based on checked checkboxes
+
+            //             if (checkbox.checked) {
+            //                 console.log(checkbox.checked)
+            //                 const url = getModelsRoute.replace(':marque', encodeURIComponent(
+            //                     checkbox.value));
+            //                 modelListDiv.innerHTML = `
+        //         <div class="spinner-border text-primary" role="status">
+        //             <span class="sr-only"></span>
+        //         </div>`;
+
+            //                 axios.get(url)
+            //                     .then((responseModeles) => {
+            //                         autocompleteData.modele = [...new Set(
+            //                             responseModeles.data.modeles.map(item => item
+            //                                 .u_car_model)
+            //                         )];
+
+            //                         modeleInput.value = ''; // Clear input value
+            //                         // Update the stored data in local storage
+            //                         storeAutocompleteData(autocompleteData);
+
+            //                         // Clear the loader
+            //                         modelListDiv.innerHTML = '';
+
+            //                         document.querySelectorAll(".SearchandCheck-models").forEach(
+            //                             (container) => {
+            //                                 CreateSearchandCheck(container);
+            //                             });
+            //                     })
+            //                     .catch((error) => {
+            //                         console.error('Error fetching models:', error);
+            //                         modelListDiv.innerHTML = '<p>Failed to load models.</p>';
+            //                     });
+            //             } else {
+            //                 console.log("i am in else")
+
+            //                 // Check if there are any other checkboxes still checked
+            //                 updateModeleInputState();
+            //             }
+            //         });
+            //     });
+
+            //     // Initial state of modeleInput
+            //     updateModeleInputState();
+            // }
+
             function setupMarqueCheckboxListeners() {
                 const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
                 const marquesDiv = document.querySelector('#marques');
-                const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
                 const modelListDiv = document.querySelector('#models');
                 const modeleInput = document.querySelector('[name=modele]');
 
                 function updateModeleInputState() {
-                    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                    const anyChecked = Array.from(marquesDiv.querySelectorAll('.form-check-input')).some(cb => cb
+                        .checked);
                     modeleInput.disabled = !anyChecked;
                 }
 
-                checkboxes.forEach((checkbox) => {
-                    checkbox.addEventListener('change', () => {
-                        updateModeleInputState
-                            (); // Update the state of modeleInput based on checked checkboxes
+                function handleCheckboxChange(event) {
+                    const checkbox = event.target;
 
-                        if (checkbox.checked) {
-                            const url = getModelsRoute.replace(':marque', encodeURIComponent(
-                                checkbox.value));
-                            modelListDiv.innerHTML = `
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only"></span>
-                    </div>`;
+                    updateModeleInputState(); // Update the state of modeleInput based on checked checkboxes
 
-                            axios.get(url)
-                                .then((responseModeles) => {
-                                    autocompleteData.modele = [...new Set(
-                                        responseModeles.data.modeles.map(item => item
-                                            .u_car_model)
-                                    )];
+                    if (checkbox.checked) {
+                        console.log(checkbox.checked);
+                        const url = getModelsRoute.replace(':marque', encodeURIComponent(checkbox.value));
+                        modelListDiv.innerHTML = `
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only"></span>
+                </div>`;
 
-                                    modeleInput.value = ''; // Clear input value
-                                    // Update the stored data in local storage
-                                    storeAutocompleteData(autocompleteData);
+                        axios.get(url)
+                            .then((responseModeles) => {
+                                autocompleteData.modele = [...new Set(
+                                    responseModeles.data.modeles.map(item => item.u_car_model)
+                                )];
 
-                                    // Clear the loader
-                                    modelListDiv.innerHTML = '';
+                                modeleInput.value = ''; // Clear input value
+                                // Update the stored data in local storage
+                                storeAutocompleteData(autocompleteData);
 
-                                    document.querySelectorAll(".SearchandCheck-models").forEach(
-                                        (container) => {
-                                            CreateSearchandCheck(container);
-                                        });
-                                })
-                                .catch((error) => {
-                                    console.error('Error fetching models:', error);
-                                    modelListDiv.innerHTML = '<p>Failed to load models.</p>';
+                                // Clear the loader
+                                modelListDiv.innerHTML = '';
+
+                                document.querySelectorAll(".SearchandCheck-models").forEach((container) => {
+                                    CreateSearchandCheck(container);
                                 });
-                        } else {
-                            // Check if there are any other checkboxes still checked
-                            updateModeleInputState();
-                        }
-                    });
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching models:', error);
+                                modelListDiv.innerHTML = '<p>Failed to load models.</p>';
+                            });
+                    } else {
+                        // Check if there are any other checkboxes still checked
+                        updateModeleInputState();
+                    }
+                }
+
+                // Event delegation for dynamically added checkboxes
+                marquesDiv.addEventListener('change', (event) => {
+                    if (event.target.classList.contains('form-check-input')) {
+                        handleCheckboxChange(event);
+                    }
                 });
 
                 // Initial state of modeleInput
                 updateModeleInputState();
             }
+
 
 
             // Function to fetch and update autocomplete data
@@ -1393,10 +1461,12 @@
 
                 // Fetch new data from the API to check for updates
                 fetchRegions().then(() => fetchAndUpdateAutocompleteData());
+                setupMarqueCheckboxListeners();
                 initializeComponents();
 
             } else {
                 // Fetch initial data from the API
+                setupMarqueCheckboxListeners();
                 fetchRegions().then(() => fetchAndUpdateAutocompleteData());
             }
 
