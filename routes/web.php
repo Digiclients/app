@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ShareableLinkController;
 use App\Http\Controllers\profile\ProfileController;
 use App\Http\Controllers\admin\AdminDashboardController;
-use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,16 +69,15 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
 
 
 
-    // ************************ about pages ****************************
+// ************************ about pages ****************************
 
 Route::get('/à-propos', function () {
     return view('about');
 })->name('about');
 
 
-Route::get('/Contactez-nous', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/Contactez-nous', [ContactController::class, 'index'])->name('contact');
+Route::post('/Contactez-nous', [ContactController::class, 'send'])->name('contact.send');
 
 
 
