@@ -136,6 +136,42 @@ Route::get('/isAuth', [App\Http\Controllers\HomeController::class, 'isAuthentica
 
 
 
+Route::get('/dashboard/analyticsv2', function () {
+    return view('dashboard.AnalyticsDashboardv2');
+})->name('dashboard.analyticsv2');
+
+
+
+Route::get('/dashboard/AverageData', function () {
+    return view('dashboard.AverageData');
+})->name('dashboard.AverageData');
+
+
+
+Route::get('/dashboard/dataRanges', function () {
+    return view('dashboard.dataRanges');
+})->name('dashboard.dataRanges');
+
+
+
+Route::get('/dashboard/options', function () {
+    return view('dashboard.options');
+})->name('dashboard.options');
+
+Route::get('/dashboard/importAnounces', function () {
+    return view('dashboard.importAnounces');
+})->name('dashboard.importAnounces');
+
+
+Route::get('/dashboard/publicite', function () {
+    return view('dashboard.publicite');
+})->name('dashboard.publicite');
+
+Route::get('/dashboard/leads', function () {
+    return view('dashboard.leads');
+})->name('dashboard.leads');
+
+
 
 
 
@@ -153,10 +189,6 @@ Route::get('/dashboard/analytics', function () {
 })->name('dashboard.analytics');
 
 
-
-Route::get('/dashboard/analyticsv2', function () {
-    return view('dashboard.AnalyticsDashboardv2');
-})->name('dashboard.analyticsv2');
 
 
 

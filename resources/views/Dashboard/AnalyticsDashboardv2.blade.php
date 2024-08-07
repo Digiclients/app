@@ -17,7 +17,7 @@
 
 
 
-    <h1 class="darkcolor font20 mx-2 ">Analytics v2</h1>
+    <h1 class="darkcolor font20 mx-2 ">Analyses</h1>
 
 
 
@@ -42,10 +42,10 @@
                 <div id="right-circle" class="bgprimaryopacity"></div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
-                        <p class="graycolor mb-1">Total Products</p>
-                        <h2 class="darkcolor mb-1"> 100+ </h2>
+                        <p class="graycolor mb-1">donnée utilisées dans la recherche moyenne</p>
+                        <h2 class="darkcolor mb-1"> 700.000 </h2>
 
-                        <div class="mt-1">
+                        {{-- <div class="mt-1">
 
                             <span class="successcolor">
 
@@ -53,12 +53,11 @@
                                     data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg"
                                     style='margin-right: -5px;margin-top: -3px;'></span>
 
-                                {{-- <i class="successcolor fa-solid fa-arrow-up"></i> --}}
 
                                 <strong>25.36%</strong></span>
                             <small class=""> Since last month </small>
 
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -109,10 +108,10 @@
                 <div id="right-circle" class="bgsecondaryopacity"></div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
-                        <p class="graycolor mb-1">Total Orders</p>
+                        <p class="graycolor mb-1">Nombre d'utilisateurs</p>
                         <h2 class="darkcolor mb-1"> 30,825 </h2>
 
-                        <div class="mt-1">
+                        {{-- <div class="mt-1">
 
                             <span class="successcolor">
 
@@ -124,7 +123,7 @@
                                 <strong>25.36%</strong></span>
                             <small class=""> Since last month </small>
 
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -180,9 +179,9 @@
                 <div id="right-circle" class="bgthirdopacity"></div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
-                        <p class="graycolor mb-1">Total Sales</p>
-                        <h2 class="darkcolor mb-1"> $30,825 </h2>
-
+                        <p class="graycolor mb-1">Nombre de recherches</p>
+                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+{{-- 
                         <div class="mt-1">
 
                             <span class="dangercolor">
@@ -191,13 +190,12 @@
                                     data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg"
                                     style='margin-right: -5px;margin-top: -3px;'></span>
 
-                                {{-- <i class="dangercolor fa-solid fa-arrow-down"></i> --}}
 
 
                                 <strong>25.36%</strong></span>
                             <small class=""> Since last month </small>
 
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -256,10 +254,10 @@
                 <div id="right-circle" class="bgfourthopacity"></div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
-                        <p class="graycolor mb-1">New Customers</p>
+                        <p class="graycolor mb-1">Nombre de leads collectés</p>
                         <h2 class="darkcolor mb-1"> 30,825 </h2>
 
-                        <div class="mt-1">
+                        {{-- <div class="mt-1">
 
                             <span class="successcolor">
 
@@ -269,7 +267,7 @@
                                 <strong>88.62%</strong></span>
                             <small class=""> Since last month </small>
 
-                        </div>
+                        </div> --}}
 
 
                     </div>
