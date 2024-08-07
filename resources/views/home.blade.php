@@ -1595,14 +1595,25 @@
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
                                 // Uncheck all other checkboxes
-                                modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
-                                    if (checkbox !== e.target) {
-                                        checkbox.checked = false;
-                                    }
-                                });
+                                // modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                                //     if (checkbox !== e.target) {
+                                //         checkbox.checked = false;
+                                //     }
+                                // });
+                                // // Clear the set and add the current model
+                                // selectedModelNames.clear();
+                                // Uncheck all other checkboxes
+                                document.querySelector('#marques').querySelectorAll(".form-check-input")
+                                    .forEach((checkbox) => {
+                                        if (checkbox !== e.target) {
+                                            checkbox.checked = false;
+                                        }
+                                    });
+                                // Clear the set and add the current model only if the input's ID includes "check-marque"
+                                if (e.target.id.includes("check-marque")) {
+                                    selectedModelNames.clear();
+                                }
 
-                                // Clear the set and add the current model
-                                selectedModelNames.clear();
                                 selectedModelNames.add(model);
                             } else {
                                 selectedModelNames.delete(model);
