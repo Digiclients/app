@@ -21,53 +21,53 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // try {
-        // Check authentication and cookie
-        $isAuthenticated = Auth::check();
-        $hasUserAccessCookie = Cookie::get('user_access') === 'true';
-        $searchCountCookie = Cookie::get('searchCount');
+        try {
+            // Check authentication and cookie
+            $isAuthenticated = Auth::check();
+            $hasUserAccessCookie = Cookie::get('user_access') === 'true';
+            $searchCountCookie = Cookie::get('searchCount');
 
-        // Convert searchCountCookie to integer
-        $searchCount = (int) $searchCountCookie;
+            // Convert searchCountCookie to integer
+            $searchCount = (int) $searchCountCookie;
 
-        // Check if user needs to provide information
-        if (!$isAuthenticated && !$hasUserAccessCookie) {
-            if ($searchCount >= 3) {
-                session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
-                return view('home');
+            // Check if user needs to provide information
+            if (!$isAuthenticated && !$hasUserAccessCookie) {
+                if ($searchCount >= 3) {
+                    session()->flash('error', 'Veuillez saisir vos informations pour accéder au prix moyen.');
+                    return view('home');
+                }
             }
-        }
 
-        $filters = $request->only([
-            'location',
-            'marque',
-            'modele',
-            'annee_modele',
-            'carburant',
-            'boite_vitesse',
-            'kilometrage',
-        ]);
+            $filters = $request->only([
+                'location',
+                'marque',
+                'modele',
+                'annee_modele',
+                'carburant',
+                'boite_vitesse',
+                'kilometrage',
+            ]);
 
-        // dd($filters);
+            // dd($filters);
 
-        // Initialize the priceStatistics variable
-        $priceStatistics = null;
+            // Initialize the priceStatistics variable
+            $priceStatistics = null;
 
-        // Call getPriceStatistics only if filters are applied
-        if (!empty($filters)) {
-            $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics($filters);
+            // Call getPriceStatistics only if filters are applied
+            if (!empty($filters)) {
+                $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics($filters);
 
-            // Save or update the average price data in the database
-            if ($priceStatistics) {
-                $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
+                // Save or update the average price data in the database
+                if ($priceStatistics) {
+                    $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
+                }
             }
-        }
 
-        // Return the view with price statistics
-        return view('home', compact('priceStatistics'));
-        // } catch (\Exception $e) {
-        //     return abort(500);
-        // }
+            // Return the view with price statistics
+            return view('home', compact('priceStatistics'));
+        } catch (\Exception $e) {
+            return abort(500);
+        }
     }
 
 
