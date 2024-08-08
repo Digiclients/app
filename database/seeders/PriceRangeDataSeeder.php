@@ -16,6 +16,7 @@ class PriceRangeDataSeeder extends Seeder
     {
         // Fetch distinct model-slug values from LeboncoinData model
         $modelSlugs = LeboncoinData::select('model-slug')
+            ->whereNotNull('model-slug')
             ->distinct()
             ->pluck('model-slug');
 
@@ -24,7 +25,7 @@ class PriceRangeDataSeeder extends Seeder
             PriceRangeData::create([
                 'model-slug' => $modelSlug,
                 'min-price' => 100,
-                'max-price' => 100000,
+                'max-price' => 1000000,
             ]);
         }
     }

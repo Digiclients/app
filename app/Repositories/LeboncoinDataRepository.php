@@ -45,92 +45,56 @@ class LeboncoinDataRepository extends BaseRepository
         parent::__construct(new LeboncoinData());
     }
 
-    // public function getPriceStatistics($search = [], $percentagePro = 10, $percentagePrivate = 100)
+    // TODO NEED TO REMOVE VEHICULE WHO DAMAGED
+    // public function getPriceStatistics($search = [])
     // {
-    //     // Calculate the actual percentages
-    //     $percentagePro = max(0, min(100, $percentagePro)) / 100;
-    //     $percentagePrivate = max(0, min(100, $percentagePrivate)) / 100;
+    //     $query = $this->model->newQuery();
 
-    //     // Calculate the limits based on the percentage
-    //     $proCount = $this->model->newQuery()->where('ownerType', 'pro')->count();
-    //     $privateCount = $this->model->newQuery()->where('ownerType', 'private')->count();
+    //     // Exclude records where model_slug exists in price_range_data, the price is between min_price and max_price
+    //     $query->leftJoin('price_range_data', function ($join) {
+    //         $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
+    //             ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
+    //             ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
+    //     })
+    //         ->whereNotNull('price_range_data.model-slug');
 
-    //     $proLimit = (int) floor($proCount * $percentagePro);
-    //     $privateLimit = (int) floor($privateCount * $percentagePrivate);
+    //     // TODO: NEED TO DEVIDE THIS QUERY TO TWO ARRAY FIRST FOR ownerType = PRO AND SECOND FOR ownerType = PRIVATE, AND THEN NEED TO GET JUST 10% FROM FIRST ARRAY WHERE ownerType = PRO AND THEN MERGE 10% WITH ARRAY OF PRIVATE  
+    //     // AND NEED THIS TO BE PARAMETRABLE 10% IT IS PARAMETRABLE AND PRO, PRIVATE IT IS ALSO PARAMETRABLE
 
-    //     // Get the records where ownerType = 'pro'
-    //     $proSubquery = $this->model->newQuery()
-    //         ->select('*')
-    //         ->where('ownerType', 'pro')
-    //         ->inRandomOrder()
-    //         ->limit($proLimit)
-    //         ->toBase();
-
-    //     // Get the records where ownerType = 'private'
-    //     $privateSubquery = $this->model->newQuery()
-    //         ->select('*')
-    //         ->where('ownerType', 'private')
-    //         ->inRandomOrder()
-    //         ->limit($privateLimit)
-    //         ->toBase();
-
-    //     // Combine the subqueries using union
-    //     $query = DB::table(DB::raw("({$proSubquery->toSql()}) as pro_records"))
-    //         ->mergeBindings($proSubquery)
-    //         ->unionAll(
-    //             DB::table(DB::raw("({$privateSubquery->toSql()}) as private_records"))
-    //                 ->mergeBindings($privateSubquery)
-    //         );
-
-    //     // Exclude records where model_slug exists in price_range_data and the price is between min_price and max_price
-    //     $query = DB::table(DB::raw("({$query->toSql()}) as combined_records"))
-    //         ->mergeBindings($query)
-    //         ->leftJoin('price_range_data', function ($join) {
-    //             $join->on('combined_records.model-slug', '=', 'price_range_data.model-slug')
-    //                 ->whereColumn('combined_records.price', '>=', 'price_range_data.min-price')
-    //                 ->whereColumn('combined_records.price', '<=', 'price_range_data.max-price');
-    //         })
-    //         ->whereNull('price_range_data.model-slug');
 
     //     // Apply filters using helper methods
     //     $this->applyLocalizationFilter($query, $search);
     //     $this->applyBrandFilter($query, $search);
     //     $this->applyModelFilter($query, $search);
+    //     $this->applyFuelFilter($query, $search);
     //     $this->applyGearboxFilter($query, $search);
     //     $this->applyMileageFilter($query, $search);
     //     $this->applyRegdateFilter($query, $search);
-    //     $this->applyHorsePowerDinFilter($query, $search);
-    //     $this->applyHorsepowerFilter($query, $search);
 
-    //     dd($query->get());
 
-    //     // Calculate and return the min, max, and average prices
-    //     $priceStatistics = $query->selectRaw('MIN(combined_records.price) as min_price, MAX(combined_records.price) as max_price, AVG(combined_records.price) as avg_price')
+    //     // Calculate and return the min, max, average prices, and count of results
+    //     $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')
     //         ->first();
 
     //     return $priceStatistics;
     // }
 
 
-
-    // TODO NEED TO REMOVE VEHICULE WHO DAMAGED
-    public function getPriceStatistics($search = [])
+    public function getPriceStatistics($search = [], $proPercentage = 10, $ownerTypes = ['pro', 'private'], $applyOwnerTypeFilter = true)
     {
+        // Step 1: Initial query to get all results
         $query = $this->model->newQuery();
 
         // Exclude records where model_slug exists in price_range_data, the price is between min_price and max_price
-        // $query->leftJoin('price_range_data', function ($join) {
-        //     $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
-        //         ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
-        //         ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
-        // })
-        //     ->whereNotNull('price_range_data.model-slug');
+        $query->leftJoin('price_range_data', function ($join) {
+            $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
+                ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
+                ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
+        })
+            ->whereNotNull('price_range_data.model-slug')
+            ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
 
-        // dd($query->get());
-        //  // Exclude records where leboncoin_data.vehicle_damage is 'Non endommagé'
-        // $query->where('leboncoin_data.vehicle_damage', '<>', 'Endommagé');
-
-        // Apply filters using helper methods
+        // Step 2: Apply filters to the query
         $this->applyLocalizationFilter($query, $search);
         $this->applyBrandFilter($query, $search);
         $this->applyModelFilter($query, $search);
@@ -139,24 +103,35 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyMileageFilter($query, $search);
         $this->applyRegdateFilter($query, $search);
 
-        // // Calculate and return the average price
-        // $averagePrice = $query->avg('price');
+        // Step 3: Get the filtered results
+        // $filteredResults = $query->get();
+        $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
 
-        // dd($query->get());
+        if ($applyOwnerTypeFilter) {
+            // Separate results by ownerType
+            $proResults = $filteredResults->where('ownerType', $ownerTypes[0]);
+            $privateResults = $filteredResults->where('ownerType', $ownerTypes[1]);
 
-        // return $averagePrice;
-        // Calculate and return the min, max, and average prices
-        // $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price')
-        //     ->first();
+            // Step 4: Get the subset of PRO results based on the configurable percentage
+            $proCount = $proResults->count();
+            $proSubset = $proResults->take(ceil($proCount * ($proPercentage / 100)));
 
-        // Calculate and return the min, max, average prices, and count of results
+            // Step 5: Merge the subset of PRO results with PRIVATE results
+            $mergedResults = $proSubset->merge($privateResults);
+
+            // Convert merged results to array of IDs to filter the new query
+            $mergedIds = $mergedResults->pluck('id')->toArray();
+            $query = $this->model->newQuery()->whereIn('leboncoin_data.id', $mergedIds);
+        }
+
+        // Step 6: Calculate and return the min, max, average prices, and count of filtered results
         $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')
             ->first();
 
-        // dd($priceStatistics);
-
         return $priceStatistics;
     }
+
+
 
 
 
@@ -231,9 +206,8 @@ class LeboncoinDataRepository extends BaseRepository
     protected function applyModelFilter($query, $search)
     {
         // Split the string into an array by comma and trim any whitespace
-        $models = array_map('trim', explode(',', $search['modele']));
-
-        if (!empty($models)) {
+        if (!empty($search['modele'])) {
+            $models = array_map('trim', explode(',', $search['modele']));
             $query->whereIn('u_car_model', $models);
         }
     }
@@ -258,18 +232,16 @@ class LeboncoinDataRepository extends BaseRepository
 
     protected function applyFuelFilter($query, $search)
     {
-        $carburants = array_map('trim', explode(',', $search['carburant']));
-
         if (!empty($search['carburant'])) {
+            $carburants = array_map('trim', explode(',', $search['carburant']));
             $query->whereIn('fuel', $carburants);
         }
     }
 
     protected function applyGearboxFilter($query, $search)
     {
-        $boite_vitesses = array_map('trim', explode(',', $search['boite_vitesse']));
-
         if (!empty($search['boite_vitesse'])) {
+            $boite_vitesses = array_map('trim', explode(',', $search['boite_vitesse']));
             $query->whereIn('gearbox', $boite_vitesses);
         }
     }
