@@ -143,6 +143,33 @@
 
                 <form id="filterForm" action="{{ route('home') }}" method="GET" onsubmit="buildQueryString(event)">
                     <div class="container">
+                        {{-- <div style="margin: 0 auto;"
+                            class="autocompleteSearch input-container col-sm w-50 position-relative pb-2">
+                            <input type="text" data-array="title" name="title"
+                                class="form-control @error('title') is-invalid @enderror" placeholder="Recherche" readonly
+                                value="{{ request()->input('title') }}">
+                            <iconify-icon icon="material-symbols:close" width="24" height="24"
+                                class="close-icon position-absolute"></iconify-icon>
+                            <iconify-icon icon="mingcute:down-fill" width="24" height="24"
+                                class="down-icon position-absolute"></iconify-icon>
+                            <ul class="dropdown-menu w-100 " style="padding: 0;">
+                                <div class="sticky-container">
+                                    <div class="search-container">
+                                        <input type="text" class="form-control search-input"
+                                            placeholder="Recherche par titre">
+                                    </div>
+                                </div>
+
+                                <div class="model-list" style="padding: 10px;">
+                                    <!-- title items will be dynamically inserted here -->
+                                </div>
+                            </ul>
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div> --}}
                         <div class="d-flex justify-content-center row d-grid gap-3">
                             <div class="autocompleteInput input-container col-sm position-relative">
                                 <input type="text" data-array="location" name="location"
@@ -243,11 +270,11 @@
                                     <div class="input-group mb-2">
                                         <span class="input-group-text">Min</span>
                                         <input type="number" class="form-control min-input" id="annee_modele"
-                                            placeholder="Min" min="1900">
+                                            placeholder="min 1850">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-text">Max</span>
-                                        <input type="number" class="form-control max-input" placeholder="Max">
+                                        <input type="number" class="form-control max-input" placeholder="max 2025">
                                     </div>
                                     <button type="button" class="btn btn-primary mt-2 apply-btn">Appliquer</button>
                                 </ul>
@@ -328,12 +355,11 @@
                                 <ul class="dropdown-menu w-100 p-2">
                                     <div class="input-group mb-2">
                                         <span class="input-group-text">Min</span>
-                                        <input type="number" class="form-control min-input" placeholder="Min"
-                                            min="1000" max="1000000">
+                                        <input type="number" class="form-control min-input" placeholder="min 0">
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-text">Max</span>
-                                        <input type="number" class="form-control max-input" placeholder="Max">
+                                        <input type="number" class="form-control max-input" placeholder="max 1 000 000">
                                     </div>
                                     <button type="button" class="btn btn-primary mt-2 apply-btn">Appliquer</button>
                                 </ul>
@@ -1349,7 +1375,7 @@
                         const newAutocompleteData = {
                             ...autocompleteData,
                             marque: [...new Set(data.map((item) => item.u_car_brand))],
-                            modele: [],
+                            // modele: [],
                             carburant: [...new Set(data.map((item) => item.fuel))],
                             boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
                         };
@@ -1865,5 +1891,77 @@
 
         // Set the max attribute to the next year
         document.getElementById('annee_modele').setAttribute('max', nextYear);
+    </script> --}}
+
+
+    {{-- <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".autocompleteSearch").forEach((container) => {
+                CreateAutocompleteSearch(container);
+            });
+        });
+
+        function CreateAutocompleteSearch(container) {
+            const modelList = container.querySelector(".model-list");
+            const searchInput = container.querySelector(".search-input");
+            const selectedInput = container.querySelector("input");
+
+            async function fetchSearchResults(query) {
+                try {
+                    const response = await axios.get(`/api/search-leboncoin-titles`, {
+                        params: {
+                            query: query
+                        }
+                    });
+                    return response.data;
+                } catch (error) {
+                    console.error('Error fetching search results:', error);
+                    return [];
+                }
+            }
+
+            async function renderLocationList(filter = "") {
+                modelList.innerHTML = `
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only"></span>
+            </div>
+        `; // Show loader
+
+                const autocompletes = await fetchSearchResults(filter);
+
+                modelList.innerHTML = ""; // Clear the loader and previous results
+
+                autocompletes.forEach((autocomplete) => {
+                    const listItem = document.createElement("div");
+                    listItem.classList.add("dropdown-item");
+                    listItem.textContent = autocomplete;
+                    listItem.addEventListener("click", () => {
+                        selectedInput.value = autocomplete;
+                        container.querySelector(".dropdown-menu").classList.remove("show");
+                    });
+                    modelList.appendChild(listItem);
+                });
+            }
+
+            searchInput.addEventListener("keyup", () => {
+                const query = searchInput.value;
+                if (query.length > 2) { // Trigger search only if more than 2 characters are typed
+                    renderLocationList(query);
+                } else {
+                    modelList.innerHTML = ""; // Clear results if query length is <= 2
+                }
+            });
+
+            selectedInput.addEventListener("focus", () => {
+                container.querySelector(".dropdown-menu").classList.add("show");
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!container.contains(event.target)) {
+                    container.querySelector(".dropdown-menu").classList.remove("show");
+                }
+            });
+        }
     </script> --}}
 @endpush

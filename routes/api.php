@@ -25,8 +25,8 @@ Route::get('/leboncoin-data', [ApiController::class, 'getLeboncoinData'])->name(
 Route::get('/leboncoin-models/{marque}', [ApiController::class, 'getLeboncoinModeles'])->name('getLeboncoinModeles');
 Route::get('/regions', [ApiController::class, 'getRegions'])->name('getRegions');
 
-// Route::get('/api/search-leboncoin-cities', [ApiController::class, 'searchLeboncoinCities']);
 Route::get('/search-leboncoin-cities', [ApiController::class, 'searchLeboncoinCities']);
+// Route::get('/search-leboncoin-titles', [ApiController::class, 'searchByTitle']);
 
 
 

@@ -236,17 +236,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
 
-    function showAlert(message) {
-        const alert = document.getElementById("validationAlert");
-        alert.textContent = message;
-        alert.classList.remove("d-none");
-    }
-
-    function hideAlert() {
-        const alert = document.getElementById("validationAlert");
-        alert.classList.add("d-none");
-    }
-
     function checkUserStatus(callback) {
         axios
             .get("/isAuth")
@@ -259,8 +248,79 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    function showValidationAlert(message) {
+        const alertDiv = document.getElementById("validationAlert");
+        alertDiv.textContent = message;
+        alertDiv.classList.remove("d-none"); // Show the alert
+    }
+
+    function validateForm() {
+        const anneeModeleInput = document.querySelector(
+            'input[name="annee_modele"]'
+        );
+        const kilometrageInput = document.querySelector(
+            'input[name="kilometrage"]'
+        );
+        const marqueInput = document.querySelector('input[name="marque"]');
+
+        // Initialize error messages
+        let errorMessage = "";
+
+        // Validate annee_modele if it contains a value
+        if (anneeModeleInput.value.trim()) {
+            const [anneeMin, anneeMax] = anneeModeleInput.value
+                .split("-")
+                .map(Number);
+
+            if (
+                !(anneeMin >= 1850 && anneeMax <= 2025 && anneeMin <= anneeMax)
+            ) {
+                errorMessage +=
+                    "L'année modèle doit être comprise entre 1850 et 2025, et la valeur minimum doit être inférieure ou égale à la valeur maximum. ";
+            }
+        }
+
+        // Validate kilometrage if it contains a value
+        if (kilometrageInput.value.trim()) {
+            const [kilometrageMin, kilometrageMax] = kilometrageInput.value
+                .replace(/\s+/g, "")
+                .split("-")
+                .map(Number);
+
+            if (
+                !(
+                    kilometrageMin >= 0 &&
+                    kilometrageMax <= 1000000 &&
+                    kilometrageMin <= kilometrageMax
+                )
+            ) {
+                errorMessage +=
+                    "Le kilométrage doit être compris entre 0 et 1 000 000, et la valeur minimum doit être inférieure ou égale à la valeur maximum. ";
+            }
+        }
+
+        // Validation for marque field
+        if (!marqueInput.value.trim()) {
+            errorMessage += "Le champ 'Marque' est requis. ";
+        }
+
+        // If there are any error messages, show them and return false
+        if (errorMessage) {
+            showValidationAlert(errorMessage.trim());
+            return false;
+        }
+
+        // Hide the alert if everything is valid
+        const alertDiv = document.getElementById("validationAlert");
+        alertDiv.classList.add("d-none");
+        return true;
+    }
+
     function buildQueryString(event) {
         event.preventDefault();
+        if (!validateForm()) {
+            return; // Stop execution if form validation fails
+        }
         incrementSearchCounter((searchCount) => {
             if (searchCount >= 3) {
                 checkUserStatus((authenticated, cookiePresent) => {
@@ -307,7 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const action = form.getAttribute("action");
         const queryString = queryParams ? `?${queryParams}` : "";
-        window.location.href = `${action}${queryString}#averageStatistics`;
+        window.location.href = `${action}${queryString}#PrixMoyen`;
     }
 
     function submitUserInfo() {
