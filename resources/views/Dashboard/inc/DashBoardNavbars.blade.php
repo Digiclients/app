@@ -242,19 +242,14 @@
 
 
                             
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
                                 <a class="sub-menu-container">
 
 
                                     <div class="insideacontainer">
 
 
-                                        {{-- <i class="fa-solid fa-house iconaside"  style="/*! padding: 10px 16px; *//*!  */background-color: var(--primarycolor);width: 35px;height: 35px;line-height: 35px;text-align: center;border-radius: 50%;color: var(--white) !important;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);"  ></i> 
-                                                  <a style ="color: var(--primarycolor) !important;"> Dashboard <div class="fa-solid fa-angle-right rightarrow rightarrowinthebar  lilistarrow"></div>
-                                                                      </a> --}}
-
-
-                                        {{-- <i class="fa-solid fa-house iconaside"  ></i>  --}}
+                          
                                         <i class="iconify iconaside"
                                             data-icon="material-symbols:home-outline-rounded"></i>
 
@@ -269,12 +264,6 @@
 
 
 
-                                                                                         {{-- 
-                                                                   <div class="toplop"><div class="intoplop"></div></div>
-
-
-                                                                                          <div class="botlop"><div class="inbotlop"></div></div>
-                                                                                                     --}}
 
 
 
@@ -304,9 +293,9 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> analytics v3
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -314,7 +303,6 @@
 
                                     <div class="insideacontainer sub-menu-active">
 
-                                        {{-- <i class="fa-solid fa-house iconaside"   ></i>   --}}
                                         <span class="iconify iconaside" data-icon="tabler:mail"></span>
                                         <div class="navitem">
                                             <div class="navlink">Mailbox </div>
@@ -346,9 +334,9 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> Mail Compose
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
-
+{{-- 
                             <li class='sub-menu'>
 
                                 <a class="sub-menu-container" href='{{ route('dashboard.Chat') }}'>
@@ -356,11 +344,9 @@
 
                                     <div class="insideacontainer">
 
-                                        {{-- <i class="fa-solid fa-house iconaside"></i> --}}
                                         <i class="iconify iconaside" data-icon="tabler:message"></i>
                                         <div class="navitem">
                                             <div class="navlink">Chat</div>
-                                            {{-- <div class="fa-solid fa-angle-right rightarrow rightarrowinthebar lilistarrow"></div> --}}
                                         </div>
 
 
@@ -371,9 +357,9 @@
                                 </a>
 
                             </li>
+ --}}
 
-
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -382,7 +368,6 @@
 
 
 
-                                        {{-- <i class="fa-solid fa-house iconaside"></i>  --}}
                                         <i class="iconify  iconaside" data-icon="uil:users-alt"></i>
 
                                         <div class="navitem">
@@ -420,7 +405,7 @@
 
                                 </ul>
                             </li>
-
+ --}}
 
 
 
@@ -442,7 +427,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -487,7 +472,7 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> Add Blog
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
 
 
@@ -528,7 +513,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -570,7 +555,7 @@
                                         </a></li>
                                 </ul>
                             </li>
-
+ --}}
 
 
                             {{-- ============================================================== --}}
@@ -598,7 +583,7 @@
                             {{-- ============================================================== --}}
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
-
+{{-- 
                             <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
@@ -642,7 +627,7 @@
                                         </a></li>
                                 </ul>
                             </li>
-
+ --}}
 
 
                             {{-- ============================================================== --}}
@@ -659,7 +644,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -724,7 +709,7 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> Error 500
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
 
 
@@ -745,7 +730,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -824,7 +809,7 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> Spinner
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
 
 
@@ -843,7 +828,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -881,7 +866,7 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> ApexCharts.js
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
 
 
@@ -904,7 +889,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -946,7 +931,7 @@
                                         </a></li>
                                 </ul>
                             </li>
-
+ --}}
 
 
                             {{-- ============================================================== --}}
@@ -966,7 +951,7 @@
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
 
-                            <li class='sub-menu Dropdown-menu'>
+                            {{-- <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
 
@@ -1005,7 +990,7 @@
                                             <div class="fa-solid mx-2 fa-angles-right"></div> DataTables
                                         </a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
 
 
@@ -1252,7 +1237,7 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-
+{{-- 
                                 <div class="input-group mb-3 mt-3   mx-0 mx-sm-4  ">
                                     <input type="text" class="form-control *" placeholder="Search for anything..."
                                         aria-describedby="button-addon2">
@@ -1260,7 +1245,7 @@
                                         <span class="iconify whitecolor font20 "
                                             data-icon="material-symbols:search-rounded"></span>
                                     </button>
-                                </div>
+                                </div> --}}
 
 
 
@@ -1276,7 +1261,7 @@
                                 {{-- =================================================================== --}}
                                 {{-- START Languages DropDown navbar --}}
                                 {{-- =================================================================== --}}
-                                <li class="nav-item dropdown">
+                                {{-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#"
                                         id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
@@ -1345,14 +1330,14 @@
 
                                     </ul>
                                 </li>
-
+ --}}
 
                                 {{-- =================================================================== --}}
                                 {{-- END Languages DropDown navbar --}}
                                 {{-- =================================================================== --}}
-
+{{-- 
                                 </ul>
-                                </li>
+                                </li> --}}
 
 
 
@@ -1362,13 +1347,11 @@
                                 {{-- START OF theme Settings Offcanvas button  --}}
                                 {{-- =================================================================== --}}
 
-                                <li class="mx-3">
+                                {{-- <li class="mx-3">
                                     <i class="iconify font30" data-icon="ph:gear-light" data-bs-toggle="offcanvas"
                                         data-bs-target="#themeSettingsOffcanvas"
                                         aria-controls="themeSettingsOffcanvas"></i>
-                                    {{-- <i class="fa-solid font26 fa-gear"   data-bs-toggle="offcanvas" data-bs-target="#themeSettingsOffcanvas" aria-controls="themeSettingsOffcanvas" ></i> --}}
-
-                                </li>
+                                </li> --}}
 
                                 {{-- =================================================================== --}}
                                 {{-- END OF theme Settings Offcanvas button  --}}
@@ -1393,19 +1376,19 @@
 
 
 
-                                <li class="mx-3" onclick="toggleFullScreen(document.body);">
+                                {{-- <li class="mx-3" onclick="toggleFullScreen(document.body);">
 
                                     <span class="iconify font30 fullscreenicon"
                                         data-icon="fluent:full-screen-maximize-24-filled"></span>
 
-                                </li>
+                                </li> --}}
 
 
                                 {{-- =================================================================== --}}
                                 {{-- START messages DropDown navbar --}}
                                 {{-- =================================================================== --}}
 
-                                <li class="nav-item dropdown mx-3">
+                                {{-- <li class="nav-item dropdown mx-3">
                                     <a class="nav-link dropdown-toggle" href="#"
                                         id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
@@ -1418,7 +1401,6 @@
 
 
 
-                                            {{-- <i class="fa-regular fa-message  font20"></i> --}}
                                             <i class="iconify font30"
                                                 data-icon="material-symbols:chat-bubble-outline"></i>
 
@@ -1526,7 +1508,7 @@
 
 
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{-- =================================================================== --}}
                                 {{-- END messages DropDown navbar --}}
@@ -1537,14 +1519,13 @@
                                 {{-- =================================================================== --}}
                                 {{-- START Notification DropDown navbar --}}
                                 {{-- =================================================================== --}}
-                                <li class="nav-item dropdown  mx-3">
+                                {{-- <li class="nav-item dropdown  mx-3">
                                     <a class="nav-link dropdown-toggle" href="#"
                                         id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
 
                                         <div class="position-relative">
-                                            {{-- <i class="fa-regular fa-bell font20"></i> --}}
-                                            <i class="iconify font30" data-icon="mdi:bell-outline"></i>
+                                          <i class="iconify font30" data-icon="mdi:bell-outline"></i>
                                             <span
                                                 class="position-absolute CustomBadge top-0 start-100 translate-middle badge rounded-pill bg-danger  ">
                                                 4
@@ -1564,7 +1545,6 @@
                                                     Read</span></a>
                                         </div>
 
-                                        {{-- START OF Notification item --}}
                                         <a href="#"
                                             class="dropdown-menu-item  px-3 py-3 d-flex align-items-center">
                                             <div class="mx-auto">
@@ -1578,7 +1558,6 @@
                                                 <p class="my-0 font12">4 hour ago</p>
                                             </div>
                                         </a>
-                                        {{-- END OF Notification item --}}
 
                                         <hr class="mx-4 graycolor my-0">
 
@@ -1587,7 +1566,6 @@
 
 
 
-                                        {{-- START OF Notification item --}}
                                         <a href="#"
                                             class="dropdown-menu-item  px-3 py-3 d-flex align-items-center">
                                             <div class="mx-auto">
@@ -1601,7 +1579,6 @@
                                                 <p class="my-0 font12">10 hour ago</p>
                                             </div>
                                         </a>
-                                        {{-- END OF Notification item --}}
 
                                         <hr class="mx-4 graycolor my-0">
 
@@ -1612,7 +1589,6 @@
 
 
 
-                                        {{-- START OF Notification item --}}
                                         <a href="#"
                                             class="dropdown-menu-item  px-3 py-3 d-flex align-items-center">
                                             <div class="mx-auto">
@@ -1626,7 +1602,6 @@
                                                 <p class="my-0 font12">1 day ago</p>
                                             </div>
                                         </a>
-                                        {{-- END OF Notification item --}}
 
                                         <hr class="mx-4 graycolor my-0">
 
@@ -1638,7 +1613,6 @@
 
 
 
-                                        {{-- START OF Notification item --}}
                                         <a href="#"
                                             class="dropdown-menu-item  px-3 py-3 d-flex align-items-center">
                                             <div class="mx-auto">
@@ -1652,7 +1626,6 @@
                                                 <p class="my-0 font12">2 days ago</p>
                                             </div>
                                         </a>
-                                        {{-- END OF Notification item --}}
 
 
 
@@ -1671,7 +1644,7 @@
 
 
 
-                                </li>
+                                </li> --}}
                                 {{-- =================================================================== --}}
                                 {{-- END Notification DropDown navbar --}}
                                 {{-- =================================================================== --}}
@@ -1683,7 +1656,7 @@
                                 {{-- START Shortcuts DropDown navbar --}}
                                 {{-- =================================================================== --}}
 
-                                <li class="nav-item dropdown mx-3">
+                                {{-- <li class="nav-item dropdown mx-3">
                                     <a class="nav-link dropdown-toggle" href="#" id="ShortcutsDropdownMenuLink"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -1713,7 +1686,6 @@
                                         <div class="row py-2 px-3">
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1726,13 +1698,11 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1745,14 +1715,12 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
 
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1765,14 +1733,12 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
 
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1785,14 +1751,12 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
 
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1805,14 +1769,12 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
 
 
 
-                                            {{-- START Shortcut item --}}
                                             <a href="#" class="col-4 p-2">
 
                                                 <div
@@ -1825,7 +1787,6 @@
 
 
                                             </a>
-                                            {{-- END Shortcut item --}}
 
 
 
@@ -1836,7 +1797,7 @@
 
 
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{-- =================================================================== --}}
                                 {{-- END Shortcuts DropDown navbar --}}

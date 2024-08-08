@@ -13,9 +13,19 @@
 
 
     
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
+    <div class="BlocksBackground row justify-content-between dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
-    use the table here + a export button
+        <div class="col-md-6">
+    <p class="py-2 darkcolor font16">Ceci est les données collectées après que l'utilisateur ait utilisé le formulaire de recherche moyen 3 fois.</p>
+        </div>
+
+    <div class="col-md-6">
+
+    <button class="primarybtn  d-block  ms-auto">
+        exporter les données
+    </button>
+
+    </div>
 
     </div>
 
@@ -57,18 +67,6 @@
                                         data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                             </div>
                         </th>
-                        <th class="text-start text-capitalize">Role
-                            <div class="sortby ms-auto d-flex float-end">
-                                <a href="#" class="">
-                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
-                                        data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
-                                </a>
-                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
-                                        data-rotate="90deg" data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
-                            </div>
-                        </th>
                         <th class="text-start text-capitalize">phone
                             <div class="sortby ms-auto d-flex float-end">
                                 <a href="#" class="">
@@ -81,63 +79,34 @@
                                         data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                             </div>
                         </th>
-                
-                        <th class="text-start text-capitalize">Actions
 
-
+                        <th class="text-start text-capitalize">email
+                            <div class="sortby ms-auto d-flex float-end">
+                                <a href="#" class="">
+                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
+                                        data-flip="horizontal"
+                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
+                                </a>
+                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
+                                        data-rotate="90deg" data-flip="horizontal"
+                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
+                            </div>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <div class="d-flex my-auto">
-                                <div class="my-auto">
-                                    <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg"
-                                        class="d-flex  mx-auto rounded-circle " alt="receiver profile"
-                                        width="40">
-                                </div>
+                            <div class="d-flex my-auto">                 
                                 <div class="px-2">
                                     <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                    <p class="font12 my-0 textcolor">joyboy@joyness.com</p>
                                 </div>
                             </div>
 
                         </td>
                         <td class="text-start">1453</td>
-                        <td class="text-start">admin</td>
                         <td class="text-start">066666666</td>
-                        <td class="text-start">
-
-
-                            <div class="my-auto d-flex">
-
-
-                                <a href="#" class=""><span class="iconify graycolor font22 me-2"
-                                        data-icon="tabler:user-x"></span></a>
-                                <a href="{{ route('dashboard.Users.View') }}" class=""><span class="iconify graycolor font22 mx-2"
-                                        data-icon="tabler:user-edit"></span></a>
-
-                                <div class="dropdown">
-                                    <a href="" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown"
-                                        aria-expanded="false" class="">
-                                        <span class="iconify graycolor font22 mx-2"
-                                            data-icon="material-symbols:more-vert"></span>
-                                    </a>
-                                    <ul class="dropdown-menu mt-2 FloatingBlocksBackground dark-box-shadow border-0"
-                                        aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">View</a></li>
-                                        <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">Edit</a></li>
-                                        <li><a class="dropdown-item graycolor" href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-
-
-                        </td>
+                        <td class="text-start">joyboy@joyness.com</td>
                     </tr>
           
 
@@ -145,55 +114,18 @@
 
                     <tr>
                         <td>
-                            <div class="d-flex my-auto">
-                                <div class="my-auto">
-                                    <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg"
-                                        class="d-flex  mx-auto rounded-circle " alt="receiver profile"
-                                        width="40">
-                                </div>
+                            <div class="d-flex my-auto">                 
                                 <div class="px-2">
                                     <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                    <p class="font12 my-0 textcolor">joyboy@joyness.com</p>
                                 </div>
                             </div>
 
                         </td>
                         <td class="text-start">1453</td>
-                        <td class="text-start">admin</td>
-                        <td class="text-start">0666666666</td>
-                        <td class="text-start">
-
-
-                            <div class="my-auto d-flex">
-
-
-                                <a href="#" class=""><span class="iconify graycolor font22 me-2"
-                                        data-icon="tabler:user-x"></span></a>
-                                <a href="{{ route('dashboard.Users.View') }}" class=""><span class="iconify graycolor font22 mx-2"
-                                        data-icon="tabler:user-edit"></span></a>
-
-                                <div class="dropdown">
-                                    <a href="" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown"
-                                        aria-expanded="false" class="">
-                                        <span class="iconify graycolor font22 mx-2"
-                                            data-icon="material-symbols:more-vert"></span>
-                                    </a>
-                                    <ul class="dropdown-menu mt-2 FloatingBlocksBackground dark-box-shadow border-0"
-                                        aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">View</a></li>
-                                        <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">Edit</a></li>
-                                        <li><a class="dropdown-item graycolor" href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-
-
-                        </td>
+                        <td class="text-start">066666666</td>
+                        <td class="text-start">joyboy@joyness.com</td>
                     </tr>
-
+          
 
                 </tbody>
 

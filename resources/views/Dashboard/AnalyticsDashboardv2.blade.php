@@ -42,7 +42,7 @@
                 <div id="right-circle" class="bgprimaryopacity"></div>
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
-                        <p class="graycolor mb-1">donnée utilisées dans la recherche moyenne</p>
+                        <p class="graycolor mb-1">donnée moyenne</p>
                         <h2 class="darkcolor mb-1"> 700.000 </h2>
 
                         {{-- <div class="mt-1">
