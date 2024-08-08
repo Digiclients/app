@@ -119,12 +119,12 @@ class LeboncoinDataRepository extends BaseRepository
         $query = $this->model->newQuery();
 
         // Exclude records where model_slug exists in price_range_data, the price is between min_price and max_price
-        // $query->leftJoin('price_range_data', function ($join) {
-        //     $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
-        //         ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
-        //         ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
-        // })
-        //     ->whereNotNull('price_range_data.model-slug');
+        $query->leftJoin('price_range_data', function ($join) {
+            $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
+                ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
+                ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
+        })
+            ->whereNotNull('price_range_data.model-slug');
 
         // dd($query->get());
         //  // Exclude records where leboncoin_data.vehicle_damage is 'Non endommagé'
@@ -142,8 +142,6 @@ class LeboncoinDataRepository extends BaseRepository
         // // Calculate and return the average price
         // $averagePrice = $query->avg('price');
 
-        // dd($query->get());
-
         // return $averagePrice;
         // Calculate and return the min, max, and average prices
         // $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price')
@@ -152,8 +150,6 @@ class LeboncoinDataRepository extends BaseRepository
         // Calculate and return the min, max, average prices, and count of results
         $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')
             ->first();
-
-        // dd($priceStatistics);
 
         return $priceStatistics;
     }
