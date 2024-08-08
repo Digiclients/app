@@ -104,7 +104,8 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyRegdateFilter($query, $search);
 
         // Step 3: Get the filtered results
-        $filteredResults = $query->get();
+        // $filteredResults = $query->get();
+        $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
 
         if ($applyOwnerTypeFilter) {
             // Separate results by ownerType
