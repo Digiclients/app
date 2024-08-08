@@ -1,9 +1,9 @@
 :root {
-    --primarycolor: #6259ca;
+    --primarycolor: #0066FF;
     --primarycolor-RBG: 98, 89, 202;
-    --primaryColorHover: #4140a9;
+    --primaryColorHover: #0049B6;
     --primarycoloropacity: #6259ca17;
-    --seccolor: #dfbf4d;
+    --seccolor: #0049B6;
     --secColoropacity: #dfbf4d17;
     --thirdColor: #00aaff;
     --thirdColoropacity: #00aaff17;
