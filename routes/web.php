@@ -37,7 +37,9 @@ Route::get('voitures/{annonceId}', [AnnonceController::class, 'show'])->name('an
 Route::get('/result/{id}', [ShareableLinkController::class, 'redirectToOriginal'])->name('shareable.redirect');
 
 // ******************* GENERATE PDF ***********************
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+// Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generatePDF');
+Route::post('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generatePDF');
+
 
 // ******************* CREATE ANNONCE *******************
 // Route::get('/deposer-une-annonce', [AnnonceController::class, 'create'])->name('create-annonce');

@@ -106,17 +106,6 @@ class ApiController extends Controller
         return response()->json($regionKeys);
     }
 
-    // public function searchLeboncoinCities(Request $request)
-    // {
-    //     $query = $request->input('query');
-
-    //     // Perform the search in the database
-    //     $results = LeboncoinData::where('city', 'LIKE', "%{$query}%")
-    //         ->orWhere('zipcode', 'LIKE', "%{$query}%")
-    //         ->get();
-
-    //     return response()->json($results);
-    // }
     public function searchLeboncoinCities(Request $request)
     {
         $query = $request->input('query');
@@ -247,6 +236,26 @@ class ApiController extends Controller
 
         return $attributes;
     }
+
+
+
+    // public function searchByTitle(Request $request)
+    // {
+    //     $query = $request->input('query');
+
+    //     // Query the leboncoin_data table with distinct results
+    //     $results = LeboncoinData::select('subject', 'u_car_brand', 'u_car_model')
+    //         ->where('subject', 'LIKE', '%' . $query . '%')
+    //         ->distinct()
+    //         ->get();
+
+    //     // Format the results for autocomplete
+    //     $formattedResults = $results->map(function ($item) use ($query) {
+    //         return $query . ' - ' . $item->u_car_brand . ' ' . $item->u_car_model;
+    //     });
+
+    //     return response()->json($formattedResults);
+    // }
 
 
 
