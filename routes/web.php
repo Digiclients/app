@@ -87,6 +87,10 @@ Route::post('/Contactez-nous', [ContactController::class, 'send'])->name('contac
 // ******************** ADMIN ROUTES *************************
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('home');
+    Route::get('/options', [AdminDashboardController::class, 'options'])->name('options');
+    Route::get('/price_range', [AdminDashboardController::class, 'price_range'])->name('range');
+    Route::post('/price_range', [AdminDashboardController::class, 'update_price_range'])->name('range.update');
+    // Route::get('/price_range', [AdminDashboardController::class, 'get_price_range'])->name('range.brand');
 });
 
 
@@ -138,7 +142,7 @@ Route::get('/isAuth', [App\Http\Controllers\HomeController::class, 'isAuthentica
 
 
 
-Route::get('/dashboard/analyticsv2', function () {
+Route::get('/dashboard/analyse', function () {
     return view('dashboard.AnalyticsDashboardv2');
 })->name('dashboard.analyticsv2');
 

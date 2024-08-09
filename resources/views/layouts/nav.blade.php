@@ -48,8 +48,8 @@
                     </a>
                 </li>
                 @guest
-                    <li class="nav-item d-none  NavBarIcon">
-                        <a class="nav-link" href="{{ route('login') }}">
+                    <li class="nav-item  NavBarIcon">
+                        <a class="nav-link" href="{{ route('login') }}" title="se connecter">
                             <iconify-icon icon="tabler:user-circle" height="24"></iconify-icon>
                         </a>
                     </li>
