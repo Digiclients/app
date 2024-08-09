@@ -447,6 +447,26 @@
                                     height="30px" style="width: 30px;height: 30px;"></iconify-icon>
                             </a>
                         </div>
+
+                        {{-- <a href="{{ route('generatePDF', array_merge(request()->only(['location', 'marque', 'modele', 'annee_modele', 'carburant', 'boite_vitesse', 'kilometrage']), $priceStatistics->toArray())) }}" class="primarybtn d-block mx-auto mt-2 w-25">Download PDF</a> --}}
+                        <form action="{{ route('generatePDF') }}" method="POST">
+                            @csrf
+                            <!-- Include all the necessary request parameters as hidden fields -->
+                            <input type="hidden" name="location" value="{{ request('location') }}">
+                            <input type="hidden" name="marque" value="{{ request('marque') }}">
+                            <input type="hidden" name="modele" value="{{ request('modele') }}">
+                            <input type="hidden" name="annee_modele" value="{{ request('annee_modele') }}">
+                            <input type="hidden" name="carburant" value="{{ request('carburant') }}">
+                            <input type="hidden" name="boite_vitesse" value="{{ request('boite_vitesse') }}">
+                            <input type="hidden" name="kilometrage" value="{{ request('kilometrage') }}">
+
+                            <!-- Include $priceStatistics data as hidden fields -->
+                            <input type="hidden" name="minPrice" value="{{ $priceStatistics->min_price }}">
+                            <input type="hidden" name="avgPrice" value="{{ $priceStatistics->avg_price}}">
+                            <input type="hidden" name="maxPrice" value="{{ $priceStatistics->max_price }}">
+
+                            <button type="submit" class="primarybtn d-block mx-auto mt-2 w-25">Download PDF</button>
+                        </form>
                     @endif
                 </div>
             @endif
