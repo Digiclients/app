@@ -48,7 +48,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Nombre total d'utilisateurs</p>
-                        <h2 class="darkcolor mb-1"> 99,999+ </h2>
+                        <h2 class="darkcolor mb-1"> {{ $UsersCount }}+ </h2>
                     </div>
 
                     <div class="col-4">
@@ -98,7 +98,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1"> Vendeurs particuliers</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $PrivateUsersCount }} </h2>
 
                         {{-- <div class="mt-1">
 
@@ -169,7 +169,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Vendeurs professionnels</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $ProUsersCount }} </h2>
 
                         {{-- <div class="mt-1">
 
@@ -242,7 +242,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Managers</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $ManagerUsersCount }} </h2>
 
 
                     </div>
@@ -326,39 +326,39 @@
             <h3 class="darkcolor font18 text-capitalize"> Filtre de recherche :</h3>
 
 
-<form action="">
-            <div class="row py-3">
+            <form action="">
+                <div class="row py-3">
 
-                <div class="col-md-4 px-3">
-                    <label for="SelectStatus" class="textcolor font14 pb-2">Nom d'utilisateur :</label>
-                    <input type="text" class="form-control bgwhiteopacity py-2" placeholder="Nom d'utilisateur">
+                    <div class="col-md-4 px-3">
+                        <label for="SelectStatus" class="textcolor font14 pb-2">Nom d'utilisateur :</label>
+                        <input type="text" class="form-control bgwhiteopacity py-2" placeholder="Nom d'utilisateur">
+                    </div>
+
+
+                    <div class="col-md-4  px-3">
+                        <label for="SelectRole" class="textcolor font14 pb-2">Choisir un rôle</label>
+                        <select class="form-select customSelect py-2" id="SelectRole">
+                            <option hidden disabled selected value></option>
+                            <option value="admin">admin</option>
+                            <option value="manager">manager</option>
+                            <option value="particulier">particulier</option>
+                            <option value="professionnel">professionnel</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-4 px-3">
+                        <label for="Recherche" class="textcolor font14 pb-2">Recherche :</label>
+
+                        <button class="primarybtn minibtn d-block w-100 mx-auto text-center">
+                            Recherche
+                        </button>
+                    </div>
+
+
                 </div>
 
-
-                <div class="col-md-4  px-3">
-                    <label for="SelectRole" class="textcolor font14 pb-2">Choisir un rôle</label>
-                    <select class="form-select customSelect py-2" id="SelectRole">
-                        <option hidden disabled selected value></option>
-                        <option value="admin">admin</option>
-                        <option value="manager">manager</option>
-                        <option value="particulier">particulier</option>
-                        <option value="professionnel">professionnel</option>
-                    </select>
-                </div>
-
-
-                <div class="col-md-4 px-3">
-                    <label for="Recherche" class="textcolor font14 pb-2">Recherche :</label>
-
-                    <button class="primarybtn minibtn d-block w-100 mx-auto text-center">
-                        Recherche
-                    </button>
-                </div>
-
-
-            </div>
-
-        </form>
+            </form>
 
             <hr class="textcolor my-2">
 
@@ -366,7 +366,7 @@
             <div class="row py-3 flex-column-reverse flex-xl-row">
 
                 <div class="col-xl-8 px-2 my-xl-0 my-2">
-{{-- 
+                    {{--
                     <select class="form-select customSelect py-2 width80px">
                         <option value="10">10</option>
                         <option value="20">25</option>
@@ -417,31 +417,33 @@
                                     <form id="AddNewUserForm">
 
                                         <div class="mb-2">
-                                            <label for="FullName" class="darkcolor col-form-label font14">Nom complet</label>
+                                            <label for="FullName" class="darkcolor col-form-label font14">Nom
+                                                complet</label>
                                             <input type="text" id="FullName" class="form-control bgwhiteopacity"
                                                 placeholder="">
                                         </div>
 
 
                                         <div class="mb-2">
-                                            <label for="Email"
-                                                class="darkcolor col-form-label font14">Adresse e-mail</label>
+                                            <label for="Email" class="darkcolor col-form-label font14">Adresse
+                                                e-mail</label>
                                             <input type="text" id="Email" class="form-control bgwhiteopacity"
                                                 placeholder="">
                                         </div>
 
-    
-             
+
+
                                         <div class="mb-2">
-                                            <label for="Contact"
-                                                class="darkcolor col-form-label font14">Numéro de téléphone</label>
+                                            <label for="Contact" class="darkcolor col-form-label font14">Numéro de
+                                                téléphone</label>
                                             <input type="tel" id="Contact" class="form-control bgwhiteopacity"
                                                 placeholder="">
                                         </div>
 
 
                                         <div class="mb-2">
-                                            <label for="SelectRole" class="darkcolor font14 pb-2">Choisir un rôle</label>
+                                            <label for="SelectRole" class="darkcolor font14 pb-2">Choisir un
+                                                rôle</label>
                                             <select class="form-select customSelect py-2" id="SelectRole">
                                                 <option hidden disabled selected value></option>
                                                 <option value="admin">admin</option>
@@ -453,15 +455,17 @@
 
 
                                         <div class="mb-2">
-                                            <label for="Password" class="darkcolor col-form-label font14">Mot de passe</label>
+                                            <label for="Password" class="darkcolor col-form-label font14">Mot de
+                                                passe</label>
                                             <input type="password" id="Password" class="form-control bgwhiteopacity"
                                                 placeholder="">
                                         </div>
 
                                         <div class="mb-2">
-                                            <label for="rePassword" class="darkcolor col-form-label font14">Confirmer le mot de passe</label>
-                                            <input type="password" id="rePassword" class="form-control bgwhiteopacity"
-                                                placeholder="">
+                                            <label for="rePassword" class="darkcolor col-form-label font14">Confirmer
+                                                le mot de passe</label>
+                                            <input type="password" id="rePassword"
+                                                class="form-control bgwhiteopacity" placeholder="">
                                         </div>
 
 
@@ -472,7 +476,7 @@
 
                                 </div>
                                 <div class="modal-footer px-4  BlocksBackground  border-0">
-                                    <button  type="submit" form="AddNewUserForm" class="primarybtn  minibtn"> Ajouter
+                                    <button type="submit" form="AddNewUserForm" class="primarybtn  minibtn"> Ajouter
                                     </button>
 
 
@@ -539,7 +543,7 @@
 
 
                             </th>
-                            <th class="text-start text-capitalize">id
+                            {{-- <th class="text-start text-capitalize">id
                                 <div class="sortby ms-auto d-flex float-end">
                                     <a href="#" class="">
                                         <span class="iconify textcolor font22 me-1" data-rotate="270deg"
@@ -550,7 +554,7 @@
                                             data-rotate="90deg" data-flip="horizontal"
                                             data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                                 </div>
-                            </th>
+                            </th> --}}
                             <th class="text-start text-capitalize">Role
                                 <div class="sortby ms-auto d-flex float-end">
                                     <a href="#" class="">
@@ -575,7 +579,7 @@
                                             data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                                 </div>
                             </th>
-                    
+
                             <th class="text-start text-capitalize">Actions
 
 
@@ -583,33 +587,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($users as $user)
                         <tr>
                             <td>
                                 <div class="d-flex my-auto">
                                     <div class="my-auto">
-                                        <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg"
+                                        <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
                                             class="d-flex  mx-auto rounded-circle " alt="receiver profile"
                                             width="40">
                                     </div>
                                     <div class="px-2">
-                                        <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                        <p class="font12 my-0 textcolor">joyboy@joyness.com</p>
+                                        <p class="my-0 fontw600 graycolor">{{$user->name}}</p>
+                                        <p class="font12 my-0 textcolor">{{$user->email}}</p>
                                     </div>
                                 </div>
-
                             </td>
-                            <td class="text-start">1453</td>
-                            <td class="text-start">admin</td>
-                            <td class="text-start">066666666</td>
+                            {{-- <td class="text-start">1453</td> --}}
+                            <td class="text-start">{{$user->sellerType}}</td>
+                            <td class="text-start">{{$user->phone}}</td>
                             <td class="text-start">
-
-
                                 <div class="my-auto d-flex">
-
-
                                     <a href="#" class=""><span class="iconify graycolor font22 me-2"
                                             data-icon="tabler:user-x"></span></a>
-                                    <a href="{{ route('dashboard.Users.View') }}" class=""><span class="iconify graycolor font22 mx-2"
+                                    <a href="{{ route('dashboard.Users.View') }}" class=""><span
+                                            class="iconify graycolor font22 mx-2"
                                             data-icon="tabler:user-edit"></span></a>
 
                                     <div class="dropdown">
@@ -620,73 +621,22 @@
                                         </a>
                                         <ul class="dropdown-menu mt-2 FloatingBlocksBackground dark-box-shadow border-0"
                                             aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">View</a></li>
-                                            <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">Edit</a></li>
+                                            <li><a class="dropdown-item graycolor"
+                                                    href="{{ route('dashboard.Users.View') }}">View</a></li>
+                                            <li><a class="dropdown-item graycolor"
+                                                    href="{{ route('dashboard.Users.View') }}">Edit</a></li>
                                             <li><a class="dropdown-item graycolor" href="#">Delete</a></li>
                                         </ul>
                                     </div>
-
-                                </div>
-
-
-
-
+                                    </div>
                             </td>
                         </tr>
-              
 
-
-
-                        <tr>
-                            <td>
-                                <div class="d-flex my-auto">
-                                    <div class="my-auto">
-                                        <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg"
-                                            class="d-flex  mx-auto rounded-circle " alt="receiver profile"
-                                            width="40">
-                                    </div>
-                                    <div class="px-2">
-                                        <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                        <p class="font12 my-0 textcolor">joyboy@joyness.com</p>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td class="text-start">1453</td>
-                            <td class="text-start">admin</td>
-                            <td class="text-start">0666666666</td>
-                            <td class="text-start">
-
-
-                                <div class="my-auto d-flex">
-
-
-                                    <a href="#" class=""><span class="iconify graycolor font22 me-2"
-                                            data-icon="tabler:user-x"></span></a>
-                                    <a href="{{ route('dashboard.Users.View') }}" class=""><span class="iconify graycolor font22 mx-2"
-                                            data-icon="tabler:user-edit"></span></a>
-
-                                    <div class="dropdown">
-                                        <a href="" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown"
-                                            aria-expanded="false" class="">
-                                            <span class="iconify graycolor font22 mx-2"
-                                                data-icon="material-symbols:more-vert"></span>
-                                        </a>
-                                        <ul class="dropdown-menu mt-2 FloatingBlocksBackground dark-box-shadow border-0"
-                                            aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">View</a></li>
-                                            <li><a class="dropdown-item graycolor" href="{{ route('dashboard.Users.View') }}">Edit</a></li>
-                                            <li><a class="dropdown-item graycolor" href="#">Delete</a></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-
-
-
-                            </td>
-                        </tr>
+                        @empty
+                            <tr>
+                                <td>Empty</td>
+                            </tr>
+                        @endforelse
 
 
                     </tbody>
@@ -703,10 +653,10 @@
             <div class="row  py-3">
 
 
-                <div class="col-lg-6 my-auto">
+                {{-- <div class="col-lg-6 my-auto">
                     <p class="textcolor font14 text-center text-lg-start my-2 my-lg-auto">Showing 21 to 30 of 50
                         entries</p>
-                </div>
+                </div> --}}
 
 
 
@@ -716,17 +666,7 @@
                     <nav>
                         <ul
                             class="pagination CustomPagination   my-2 my-lg-auto justify-content-center justify-content-lg-end">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
+                            {{ $users->appends(request()->query())->onEachSide(2)->links() }}
                         </ul>
                     </nav>
                 </div>

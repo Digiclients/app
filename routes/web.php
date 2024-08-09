@@ -90,9 +90,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // ***************** ROUTES PRICE RANGE DATA ***********************
     Route::get('/price_range', [AdminDashboardController::class, 'price_range'])->name('range');
     Route::post('/price_range', [AdminDashboardController::class, 'update_price_range'])->name('range.update');
-    // ***************** ROUTES PRICE RANGE DATA ***********************
+    // ***************** ROUTES OPTIONS ***********************
     Route::get('/options', [AdminDashboardController::class, 'options'])->name('options');
     Route::post('/options', [AdminDashboardController::class, 'update_option_value'])->name('option.update');
+
+    // ***************** ROUTES USERS MANAGMENT ***********************
+    Route::get('/manage/users', [AdminDashboardController::class, 'manage_users'])->name('users');
 
 });
 

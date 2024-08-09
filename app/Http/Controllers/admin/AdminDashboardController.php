@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Option;
+use App\Models\LeadsData;
+use App\Models\AveragePrice;
 use Illuminate\Http\Request;
 use App\Models\LeboncoinData;
 use App\Models\PriceRangeData;
@@ -13,16 +16,39 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        // return view('admin.index');
-        return view('dashboard.AnalyticsDashboardv2');
+        $leboncoinDataCount = LeboncoinData::count();
+        $UsersCount = User::count();
+        $AveragePricesCount = AveragePrice::count();
+        $LeadsCount = LeadsData::count();
+        return view('dashboard.AnalyticsDashboardv2', compact('leboncoinDataCount', 'UsersCount', 'AveragePricesCount', 'LeadsCount'));
     }
 
     public function options()
     {
-        $options  = Option::paginate(20);
+        $options = Option::paginate(20);
         return view('dashboard.options', compact('options'));
     }
+    public function update_option_value(Request $request)
+    {
+        $request->validate([
+            'dataId' => ['required', 'integer'],
+            'optionValue' => ['required'],
+        ]);
 
+        try {
+            $updated = Option::where('id', $request->input('dataId'))->update([
+                'value' => $request->input('optionValue'),
+            ]);
+
+            if ($updated) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'option value not found']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => "Failed to update option value, $e"]);
+        }
+    }
 
     public function price_range(Request $request)
     {
@@ -94,28 +120,14 @@ class AdminDashboardController extends Controller
         }
     }
 
-
-    public function update_option_value(Request $request)
+    public function manage_users()
     {
-        $request->validate([
-            'dataId' => ['required','integer'],
-            'optionValue' => ['required'],
-        ]);
-
-        try{
-            $updated = Option::where('id', $request->input('dataId'))->update([
-                'value' => $request->input('optionValue'),
-            ]);
-
-            if ($updated) {
-                return response()->json(['success' => true]);
-            } else {
-                return response()->json(['success' => false, 'message' => 'option value not found']);
-            }
-
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => "Failed to update option value, $e"]);
-        }
+        $UsersCount = User::count();
+        $PrivateUsersCount = User::role(User::PARTICULIER)->count();
+        $ProUsersCount = User::role(User::PROFESSIONNEL)->count();
+        $ManagerUsersCount = User::role(User::MANAGER)->count();
+        // $users = User::paginate(20);
+        $users = User::whereNotNull('sellerType')->paginate(20);
+        return view('dashboard.Users.List', compact('UsersCount', 'PrivateUsersCount', 'ProUsersCount', 'ManagerUsersCount', 'users'));
     }
-
 }

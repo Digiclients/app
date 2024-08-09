@@ -85,101 +85,66 @@
 
 
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.analyticsv2') }}'>
-
-
-                                    <div class="insideacontainer sub-menu-active">
+                                <a class="sub-menu-container" href='{{ route('admin.home') }}'>
+                                    <div class="insideacontainer  {{ Request::is('admin/dashboard') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside"
                                             data-icon="material-symbols:home-outline-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">analytics</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
 
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.Users.List') }}'>
-
-
-                                    <div class="insideacontainer">
+                                <a class="sub-menu-container" href='{{ route('admin.users') }}'>
+                                    <div class="insideacontainer {{ Request::is('admin/manage/users') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside" data-icon="uil:users-alt"></i>
                                         <div class="navitem">
                                             <div class="navlink">utilisateurs</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('dashboard.AverageData') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="material-symbols:add-chart-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">donnée moyenne</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('admin.range') }}'>
-
-
-                                    <div class="insideacontainer">
+                                    <div class="insideacontainer {{ Request::is('admin/price_range') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside"
                                             data-icon="material-symbols:arrow-range-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">data range</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('admin.options') }}'>
-
-
-                                    <div class="insideacontainer">
+                                    <div class="insideacontainer {{ Request::is('admin/options') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside" data-icon="iwwa:option"></i>
                                         <div class="navitem">
                                             <div class="navlink">options</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
@@ -187,40 +152,26 @@
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('dashboard.importAnounces') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="uil:import"></i>
                                         <div class="navitem">
                                             <div class="navlink">Importer data</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('dashboard.publicite') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="tabler:ad"></i>
                                         <div class="navitem">
                                             <div class="navlink">publicité</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 

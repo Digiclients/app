@@ -43,7 +43,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">donnée moyenne</p>
-                        <h2 class="darkcolor mb-1"> 700.000 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $leboncoinDataCount }} </h2>
 
                         {{-- <div class="mt-1">
 
@@ -109,7 +109,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Nombre d'utilisateurs</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $UsersCount }} </h2>
 
                         {{-- <div class="mt-1">
 
@@ -180,8 +180,8 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Nombre de recherches</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
-{{-- 
+                        <h2 class="darkcolor mb-1"> {{ $AveragePricesCount }} </h2>
+                        {{--
                         <div class="mt-1">
 
                             <span class="dangercolor">
@@ -255,7 +255,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-8">
                         <p class="graycolor mb-1">Nombre de leads collectés</p>
-                        <h2 class="darkcolor mb-1"> 30,825 </h2>
+                        <h2 class="darkcolor mb-1"> {{ $LeadsCount }} </h2>
 
                         {{-- <div class="mt-1">
 
@@ -872,9 +872,8 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link  py-0 text-capitalize" data-bs-toggle="pill"
-                                    data-bs-target="#filter-mounth-Top-Selling-Products" type="button"
-                                    role="tab" aria-controls="pills-mounth" aria-selected="false"
-                                    tabindex="-1"> Mounth </a>
+                                    data-bs-target="#filter-mounth-Top-Selling-Products" type="button" role="tab"
+                                    aria-controls="pills-mounth" aria-selected="false" tabindex="-1"> Mounth </a>
                             </li>
                         </ul>
 
