@@ -27,12 +27,13 @@
                 <li class="nav-item  NavBarlink {{ Request::is('deposer-une-annonce*') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('create-annonce') }}">Vendre</a>
                 </li>
+                <li class="nav-item NavBarlink">
+                    <a class="nav-link" href="https://blog.lautoprix.fr/">Vous conseiller</a>
+                </li>
                 <li class="nav-item  NavBarlink {{ Request::is('Contactez-nous') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('contact') }}">Contactez-nous</a>
                 </li>
-                <li class="nav-item  d-none NavBarlink">
-                    <a class="nav-link" href="#">Vous conseiller</a>
-                </li>
+
                 <li class="nav-item d-none  d-flex NavBarline">
                     <div class="miniLine">
                     </div>
