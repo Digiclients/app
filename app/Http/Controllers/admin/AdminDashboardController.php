@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Option;
 use Illuminate\Http\Request;
 use App\Models\LeboncoinData;
 use App\Models\PriceRangeData;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+
 class AdminDashboardController extends Controller
 {
     public function index()
@@ -17,41 +19,10 @@ class AdminDashboardController extends Controller
 
     public function options()
     {
-        return view('dashboard.options');
+        $options  = Option::paginate(20);
+        return view('dashboard.options', compact('options'));
     }
 
-    // public function price_range(Request $request)
-    // {
-    //     $brands = LeboncoinData::select('u_car_brand')->distinct()->get();
-    //     $price_range = PriceRangeData::paginate(10);
-
-    //     return view('dashboard.dataRanges', compact('price_range', 'brands'));
-    // }
-
-    // public function price_range(Request $request)
-    // {
-    //     // Get the distinct brands for the select dropdown
-    //     $brands = LeboncoinData::select('u_car_brand')->distinct()->get();
-
-    //     // Initialize the query for price range data
-    //     $query = PriceRangeData::query();
-
-    //     // If a brand is selected, filter the price range data
-    //     if ($request->has('brand') && $request->input('brand') !== '') {
-    //         $request->validate([
-    //             'brand' => ['required', 'string', 'exists:leboncoin_data,u_car_brand'],
-    //         ]);
-
-    //         $brand = $request->input('brand');
-    //         $query->where('model-slug', 'LIKE', $brand . '_%');
-    //     }
-
-    //     // Get the paginated price range data
-    //     $price_range = $query->paginate(10);
-
-    //     // Pass the price range and brands to the view
-    //     return view('dashboard.dataRanges', compact('price_range', 'brands'));
-    // }
 
     public function price_range(Request $request)
     {
@@ -123,19 +94,28 @@ class AdminDashboardController extends Controller
         }
     }
 
-    // public function get_price_range(Request $request)
-    // {
-    //     // Validate the brand input
-    //     $request->validate([
-    //             'brand' => ['required', 'string', 'exists:leboncoin_data,u_car_brand'],
-    //     ]);
 
-    //     $brand = $request->input('brand');
+    public function update_option_value(Request $request)
+    {
+        $request->validate([
+            'dataId' => ['required','integer'],
+            'optionValue' => ['required'],
+        ]);
 
-    //     $brands = LeboncoinData::select('u_car_brand')->distinct()->get();
-    //     // Retrieve all price range data where model-slug starts with the brand
-    //     $price_range = PriceRangeData::where('model-slug', 'like', $brand . '_%')->paginate(10);
+        try{
+            $updated = Option::where('id', $request->input('dataId'))->update([
+                'value' => $request->input('optionValue'),
+            ]);
 
-    //     return view('dashboard.dataRanges', compact('price_range', 'brands'));
-    // }
+            if ($updated) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'option value not found']);
+            }
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => "Failed to update option value, $e"]);
+        }
+    }
+
 }

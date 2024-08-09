@@ -1822,7 +1822,7 @@
 
 
                                         <div class="avatarframe">
-                                            <img src="{{ asset('assets/DashBoard/usersavatar/avatar.jpg') }}"
+                                            <img src="{{ Auth::user()->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
                                                 class="img-fluid" alt="">
 
                                         </div>
@@ -1832,8 +1832,10 @@
                                     <div class="dropdown-menu FloatingBlocksBackground avatarframedropdown Custom-Dropdown-Menu"
                                         aria-labelledby="avatarframeDropdownMenuLink">
                                         <div class="dropdown-menu-header bgprimary px-3 py-4">
-                                            <h5 class="whitecolor my-auto text-center"> Joyce Stewart </h5>
-                                            <p class="whitecolor text-center m-0">web Designer</p>
+                                            <h5 class="whitecolor my-auto text-center">
+                                                <h5 class="whitecolor my-auto text-center"> {{ Auth::user()->name }}
+                                                </h5>
+                                            </h5>
                                         </div>
 
                                         {{-- START profile dropDown item --}}
