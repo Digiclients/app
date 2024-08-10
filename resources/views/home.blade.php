@@ -143,12 +143,12 @@
 
                 <form id="filterForm" action="{{ route('home') }}" method="GET" onsubmit="buildQueryString(event)">
                     <div class="container">
-                        {{-- <div style="margin: 0 auto;"
+                        <div style="margin: 0 auto;"
                             class="autocompleteSearch input-container col-sm w-50 position-relative pb-2">
                             <input type="text" data-array="title" name="title"
-                                class="form-control @error('title') is-invalid @enderror" placeholder="Recherche" readonly
+                                class="form-control @error('title') is-invalid @enderror" placeholder="Recherche"
                                 value="{{ request()->input('title') }}">
-                            <iconify-icon icon="material-symbols:close" width="24" height="24"
+                            {{-- <iconify-icon icon="material-symbols:close" width="24" height="24"
                                 class="close-icon position-absolute"></iconify-icon>
                             <iconify-icon icon="mingcute:down-fill" width="24" height="24"
                                 class="down-icon position-absolute"></iconify-icon>
@@ -159,17 +159,16 @@
                                             placeholder="Recherche par titre">
                                     </div>
                                 </div>
-
                                 <div class="model-list" style="padding: 10px;">
                                     <!-- title items will be dynamically inserted here -->
                                 </div>
-                            </ul>
+                            </ul> --}}
                             @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> --}}
+                        </div>
                         <div class="d-flex justify-content-center row d-grid gap-3">
                             <div class="autocompleteInput input-container col-sm position-relative">
                                 <input type="text" data-array="location" name="location"
@@ -455,6 +454,7 @@
                             <input type="hidden" name="location" value="{{ request('location') }}">
                             <input type="hidden" name="marque" value="{{ request('marque') }}">
                             <input type="hidden" name="modele" value="{{ request('modele') }}">
+                            <input type="hidden" name="title" value="{{ request('title') }}">
                             <input type="hidden" name="annee_modele" value="{{ request('annee_modele') }}">
                             <input type="hidden" name="carburant" value="{{ request('carburant') }}">
                             <input type="hidden" name="boite_vitesse" value="{{ request('boite_vitesse') }}">

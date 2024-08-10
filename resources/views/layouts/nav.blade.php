@@ -49,8 +49,8 @@
                     </a>
                 </li>
                 @guest
-                    <li class="nav-item d-none  NavBarIcon">
-                        <a class="nav-link" href="{{ route('login') }}">
+                    <li class="nav-item  NavBarIcon">
+                        <a class="nav-link" href="{{ route('login') }}" title="se connecter">
                             <iconify-icon icon="tabler:user-circle" height="24"></iconify-icon>
                         </a>
                     </li>
@@ -72,7 +72,14 @@
                             <div class="dropdown-menu-header bgprimary px-3 py-4">
                                 <h5 class="whitecolor my-auto text-center"> {{ Auth::user()->name }} </h5>
                             </div>
-
+                            @role('admin')
+                            <a href="{{ route('admin.home') }}"
+                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                <div class="w-100 mx-2">
+                                    <p class="darkcolor my-0 text-center">Dashboard</p>
+                                </div>
+                            </a>
+                            @else
                             <!-- {{-- START profile dropDown item --}} -->
                             <a href="{{ route('profile.home') }}"
                                 class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
@@ -116,6 +123,7 @@
                                     <p class="darkcolor my-0 text-center">Déposer une annonce</p>
                                 </div>
                             </a>
+                            @endrole
                             <!-- {{-- END profile dropDown item --}} -->
                             <hr class="graycolor my-0">
                             <!-- {{-- START profile dropDown item --}} -->

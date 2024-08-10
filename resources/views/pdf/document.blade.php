@@ -139,6 +139,10 @@
                         <td>{{ $modele ?? 'N/A' }}</td>
                     </tr>
                     <tr>
+                        <td>Titre</td>
+                        <td>{{ $title ?? 'N/A' }}</td>
+                    </tr>
+                    <tr>
                         <td>Année</td>
                         <td>{{ $annee_modele ?? 'N/A' }}</td>
                     </tr>

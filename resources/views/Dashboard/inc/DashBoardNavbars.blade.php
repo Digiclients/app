@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoyBoyDashBoard</title>
+    <title>{{ config('app.name', 'LautoPrix') }}</title>
     <link rel="stylesheet" id="stylecolors" href="{{ asset('assets/DashBoard/css/colors.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/DashBoard/css/adminbar.css') }}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <!-- CSS only -->
@@ -84,140 +85,93 @@
 
 
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.analyticsv2') }}'>
-
-
-                                    <div class="insideacontainer sub-menu-active">
-                                        <i class="iconify iconaside" data-icon="material-symbols:home-outline-rounded"></i>
+                                <a class="sub-menu-container" href='{{ route('admin.home') }}'>
+                                    <div class="insideacontainer  {{ Request::is('admin/dashboard') ? 'sub-menu-active' : '' }}">
+                                        <i class="iconify iconaside"
+                                            data-icon="material-symbols:home-outline-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">analytics</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
 
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.Users.List') }}'>
-
-
-                                    <div class="insideacontainer">
+                                <a class="sub-menu-container" href='{{ route('admin.users') }}'>
+                                    <div class="insideacontainer {{ Request::is('admin/manage/users') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside" data-icon="uil:users-alt"></i>
                                         <div class="navitem">
                                             <div class="navlink">utilisateurs</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('dashboard.AverageData') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="material-symbols:add-chart-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">donnée moyenne</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
-                            
+
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.dataRanges') }}'>
-
-
-                                    <div class="insideacontainer">
-                                        <i class="iconify iconaside" data-icon="material-symbols:arrow-range-rounded"></i>
+                                <a class="sub-menu-container" href='{{ route('admin.range') }}'>
+                                    <div class="insideacontainer {{ Request::is('admin/price_range') ? 'sub-menu-active' : '' }}">
+                                        <i class="iconify iconaside"
+                                            data-icon="material-symbols:arrow-range-rounded"></i>
                                         <div class="navitem">
                                             <div class="navlink">data range</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
-                      
+
                             <li class='sub-menu'>
-
-                                <a class="sub-menu-container" href='{{ route('dashboard.options') }}'>
-
-
-                                    <div class="insideacontainer">
+                                <a class="sub-menu-container" href='{{ route('admin.options') }}'>
+                                    <div class="insideacontainer {{ Request::is('admin/options') ? 'sub-menu-active' : '' }}">
                                         <i class="iconify iconaside" data-icon="iwwa:option"></i>
                                         <div class="navitem">
                                             <div class="navlink">options</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
 
 
-                                                  
+
                             <li class='sub-menu'>
-
                                 <a class="sub-menu-container" href='{{ route('dashboard.importAnounces') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="uil:import"></i>
                                         <div class="navitem">
                                             <div class="navlink">Importer data</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
-                                        <li class='sub-menu'>
-
+                            <li class='sub-menu'>
                                 <a class="sub-menu-container" href='{{ route('dashboard.publicite') }}'>
-
-
                                     <div class="insideacontainer">
                                         <i class="iconify iconaside" data-icon="tabler:ad"></i>
                                         <div class="navitem">
                                             <div class="navlink">publicité</div>
                                         </div>
-
                                     </div>
-
-
                                 </a>
-
                             </li>
 
 
@@ -241,7 +195,7 @@
                             </li>
 
 
-                            
+
                             {{-- <li class='sub-menu Dropdown-menu'>
                                 <a class="sub-menu-container">
 
@@ -249,7 +203,7 @@
                                     <div class="insideacontainer">
 
 
-                          
+
                                         <i class="iconify iconaside"
                                             data-icon="material-symbols:home-outline-rounded"></i>
 
@@ -336,7 +290,7 @@
                                 </ul>
                             </li> --}}
 
-{{-- 
+                            {{--
                             <li class='sub-menu'>
 
                                 <a class="sub-menu-container" href='{{ route('dashboard.Chat') }}'>
@@ -583,7 +537,7 @@
                             {{-- ============================================================== --}}
                             {{--  START nav link li --}}
                             {{-- ============================================================== --}}
-{{-- 
+                            {{--
                             <li class='sub-menu Dropdown-menu'>
 
                                 <a class="sub-menu-container">
@@ -1053,7 +1007,7 @@
 
 
                         </ul>
-                        {{-- 
+                        {{--
 <br>
 <br>
 <br>
@@ -1161,7 +1115,7 @@
                     </nav>
 
 
-                    {{-- 
+                    {{--
       <br>
 <br>
 <br>
@@ -1237,7 +1191,7 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-{{-- 
+                                {{--
                                 <div class="input-group mb-3 mt-3   mx-0 mx-sm-4  ">
                                     <input type="text" class="form-control *" placeholder="Search for anything..."
                                         aria-describedby="button-addon2">
@@ -1335,7 +1289,7 @@
                                 {{-- =================================================================== --}}
                                 {{-- END Languages DropDown navbar --}}
                                 {{-- =================================================================== --}}
-{{-- 
+                                {{--
                                 </ul>
                                 </li> --}}
 
@@ -1819,8 +1773,8 @@
 
 
                                         <div class="avatarframe">
-                                            <img src="{{ asset('assets/DashBoard/usersavatar/avatar.jpg') }}" class="img-fluid"
-                                                alt="">
+                                            <img src="{{ Auth::user()->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
+                                                class="img-fluid" alt="">
 
                                         </div>
 
@@ -1829,8 +1783,10 @@
                                     <div class="dropdown-menu FloatingBlocksBackground avatarframedropdown Custom-Dropdown-Menu"
                                         aria-labelledby="avatarframeDropdownMenuLink">
                                         <div class="dropdown-menu-header bgprimary px-3 py-4">
-                                            <h5 class="whitecolor my-auto text-center"> Joyce Stewart </h5>
-                                            <p class="whitecolor text-center m-0">web Designer</p>
+                                            <h5 class="whitecolor my-auto text-center">
+                                                <h5 class="whitecolor my-auto text-center"> {{ Auth::user()->name }}
+                                                </h5>
+                                            </h5>
                                         </div>
 
                                         {{-- START profile dropDown item --}}
@@ -1907,8 +1863,8 @@
 
                                         {{-- START profile dropDown item --}}
 
-                                        <a href="#"
-                                            class="dropdown-menu-item  px-3 py-2 d-flex align-items-center">
+                                        <a href="{{ route('logout') }}"
+                                            class="dropdown-menu-item  px-3 py-2 d-flex align-items-center"onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <span class="iconify darkcolor font30"
                                                 data-icon="bytesize:sign-out"></span>
 
@@ -1917,7 +1873,10 @@
                                             </div>
 
                                         </a>
-
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
                                         {{-- END profile dropDown item --}}
 
 
@@ -2040,8 +1999,8 @@
 
                                     <div class="form-check">
                                         <input class="form-check-input " type="radio"
-                                            styledata="/assets/DashBoard/css/colors.css" name="Mode" value="ligth"
-                                            id="Theme-Customizer-Theming-Mode-light" checked>
+                                            styledata="/assets/DashBoard/css/colors.css" name="Mode"
+                                            value="ligth" id="Theme-Customizer-Theming-Mode-light" checked>
                                         <label class="form-check-label textcolor text-capitalize"
                                             for="Theme-Customizer-Theming-Mode-light">
                                             Light
@@ -2049,8 +2008,8 @@
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input "
-                                            type="radio"styledata="/assets/DashBoard/css/colorsDark.css" name="Mode"
-                                            value="dark" id="Theme-Customizer-Theming-Mode-dark">
+                                            type="radio"styledata="/assets/DashBoard/css/colorsDark.css"
+                                            name="Mode" value="dark" id="Theme-Customizer-Theming-Mode-dark">
                                         <label class="form-check-label textcolor text-capitalize"
                                             for="Theme-Customizer-Theming-Mode-dark">
                                             Dark

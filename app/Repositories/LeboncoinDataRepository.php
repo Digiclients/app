@@ -58,7 +58,7 @@ class LeboncoinDataRepository extends BaseRepository
     //     })
     //         ->whereNotNull('price_range_data.model-slug');
 
-    //     // TODO: NEED TO DEVIDE THIS QUERY TO TWO ARRAY FIRST FOR ownerType = PRO AND SECOND FOR ownerType = PRIVATE, AND THEN NEED TO GET JUST 10% FROM FIRST ARRAY WHERE ownerType = PRO AND THEN MERGE 10% WITH ARRAY OF PRIVATE  
+    //     // TODO: NEED TO DEVIDE THIS QUERY TO TWO ARRAY FIRST FOR ownerType = PRO AND SECOND FOR ownerType = PRIVATE, AND THEN NEED TO GET JUST 10% FROM FIRST ARRAY WHERE ownerType = PRO AND THEN MERGE 10% WITH ARRAY OF PRIVATE
     //     // AND NEED THIS TO BE PARAMETRABLE 10% IT IS PARAMETRABLE AND PRO, PRIVATE IT IS ALSO PARAMETRABLE
 
 
@@ -98,11 +98,13 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyLocalizationFilter($query, $search);
         $this->applyBrandFilter($query, $search);
         $this->applyModelFilter($query, $search);
+        $this->applyTitleFilter($query, $search);
         $this->applyFuelFilter($query, $search);
         $this->applyGearboxFilter($query, $search);
         $this->applyMileageFilter($query, $search);
         $this->applyRegdateFilter($query, $search);
 
+        // dd($query);
         // Step 3: Get the filtered results
         // $filteredResults = $query->get();
         $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
@@ -166,32 +168,14 @@ class LeboncoinDataRepository extends BaseRepository
     }
 
 
-    protected function applyAllCities($query, $search)
+
+
+    public function applyTitleFilter(Builder $query, array $search)
     {
-
+        if (!empty($search['title'])) {
+            $query->where('subject', 'like', '%' . $search['title'] . '%');
+        }
     }
-
-
-
-
-    // protected function applyRegions($query, $region)
-    // {
-
-    //     $regions = LeboncoinData::getRegions();
-
-    //     // Check if the region exists in the $regions array
-    //     if (array_key_exists($region, $regions)) {
-    //         $cities = $regions[$region];
-    //         // Apply the query to filter by cities in the specified region
-    //         $query->whereIn('city', $cities);
-    //     } else {
-    //         // Handle the case where the region does not exist
-    //         // You can throw an exception, log an error, or simply do nothing
-    //         // For this example, we'll just log a warning
-    //     }
-
-    //     return $query;
-    // }
 
 
 

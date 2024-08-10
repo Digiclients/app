@@ -87,6 +87,16 @@ Route::post('/Contactez-nous', [ContactController::class, 'send'])->name('contac
 // ******************** ADMIN ROUTES *************************
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('home');
+    // ***************** ROUTES PRICE RANGE DATA ***********************
+    Route::get('/price_range', [AdminDashboardController::class, 'price_range'])->name('range');
+    Route::post('/price_range', [AdminDashboardController::class, 'update_price_range'])->name('range.update');
+    // ***************** ROUTES OPTIONS ***********************
+    Route::get('/options', [AdminDashboardController::class, 'options'])->name('options');
+    Route::post('/options', [AdminDashboardController::class, 'update_option_value'])->name('option.update');
+
+    // ***************** ROUTES USERS MANAGMENT ***********************
+    Route::get('/manage/users', [AdminDashboardController::class, 'manage_users'])->name('users');
+
 });
 
 
@@ -138,7 +148,7 @@ Route::get('/isAuth', [App\Http\Controllers\HomeController::class, 'isAuthentica
 
 
 
-Route::get('/dashboard/analyticsv2', function () {
+Route::get('/dashboard/analyse', function () {
     return view('dashboard.AnalyticsDashboardv2');
 })->name('dashboard.analyticsv2');
 

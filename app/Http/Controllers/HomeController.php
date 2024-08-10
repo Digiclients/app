@@ -39,6 +39,7 @@ class HomeController extends Controller
             }
 
             $filters = $request->only([
+                'title',
                 'location',
                 'marque',
                 'modele',
@@ -129,6 +130,7 @@ class HomeController extends Controller
             'location' => $filters['location'] ?? null,
             'marque' => $filters['marque'] ?? null,
             'modele' => $filters['modele'] ?? null,
+            'title' => $filters['title'] ?? null,
             'annee_modele_min' => $anneeModeleMin ?? null,
             'annee_modele_max' => $anneeModeleMax ?? null,
             'carburant' => $filters['carburant'] ?? null,
@@ -146,6 +148,7 @@ class HomeController extends Controller
                 'location' => $data['location'],
                 'marque' => $data['marque'],
                 'modele' => $data['modele'],
+                'title' => $data['title'],
                 'annee_modele_min' => $data['annee_modele_min'],
                 'annee_modele_max' => $data['annee_modele_max'],
                 'carburant' => $data['carburant'],
