@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Option;
 use App\Models\LeboncoinData;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
@@ -14,18 +15,7 @@ class LeboncoinDataRepository extends BaseRepository
      *
      * @var array
      */
-    protected $fieldsSearchable = [
-        'localization',
-        'u_car_brand',
-        'u_car_model',
-        'carburant',
-        'regdate',
-        'fuel',
-        'gearbox',
-        'mileage',
-        'horse_power_din',
-        'horsepower',
-    ];
+    protected $fieldsSearchable = ['localization', 'u_car_brand', 'u_car_model', 'carburant', 'regdate', 'fuel', 'gearbox', 'mileage', 'horse_power_din', 'horsepower'];
 
     /**
      * Renvoie les champs de recherche disponibles.
@@ -61,7 +51,6 @@ class LeboncoinDataRepository extends BaseRepository
     //     // TODO: NEED TO DEVIDE THIS QUERY TO TWO ARRAY FIRST FOR ownerType = PRO AND SECOND FOR ownerType = PRIVATE, AND THEN NEED TO GET JUST 10% FROM FIRST ARRAY WHERE ownerType = PRO AND THEN MERGE 10% WITH ARRAY OF PRIVATE
     //     // AND NEED THIS TO BE PARAMETRABLE 10% IT IS PARAMETRABLE AND PRO, PRIVATE IT IS ALSO PARAMETRABLE
 
-
     //     // Apply filters using helper methods
     //     $this->applyLocalizationFilter($query, $search);
     //     $this->applyBrandFilter($query, $search);
@@ -71,7 +60,6 @@ class LeboncoinDataRepository extends BaseRepository
     //     $this->applyMileageFilter($query, $search);
     //     $this->applyRegdateFilter($query, $search);
 
-
     //     // Calculate and return the min, max, average prices, and count of results
     //     $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')
     //         ->first();
@@ -79,18 +67,29 @@ class LeboncoinDataRepository extends BaseRepository
     //     return $priceStatistics;
     // }
 
-
-    public function getPriceStatistics($search = [], $proPercentage = 10, $ownerTypes = ['pro', 'private'], $applyOwnerTypeFilter = true)
+    public function getPriceStatistics($search = [], $ownerTypes = ['pro', 'private'])
     {
+        // Options
+        $proPercentage =
+            (int) (Option::select('value')
+                ->where('option', Option::PROPERCENTAGE)
+                ->first()->value ?? 10);
+        $applyOwnerTypeFilter = filter_var(
+            Option::select('value')
+                ->where('option', Option::APPLYPROPERCENTAGE)
+                ->first()->value ?? true,
+            FILTER_VALIDATE_BOOLEAN,
+        );
+
+        // dd("$proPercentage  - " . var_export($applyOwnerTypeFilter, true));
         // Step 1: Initial query to get all results
         $query = $this->model->newQuery();
 
         // Exclude records where model_slug exists in price_range_data, the price is between min_price and max_price
-        $query->leftJoin('price_range_data', function ($join) {
-            $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')
-                ->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')
-                ->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
-        })
+        $query
+            ->leftJoin('price_range_data', function ($join) {
+                $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
+            })
             ->whereNotNull('price_range_data.model-slug')
             ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
 
@@ -127,15 +126,10 @@ class LeboncoinDataRepository extends BaseRepository
         }
 
         // Step 6: Calculate and return the min, max, average prices, and count of filtered results
-        $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')
-            ->first();
+        $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')->first();
 
         return $priceStatistics;
     }
-
-
-
-
 
     // protected function applyLocalizationFilter($query, $search)
     // {
@@ -167,18 +161,12 @@ class LeboncoinDataRepository extends BaseRepository
         return $query;
     }
 
-
-
-
     public function applyTitleFilter(Builder $query, array $search)
     {
         if (!empty($search['title'])) {
             $query->where('subject', 'like', '%' . $search['title'] . '%');
         }
     }
-
-
-
 
     protected function applyBrandFilter($query, $search)
     {
@@ -195,7 +183,6 @@ class LeboncoinDataRepository extends BaseRepository
             $query->whereIn('u_car_model', $models);
         }
     }
-
 
     protected function applyRegdateFilter($query, $search)
     {
@@ -230,7 +217,6 @@ class LeboncoinDataRepository extends BaseRepository
         }
     }
 
-
     protected function applyMileageFilter($query, $search)
     {
         if (!empty($search['kilometrage'])) {
@@ -247,8 +233,6 @@ class LeboncoinDataRepository extends BaseRepository
             }
         }
     }
-
-
 
     protected function applyHorsePowerDinFilter($query, $search)
     {
@@ -283,8 +267,4 @@ class LeboncoinDataRepository extends BaseRepository
             }
         }
     }
-
-
-
-
 }
