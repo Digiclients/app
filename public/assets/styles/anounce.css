@@ -7,15 +7,23 @@
   
       flex-direction: column !important;
   
-      height: 647px !important;
+      height:  480px !important;
     }
-  
-  
   
     .ad-card .image-container {
     min-width: 100% !important;
   }
+
           }
+
+          @media (max-width: 530px) {
+            .ad-card {
+              height: 520px !important;
+            }
+                  }
+
+
+
   
     .ad-card {
       display: flex;
@@ -25,7 +33,7 @@
       /* border-radius: 0.25rem; */
       overflow: hidden;
       /* min-height: 21.5rem; */
-      height: 215px;
+      height: auto;
       text-decoration: none !important;
       transition: 0.6s;
   
@@ -36,9 +44,17 @@
   }
     .ad-card img {
       width: 100%;
-      height: 100%;
+      height: 240px;
       object-fit: cover;
     }
+
+    @media (min-width: 800px) {
+      /* Your CSS rules here */
+      .ad-card img {
+          max-width: 22rem;
+      }
+  }
+  
     .ad-card .image-container {
       position: relative;
       overflow: hidden;
@@ -54,8 +70,7 @@
     }
   
   
-  
-  
+
   
     .ad-card .favorite-button {
       position: absolute;
@@ -122,4 +137,15 @@
   
   
   
- 
+ .filterButton {
+
+    color: var(--white);
+    border-color: var(--primarycolor) !important;
+    background-color: var(--primarycolor);
+
+ }
+
+ .filterButton span{
+  color: var(--white);
+
+}

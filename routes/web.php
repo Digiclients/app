@@ -42,10 +42,10 @@ Route::post('/generate-pdf', [PDFController::class, 'generatePDF'])->name('gener
 
 
 // ******************* CREATE ANNONCE *******************
-// Route::get('/deposer-une-annonce', [AnnonceController::class, 'create'])->name('create-annonce');
-Route::get('/deposer-une-annonce', function () {
-    return view('errors.maintenance');
-})->name('create-annonce');
+Route::get('/deposer-une-annonce', [AnnonceController::class, 'create'])->name('create-annonce');
+// Route::get('/deposer-une-annonce', function () {
+//     return view('errors.maintenance');
+// })->name('create-annonce');
 
 Route::middleware(['auth', 'role:particulier|professionnel'])->group(function () {
     Route::post('/deposer-une-annonce', [AnnonceController::class, 'store'])->name('store-annonce');

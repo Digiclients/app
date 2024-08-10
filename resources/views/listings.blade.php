@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('third_party_stylesheets')
+
+@endpush
 
 {{-- @dd($annonceListings) --}}
 @section('content')
@@ -21,84 +24,63 @@
 
     <!-- FILTERS -->
 
-    <div class="container d-flex justify-content-center my-4">
-        <div class="me-3" style="width: 25rem;">
-            <div class="autocompleteInput input-container">
-                <input type="text" data-array="location" name="location" class="form-control" placeholder="Location"
-                    readonly value="paris 75003">
-                <ul class="dropdown-menu w-100 p-2">
-                    <div class="search-container">
-                        <input type="text" class="form-control search-input" placeholder="Rechercher un lieu">
+    <div class="container row my-4 mx-auto  col-lg-12 col-xl-11 col-xxl-9">
+       
+{{-- // START ******** location input ********* --}}
+        <div class="col-md-4 px-2 my-2">
+            <div class="autocompleteInput input-container col-sm position-relative">
+                <input type="text" data-array="location" name="location"
+                    class="form-control py-2 @error('location') is-invalid @enderror" placeholder="localisation"
+                    readonly value="">
+                <iconify-icon icon="material-symbols:close" width="24" height="24"
+                    class="close-icon position-absolute"></iconify-icon>
+                <iconify-icon icon="mingcute:down-fill" width="24" height="24"
+                    class="down-icon position-absolute"></iconify-icon>
+                <ul class="dropdown-menu w-100 " style="padding: 0;">
+                    <div class="sticky-container">
+                        <div class="search-container">
+                            <input id="searchCities" type="text" class="form-control search-input"
+                                placeholder="Rechercher un lieu">
+                        </div>
                     </div>
-                    <div class="model-list">
+
+                    <div id="searchResults" class="model-list" style="padding: 10px;">
                         <!-- Location items will be dynamically inserted here -->
                     </div>
                 </ul>
+                {{-- @error('location')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror --}}
             </div>
-        </div>
+          </div>
+{{-- // END ******** location input ********* --}}
 
-        <div class="d-flex">
-            <div class="me-3" style="width: 12rem;">
+{{-- // START ******** TITLE input ********* --}}
+        <div class="col-md-4 px-2 my-2">
+          <div class="autocompleteSearch input-container">
+            <input type="text" data-array="title" name="title" class="form-control py-2" placeholder="Recherche" value="">
+          </div>
+        </div>
+{{-- // END ******** TITLE input ********* --}}
+
+
+{{-- // START ******** Filter Button ********* --}}
+            <div class="col-md-4 px-2 my-2">
                 <button
-                    class="btn d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary"
-                    title="Prix" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
-                    aria-controls="canvasRightFilter">
-                    <span class="text-truncate">Prix</span>
-                    <span class="ms-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M6.646 1.646a.5.5 0 0 1 .708 0l4.5 4.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708L10.793 6 6.646 1.854a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            <div class="me-3" style="width: 12rem;">
-                <button
-                    class="btn d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary fw-bold"
-                    title="AUDI" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
-                    aria-controls="canvasRightFilter">
-                    <span class="text-truncate">AUDI</span>
-                    <span class="ms-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M6.646 1.646a.5.5 0 0 1 .708 0l4.5 4.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708L10.793 6 6.646 1.854a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            <div class="me-3" style="width: 12rem;">
-                <button
-                    class="btn d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary"
-                    title="Modèle" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
-                    aria-controls="canvasRightFilter">
-                    <span class="text-truncate">Modèle</span>
-                    <span class="ms-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M6.646 1.646a.5.5 0 0 1 .708 0l4.5 4.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.708L10.793 6 6.646 1.854a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            <div>
-                <button
-                    class="btn d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary fw-bold"
+                    class="py-2 filterButton d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary fw-bold"
                     title="Afficher tous les filtres" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
                     aria-controls="canvasRightFilter">
                     <iconify-icon icon="rivet-icons:filter" width="16" height="16"></iconify-icon>
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                                                            class="bi bi-filter" viewBox="0 0 16 16">
-                                                                                            <path fill-rule="evenodd"
-                                                                                                d="M6 10.5a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 6 15.5a.5.5 0 0 1-.396-.206L5.25 14.751V12.5a.5.5 0 0 1 .5-.5zm4 1a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 10 15.5a.5.5 0 0 1-.396-.206L9.25 14.751V12.5a.5.5 0 0 1 .5-.5zm-8-2.5a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 2 13.5a.5.5 0 0 1-.396-.206L1.25 12.751V10.5a.5.5 0 0 1 .5-.5zm12-2.5a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 14 11.5a.5.5 0 0 1-.396-.206L13.25 10.751V8.5a.5.5 0 0 1 .5-.5zM8 1a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 8 5.5a.5.5 0 0 1-.396-.206L7.25 4.251V1.5A.5.5 0 0 1 8 1zM2 6.5a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 2 10.5a.5.5 0 0 1-.396-.206L1.25 9.251V7a.5.5 0 0 1 .5-.5zm12-2.5a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 14 8.5a.5.5 0 0 1-.396-.206L13.25 7.251V5a.5.5 0 0 1 .5-.5zm-6-4a.5.5 0 0 1 .5.5v2.751l.396.794A.5.5 0 0 1 8 3.5a.5.5 0 0 1-.396-.206L7.25 2.251V.5A.5.5 0 0 1 8 0z" />
-                                                                                        </svg> -->
-                    <span class="d-none d-sm-block">Filtres</span>
-                    <span class="badge bg-primary ms-1">1</span>
+         
+                    <span class="">Filtres</span>
+                    
                 </button>
             </div>
-        </div>
+{{-- // END ******** TITLE Button ********* --}}
+
+
     </div>
 
     <!-- END :  FILTERS -->
@@ -857,19 +839,19 @@ width: 80%;
 
     <!-- ################  START Listing ################ -->
 
-    <section class="SectionsBlog py-5 container-fluid row justify-content-center">
+    <section class="SectionsListing pt-3 pb-4 container-fluid row justify-content-center">
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
 
-            <div class="container">
+            <div class="container mb-4">
 
                 <div class="d-inline-block w-100 p-0 align-top sm-w-55">
-                    <h1 class="mb-3 display-1 text-dark md-mb-4"
+                    <h1 class="mb-1 display-1 text-dark md-mb-4"
                         style="font-size: 1.5rem;line-height: 2.8rem;font-weight: 700;">
                         Annonces Voitures d’occasion :
                         Toute la France</h1>
                 </div>
-                <div class="d-flex align-items-center mb-3 md-mb-4">
-                    <h2 class="h5 text-muted">47 039 annonces</h2>
+                <div class="d-flex align-items-center mt-0 mb-1">
+                    <h2 class="h5 LightGrayColor">47 039 annonces</h2>
                 </div>
             </div>
 
@@ -879,13 +861,15 @@ width: 80%;
                 <div class="col-lg-8">
 
 
+
+
                     <!-- ################  START list ad-card ################ -->
 
                     @forelse ($annonceListings as $listing)
                         <a href="{{route('annonce.show', $listing->annonce_id)}}" class="ad-card my-2">
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $listing->feature_img_path) }}"
-                                    alt="{{ $listing->feature_img_alt }}" style="max-width: 22rem;">
+                                    alt="{{ $listing->feature_img_alt }}" style="">
                                 <button class="favorite-button d-flex align-items-center"
                                     aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                     <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
@@ -893,24 +877,35 @@ width: 80%;
                                 </button>
                             </div>
                             <div class="content">
-                                <h5 class="mt-4 mt-lg-0">{{ $listing->annonce_title }}</h5>
-
-                                <div class="details d-flex gap-3">
+                                <div class="d-flex justify-content-between mt-3 mt-md-0">
+                                <h5 class="mb-0">{{ $listing->annonce_title }}</h5>
+                                <div style="width: 55px;">
+                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
+                                </div>
+                            </div>
+                                <div class="details d-flex" style="gap: 5px 33px;">
                                     @foreach ($listing->attributes as $attribute)
-                                        <div>
-                                            <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }}</p>
-                                            <p class="m-0">{{ $attribute->attribute_value }}</p>
+                                        <div class="">
+                                            <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
+                                            
                                         </div>
                                     @endforeach
                                 </div>
                                 <h6 class="pt-3">{{ number_format($listing->annonce_price, 2, ',', ' ') }} €</h6>
-                                <div>
-                                    <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                                </div>
+                                {{-- <div style="width: 55px;">
+                                    <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
+                                </div> --}}
+                                <p class="location listAttributesColor my-0">{{ $listing->localization }}</p>
+                            <div class="d-flex gap-2 justify-content-between align-items-center">
+                                <p class="location listAttributesColor my-0">10 min ago</p>
+                             <button type="button" href="" class="primarybtn  minibtn" style="padding: 8px 12px !important;font-size: 14px;">Voir l'annonce</button>
+                            </div>
 
-                                <p class="location listAttributesColor">{{ $listing->localization }}</p>
+
                             </div>
                         </a>
+
+                        <hr class="ListingLineHR">
                     @empty
                     @endforelse
 
@@ -923,13 +918,10 @@ width: 80%;
 
 
 
-                <!-- START Listing Pagination -->
-
-                <nav>
-                    <ul class="pagination CustomPagination mt-5 justify-content-center justify-content-lg-start">
+                <!-- START Listing Pagination -->      
+                    <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
                         {{ $annonceListings->links() }}
-                    </ul>
-                </nav>
+                    </div>
             </div>
 
             <!-- END Listing Pagination -->
