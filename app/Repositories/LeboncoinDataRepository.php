@@ -161,10 +161,23 @@ class LeboncoinDataRepository extends BaseRepository
         return $query;
     }
 
+    // public function applyTitleFilter(Builder $query, array $search)
+    // {
+    //     if (!empty($search['title'])) {
+    //         $query->where('subject', 'like', '%' . $search['title'] . '%');
+    //     }
+    // }
+
     public function applyTitleFilter(Builder $query, array $search)
     {
         if (!empty($search['title'])) {
-            $query->where('subject', 'like', '%' . $search['title'] . '%');
+            // Standardize the search term by adding spaces between numbers and letters
+            $searchTerm = $search['title'];
+            $searchTerm = preg_replace('/([a-zA-Z])([0-9])/', '$1 $2', $searchTerm);
+            $searchTerm = preg_replace('/([0-9])([a-zA-Z])/', '$1 $2', $searchTerm);
+
+            // Apply the updated search term to the query
+            $query->where('subject', 'like', '%' . $searchTerm . '%');
         }
     }
 
