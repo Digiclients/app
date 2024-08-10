@@ -120,14 +120,4 @@ class AdminDashboardController extends Controller
         }
     }
 
-    public function manage_users()
-    {
-        $UsersCount = User::count();
-        $PrivateUsersCount = User::role(User::PARTICULIER)->count();
-        $ProUsersCount = User::role(User::PROFESSIONNEL)->count();
-        $ManagerUsersCount = User::role(User::MANAGER)->count();
-        // $users = User::paginate(20);
-        $users = User::whereNotNull('sellerType')->paginate(20);
-        return view('dashboard.Users.List', compact('UsersCount', 'PrivateUsersCount', 'ProUsersCount', 'ManagerUsersCount', 'users'));
-    }
 }

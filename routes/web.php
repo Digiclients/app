@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ShareableLinkController;
 use App\Http\Controllers\profile\ProfileController;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,9 +96,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/options', [AdminDashboardController::class, 'update_option_value'])->name('option.update');
 
     // ***************** ROUTES USERS MANAGMENT ***********************
-    Route::get('/manage/users', [AdminDashboardController::class, 'manage_users'])->name('users');
+    Route::get('/manage/users', [UserManagementController::class, 'index'])->name('users');
+    Route::post('/manage/users', [UserManagementController::class, 'store'])->name('user.store');
+    Route::get('/get-roles', [UserManagementController::class, 'getRoles'])->name('roles.get');
 
-});
+
+}); 
 
 
 
