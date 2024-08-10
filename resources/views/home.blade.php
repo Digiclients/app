@@ -143,32 +143,29 @@
 
                 <form id="filterForm" action="{{ route('home') }}" method="GET" onsubmit="buildQueryString(event)">
                     <div class="container">
-                        <div style="margin: 0 auto;"
+                        <div style="margin: 0 auto;" class="row col-sm-12 col-md-4 d-flex justify-content-center">
+                            <div class="autocompleteSearch input-container pb-2">
+                                <input type="text" data-array="title" name="title"
+                                    class="form-control @error('title') is-invalid @enderror" placeholder="Recherche"
+                                    value="{{ request()->input('title') }}">
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- <div style="margin: 0 auto;"
                             class="autocompleteSearch input-container col-sm w-50 position-relative pb-2">
                             <input type="text" data-array="title" name="title"
                                 class="form-control @error('title') is-invalid @enderror" placeholder="Recherche"
                                 value="{{ request()->input('title') }}">
-                            {{-- <iconify-icon icon="material-symbols:close" width="24" height="24"
-                                class="close-icon position-absolute"></iconify-icon>
-                            <iconify-icon icon="mingcute:down-fill" width="24" height="24"
-                                class="down-icon position-absolute"></iconify-icon>
-                            <ul class="dropdown-menu w-100 " style="padding: 0;">
-                                <div class="sticky-container">
-                                    <div class="search-container">
-                                        <input type="text" class="form-control search-input"
-                                            placeholder="Recherche par titre">
-                                    </div>
-                                </div>
-                                <div class="model-list" style="padding: 10px;">
-                                    <!-- title items will be dynamically inserted here -->
-                                </div>
-                            </ul> --}}
                             @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="d-flex justify-content-center row d-grid gap-3">
                             <div class="autocompleteInput input-container col-sm position-relative">
                                 <input type="text" data-array="location" name="location"
@@ -462,7 +459,7 @@
 
                             <!-- Include $priceStatistics data as hidden fields -->
                             <input type="hidden" name="minPrice" value="{{ $priceStatistics->min_price }}">
-                            <input type="hidden" name="avgPrice" value="{{ $priceStatistics->avg_price}}">
+                            <input type="hidden" name="avgPrice" value="{{ $priceStatistics->avg_price }}">
                             <input type="hidden" name="maxPrice" value="{{ $priceStatistics->max_price }}">
 
                             <button type="submit" class="primarybtn d-block mx-auto mt-2 w-25">Download PDF</button>
