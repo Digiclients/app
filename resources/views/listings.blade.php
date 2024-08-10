@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @push('third_party_stylesheets')
+<link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
 
 @endpush
 
@@ -940,7 +941,6 @@ width: 80%;
 
 
 
-    <link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
 @endsection
 
 
