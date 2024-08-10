@@ -62,7 +62,7 @@
                         <a class="dropdown-toggle position-relative" href="#" id="avatarframeDropdownMenuLink"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="avatarframe">
-                                <img src="{{ Auth::user()->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
+                                <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('assets/images/default-avatar.png') }}"
                                     class="img-fluid" alt="">
                             </div>
                         </a>
