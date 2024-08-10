@@ -17,6 +17,7 @@ class PDFController extends Controller
     {
         // Retrieve all necessary parameters from the request
         $data = $request->only([
+            'title',
             'location',
             'marque',
             'modele',
