@@ -349,11 +349,11 @@
                                 </a>
 
                                 <a class="swiper-slide my-auto"
-                                    href="{{ asset('storage/' . $annonceDetails->images[10]->path) }}"
+                                    href="{{ asset('storage/' . $annonceDetails->images[2]->path) }}"
                                     data-fancybox="gallery">
                                     <div class="image-container">
-                                        <img src="{{ asset('storage/' . $annonceDetails->images[10]->path) }}"
-                                            alt="{{ $annonceDetails->images[10]->alt }}">
+                                        <img src="{{ asset('storage/' . $annonceDetails->images[2]->path) }}"
+                                            alt="{{ $annonceDetails->images[2]->alt }}">
                                         {{-- <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                         <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18" style="width: 18px;height: 18px;"></iconify-icon>
                                     </button>
@@ -418,7 +418,7 @@
                         </div>
 
                         <!-- END Description -->
-
+{{-- 
                         <hr class="ListingLineHR">
 
                         <!-- START Map Location for zip code and city name -->
@@ -430,7 +430,7 @@
                                 style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <!-- END  MapLocation for zip code and city name -->
+                        <!-- END  MapLocation for zip code and city name --> --}}
 
                         <hr class="ListingLineHR">
 
