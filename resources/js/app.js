@@ -1,13 +1,16 @@
 // Added: Actual Bootstrap JavaScript dependency
 // import "bootstrap";
-import { Modal } from "bootstrap";
 
 // Added: Popper.js dependency for popover support in Bootstrap
-import "@popperjs/core";
-
+import { Modal } from "bootstrap";
 // Default Laravel bootstrapper, installs axios
 
 import "./bootstrap";
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
+import "@popperjs/core";
+
 console.log("test");
 // Wait until the DOM is fully loaded
 
@@ -398,3 +401,61 @@ document.addEventListener("DOMContentLoaded", function () {
         userInfoFormButton.addEventListener("click", submitUserInfo);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

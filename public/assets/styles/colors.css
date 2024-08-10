@@ -16,7 +16,7 @@
     --consttextcolor: #4c4e6499;
     --darkcolor: #2A292F;
     --darkcolorTransparent: #2a292fc7;
-    --graycolor: ##152233b5;
+    --graycolor: #152233b5;
     --constgraycolor: #404040;
     --white: white;
     --BlocksBackground: #F4F4F7;
@@ -34,6 +34,7 @@
     --color-danger: #ff0f0f;
     --color-orange: #FFA800;
     --listAttributesColor : #627c93;
+    --SGrayColor : #627c93;
     --BadgeGrayColor : #e6f2fd;
     --ListingLineHRColor : #152233;
     --ListingLineHRColor-RGBA : rgba(21, 34, 51 , 0.25);

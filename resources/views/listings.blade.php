@@ -106,7 +106,94 @@
 
     <!-- START FORM CANVAS -->
 
+<style>
+    #filterSearchForm .form-label  {
+        color: var(--darkcolor);
+        font-weight: 600;
+        margin-bottom: 4px;
+        font-family: var(--primaryfont), sans-serif;
+    }
 
+
+     #filterSearchForm .info-title  {
+        color: var(--darkcolor);
+        font-weight: 600;
+        margin-bottom: 0px;
+        font-family: var(--primaryfont), sans-serif;
+    }
+
+    #offcanvasRight .form-label  {
+        color: var(--darkcolor);
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-family: var(--primaryfont), sans-serif;
+    }
+    
+
+    #filterSearchForm .info-values {
+        color: var(--SGrayColor);
+        font-size: 12px;
+    }
+    #filterSearchForm .info-selected {
+        font-size: 14px;
+    }
+    
+    #filterSearchForm .infos:hover {
+        cursor: pointer;
+    }
+
+    #filterSearchForm .hr {
+        margin: 0;
+    }
+
+    #filterSearchForm > div {
+  padding: 2px 0px;
+  }
+
+  #filterSearchForm .form-check , #offcanvasRight  .form-check{
+display: flex;
+flex-direction: row-reverse;
+gap: 2px;
+justify-content: space-between;
+padding-left: 0px;
+    
+  }
+  
+
+  .FormFooter {
+  position: fixed;
+  bottom: 0px;
+  background-color: var(--white);
+  width: 100%;
+}
+
+
+#offcanvasRight .offcanvas-footer {
+
+  background-color: var(--white);
+  width: 100%;
+  padding: 16px 14px;
+}
+
+#offcanvasRight .offcanvas-footer {
+
+background-color: var(--white);
+width: 100%;
+padding: 16px 14px;
+font-family: var(--primaryfont), sans-serif;
+color: var(--darkcolor);
+}
+#offcanvasRight label {
+width: 80%;
+}
+#canvasRightFilter label {
+width: 80%;
+}
+
+
+
+
+</style>
     <!-- Off-canvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasRightFilter" aria-labelledby="canvasRightFilterLabel">
         <div class="offcanvas-header">
@@ -114,9 +201,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form id="filterForm" method="GET" action="/path-to-submit-form">
+            <form id="filterSearchForm" method="GET"  action="#">
+                <hr class="LineHR mt-0 mb-3">
+
                 <!-- Prix -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="prixMin" class="form-label">Prix</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="prixMin" id="prixMin" class="form-control" placeholder="Minimum">
@@ -127,7 +216,7 @@
                 <hr class="LineHR">
 
                 <!-- Marque (Radio buttons with canvased class) -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Marque</label>
                         <div class="form-check">
@@ -169,7 +258,7 @@
 
 
                 <!-- Modèle (Checkboxes with canvased class) -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Modèle</label>
                         <div class="form-check">
@@ -192,6 +281,97 @@
                                 value="Modèle4">
                             <label class="form-check-label" for="modele4">Modèle4</label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele5"
+                                value="Modèle5">
+                            <label class="form-check-label" for="modele5">Modèle5</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele6"
+                                value="Modèle6">
+                            <label class="form-check-label" for="modele6">Modèle6</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele7"
+                                value="Modèle7">
+                            <label class="form-check-label" for="modele7">Modèle7</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele8"
+                                value="Modèle8">
+                            <label class="form-check-label" for="modele8">Modèle8</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele9"
+                                value="Modèle9">
+                            <label class="form-check-label" for="modele9">Modèle9</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele10"
+                                value="Modèle10">
+                            <label class="form-check-label" for="modele10">Modèle10</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele11"
+                                value="Modèle11">
+                            <label class="form-check-label" for="modele11">Modèle11</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele12"
+                                value="Modèle12">
+                            <label class="form-check-label" for="modele12">Modèle12</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele13"
+                                value="Modèle13">
+                            <label class="form-check-label" for="modele13">Modèle13</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele14"
+                                value="Modèle14">
+                            <label class="form-check-label" for="modele14">Modèle14</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele15"
+                                value="Modèle15">
+                            <label class="form-check-label" for="modele15">Modèle15</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele16"
+                                value="Modèle16">
+                            <label class="form-check-label" for="modele16">Modèle16</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele17"
+                                value="Modèle17">
+                            <label class="form-check-label" for="modele17">Modèle17</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele18"
+                                value="Modèle18">
+                            <label class="form-check-label" for="modele18">Modèle18</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele19"
+                                value="Modèle19">
+                            <label class="form-check-label" for="modele19">Modèle19</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele20"
+                                value="Modèle20">
+                            <label class="form-check-label" for="modele20">Modèle20</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele21"
+                                value="Modèle21">
+                            <label class="form-check-label" for="modele21">Modèle21</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele22"
+                                value="Modèle22">
+                            <label class="form-check-label" for="modele22">Modèle22</label>
+                        </div>
+
                         <!-- Add more checkboxes here -->
                     </div>
                 </div>
@@ -200,7 +380,7 @@
                 <hr class="LineHR">
 
                 <!-- Année-Modèle -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="anneeModeleMin" class="form-label">Année-Modèle</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="anneeModeleMin" id="anneeModeleMin" class="form-control"
@@ -213,7 +393,7 @@
                 <hr class="LineHR">
 
                 <!-- Type de véhicule -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Type de véhicule</label>
                         <div class="form-check">
@@ -244,7 +424,7 @@
 
 
                 <!-- Carburant -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Carburant</label>
                         <div class="form-check">
@@ -276,7 +456,7 @@
 
 
                 <!-- Boîte de vitesse -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label class="form-label">Boîte de vitesse</label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="boiteDeVitesse[]" id="boiteManuelle"
@@ -296,7 +476,7 @@
 
 
                 <!-- Kilométrage -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="kilometrageMin" class="form-label">Kilométrage</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="kilometrageMin" id="kilometrageMin" class="form-control"
@@ -310,7 +490,7 @@
 
 
                 <!-- Crit'air -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Crit'air</label>
                         <div class="form-check">
@@ -352,7 +532,7 @@
 
 
                 <!-- Puissance DIN -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="puissanceDinMin" class="form-label">Puissance DIN</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="puissanceDinMin" id="puissanceDinMin" class="form-control"
@@ -368,7 +548,7 @@
 
 
                 <!-- État du véhicule -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label class="form-label">État du véhicule</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="etatVehicule" id="etatNonEndommage"
@@ -387,7 +567,7 @@
 
 
                 <!-- Première main -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label class="form-label">Première main</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="premiereMain" id="premiereMainOui"
@@ -405,7 +585,7 @@
 
 
                 <!-- Puissance fiscale -->
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="puissanceFiscaleMin" class="form-label">Puissance fiscale</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="puissanceFiscaleMin" id="puissanceFiscaleMin" class="form-control"
@@ -419,7 +599,7 @@
 
 
                 <!-- Nombre de portes -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
 
                         <label class="form-label canvasedMainLabel">Nombre de portes</label>
@@ -454,7 +634,7 @@
                 <hr class="LineHR">
 
                 <!-- Nombre de place(s) -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
 
                         <label class="form-label canvasedMainLabel">Nombre de place</label>
@@ -501,7 +681,7 @@
 
 
                 <!-- Couleur -->
-                <div class="mb-3 canvased">
+                <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Couleur</label>
                         <div class="form-check">
@@ -545,13 +725,13 @@
                             <label class="form-check-label" for="couleurMarron">Marron</label>
                         </div>
                     </div>
-
+                </div>
 
                     <hr class="LineHR">
 
 
                     <!-- Permis -->
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label class="form-label">Permis</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="permis[]" id="permisAvec"
@@ -570,7 +750,7 @@
 
 
                     <!-- Tri -->
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label class="form-label">Tri</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="tri" id="triPertinence"
@@ -604,7 +784,7 @@
 
 
                     <!-- Type de vendeurs -->
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label class="form-label">Type de vendeurs</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
@@ -618,11 +798,17 @@
                         </div>
                     </div>
 
-                    <hr class="LineHR">
+                    <br><br><br>
+                    
+                    <div class="FormFooter pb-3">
+                        <hr class="LineHR mb-3">
+                        <button type="reset" class="darkbtn minibtn" id="resetButton">Tout Effacer</button>
+                        <button type="submit" class="primarybtn minibtn">Rechercher</button>
+                    </div>
 
-                    <button type="submit" class="btn btn-primary">Rechercher</button>
-                    <button type="reset" class="btn btn-secondary" id="resetButton">Tout Effacer</button>
             </form>
+
+
         </div>
     </div>
     </div>
@@ -637,9 +823,11 @@
     <template id="infos-template">
         <div class="infos">
             <p class="info-title"></p>
-            <p class="info-values">...</p>
-            <p class="info-selected">Tout</p>
-            <div class="info-arrow">›</div>
+            <p class="info-values mb-1">...</p>
+            <div class="d-flex justify-content-between">
+            <p class="info-selected my-0">Tout</p>
+            <div class="info-arrow"><iconify-icon icon="icon-park-outline:right" class="TheFavIcon" height="24" style="width: 24px;height: 24px;"></iconify-icon>            </div>
+            </div>
         </div>
     </template>
 
@@ -649,11 +837,14 @@
             <h5 id="offcanvasRightLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <hr class="LineHR my-0">
         <div class="offcanvas-body">
             <!-- Dynamic content will be added here -->
         </div>
         <div class="offcanvas-footer">
-            <button id="validateSelection" class="btn btn-success">Valider</button>
+        <hr class="LineHR mb-3">
+
+            <button id="validateSelection" class="minibtn primarybtn">Valider</button>
         </div>
     </div>
 
@@ -762,122 +953,7 @@
 
 
 @push('third_party_scripts')
-    <!-- Option 1: Bootstrap Bundle with Popper
-                                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                                                                            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-                                                                        </script> -->
 
+<script src="{{ asset('assets/scripts/ListingFilter.js') }}"></script>
 
-    <script>
-        document.getElementById('filterForm').addEventListener('submit', function(event) {
-            // Perform any custom actions before form submission if needed
-            // For now, just let the form submit as GET request
-        });
-
-        document.getElementById('resetButton').addEventListener('click', function() {
-            // The form will be reset automatically by the 'reset' type button
-        });
-
-
-
-
-
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const MAX_ITEMS = 2; // Set your max items limit here
-            const canvasedElements = document.querySelectorAll(".canvased");
-            const offcanvasElement = document.getElementById("offcanvasRight");
-            const offcanvasBody = offcanvasElement.querySelector(".offcanvas-body");
-            const validateSelectionBtn = document.getElementById("validateSelection");
-
-            let activeRealInputs; // To store the currently active .RealInputs div
-
-            canvasedElements.forEach(canvased => {
-                const realInputs = canvased.querySelector(".RealInputs");
-                const inputs = realInputs.querySelectorAll("input[type='radio'], input[type='checkbox']");
-                const labelMain = canvased.querySelector(".canvasedMainLabel").innerHTML;
-
-                if (inputs.length > MAX_ITEMS) {
-                    // Hide the RealInputs div
-                    realInputs.style.display = "none";
-
-                    // Use the template to create the .infos div
-                    const template = document.getElementById("infos-template");
-                    const clone = template.content.cloneNode(true);
-                    const infosDiv = clone.querySelector(".infos");
-                    const titleP = infosDiv.querySelector(".info-title");
-                    const valuesP = infosDiv.querySelector(".info-values");
-                    const selectedP = infosDiv.querySelector(".info-selected");
-
-                    // Set the main label
-                    titleP.textContent = labelMain;
-
-                    // Get the first three labels
-                    const firstThreeLabels = Array.from(inputs)
-                        .slice(0, 3)
-                        .map(input => input.nextElementSibling.textContent)
-                        .join(", ");
-                    valuesP.textContent = firstThreeLabels || "Tout";
-
-                    // Set initial selected text
-                    selectedP.textContent = "Tout";
-
-                    // Append the infos div to the canvased div
-                    canvased.appendChild(infosDiv);
-
-                    // Add event listener to the infos div to open the Offcanvas
-                    infosDiv.addEventListener("click", function() {
-                        // Set the active RealInputs for the current canvased div
-                        activeRealInputs = realInputs;
-
-                        // Copy the RealInputs HTML to the Offcanvas body
-                        offcanvasBody.innerHTML = realInputs.innerHTML;
-
-                        // Sync the checked state of inputs in the Offcanvas with the hidden RealInputs
-                        const offcanvasInputs = offcanvasBody.querySelectorAll(
-                            "input[type='radio'], input[type='checkbox']");
-                        offcanvasInputs.forEach((offcanvasInput, index) => {
-                            offcanvasInput.checked = inputs[index].checked;
-                        });
-
-                        // Set the Offcanvas header
-                        document.getElementById("offcanvasRightLabel").innerText =
-                            `Select ${labelMain}`;
-
-                        // Show the Offcanvas
-                        const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-                        offcanvas.show();
-                    });
-                }
-            });
-
-            // Add event listener to the "Valider" button
-            validateSelectionBtn.addEventListener("click", function() {
-                if (activeRealInputs) {
-                    // Get the inputs inside the active RealInputs
-                    const realInputs = activeRealInputs.querySelectorAll(
-                        "input[type='radio'], input[type='checkbox']");
-                    const offcanvasInputs = offcanvasBody.querySelectorAll(
-                        "input[type='radio'], input[type='checkbox']");
-
-                    // Update the original RealInputs based on the selections made in the Offcanvas
-                    offcanvasInputs.forEach((input, index) => {
-                        realInputs[index].checked = input.checked;
-                    });
-
-                    // Update the info-selected text
-                    const selectedLabels = Array.from(realInputs)
-                        .filter(i => i.checked)
-                        .map(i => i.nextElementSibling.textContent);
-
-                    const selectedP = activeRealInputs.closest('.canvased').querySelector('.info-selected');
-                    selectedP.textContent = selectedLabels.length ? selectedLabels.join(", ") : "Tout";
-
-                    // Hide the Offcanvas
-                    const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-                    offcanvas.hide();
-                }
-            });
-        });
-    </script>
 @endpush
