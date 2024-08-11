@@ -19,10 +19,13 @@ class LocalizationSeeder extends Seeder
 
         foreach ($cities as $city) {
             foreach ($city->zipCode as $zipCode) {
+                // Check if the city's name is "Autre"
+                $localization = $city->city === 'Autre' ? 'Autre' : $city->city . '-' . $zipCode->zip_code;
+
                 Localization::create([
                     'city_id' => $city->id,
                     'zip_code_id' => $zipCode->id,
-                    'localization' => $city->city . '-' . $zipCode->zip_code,
+                    'localization' => $localization,
                 ]);
             }
         }

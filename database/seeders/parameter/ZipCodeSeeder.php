@@ -25,6 +25,7 @@ class ZipCodeSeeder extends Seeder
             ['city' => 'Montpellier', 'zip_code' => '34000', 'description' => 'Central Montpellier'],
             ['city' => 'Bordeaux', 'zip_code' => '33000', 'description' => 'Central Bordeaux'],
             ['city' => 'Lille', 'zip_code' => '59000', 'description' => 'Central Lille'],
+            ['city' => 'Autre', 'zip_code' => '0', 'description' => 'Autre'],
         ];
 
         foreach ($zipCodes as $zipCode) {

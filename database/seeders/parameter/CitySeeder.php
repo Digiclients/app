@@ -23,7 +23,8 @@ class CitySeeder extends Seeder
             ['city' => 'Strasbourg', 'description' => 'A city in northeastern France, known for its medieval architecture and the European Parliament.'],
             ['city' => 'Montpellier', 'description' => 'A city in southern France, known for its medieval streets and vibrant student population.'],
             ['city' => 'Bordeaux', 'description' => 'A city in southwestern France, known for its wine industry and historic architecture.'],
-            ['city' => 'Lille', 'description' => 'A city in northern France, known for its museums and vibrant cultural scene.']
+            ['city' => 'Lille', 'description' => 'A city in northern France, known for its museums and vibrant cultural scene.'],
+            ['city' => 'Autre', 'description' => 'autre']
         ];
 
         foreach ($cities as $city) {
