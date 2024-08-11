@@ -9,35 +9,48 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\AnnonceRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
 {
+    protected $annonceRepository;
+    public function __construct(AnnonceRepository $annonceRepository)
+    {
+        $this->annonceRepository = $annonceRepository;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = Auth::user();
-
-        if (!$user) {
-            // Handle the error, for example, by redirecting to the login page or showing an error message
-            return redirect()->route('login')->withErrors(['message' => 'You need to log in first.']);
-        }
-
+        $user = $this->getAuthenticatedUser();
         return view('profile.index', compact('user'));
     }
 
     public function annonces()
     {
-        return view('profile.annonces');
+        $user = $this->getAuthenticatedUser();
+        $annonces = $this->annonceRepository->UserAnnonces($user->id, 20);
+        return view('profile.annonces', compact('user', 'annonces'));
     }
-
 
     public function favourites()
     {
-        return view('profile.favourites');
+        $user = $this->getAuthenticatedUser();
+        return view('profile.favourites', compact('user'));
+    }
+
+    private function getAuthenticatedUser()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['message' => 'You need to log in first.']);
+        }
+
+        return $user;
     }
     /**
      * Show the form for creating a new resource.

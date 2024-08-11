@@ -11,6 +11,7 @@ class Option extends Model
 
     public const PROPERCENTAGE = "pro percentage";
     public const APPLYPROPERCENTAGE = "apply pro percentage";
+    public const STATUSOPTION = "default status annonce";
 
 
     protected $fillable = [

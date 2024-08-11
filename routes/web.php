@@ -52,6 +52,10 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
     Route::post('/deposer-une-annonce', [AnnonceController::class, 'store'])->name('store-annonce');
     Route::get('/deposer-une-annonce/{annonceId}/images', [AnnonceController::class, 'validateAnnonce'])->name('images-annonce');
     Route::post('/check-photos/{annonceId}', [AnnonceController::class, 'checkPhotos'])->name('checkPhotos');
+    
+    Route::get('annonce/{annonceId}', [AnnonceController::class, 'edit'])->name('annonce.edit');
+    Route::post('annonce/{annonceId}', [AnnonceController::class, 'update'])->name('annonce.update');
+
 
     // ************************ PROFILE ROUTES ****************************
     Route::prefix('profile')->name('profile.')->group(function () {
@@ -105,7 +109,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/get-roles', [UserManagementController::class, 'getRoles'])->name('roles.get');
 
 
-}); 
+});
 
 
 

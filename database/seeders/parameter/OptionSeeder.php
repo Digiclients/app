@@ -34,6 +34,11 @@ class OptionSeeder extends Seeder
                 'value' => '10000000',
                 'type' => 'number'
             ],
+            [
+                'option' => 'default status annonce',
+                'value' => 'pending',
+                'type' => 'text'
+            ],
         ];
 
         foreach ($options as $option) {

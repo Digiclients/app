@@ -26,13 +26,13 @@
     <!-- FILTERS -->
 
     <div class="container row my-4 mx-auto  col-lg-12 col-xl-11 col-xxl-9">
-       
-{{-- // START ******** location input ********* --}}
+
+        {{-- // START ******** location input ********* --}}
         <div class="col-md-4 px-2 my-2">
             <div class="autocompleteInput input-container col-sm position-relative">
                 <input type="text" data-array="location" name="location"
-                    class="form-control py-2 @error('location') is-invalid @enderror" placeholder="localisation"
-                    readonly value="">
+                    class="form-control py-2 @error('location') is-invalid @enderror" placeholder="localisation" readonly
+                    value="">
                 <iconify-icon icon="material-symbols:close" width="24" height="24"
                     class="close-icon position-absolute"></iconify-icon>
                 <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -55,31 +55,32 @@
                     </span>
                 @enderror --}}
             </div>
-          </div>
-{{-- // END ******** location input ********* --}}
-
-{{-- // START ******** TITLE input ********* --}}
-        <div class="col-md-4 px-2 my-2">
-          <div class="autocompleteSearch input-container">
-            <input type="text" data-array="title" name="title" class="form-control py-2" placeholder="Recherche" value="">
-          </div>
         </div>
-{{-- // END ******** TITLE input ********* --}}
+        {{-- // END ******** location input ********* --}}
 
-
-{{-- // START ******** Filter Button ********* --}}
-            <div class="col-md-4 px-2 my-2">
-                <button
-                    class="py-2 filterButton d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary fw-bold"
-                    title="Afficher tous les filtres" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
-                    aria-controls="canvasRightFilter">
-                    <iconify-icon icon="rivet-icons:filter" width="16" height="16"></iconify-icon>
-         
-                    <span class="">Filtres</span>
-                    
-                </button>
+        {{-- // START ******** TITLE input ********* --}}
+        <div class="col-md-4 px-2 my-2">
+            <div class="autocompleteSearch input-container">
+                <input type="text" data-array="title" name="title" class="form-control py-2" placeholder="Recherche"
+                    value="">
             </div>
-{{-- // END ******** TITLE Button ********* --}}
+        </div>
+        {{-- // END ******** TITLE input ********* --}}
+
+
+        {{-- // START ******** Filter Button ********* --}}
+        <div class="col-md-4 px-2 my-2">
+            <button
+                class="py-2 filterButton d-flex align-items-center gap-3 h-100 w-100 px-3 text-start rounded border border-secondary fw-bold"
+                title="Afficher tous les filtres" data-bs-toggle="offcanvas" data-bs-target="#canvasRightFilter"
+                aria-controls="canvasRightFilter">
+                <iconify-icon icon="rivet-icons:filter" width="16" height="16"></iconify-icon>
+
+                <span class="">Filtres</span>
+
+            </button>
+        </div>
+        {{-- // END ******** TITLE Button ********* --}}
 
 
     </div>
@@ -89,94 +90,94 @@
 
     <!-- START FORM CANVAS -->
 
-<style>
-    #filterSearchForm .form-label  {
-        color: var(--darkcolor);
-        font-weight: 600;
-        margin-bottom: 4px;
-        font-family: var(--primaryfont), sans-serif;
-    }
+    <style>
+        #filterSearchForm .form-label {
+            color: var(--darkcolor);
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-family: var(--primaryfont), sans-serif;
+        }
 
 
-     #filterSearchForm .info-title  {
-        color: var(--darkcolor);
-        font-weight: 600;
-        margin-bottom: 0px;
-        font-family: var(--primaryfont), sans-serif;
-    }
+        #filterSearchForm .info-title {
+            color: var(--darkcolor);
+            font-weight: 600;
+            margin-bottom: 0px;
+            font-family: var(--primaryfont), sans-serif;
+        }
 
-    #offcanvasRight .form-label  {
-        color: var(--darkcolor);
-        font-weight: 600;
-        margin-bottom: 10px;
-        font-family: var(--primaryfont), sans-serif;
-    }
-    
-
-    #filterSearchForm .info-values {
-        color: var(--SGrayColor);
-        font-size: 12px;
-    }
-    #filterSearchForm .info-selected {
-        font-size: 14px;
-    }
-    
-    #filterSearchForm .infos:hover {
-        cursor: pointer;
-    }
-
-    #filterSearchForm .hr {
-        margin: 0;
-    }
-
-    #filterSearchForm > div {
-  padding: 2px 0px;
-  }
-
-  #filterSearchForm .form-check , #offcanvasRight  .form-check{
-display: flex;
-flex-direction: row-reverse;
-gap: 2px;
-justify-content: space-between;
-padding-left: 0px;
-    
-  }
-  
-
-  .FormFooter {
-  position: fixed;
-  bottom: 0px;
-  background-color: var(--white);
-  width: 100%;
-}
+        #offcanvasRight .form-label {
+            color: var(--darkcolor);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-family: var(--primaryfont), sans-serif;
+        }
 
 
-#offcanvasRight .offcanvas-footer {
+        #filterSearchForm .info-values {
+            color: var(--SGrayColor);
+            font-size: 12px;
+        }
 
-  background-color: var(--white);
-  width: 100%;
-  padding: 16px 14px;
-}
+        #filterSearchForm .info-selected {
+            font-size: 14px;
+        }
 
-#offcanvasRight .offcanvas-footer {
+        #filterSearchForm .infos:hover {
+            cursor: pointer;
+        }
 
-background-color: var(--white);
-width: 100%;
-padding: 16px 14px;
-font-family: var(--primaryfont), sans-serif;
-color: var(--darkcolor);
-}
-#offcanvasRight label {
-width: 80%;
-}
-#canvasRightFilter label {
-width: 80%;
-}
+        #filterSearchForm .hr {
+            margin: 0;
+        }
+
+        #filterSearchForm>div {
+            padding: 2px 0px;
+        }
+
+        #filterSearchForm .form-check,
+        #offcanvasRight .form-check {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 2px;
+            justify-content: space-between;
+            padding-left: 0px;
+
+        }
 
 
+        .FormFooter {
+            position: fixed;
+            bottom: 0px;
+            background-color: var(--white);
+            width: 100%;
+        }
 
 
-</style>
+        #offcanvasRight .offcanvas-footer {
+
+            background-color: var(--white);
+            width: 100%;
+            padding: 16px 14px;
+        }
+
+        #offcanvasRight .offcanvas-footer {
+
+            background-color: var(--white);
+            width: 100%;
+            padding: 16px 14px;
+            font-family: var(--primaryfont), sans-serif;
+            color: var(--darkcolor);
+        }
+
+        #offcanvasRight label {
+            width: 80%;
+        }
+
+        #canvasRightFilter label {
+            width: 80%;
+        }
+    </style>
     <!-- Off-canvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasRightFilter" aria-labelledby="canvasRightFilterLabel">
         <div class="offcanvas-header">
@@ -184,7 +185,7 @@ width: 80%;
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form id="filterSearchForm" method="GET"  action="#">
+            <form id="filterSearchForm" method="GET" action="#">
                 <hr class="LineHR mt-0 mb-3">
 
                 <!-- Prix -->
@@ -203,13 +204,11 @@ width: 80%;
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Marque</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marque" id="marque1"
-                                value="Marque1">
+                            <input class="form-check-input" type="radio" name="marque" id="marque1" value="Marque1">
                             <label class="form-check-label" for="marque1">Marque1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marque" id="marque2"
-                                value="Marque2">
+                            <input class="form-check-input" type="radio" name="marque" id="marque2" value="Marque2">
                             <label class="form-check-label" for="marque2">Marque2</label>
                         </div>
                         <div class="form-check">
@@ -710,84 +709,84 @@ width: 80%;
                     </div>
                 </div>
 
-                    <hr class="LineHR">
+                <hr class="LineHR">
 
 
-                    <!-- Permis -->
-                    <div class="mb-1">
-                        <label class="form-label">Permis</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="permis[]" id="permisAvec"
-                                value="Avec permis">
-                            <label class="form-check-label" for="permisAvec">Avec permis</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="permis[]" id="permisSans"
-                                value="Sans permis">
-                            <label class="form-check-label" for="permisSans">Sans permis</label>
-                        </div>
+                <!-- Permis -->
+                <div class="mb-1">
+                    <label class="form-label">Permis</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="permis[]" id="permisAvec"
+                            value="Avec permis">
+                        <label class="form-check-label" for="permisAvec">Avec permis</label>
                     </div>
-
-
-                    <hr class="LineHR">
-
-
-                    <!-- Tri -->
-                    <div class="mb-1">
-                        <label class="form-label">Tri</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tri" id="triPertinence"
-                                value="Pertinence">
-                            <label class="form-check-label" for="triPertinence">Pertinence</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tri" id="triPlusRecents"
-                                value="Plus récentes">
-                            <label class="form-check-label" for="triPlusRecents">Plus récentes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tri" id="triPlusAnciennes"
-                                value="Plus anciennes">
-                            <label class="form-check-label" for="triPlusAnciennes">Plus anciennes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tri" id="triPrixCroissants"
-                                value="Prix croissants">
-                            <label class="form-check-label" for="triPrixCroissants">Prix croissants</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tri" id="triPrixDecroissants"
-                                value="Prix décroissants">
-                            <label class="form-check-label" for="triPrixDecroissants">Prix décroissants</label>
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="permis[]" id="permisSans"
+                            value="Sans permis">
+                        <label class="form-check-label" for="permisSans">Sans permis</label>
                     </div>
-
-                    <hr class="LineHR">
-
+                </div>
 
 
-                    <!-- Type de vendeurs -->
-                    <div class="mb-1">
-                        <label class="form-label">Type de vendeurs</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
-                                id="vendeursParticuliers" value="Particuliers">
-                            <label class="form-check-label" for="vendeursParticuliers">Particuliers</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
-                                id="vendeursProfessionnels" value="Professionnels">
-                            <label class="form-check-label" for="vendeursProfessionnels">Professionnels</label>
-                        </div>
+                <hr class="LineHR">
+
+
+                <!-- Tri -->
+                <div class="mb-1">
+                    <label class="form-label">Tri</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tri" id="triPertinence"
+                            value="Pertinence">
+                        <label class="form-check-label" for="triPertinence">Pertinence</label>
                     </div>
-
-                    <br><br><br>
-                    
-                    <div class="FormFooter pb-3">
-                        <hr class="LineHR mb-3">
-                        <button type="reset" class="darkbtn minibtn" id="resetButton">Tout Effacer</button>
-                        <button type="submit" class="primarybtn minibtn">Rechercher</button>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tri" id="triPlusRecents"
+                            value="Plus récentes">
+                        <label class="form-check-label" for="triPlusRecents">Plus récentes</label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tri" id="triPlusAnciennes"
+                            value="Plus anciennes">
+                        <label class="form-check-label" for="triPlusAnciennes">Plus anciennes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tri" id="triPrixCroissants"
+                            value="Prix croissants">
+                        <label class="form-check-label" for="triPrixCroissants">Prix croissants</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tri" id="triPrixDecroissants"
+                            value="Prix décroissants">
+                        <label class="form-check-label" for="triPrixDecroissants">Prix décroissants</label>
+                    </div>
+                </div>
+
+                <hr class="LineHR">
+
+
+
+                <!-- Type de vendeurs -->
+                <div class="mb-1">
+                    <label class="form-label">Type de vendeurs</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="typeVendeurs[]" id="vendeursParticuliers"
+                            value="Particuliers">
+                        <label class="form-check-label" for="vendeursParticuliers">Particuliers</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
+                            id="vendeursProfessionnels" value="Professionnels">
+                        <label class="form-check-label" for="vendeursProfessionnels">Professionnels</label>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="FormFooter pb-3">
+                    <hr class="LineHR mb-3">
+                    <button type="reset" class="darkbtn minibtn" id="resetButton">Tout Effacer</button>
+                    <button type="submit" class="primarybtn minibtn">Rechercher</button>
+                </div>
 
             </form>
 
@@ -808,8 +807,9 @@ width: 80%;
             <p class="info-title"></p>
             <p class="info-values mb-1">...</p>
             <div class="d-flex justify-content-between">
-            <p class="info-selected my-0">Tout</p>
-            <div class="info-arrow"><iconify-icon icon="icon-park-outline:right" class="TheFavIcon" height="24" style="width: 24px;height: 24px;"></iconify-icon>            </div>
+                <p class="info-selected my-0">Tout</p>
+                <div class="info-arrow"><iconify-icon icon="icon-park-outline:right" class="TheFavIcon" height="24"
+                        style="width: 24px;height: 24px;"></iconify-icon> </div>
             </div>
         </div>
     </template>
@@ -825,7 +825,7 @@ width: 80%;
             <!-- Dynamic content will be added here -->
         </div>
         <div class="offcanvas-footer">
-        <hr class="LineHR mb-3">
+            <hr class="LineHR mb-3">
 
             <button id="validateSelection" class="minibtn primarybtn">Valider</button>
         </div>
@@ -852,7 +852,7 @@ width: 80%;
                         Toute la France</h1>
                 </div>
                 <div class="d-flex align-items-center mt-0 mb-1">
-                    <h2 class="h5 LightGrayColor">47 039 annonces</h2>
+                    <h2 class="h5 LightGrayColor">{{$annoncesCount}} annonces</h2>
                 </div>
             </div>
 
@@ -881,28 +881,28 @@ width: 80%;
                                 <div class="d-flex justify-content-between mt-3">
                                 <h5 class="mb-0">{{ $listing->annonce_title }}</h5>
                                 <div style="width: 55px;">
-                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
+                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">{{$listing->seller_type}}</span>   
                                 </div>
                             </div>
                                 {{-- <div class="details d-flex" style="gap: 5px 33px;">
                                     @foreach ($listing->attributes as $attribute)
                                         <div class="">
-                                            <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
-                                            
+                                            <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span
+                                                    class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
+
                                         </div>
                                     @endforeach
                                 </div> --}}
                                 <h6 class="pt-3">{{ number_format($listing->annonce_price, 2, ',', ' ') }} €</h6>
                                 {{-- <div style="width: 55px;">
-                                    <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
+                                    <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
                                 </div> --}}
                                 <p class="location listAttributesColor my-0">{{ $listing->localization }}</p>
-                            <div class="d-flex gap-2 justify-content-between align-items-center">
-                                <p class="location listAttributesColor my-0">10 min ago</p>
-                             <button type="button" href="" class="primarybtn  minibtn" style="padding: 8px 12px !important;font-size: 14px;">Voir l'annonce</button>
-                            </div>
-
-
+                                <div class="d-flex gap-2 justify-content-between align-items-center">
+                                    <p class="location listAttributesColor my-0">{{ \Carbon\Carbon::parse($listing->annonce_publication_date)->diffForHumans() }}</p>
+                                    <button type="button" href="" class="primarybtn  minibtn"
+                                        style="padding: 8px 12px !important;font-size: 14px;">Voir l'annonce</button>
+                                </div>
                             </div>
                         </a>
 
@@ -919,10 +919,10 @@ width: 80%;
 
 
 
-                <!-- START Listing Pagination -->      
-                    <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
-                        {{ $annonceListings->links() }}
-                    </div>
+                <!-- START Listing Pagination -->
+                <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
+                    {{ $annonceListings->links() }}
+                </div>
             </div>
 
             <!-- END Listing Pagination -->
@@ -945,7 +945,5 @@ width: 80%;
 
 
 @push('third_party_scripts')
-
-<script src="{{ asset('assets/scripts/ListingFilter.js') }}"></script>
-
+    <script src="{{ asset('assets/scripts/ListingFilter.js') }}"></script>
 @endpush

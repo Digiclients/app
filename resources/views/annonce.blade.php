@@ -307,7 +307,18 @@
     </style>
 @endpush
 @section('content')
-    <br><br><br><br>
+    <section class="ADS px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center" style="width: 98%;margin: 0 auto;">
+
+        <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
+
+
+            <p class="LightGrayColor font35 fontw900 m-0 pt-5">AutoPrix</p>
+            <p class="LightGrayColor font20 fontw900 m-0  pb-5">publicité</p>
+
+
+        </div>
+    </section>
+
 
     <section class="SectionsBlog py-5 container-fluid row justify-content-center">
 
@@ -322,10 +333,13 @@
                     </li>
                 </ol>
             </nav> --}}
+            </nav> --}}
             <!-- END breadcrumb -->
 
             <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+            <div class="row">
 
             <div class="row">
                 <div class="col-md-8">
@@ -418,7 +432,7 @@
                         </div>
 
                         <!-- END Description -->
-{{-- 
+{{--
                         <hr class="ListingLineHR">
 
                         <!-- START Map Location for zip code and city name -->

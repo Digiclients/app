@@ -20,8 +20,6 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Str; // For generating random
 use Illuminate\Support\Facades\Validator; // Import Validator facade for manual validation
 
-
-
 class AnnonceController extends Controller
 {
     protected $annonceRepository;
@@ -30,7 +28,6 @@ class AnnonceController extends Controller
         $this->annonceRepository = $annonceRepository;
     }
 
-
     public function index()
     {
         // return view('deposer-une-annonce');
@@ -38,21 +35,19 @@ class AnnonceController extends Controller
 
     public function create()
     {
-
         return view('deposer-une-annonce');
-
     }
-
 
     public function store(Request $request)
     {
+        $maxYear = date('Y') + 1;
         $rules = [
             'title' => 'required|string|max:255',
             'marque' => 'required|string|exists:categories,category_name',
             'modele' => 'required|string|exists:categories,category_name',
-            'price' => 'required|int',
+            'price' => 'required|int|min:100',
             'description' => 'required|string',
-            'annee_modele' => 'required|int',
+            'annee_modele' => "required|int|min:1850|max:$maxYear",
             'date_premiere_mise_en_circulation' => 'required|date',
             'carburant' => 'required|int|exists:attributes_options,id',
             'boite_vitesse' => 'required|int|exists:attributes_options,id',
@@ -77,7 +72,9 @@ class AnnonceController extends Controller
         DB::beginTransaction();
 
         try {
-            $boutique_id = Boutique::where('user_id', Auth::user()->id)->pluck('id')->first();
+            $boutique_id = Boutique::where('user_id', Auth::user()->id)
+                ->pluck('id')
+                ->first();
             $category_id = Category::where('category_name', $request->input('modele'))->pluck('id')->first();
             $localization_id = Localization::where('localization', $request->input('location'))->pluck('id')->first();
 
@@ -101,27 +98,10 @@ class AnnonceController extends Controller
             $attributesData = [];
 
             // List of attributes that are integers
-            $integerAttributes = [
-                'carburant',
-                'boite_vitesse',
-                'permis',
-                'etat_du_vehicule',
-                'nombre_place',
-                'couleur',
-                'nombre_porte',
-                'crit_air',
-                'type_vehicule'
-            ];
+            $integerAttributes = ['carburant', 'boite_vitesse', 'permis', 'etat_du_vehicule', 'nombre_place', 'couleur', 'nombre_porte', 'crit_air', 'type_vehicule'];
 
             // List of attributes that are strings
-            $stringAttributes = [
-                'matricule',
-                'annee_modele',
-                'date_premiere_mise_en_circulation',
-                'kilometrage',
-                'puissance_fiscale',
-                'puissance_DIN',
-            ];
+            $stringAttributes = ['matricule', 'annee_modele', 'date_premiere_mise_en_circulation', 'kilometrage', 'puissance_fiscale', 'puissance_DIN'];
 
             // Process integer attributes
             foreach ($integerAttributes as $slug) {
@@ -130,9 +110,7 @@ class AnnonceController extends Controller
                     $attribute_id = $attribute->id;
 
                     // Check if the attribute option exists
-                    $attributeOption = AttributesOption::where('attribute_id', $attribute_id)
-                        ->where('id', $request->input($slug))
-                        ->first();
+                    $attributeOption = AttributesOption::where('attribute_id', $attribute_id)->where('id', $request->input($slug))->first();
 
                     $attributesData[] = [
                         'annonce_id' => '', // This will be set later after saving the annonce
@@ -179,24 +157,27 @@ class AnnonceController extends Controller
 
             DB::commit();
 
-            return redirect()->route('images-annonce', $annonce->id)->with('success', 'Annonce created successfully');
+            return redirect()
+                ->route('images-annonce', $annonce->id)
+                ->with('success', 'Annonce created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('home')->with('error', 'Failed to create annonce: ' . $e->getMessage());
+            return redirect()
+                ->route('home')
+                ->with('error', 'Failed to create annonce: ' . $e->getMessage());
         }
     }
-
 
     public function listings()
     {
         // TODO need to hundel exception
-        $annonceListings = $this->annonceRepository->AnnoncesListings();
-        return view('listings', compact('annonceListings'));
+        $annonceListings = $this->annonceRepository->AnnoncesListings(20);
+        $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+        return view('listings', compact('annonceListings', 'annoncesCount'));
     }
 
     public function show(int $annonceId)
     {
-
         // TODO need to hundel exception
         $annonce = $this->annonceRepository->find($annonceId);
         $user = User::where('id', $annonce->user_id)->first();
@@ -205,10 +186,55 @@ class AnnonceController extends Controller
             return abort(404);
         }
         $annonceDetails = $this->annonceRepository->getAnnonceDetails($annonce->id);
+        // $associatedAnnonces = Annonce::where('category_id', $annonce->category_id)->where('id', $annonce->id)->take(5);
+        $associatedAnnonces = Annonce::where('annonces.category_id', $annonce->category_id)
+            ->where('annonces.id', '!=', $annonce->id)
+            ->orderBy('annonces.publication_date', 'desc')
+            ->take(5)
+            ->join('localizations as l', 'annonces.localization_id', '=', 'l.id')
+            ->leftJoin('images as i', function ($join) {
+                $join->on('annonces.id', '=', 'i.annonce_id')->where('i.feature_img', '=', 1);
+            })
+            ->join('users as u', 'annonces.user_id', '=', 'u.id') // Join with the users table
+            ->select('annonces.id', 'annonces.title', 'annonces.publication_date', 'annonces.price', 'u.sellerType', 'l.localization', 'i.path as feature_image_path')
+            ->get();
 
-        return view('annonce', compact('annonceDetails', 'user', 'annoncesUserCount'));
+        return view('annonce', compact('annonceDetails', 'user', 'annoncesUserCount', 'associatedAnnonces'));
     }
 
+    public function edit(int $annonceId)
+    {
+        // Find the annonce by ID
+        $annonce = $this->annonceRepository->find($annonceId);
+
+        // Check if the annonce exists
+        if (!$annonce) {
+            return abort(404);
+        }
+
+        // Fetch the attributes and their values associated with the annonce
+        $attributes = AnnonceAttributesValue::where('annonce_id', $annonceId)
+            ->with(['attribute', 'attributeOption'])
+            ->get();
+
+        // Prepare data for the view
+        $attributesData = [];
+        foreach ($attributes as $attributeValue) {
+            $attributeSlug = $attributeValue->attribute->slug;
+            $attributesData[$attributeSlug] = [
+                'value' => $attributeValue->attributeValue,
+                'option' => $attributeValue->attributeOption ? $attributeValue->attributeOption->id : null,
+            ];
+        }
+
+
+        // Return the edit view with all the necessary data
+        return view('edit-annonce', compact('annonce', 'attributesData'));
+    }
+
+    public function update(Request $request, int $annonceId)
+    {
+    }
 
     public function uploadImage($annonceId, Request $request)
     {
@@ -230,9 +256,7 @@ class AnnonceController extends Controller
         $alt = $request->input('alt', $defaultAlt); // Use defaultAlt if alt is not provided
 
         // Ensure that the annonce exists and belongs to the provided userId
-        $annonce = Annonce::where('id', $annonceId)
-            ->where('user_id', $userId)
-            ->first();
+        $annonce = Annonce::where('id', $annonceId)->where('user_id', $userId)->first();
 
         if (!$annonce) {
             return response()->json(['error' => 'Annonce not found or unauthorized'], 404);
@@ -285,9 +309,7 @@ class AnnonceController extends Controller
 
         // Validate that the annonce belongs to the authenticated user
         $userId = $request->input('userId');
-        $annonce = Annonce::where('id', $annonceId)
-            ->where('user_id', $userId)
-            ->first();
+        $annonce = Annonce::where('id', $annonceId)->where('user_id', $userId)->first();
 
         if (!$annonce) {
             return response()->json(['error' => 'Annonce not found or unauthorized'], 404);
@@ -302,9 +324,7 @@ class AnnonceController extends Controller
         }
 
         // Set the selected image's feature_img to the provided value
-        $image = Image::where('id', $imageId)
-            ->where('annonce_id', $annonceId)
-            ->first();
+        $image = Image::where('id', $imageId)->where('annonce_id', $annonceId)->first();
 
         if (!$image) {
             return response()->json(['error' => 'Image not found'], 404);
@@ -331,18 +351,14 @@ class AnnonceController extends Controller
         $userId = $request->input('userId');
 
         // Ensure that the annonce exists and belongs to the provided userId
-        $annonce = Annonce::where('id', $annonceId)
-            ->where('user_id', $userId)
-            ->first();
+        $annonce = Annonce::where('id', $annonceId)->where('user_id', $userId)->first();
 
         if (!$annonce) {
             return response()->json(['error' => 'Annonce not found or unauthorized'], 404);
         }
 
         // Find the image record
-        $image = Image::where('id', $imageId)
-            ->where('annonce_id', $annonceId)
-            ->first();
+        $image = Image::where('id', $imageId)->where('annonce_id', $annonceId)->first();
 
         if (!$image) {
             return response()->json(['error' => 'Image not found'], 404);
@@ -360,9 +376,7 @@ class AnnonceController extends Controller
     public function validateAnnonce(int $annonceId)
     {
         // Fetch the annonce
-        $annonce = Annonce::where('id', $annonceId)
-            ->where('user_id', Auth::id())
-            ->first();
+        $annonce = Annonce::where('id', $annonceId)->where('user_id', Auth::id())->first();
 
         if (!$annonce) {
             return abort(404, 'Annonce not found or you do not have permission to access it.');
@@ -376,7 +390,7 @@ class AnnonceController extends Controller
             return [
                 'id' => $image->id,
                 'url' => asset('storage/' . $image->path), // Assuming images are stored in the public disk
-                'isMain' => $image->feature_img
+                'isMain' => $image->feature_img,
             ];
         });
 
@@ -387,9 +401,7 @@ class AnnonceController extends Controller
     public function checkPhotos(int $annonceId)
     {
         // Fetch the annonce
-        $annonce = Annonce::where('id', $annonceId)
-            ->where('user_id', Auth::id())
-            ->first();
+        $annonce = Annonce::where('id', $annonceId)->where('user_id', Auth::id())->first();
 
         if (!$annonce) {
             return abort(404, 'Annonce not found or you do not have permission to access it.');
@@ -400,11 +412,9 @@ class AnnonceController extends Controller
         if (count($images) > 1) {
             return redirect()->route('home')->with('success', 'Annonce enregistrée et publiée avec succès.');
         } else {
-            return redirect()->back()->withErrors(['error' => 'Vous devez télécharger plus d\'une photo pour publier l\'annonce.']);
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Vous devez télécharger plus d\'une photo pour publier l\'annonce.']);
         }
     }
-
-
-
-
 }
