@@ -859,7 +859,7 @@ width: 80%;
 
             <div class="row">
 
-                <div class="col-lg-8">
+                <div class="col-lg-12 row">
 
 
 
@@ -867,7 +867,7 @@ width: 80%;
                     <!-- ################  START list ad-card ################ -->
 
                     @forelse ($annonceListings as $listing)
-                        <a href="{{route('annonce.show', $listing->annonce_id)}}" class="ad-card my-2">
+                        <a href="{{route('annonce.show', $listing->annonce_id)}}" class="ad-card  col-md-6 col-lg-4 my-2">
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $listing->feature_img_path) }}"
                                     alt="{{ $listing->feature_img_alt }}" style="">
@@ -878,20 +878,20 @@ width: 80%;
                                 </button>
                             </div>
                             <div class="content">
-                                <div class="d-flex justify-content-between mt-3 mt-md-0">
+                                <div class="d-flex justify-content-between mt-3">
                                 <h5 class="mb-0">{{ $listing->annonce_title }}</h5>
                                 <div style="width: 55px;">
                                     <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
                                 </div>
                             </div>
-                                <div class="details d-flex" style="gap: 5px 33px;">
+                                {{-- <div class="details d-flex" style="gap: 5px 33px;">
                                     @foreach ($listing->attributes as $attribute)
                                         <div class="">
                                             <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
                                             
                                         </div>
                                     @endforeach
-                                </div>
+                                </div> --}}
                                 <h6 class="pt-3">{{ number_format($listing->annonce_price, 2, ',', ' ') }} €</h6>
                                 {{-- <div style="width: 55px;">
                                     <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>   
@@ -906,7 +906,7 @@ width: 80%;
                             </div>
                         </a>
 
-                        <hr class="ListingLineHR">
+                        {{-- <hr class="ListingLineHR"> --}}
                     @empty
                     @endforelse
 

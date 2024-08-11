@@ -8,6 +8,8 @@
       flex-direction: column !important;
   
       height:  480px !important;
+      width: 60%;
+      margin : auto ;
     }
   
     .ad-card .image-container {
@@ -19,6 +21,8 @@
           @media (max-width: 530px) {
             .ad-card {
               height: 520px !important;
+      width: 90%;
+
             }
                   }
 
@@ -28,7 +32,7 @@
     .ad-card {
       display: flex;
       flex-direction: column;
-      flex-direction: row;
+      /* flex-direction: row; */
       /* border: 1px solid #dee2e6; */
       /* border-radius: 0.25rem; */
       overflow: hidden;
@@ -36,7 +40,8 @@
       height: auto;
       text-decoration: none !important;
       transition: 0.6s;
-  
+      padding: 8px  20px;
+      
     }
   
     .ad-card:hover h5 {
@@ -46,12 +51,13 @@
       width: 100%;
       height: 240px;
       object-fit: cover;
+    
     }
 
     @media (min-width: 800px) {
       /* Your CSS rules here */
       .ad-card img {
-          max-width: 22rem;
+          max-width: 100%;
       }
   }
   
