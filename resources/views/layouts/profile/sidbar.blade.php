@@ -41,11 +41,11 @@
                             <li><a href="{{ route('profile.home') }}"
                                     class="{{ Request::is('profile') ? 'active' : '' }}">
                                     <span>Mon profil</span></a></li>
-                            @hasanyrole('particulier')
+                            {{-- @hasanyrole('particulier') --}}
                                 <li><a href="{{ route('profile.annonces') }}"
                                         class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
                                         <span>Mes annonces</span></a></li>
-                            @endhasanyrole
+                            {{-- @endhasanyrole --}}
                             <li><a href="{{ route('profile.favourites') }}"
                                     class="{{ Request::is('profile/favoris') ? 'active' : '' }}">
                                     <span>Mes favoris</span></a></li>
