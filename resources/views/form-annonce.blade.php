@@ -4,7 +4,7 @@
         @method('PUT')
     @endif
     <div class="form-step form-step-active">
-        <h2>Annonce</h2>
+        <h2 class="font20 fontw600 primarycolor primaryfont mb-3">Annonce</h2>
         <div class="mb-3">
             <label for="title" class="form-label">{{ __('input.title') }} <span
                     class="text-danger">*</span></label>
@@ -71,10 +71,11 @@
                 </span>
             @enderror
         </div>
-        <button type="button" class="btn btn-primary" onclick="nextStep()">{{ __('input.next') }}</button>
+        <div class="py-2"></div>
+        <button type="button" class="primarybtn minibtn me-0 me-md-2 my-1" onclick="nextStep()">{{ __('input.next') }}</button>
     </div>
     <div class="form-step">
-        <h2>{{ __('input.details') }}</h2>
+        <h2 class="font20 fontw600 primarycolor primaryfont mb-3">{{ __('input.details') }}</h2>
         <div class="mb-3">
             <label for="price" class="form-label">{{ __('input.price') }} <span
                     class="text-danger">*</span></label>
@@ -98,13 +99,15 @@
                 </span>
             @enderror
         </div>
-        <button type="button" class="btn btn-secondary"
+        <div class="py-2"></div>
+
+        <button type="button" class="darkbtn minibtn me-0 me-md-2 my-1"
             onclick="prevStep()">{{ __('input.prev') }}</button>
-        <button type="button" class="btn btn-primary"
+        <button type="button" class="primarybtn minibtn me-0 me-md-2 my-1"
             onclick="nextStep()">{{ __('input.next') }}</button>
     </div>
     <div class="form-step">
-        <h2>{{ __('input.criteres') }}</h2>
+        <h2 class="font20 fontw600 primarycolor primaryfont mb-3">{{ __('input.criteres') }}</h2>
         <div class="row">
             <div class="col-md-6 pe-0 pe-md-2">
                 <div class="mb-3">
@@ -290,13 +293,15 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-secondary"
+        <div class="py-2"></div>
+
+        <button type="button" class="darkbtn minibtn me-0 me-md-2 my-1"
             onclick="prevStep()">{{ __('input.prev') }}</button>
-        <button type="button" class="btn btn-primary"
+        <button type="button" class="primarybtn minibtn me-0 me-md-2 my-1"
             onclick="nextStep()">{{ __('input.next') }}</button>
     </div>
     <div class="form-step">
-        <h2>{{ __('input.contact') }}</h2>
+        <h2 class="font20 fontw600 primarycolor primaryfont mb-3">{{ __('input.contact') }}</h2>
         <!-- location -->
         <div class="autocompleteInput input-container mb-3">
             <label for="matricule" class="form-label">{{ __('input.location') }} <span
@@ -345,9 +350,13 @@
                 </span>
             @enderror
         </div>
-        <button type="button" class="btn btn-secondary"
+
+        <div class="py-2"></div>
+
+        
+        <button type="button" class="darkbtn minibtn me-0 me-md-2 my-1"
             onclick="prevStep()">{{ __('input.prev') }}</button>
-        <button type="submit" class="btn btn-success">{{ isset($annonce) ? __('input.update') : __('input.next') }}</button>
+        <button type="submit" class="successbtn minibtn me-0 me-md-2 my-1">{{ isset($annonce) ? __('input.update') : __('input.next') }}</button>
         {{-- <button type="submit" class="btn btn-primary">{{ __('input.next') }}</button> --}}
     </div>
 </form>

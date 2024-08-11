@@ -111,7 +111,7 @@
 
                 <div class="pb-4">
                     <h5 class="font-weight-700 float-start text-uppercase">Déposer une annonce</h5>
-                    <a href="{{ route('home') }}" class="site-button right-arrow button-sm float-end">Back</a>
+                    {{-- <a href="{{ route('home') }}" class="site-button right-arrow button-sm float-end">Back</a> --}}
                 </div>
 
 
