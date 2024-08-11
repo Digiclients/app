@@ -1,5 +1,14 @@
 @extends('layouts.profile.app')
 
+
+@push('third_party_stylesheets')
+<style>
+    .CustomPagination nav ul {
+justify-content: end !important;
+}
+</style>
+@endpush
+
 @section('content')
     <div class="">
         <h5 class="font-weight-700 float-start text-uppercase">Mes annonces ( <span class="anouncesNumber"></span> )</h5>
@@ -73,7 +82,7 @@
 
 
                         </th>
-                        <th class="text-start text-capitalize">Id
+                        {{-- <th class="text-start text-capitalize">Id --}}
                             {{-- <div class="sortby ms-auto d-flex float-end">
                                     <a href="#" class="">
                                         <span class="iconify textcolor font22 me-1" data-rotate="270deg" data-flip="horizontal"
@@ -84,7 +93,7 @@
                                             data-icon="material-symbols:arrow-right-alt-rounded"></span>
                                     </a>
                             </div> --}}
-                        </th>
+                        {{-- </th> --}}
                         <th class="text-start text-capitalize">Prix
                             {{-- <div class="sortby ms-auto d-flex float-end">
                                 <a href="#" class="">
@@ -96,7 +105,7 @@
                                         data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                             </div> --}}
                         </th>
-                        <th class="text-start text-capitalize">Temps de publication
+                        <th class="text-start d-none d-md-table-cell text-capitalize">Temps de publication
                             {{-- <div class="sortby ms-auto d-flex float-end">
                                 <a href="#" class="">
                                     <span class="iconify textcolor font22 me-1" data-rotate="270deg" data-flip="horizontal"
@@ -132,9 +141,9 @@
                             </div>
 
                         </td>
-                        <td class="text-start">{{ $annonce->annonce_id }}</td>
+                        {{-- <td class="text-start">{{ $annonce->annonce_id }}</td> --}}
                         <td class="text-start">{{ number_format($annonce->annonce_price, 2, ',', ' ') }} €</td>
-                        <td class="text-start"> {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</td>
+                        <td class="text-start d-none d-md-table-cell"> {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</td>
                         <td class="text-start">
 
 

@@ -2,6 +2,14 @@
 @push('third_party_stylesheets')
 <link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
 
+
+<style>
+    .CustomPagination nav ul {
+justify-content: center !important;
+}
+</style>
+
+
 @endpush
 
 {{-- @dd($annonceListings) --}}

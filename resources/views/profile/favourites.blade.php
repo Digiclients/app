@@ -1,5 +1,13 @@
 @extends('layouts.profile.app')
 
+@push('third_party_stylesheets')
+<style>
+    .CustomPagination nav ul {
+justify-content: end !important;
+}
+</style>
+@endpush
+
 @section('content')
     <div class="job-bx-title clearfix">
 
