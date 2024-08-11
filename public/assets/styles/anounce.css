@@ -10,6 +10,8 @@
       height:  480px !important;
       width: 60%;
       margin : auto ;
+      border-bottom: 1px solid #00000036;
+
     }
   
     .ad-card .image-container {
@@ -20,11 +22,10 @@
 
           @media (max-width: 530px) {
             .ad-card {
-              height: 520px !important;
-      width: 90%;
-
+              height: auto !important;
+              width: 100%;
             }
-                  }
+          }
 
 
 
