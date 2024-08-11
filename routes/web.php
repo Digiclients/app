@@ -74,6 +74,10 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
 
 });
 
+// ******************* pro ***********************
+Route::get('/boutique', function () {
+    return view('professionnel.boutique');
+})->name('boutique');
 
 
 // ************************ about pages ****************************

@@ -335,10 +335,10 @@
                                     style="width: 30px;height: 30px;"></iconify-icon>
                             </a>
 
-                            <a href="">
+                            {{-- <a href="">
                                 <iconify-icon icon="mdi:linkedin" class="darkcolor HoverColorToPrimary" height="30px"
                                     style="width: 30px;height: 30px;"></iconify-icon>
-                            </a>
+                            </a> --}}
                             <a href="">
                                 <iconify-icon icon="jam:facebook-circle" class="darkcolor HoverColorToPrimary"
                                     height="30px" style="width: 30px;height: 30px;"></iconify-icon>

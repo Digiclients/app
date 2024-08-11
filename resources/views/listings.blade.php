@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @push('third_party_stylesheets')
+<link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
+
 @endpush
 
 {{-- @dd($annonceListings) --}}
@@ -939,7 +941,6 @@
 
 
 
-    <link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
 @endsection
 
 
