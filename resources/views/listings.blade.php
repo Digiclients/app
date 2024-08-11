@@ -880,9 +880,11 @@
                             <div class="content">
                                 <div class="d-flex justify-content-between mt-3">
                                 <h5 class="mb-0">{{ $listing->annonce_title }}</h5>
+                                @if ($listing->seller_type == 'professionnel')
                                 <div style="width: 55px;">
-                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">{{$listing->seller_type}}</span>   
+                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
                                 </div>
+                                @endif
                             </div>
                                 {{-- <div class="details d-flex" style="gap: 5px 33px;">
                                     @foreach ($listing->attributes as $attribute)

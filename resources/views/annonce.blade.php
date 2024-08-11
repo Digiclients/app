@@ -333,7 +333,7 @@
                     </li>
                 </ol>
             </nav> --}}
-            </nav> --}}
+            {{-- </nav>  --}}
             <!-- END breadcrumb -->
 
             <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
@@ -347,12 +347,13 @@
                         <div class="swiper ImagesSwiper">
                             <div class="swiper-wrapper">
                                 <!-- Group images together using the same 'data-fancybox' attribute -->
+                                @forelse ($annonceDetails->images as $img)
                                 <a class="swiper-slide my-auto"
-                                    href="{{ asset('storage/' . $annonceDetails->images[0]->path) }}"
+                                    href="{{ asset('storage/' . $img->path) }}"
                                     data-fancybox="gallery">
                                     <div class="image-container">
-                                        <img src="{{ asset('storage/' . $annonceDetails->images[0]->path) }}"
-                                            alt="{{ $annonceDetails->images[0]->alt }}">
+                                        <img src="{{ asset('storage/' . $img->path) }}"
+                                            alt="{{ $img->alt }}">
                                         {{-- <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                         <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18" style="width: 18px;height: 18px;"></iconify-icon>
                                     </button>
@@ -361,21 +362,10 @@
                                     </button> --}}
                                     </div>
                                 </a>
+                                @empty
 
-                                <a class="swiper-slide my-auto"
-                                    href="{{ asset('storage/' . $annonceDetails->images[2]->path) }}"
-                                    data-fancybox="gallery">
-                                    <div class="image-container">
-                                        <img src="{{ asset('storage/' . $annonceDetails->images[2]->path) }}"
-                                            alt="{{ $annonceDetails->images[2]->alt }}">
-                                        {{-- <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
-                                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18" style="width: 18px;height: 18px;"></iconify-icon>
-                                    </button>
-                                    <button class="share-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
-                                        <iconify-icon icon="solar:share-outline" class="TheFavIcon" height="18" style="width: 18px;height: 18px;"></iconify-icon>
-                                    </button> --}}
-                                    </div>
-                                </a>
+                                @endforelse
+
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
