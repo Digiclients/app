@@ -81,7 +81,7 @@
                                 </a>
                             @else
                                 @hasanyrole('professionnel')
-                                    <a href="{{ route('profile.home') }}"
+                                    <a href="{{ route('profile.boutique') }}"
                                         class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
                                         <div class="w-100 mx-2">
                                             <p class="darkcolor my-0 text-center">Mon boutique</p>

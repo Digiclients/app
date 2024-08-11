@@ -73,6 +73,7 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
         // })->name('AnouncePhotos');
         // ************************ PROFESSIONNEL ROUTES ****************************
         Route::get('/boutique', [BoutiqueController::class, 'index'])->name('boutique');
+        Route::post('/boutique', [BoutiqueController::class, 'store'])->name('boutique.store');
     });
 
 
