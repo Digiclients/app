@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Repositories\AnnonceRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use App\Models\Annonce;
 
 class ProfileController extends Controller
 {
@@ -32,7 +33,12 @@ class ProfileController extends Controller
     public function annonces()
     {
         $user = $this->getAuthenticatedUser();
-        $annonces = $this->annonceRepository->UserAnnonces($user->id, 20);
+        $annonces = Annonce::with([
+            'images' => function ($query) {
+                $query->where('feature_img', 1);
+            }
+        ])->where('user_id', $user->id)->paginate(20);
+        // $annonces = $this->annonceRepository->UserAnnonces($user->id, 20);
         return view('profile.annonces', compact('user', 'annonces'));
     }
 

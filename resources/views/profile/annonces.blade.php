@@ -131,39 +131,39 @@ justify-content: end !important;
                         <td>
                             <div class="d-flex my-auto">
                                 <div class="my-auto">
-                                    <img src="{{ asset('storage/' . $annonce->feature_img_path) }}" alt="{{ $annonce->feature_img_alt }}"
+                                    <img src="{{ asset('storage/' . $annonce->images->first()->path) }}" alt="{{ $annonce->images->first()->alt }}"
                                         class="d-flex mx-auto rounded" width="40">
                                 </div>
                                 <div class="px-2 my-auto">
-                                    <p class="my-0 fontw600 graycolor">{{ $annonce->annonce_title }}</p>
+                                    <p class="my-0 fontw600 graycolor">{{ $annonce->title }}</p>
                                     {{-- <p class="font12 my-0 textcolor">joyboy@joyness.com</p> --}}
                                 </div>
                             </div>
 
                         </td>
                         {{-- <td class="text-start">{{ $annonce->annonce_id }}</td> --}}
-                        <td class="text-start">{{ number_format($annonce->annonce_price, 2, ',', ' ') }} €</td>
-                        <td class="text-start d-none d-md-table-cell"> {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</td>
+                        <td class="text-start">{{ number_format($annonce->price, 2, ',', ' ') }} €</td>
+                        <td class="text-start d-none d-md-table-cell"> {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</td>
                         <td class="text-start">
 
 
                             <div class="my-auto d-flex">
 
 
-                                <a href="{{ route('annonce.show', $annonce->annonce_id) }}" class=""><iconify-icon class="iconify graycolor font22 me-2"
+                                <a href="{{ route('annonce.show', $annonce->id) }}" class=""><iconify-icon class="iconify graycolor font22 me-2"
                                         icon="tabler:eye"></iconify-icon></a>
-                                <a href="{{ route('annonce.edit', $annonce->annonce_id) }}" class="">
+                                <a href="{{ route('annonce.edit', $annonce->id) }}" class="">
                                     <iconify-icon
                                         class="iconify graycolor font22 mx-2" icon="tabler:pencil"></iconify-icon>
 
-                                        
+
                                     </a>
 
-                                    <a href="{{ route('annonce.edit', $annonce->annonce_id) }}" class="">
+                                    <a href="{{ route('annonce.edit', $annonce->id) }}" class="">
                                         <iconify-icon
                                             class="iconify graycolor font22 mx-2" icon="tabler:trash"></iconify-icon>
-    
-                                        </a>          
+
+                                        </a>
                                 {{-- <div class="dropdown">
                                     <a href="" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown"
                                         aria-expanded="false" class="">
@@ -233,12 +233,12 @@ justify-content: end !important;
                         @endforeach
                     </div>
                     <h6 class="pt-3">{{ number_format($annonce->annonce_price, 2, ',', ' ') }} €</h6>
-      
+
                     <p class="location listAttributesColor my-0">{{ $annonce->localization }}</p>
                     <div class="d-flex gap-2 justify-content-between align-items-center">
                         <p class="location listAttributesColor my-0">
                             {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</p>
-                     
+
                         <div class=""><a href="{{ route('annonce.edit', $annonce->annonce_id) }}"
                                 class="primarybtn  minibtn"
                                 style="padding: 8px 12px !important;font-size: 14px;padding: 0;padding-left: 0px;padding-right: 0px;">
@@ -247,7 +247,7 @@ justify-content: end !important;
                     </div>
                 </div>
             </a>
-           
+
         @empty
         @endforelse --}}
 
