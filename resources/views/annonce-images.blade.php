@@ -147,6 +147,7 @@
 
         const annonceId = {{ $annonce->id }};
         const userId = {{ Auth::user()->id }};
+        const maxFilesCount = 2; // Set your desired maximum number of files
 
         const imageDropzone = new Dropzone("#imageDropzone", {
             // url: "/upload",
@@ -159,9 +160,12 @@
             acceptedFiles: "image/*",
             dictDefaultMessage: "Téléchargez des fichiers",
             dictRemoveFile: "Supprimer le fichier",
+            maxFiles: maxFilesCount, // Set the maximum number of files
             init: function() {
                 const dzMessage = this.element.querySelector('.dz-message');
-
+                // this.on("maxfilesexceeded", function(file) {
+                //     alert("No more files please!");
+                // });
                 // Load existing photos
                 existingPhotos.forEach(photo => {
                     const mockFile = {
@@ -189,6 +193,11 @@
                     file.previewElement.dataset.fileId = fileId;
                     addThumbnailButton(file, fileId);
                     dzMessage.style.display = 'none'; // Hide message when files are added
+                    // Automatically click the first thumbnail button
+                    const firstThumbnailBtn = document.querySelector('.thumbnail-btn');
+                    if (firstThumbnailBtn) {
+                        firstThumbnailBtn.click();
+                    }
                 });
                 this.on("error", function(file, errorMessage) {
                     const fileId = generateFakeId(); // Generate fake ID for demonstration
