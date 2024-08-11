@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
+            $table->string('option');
+            $table->string('value');
+            $table->enum('type', ['text', 'number', 'boolean'])->nullable();
             $table->timestamps();
         });
     }

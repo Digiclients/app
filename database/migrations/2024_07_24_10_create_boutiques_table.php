@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->string('website')->nullable();
             $table->string('street_address');
-            $table->string('converment_id')->nullable();
+            $table->string('siren')->nullable();
+            $table->string('cover')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('localization_id')->references('id')->on('localizations')->onDelete('cascade');

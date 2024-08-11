@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->integer('price');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->date('publication_date');
+            $table->dateTime('publication_date');
             $table->string('status');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

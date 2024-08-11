@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('location')->nullable();
             $table->string('marque')->nullable();
             $table->string('modele')->nullable();
+            $table->string('title')->nullable();
             $table->integer('annee_modele_min')->nullable();
             $table->integer('annee_modele_max')->nullable();
             $table->string('carburant')->nullable();
