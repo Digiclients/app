@@ -73,61 +73,72 @@
                                 <h5 class="whitecolor my-auto text-center"> {{ Auth::user()->name }} </h5>
                             </div>
                             @role('admin')
-                            <a href="{{ route('admin.home') }}"
-                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                <div class="w-100 mx-2">
-                                    <p class="darkcolor my-0 text-center">Dashboard</p>
-                                </div>
-                            </a>
+                                <a href="{{ route('admin.home') }}"
+                                    class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                    <div class="w-100 mx-2">
+                                        <p class="darkcolor my-0 text-center">Dashboard</p>
+                                    </div>
+                                </a>
                             @else
-                            <!-- {{-- START profile dropDown item --}} -->
-                            <a href="{{ route('profile.home') }}"
-                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                <div class="w-100 mx-2">
-                                    <p class="darkcolor my-0 text-center">Mon profil</p>
-                                </div>
-                            </a>
-                            <!-- {{-- END profile dropDown item --}} -->
+                                @hasanyrole('professionnel')
+                                    <a href="{{ route('profile.home') }}"
+                                        class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                        <div class="w-100 mx-2">
+                                            <p class="darkcolor my-0 text-center">Mon boutique</p>
+                                        </div>
+                                    </a>
+                                    <hr class="graycolor my-0">
+                                @endhasanyrole
+                                <!-- {{-- START profile dropDown item --}} -->
+                                <a href="{{ route('profile.home') }}"
+                                    class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                    <div class="w-100 mx-2">
+                                        <p class="darkcolor my-0 text-center">Mon profil</p>
+                                    </div>
+                                </a>
+                                <!-- {{-- END profile dropDown item --}} -->
 
-                            <hr class="graycolor my-0">
+                                <hr class="graycolor my-0">
 
-                            <!-- {{-- START profile dropDown item --}} -->
+                                <!-- {{-- START profile dropDown item --}} -->
+                                @hasanyrole('particulier')
+                                    <a href="{{ route('profile.annonces') }}"
+                                        class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                        <div class="w-100 mx-2">
+                                            <p class="darkcolor my-0 text-center">Mes annonces</p>
+                                        </div>
+                                    </a>
+                                @endhasanyrole
+                                <!-- {{-- END profile dropDown item --}} -->
 
-                            <a href="{{ route('profile.annonces') }}"
-                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                <div class="w-100 mx-2">
-                                    <p class="darkcolor my-0 text-center">Mes annonces</p>
-                                </div>
-                            </a>
-                            <!-- {{-- END profile dropDown item --}} -->
+                                <hr class="graycolor my-0">
 
-                            <hr class="graycolor my-0">
+                                <!-- {{-- START profile dropDown item --}} -->
 
-                            <!-- {{-- START profile dropDown item --}} -->
+                                <a href="{{ route('profile.favourites') }}"
+                                    class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                    <div class="w-100 mx-2">
+                                        <p class="darkcolor my-0 text-center">Mes favoris</p>
+                                    </div>
+                                </a>
+                                <!-- {{-- END profile dropDown item --}} -->
 
-                            <a href="{{ route('profile.favourites') }}"
-                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                <div class="w-100 mx-2">
-                                    <p class="darkcolor my-0 text-center">Mes favoris</p>
-                                </div>
-                            </a>
-                            <!-- {{-- END profile dropDown item --}} -->
+                                <hr class="graycolor my-0">
 
-                            <hr class="graycolor my-0">
+                                <!-- {{-- START profile dropDown item --}} -->
 
-                            <!-- {{-- START profile dropDown item --}} -->
-
-                            <a href="{{ route('create-annonce') }}"
-                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                <div class="w-100 mx-2">
-                                    <p class="darkcolor my-0 text-center">Déposer une annonce</p>
-                                </div>
-                            </a>
+                                <a href="{{ route('create-annonce') }}"
+                                    class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                    <div class="w-100 mx-2">
+                                        <p class="darkcolor my-0 text-center">Déposer une annonce</p>
+                                    </div>
+                                </a>
                             @endrole
                             <!-- {{-- END profile dropDown item --}} -->
                             <hr class="graycolor my-0">
                             <!-- {{-- START profile dropDown item --}} -->
-                            <a href="{{ route('logout') }}" class="dropdown-menu-item  px-1 py-2 d-flex align-items-center"
+                            <a href="{{ route('logout') }}"
+                                class="dropdown-menu-item  px-1 py-2 d-flex align-items-center"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <div class="w-100 mx-2">
                                     <p class="my-0 text-center dangercolor "> {{ __('Logout') }} </p>

@@ -33,12 +33,19 @@
                             </div>
                         </div>
                         <ul>
+                            @hasanyrole('professionnel')
+                                <li><a href="{{ route('profile.boutique') }}"
+                                        class="{{ Request::is('profile/boutique') ? 'active' : '' }}">
+                                        <span>Mon boutique</span></a></li>
+                            @endhasanyrole
                             <li><a href="{{ route('profile.home') }}"
                                     class="{{ Request::is('profile') ? 'active' : '' }}">
                                     <span>Mon profil</span></a></li>
-                            <li><a href="{{ route('profile.annonces') }}"
-                                    class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
-                                    <span>Mes annonces</span></a></li>
+                            @hasanyrole('particulier')
+                                <li><a href="{{ route('profile.annonces') }}"
+                                        class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
+                                        <span>Mes annonces</span></a></li>
+                            @endhasanyrole
                             <li><a href="{{ route('profile.favourites') }}"
                                     class="{{ Request::is('profile/favoris') ? 'active' : '' }}">
                                     <span>Mes favoris</span></a></li>

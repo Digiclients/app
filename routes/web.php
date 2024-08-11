@@ -9,6 +9,7 @@ use App\Http\Controllers\ShareableLinkController;
 use App\Http\Controllers\profile\ProfileController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\UserManagementController;
+use App\Http\Controllers\professionnel\BoutiqueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
     Route::post('/deposer-une-annonce', [AnnonceController::class, 'store'])->name('store-annonce');
     Route::get('/deposer-une-annonce/{annonceId}/images', [AnnonceController::class, 'validateAnnonce'])->name('images-annonce');
     Route::post('/check-photos/{annonceId}', [AnnonceController::class, 'checkPhotos'])->name('checkPhotos');
-    
+
     Route::get('annonce/{annonceId}', [AnnonceController::class, 'edit'])->name('annonce.edit');
     Route::post('annonce/{annonceId}', [AnnonceController::class, 'update'])->name('annonce.update');
 
@@ -70,7 +71,11 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
         // Route::get('/profile/AnouncePhotos', function () {
         //     return view('profile.AddAndUpdatePhotos');
         // })->name('AnouncePhotos');
+        // ************************ PROFESSIONNEL ROUTES ****************************
+        Route::get('/boutique', [BoutiqueController::class, 'index'])->name('boutique');
     });
+
+
 
 });
 
