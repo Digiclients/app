@@ -1,29 +1,53 @@
 @extends('layouts.app')
 @push('third_party_stylesheets')
     <style>
+        .form-control,
+        select {
+            padding: 8px 12px !important;
+        }
+
         .step-progress {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap !important;
         }
 
         .step {
             text-align: center;
-            width: 25%;
+            width: 16%;
         }
+
+        @media screen and (max-width: 589px) {
+            .step {
+                width: 86px;
+                margin: 4px 0px;
+            }
+
+        }
+
 
         .step-marker {
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background-color: #ccc;
+            background-color: var(--primarycolor);
             margin: auto;
             line-height: 30px;
-            color: #fff;
+            color: var(--white);
+            font-family: var(--primaryfont);
+            font-weight: 600;
+        }
+
+        .first-step-marker {
+
+            background-color: var(--color-success) !important;
+
+
         }
 
         .step-label {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .form-step {
@@ -40,9 +64,9 @@
     </style>
     <style>
         .custom-button-main {
-            background-color: #007bff;
+            background-color: var(--primarycolor);
             color: white;
-            border-color: #007bff;
+            border-color: var(--primarycolor);
         }
 
         .custom-button-main:hover {
@@ -72,17 +96,18 @@
 @endpush
 @section('content')
     @guest
+        <div class="mt-5 pt-5"></div>
         <div class="container pt-5 my-5">
             <div class="row bg-light p-5 rounded-lg">
                 <div class="col-sm-6 order-2 order-sm-1">
-                    <h3 class="mb-4 text-sm-left">Bonjour !</h3>
-                    <p class="text-sm-left">Connectez-vous ou créez un compte pour déposer votre annonce.</p>
+                    <h3 class="mb-4 text-sm-left primarycolor">Bonjour !</h3>
+                    <p class="darkcolor fontw600">Connectez-vous ou créez un compte pour déposer votre annonce.</p>
                     <div class="d-flex flex-column flex-sm-row mt-4">
-                        <a href="{{ route('login') }}" class="btn custom-button-main mb-3 mb-sm-0 mr-sm-3">Me connecter</a>
-                        <a href="{{ route('register') }}" class="btn custom-button-secondary">Créer un compte</a>
+                        <a href="{{ route('login') }}" class="primarybtn  me-3 my-1">Me connecter</a>
+                        <a href="{{ route('register') }}" class="primarybtnoutline me-3 my-1">Créer un compte</a>
                     </div>
                 </div>
-                <div class="col-sm-6 order-1 order-sm-2 text-center text-sm-right mb-4 mb-sm-0">
+                {{-- <div class="col-sm-6 order-1 order-sm-2 text-center text-sm-right mb-4 mb-sm-0">
                     <div class="custom-img-wrapper-sm d-block d-sm-none">
                         <img src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fopen_account.b0abbdf3.png&amp;w=640&amp;q=75"
                             alt="Login">
@@ -91,22 +116,26 @@
                         <img src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fopen_account.b0abbdf3.png&amp;w=1080&amp;q=75"
                             alt="Login">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
+        <br><br><br><br>
+
     @endguest
     @auth
         @hasanyrole('particulier|professionnel')
+            <br>
             <section class="px-4 px-xl-0 pt-5 mt-5 container-fluid row justify-content-center">
                 <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3">
                     <div class="pb-4">
-                        <h5 class="font-weight-700 float-start text-uppercase">Déposer une annonce</h5>
-                        <a href="{{ route('home') }}" class="site-button right-arrow button-sm float-end">Back</a>
+                        <h1 class="font30 float-start text-uppercase fontwbold primarycolor primaryfont ms-2">Déposer une annonce
+                        </h1>
+                        {{-- <a href="{{ route('home') }}" class="site-button right-arrow button-sm float-end">Back</a> --}}
                     </div>
                     <div class="container mt-5">
                         <div class="step-progress mb-4">
                             <div class="step">
-                                <div class="step-marker">1</div>
+                                <div class="step-marker first-step-marker">1</div>
                                 <div class="step-label">Annonce</div>
                             </div>
                             <div class="step">
@@ -126,6 +155,8 @@
                     </div>
                 </div>
             </section>
+            <br>
+            <br>
         @endhasanyrole
     @endauth
 @endsection
@@ -135,6 +166,12 @@
         const steps = document.querySelectorAll(".form-step");
 
         function nextStep() {
+            // Scroll to the top of the page
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Optional: Smooth scrolling effect
+            });
+
             const currentForm = steps[currentStep];
             const requiredInputs = currentForm.querySelectorAll("input[required], textarea[required], select[required]");
             let allValid = true;
@@ -169,9 +206,9 @@
             const stepMarkers = document.querySelectorAll(".step-marker");
             stepMarkers.forEach((marker, index) => {
                 if (index <= currentStep) {
-                    marker.style.backgroundColor = "#4CAF50";
+                    marker.style.backgroundColor = "var(--color-success)";
                 } else {
-                    marker.style.backgroundColor = "#ccc";
+                    marker.style.backgroundColor = "var(--primarycolor)";
                 }
             });
         }
@@ -253,7 +290,9 @@
                                             axios
                                                 .get(url)
                                                 .then((responseModeles) => {
-                                                    document.querySelector('[name=modele]').disabled = false;
+                                                    document.querySelector(
+                                                            '[name=modele]')
+                                                        .disabled = false;
                                                     autocompleteData.modele = [
                                                         ...new Set(
                                                             responseModeles

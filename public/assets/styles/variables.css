@@ -620,6 +620,36 @@ h6 {
     border-color: var(--primarycolor);
 }
 
+
+.successbtn {
+    background-color: var(--color-success);
+    font-family: var(--primaryfont), sans-serif;
+    /* text-transform: capitalize; */
+    cursor: pointer;
+    color: var(--white);
+    white-space: nowrap;
+    text-align: left;
+    /* line-height: 15px; */
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid var(--color-success);
+    padding: 11px 34px;
+    border-radius: 12px;
+    transition: 0.6s;
+    transform-origin: 50% 50% 0px;
+    text-align: center !important;
+    text-decoration: none !important;
+
+}
+
+.successbtn:hover {
+    color: var(--white) !important;
+    background-color: var(--color-success-hover);
+    border-color: var(--color-success-hover);
+}
+
+
 /* ////////////////////////////////////////////////// */
 /* //////////// START Hovering Effects ///////////// */
 /* //////////////////////////////////////////////// */
