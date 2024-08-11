@@ -29,6 +29,9 @@
                             <div class="candidate-title">
                                 <div class="">
                                     <h4 class="m-b5"><a href="javascript:void(0);"> {{ Auth::user()->name }}</a></h4>
+                                    @if (isset($boutique))
+                                        <a href="{{ route('boutique', ['boutiqueId' => $boutique->id, 'slug' => $boutique->slug]) }}">{{$boutique->slug}} <iconify-icon icon="majesticons:open"></iconify-icon></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -41,19 +44,20 @@
                             <li><a href="{{ route('profile.home') }}"
                                     class="{{ Request::is('profile') ? 'active' : '' }}">
                                     <span>Mon profil</span></a></li>
-                            {{-- @hasanyrole('particulier') --}}
-                                <li><a href="{{ route('profile.annonces') }}"
-                                        class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
-                                        <span>Mes annonces</span></a></li>
-                            {{-- @endhasanyrole --}}
+                            <li><a href="{{ route('profile.annonces') }}"
+                                    class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
+                                    <span>Mes annonces</span></a></li>
                             <li><a href="{{ route('profile.favourites') }}"
                                     class="{{ Request::is('profile/favoris') ? 'active' : '' }}">
                                     <span>Mes favoris</span></a></li>
                             <li><a href="{{ route('create-annonce') }}"
                                     class="{{ Request::is('deposer-une-annonce') ? 'active' : '' }}">
                                     <span>Déposer une annonce</span></a></li>
-                            <li><a href="{{ route('logout') }}" class="dangercolor logOut">
+                            <li><a href="{{ route('logout') }}" class="dangercolor logOut" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
                                     <span class="dangercolor">Se déconnecter</span></a></li>
+                            <form id="logout_form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </ul>
                     </div>
                 </div>

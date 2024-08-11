@@ -17,7 +17,8 @@ class Boutique extends Model
         'slug',
         'website',
         'street_address',
-        'converment_id'
+        'siren',
+        'cover',
     ];
 
     public function user()

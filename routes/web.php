@@ -74,16 +74,16 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
         // ************************ PROFESSIONNEL ROUTES ****************************
         Route::get('/boutique', [BoutiqueController::class, 'index'])->name('boutique');
         Route::post('/boutique', [BoutiqueController::class, 'store'])->name('boutique.store');
+        Route::put('/boutique/{id}', [BoutiqueController::class, 'update'])->name('boutique.update');
     });
 
-
-
 });
+Route::get('/boutique/{boutiqueId}/{slug}', [BoutiqueController::class, 'boutique'])->name('boutique');
 
 // ******************* pro ***********************
-Route::get('/boutique', function () {
-    return view('professionnel.boutique');
-})->name('boutique');
+// Route::get('/boutique', function () {
+//     return view('professionnel.boutique');
+// })->name('boutique');
 
 
 // ************************ about pages ****************************

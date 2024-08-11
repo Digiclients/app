@@ -17,21 +17,98 @@
         @endforeach
     @endif
     <div>
-        <h5 class="font-weight-700 float-start text-uppercase">Mon profil</h5>
+        <h5 class="font-weight-700 float-start text-uppercase">Mon boutique</h5>
         <a href="{{ redirect()->back() }}" class="site-button right-arrow button-sm float-end">Back</a>
     </div>
 
     <div class="InContainer">
         <div class="py-5">
-            <form action="{{ route('profile.boutique.store') }}" method="POST">
+            {{-- <form action="{{ route('profile.boutique.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="location" class="form-label">Localisation <span class="text-danger">*</span></label>
-                    {{-- <input type="text" value="" class="form-control" id="location" name="location"> --}}
                     <div class="autocompleteInput input-container col-sm position-relative">
                         <input type="text" data-array="location" name="location"
                             class="form-control @error('location') is-invalid @enderror" placeholder="localisation" readonly
-                            value="{{ request()->input('location') }}">
+                            value="{{ old('location') ?: ($boutique ? $boutique->localization->localization : '') }}">
+                        <iconify-icon icon="material-symbols:close" width="24" height="24"
+                            class="close-icon position-absolute"></iconify-icon>
+                        <iconify-icon icon="mingcute:down-fill" width="24" height="24"
+                            class="down-icon position-absolute"></iconify-icon>
+                        <ul class="dropdown-menu w-100 " style="padding: 0;">
+                            <div class="sticky-container">
+                                <div class="search-container">
+                                    <input id="searchCities" type="text" class="form-control search-input"
+                                        placeholder="Rechercher un lieu">
+                                </div>
+                            </div>
+
+                            <div id="searchResults" class="model-list" style="padding: 10px;">
+
+                            </div>
+                        </ul>
+                        @error('location')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nom <span class="text-danger">*</span></label>
+                    <input type="text" value="{{ old('name') ?: ($boutique ? $boutique->name : '') }}" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Saisissez nom de voter votre boutique">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                    <textarea class="form-control  @error('description') is-invalid @enderror" id="description" rows="6"
+                        name="description" required placeholder="Saisissez description de voter votre boutique">value="{{ old('description') ?: ($boutique ? $boutique->description : '') }}"</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
+                    <input type="text" value="{{ old('slug') ?: ($boutique ? $boutique->slug : '') }}" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" placeholder="Saisissez un identifiant unique pour l'URL de la boutique, par exemple « lauto-boutique»">
+                </div>
+
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website </label>
+                    <input type="url" value="{{ old('website') ?: ($boutique ? $boutique->website : '') }}" class="form-control @error('website') is-invalid @enderror" id="website" name="website" placeholder="Saisissez website de voter votre boutique">
+                </div>
+
+                <div class="mb-3">
+                    <label for="street_address" class="form-label">Adresse <span class="text-danger">*</span></label>
+                    <input type="text" value="{{ old('street_address') ?: ($boutique ? $boutique->street_address : '') }}" class="form-control @error('street_address') is-invalid @enderror" id="street_address" name="street_address" placeholder="Saisissez adresse de voter votre boutique">
+                </div>
+
+                <div class="mb-3">
+                    <label for="siren" class="form-label">Siren </label>
+                    <input type="text" value="{{ old('siren') ?: ($boutique ? $boutique->siren : '') }}" class="form-control @error('siren') is-invalid @enderror" id="siren" name="siren" placeholder="Saisissez siren de voter votre entrepsise">
+                </div>
+
+                <div class="mb-3">
+                    <label for="couverture" class="form-label">Couverture </label>
+                    <input type="file" class="form-control @error('couverture') is-invalid @enderror" id="couverture" name="couverture" accept="image/png, image/gif, image/jpeg">
+                </div>
+
+
+                <div class="d-grid">
+                    <button type="submit" class="primarybtn mt-3 d-block mx-auto">Sauvegarder</button>
+                </div>
+            </form> --}}
+            <form action="{{ $boutique ? route('profile.boutique.update', $boutique->id) : route('profile.boutique.store') }}"
+                method="POST" enctype="multipart/form-data">
+                @csrf
+                @if ($boutique)
+                    @method('PUT')
+                @endif
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Localisation <span class="text-danger">*</span></label>
+                    <div class="autocompleteInput input-container col-sm position-relative">
+                        <input type="text" data-array="location" name="location"
+                            class="form-control @error('location') is-invalid @enderror" placeholder="localisation" readonly
+                            value="{{ old('location') ?: ($boutique ? $boutique->localization->localization : '') }}">
                         <iconify-icon icon="material-symbols:close" width="24" height="24"
                             class="close-icon position-absolute"></iconify-icon>
                         <iconify-icon icon="mingcute:down-fill" width="24" height="24"
@@ -58,45 +135,58 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom <span class="text-danger">*</span></label>
-                    <input type="text" value="" class="form-control" id="name" name="name">
+                    <input type="text" value="{{ old('name') ?: ($boutique ? $boutique->name : '') }}"
+                        class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                        placeholder="Saisissez nom de votre boutique">
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
                     <textarea class="form-control  @error('description') is-invalid @enderror" id="description" rows="6"
-                        name="description" required placeholder=""></textarea>
+                        name="description" placeholder="Saisissez description de votre boutique">{{ old('description') ?: ($boutique ? $boutique->description : '') }}</textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
-                    <input type="text" value="" class="form-control" id="slug" name="slug">
+                    <input type="text" value="{{ old('slug') ?: ($boutique ? $boutique->slug : '') }}"
+                        class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                        placeholder="Saisissez un identifiant unique pour l'URL de la boutique, par exemple « lauto-boutique»">
                 </div>
 
                 <div class="mb-3">
                     <label for="website" class="form-label">Website </label>
-                    <input type="url" value="" class="form-control" id="website" name="website">
+                    <input type="url" value="{{ old('website') ?: ($boutique ? $boutique->website : '') }}"
+                        class="form-control @error('website') is-invalid @enderror" id="website" name="website"
+                        placeholder="Saisissez le site web de votre boutique">
                 </div>
 
                 <div class="mb-3">
                     <label for="street_address" class="form-label">Adresse <span class="text-danger">*</span></label>
-                    <input type="url" value="" class="form-control" id="street_address" name="street_address">
+                    <input type="text"
+                        value="{{ old('street_address') ?: ($boutique ? $boutique->street_address : '') }}"
+                        class="form-control @error('street_address') is-invalid @enderror" id="street_address"
+                        name="street_address" placeholder="Saisissez l'adresse de votre boutique">
                 </div>
 
                 <div class="mb-3">
                     <label for="siren" class="form-label">Siren </label>
-                    <input type="url" value="" class="form-control" id="siren" name="siren">
+                    <input type="text" value="{{ old('siren') ?: ($boutique ? $boutique->siren : '') }}"
+                        class="form-control @error('siren') is-invalid @enderror" id="siren" name="siren"
+                        placeholder="Saisissez le siren de votre entreprise">
                 </div>
 
                 <div class="mb-3">
                     <label for="couverture" class="form-label">Couverture </label>
-                    <input type="file" value="" class="form-control" id="couverture" name="couverture">
+                    <input type="file" class="form-control @error('couverture') is-invalid @enderror" id="couverture"
+                        name="couverture" accept="image/png, image/gif, image/jpeg">
                 </div>
-
 
                 <div class="d-grid">
-                    <button type="submit" class="primarybtn mt-3 d-block mx-auto">Sauvegarder</button>
+                    <button type="submit"
+                        class="primarybtn mt-3 d-block mx-auto">{{ $boutique ? 'Update Boutique' : 'Create Boutique' }}</button>
                 </div>
             </form>
+
         </div>
     </div>
 
