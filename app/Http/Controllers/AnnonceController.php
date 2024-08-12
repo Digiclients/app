@@ -171,7 +171,14 @@ class AnnonceController extends Controller
     public function listings()
     {
         // TODO need to hundel exception
-        $annonceListings = $this->annonceRepository->AnnoncesListings(20);
+        $annonceListings = Annonce::with([
+            'localization',
+            'user',
+            'images' => function ($query) {
+                $query->where('feature_img', 1);
+            }
+        ])->where('status', Annonce::ACTIVE)->paginate(20);
+        // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
         $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
         return view('listings', compact('annonceListings', 'annoncesCount'));
     }

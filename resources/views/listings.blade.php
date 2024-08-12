@@ -1,15 +1,13 @@
 @extends('layouts.app')
 @push('third_party_stylesheets')
-<link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/anounce.css') }}">
 
 
-<style>
-    .CustomPagination nav ul {
-justify-content: center !important;
-}
-</style>
-
-
+    <style>
+        .CustomPagination nav ul {
+            justify-content: center !important;
+        }
+    </style>
 @endpush
 
 {{-- @dd($annonceListings) --}}
@@ -860,7 +858,7 @@ justify-content: center !important;
                         Toute la France</h1>
                 </div>
                 <div class="d-flex align-items-center mt-0 mb-1">
-                    <h2 class="h5 LightGrayColor">{{$annoncesCount}} annonces</h2>
+                    <h2 class="h5 LightGrayColor">{{ $annoncesCount }} annonces</h2>
                 </div>
             </div>
 
@@ -874,11 +872,11 @@ justify-content: center !important;
 
                     <!-- ################  START list ad-card ################ -->
 
-                    @forelse ($annonceListings as $listing)
-                        <a href="{{route('annonce.show', $listing->annonce_id)}}" class="ad-card  col-md-6 col-lg-4 my-2">
+                    @forelse ($annonceListings as $annonce)
+                        <a href="{{ route('annonce.show', $annonce->id) }}" class="ad-card  col-md-6 col-lg-4 my-2">
                             <div class="image-container">
-                                <img src="{{ asset('storage/' . $listing->feature_img_path) }}"
-                                    alt="{{ $listing->feature_img_alt }}" style="">
+                                <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
+                                    alt="{{ $annonce->images->first()->alt }}" style="">
                                 <button class="favorite-button d-flex align-items-center"
                                     aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                     <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
@@ -887,29 +885,31 @@ justify-content: center !important;
                             </div>
                             <div class="content">
                                 <div class="d-flex justify-content-between mt-3">
-                                <h5 class="mb-0">{{ $listing->annonce_title }}</h5>
-                                @if ($listing->seller_type == 'professionnel')
-                                <div style="width: 55px;">
-                                    <span class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
-                                </div>
-                                @endif
-                            </div>
-                                {{-- <div class="details d-flex" style="gap: 5px 33px;">
-                                    @foreach ($listing->attributes as $attribute)
-                                        <div class="">
-                                            <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span
-                                                    class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
-
+                                    <h5 class="mb-0">{{ $annonce->title }}</h5>
+                                    @if ($annonce->user->sellerType == 'professionnel')
+                                        <div style="width: 55px;">
+                                            <span
+                                                class="badge proBadge m-0 rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
                                         </div>
-                                    @endforeach
-                                </div> --}}
-                                <h6 class="pt-3">{{ number_format($listing->annonce_price, 2, ',', ' ') }} €</h6>
+                                    @endif
+                                </div>
+                                {{-- <div class="details d-flex" style="gap: 5px 33px;">
+                                @foreach ($listing->attributes as $attribute)
+                                    <div class="">
+                                        <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span
+                                                class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
+        
+                                    </div>
+                                @endforeach
+                            </div> --}}
+                                <h6 class="pt-3">{{ number_format($annonce->price, 2, ',', ' ') }} €</h6>
                                 {{-- <div style="width: 55px;">
-                                    <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
-                                </div> --}}
-                                <p class="location listAttributesColor my-0">{{ $listing->localization }}</p>
+                                <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
+                            </div> --}}
+                                <p class="location listAttributesColor my-0">{{ $annonce->localization->localization }}</p>
                                 <div class="d-flex gap-2 justify-content-between align-items-center">
-                                    <p class="location listAttributesColor my-0">{{ \Carbon\Carbon::parse($listing->annonce_publication_date)->diffForHumans() }}</p>
+                                    <p class="location listAttributesColor my-0">
+                                        {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</p>
                                     <button type="button" href="" class="primarybtn  minibtn"
                                         style="padding: 8px 12px !important;font-size: 14px;">Voir l'annonce</button>
                                 </div>
@@ -946,11 +946,6 @@ justify-content: center !important;
 
 
     <!-- END THE LISTING HERE -->
-
-
-
-
-
 @endsection
 
 
