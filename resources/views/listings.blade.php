@@ -35,7 +35,7 @@
 
         {{-- // START ******** location input ********* --}}
         <div class="col-md-4 px-2 my-2">
-            <div class="autocompleteInput input-container col-sm position-relative">
+            {{-- <div class="autocompleteInput input-container col-sm position-relative">
                 <input type="text" data-array="location" name="location"
                     class="form-control py-2 @error('location') is-invalid @enderror" placeholder="localisation" readonly
                     value="">
@@ -52,6 +52,27 @@
                     </div>
 
                     <div id="searchResults" class="model-list" style="padding: 10px;">
+                        <!-- Location items will be dynamically inserted here -->
+                    </div>
+                </ul>
+                {{-- @error('location')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror --}}
+            {{-- </div>  --}}
+
+            <div class="autocompleteInput input-container col-sm ">
+                <input type="text" data-array="location" name="location"
+                    class="form-control @error('location') is-invalid @enderror"
+                    placeholder="{{ __('input.location_placeholder') }}" readonly value="">
+                <ul class="dropdown-menu w-100 p-2">
+                    <div class="sticky-container">
+                        <div class="search-container">
+                            <input type="text" class="form-control search-input" placeholder="Rechercher un lieu">
+                        </div>
+                    </div>
+                    <div class="model-list">
                         <!-- Location items will be dynamically inserted here -->
                     </div>
                 </ul>
@@ -209,7 +230,9 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Marque</label>
-                        <div class="form-check">
+                        <div class="" id="marques">
+
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="radio" name="marque" id="marque1" value="Marque1">
                             <label class="form-check-label" for="marque1">Marque1</label>
                         </div>
@@ -218,8 +241,7 @@
                             <label class="form-check-label" for="marque2">Marque2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marque" id="marque3"
-                                value="Marque3">
+                            <input class="form-check-input" type="radio" name="marque" id="marque3" value="Marque3">
                             <label class="form-check-label" for="marque3">Marque3</label>
                         </div>
                         <div class="form-check">
@@ -236,6 +258,7 @@
                             <input class="form-check-input" type="radio" name="marque" id="marque6"
                                 value="Marque6">
                             <label class="form-check-label" for="marque6">Marque6</label>
+                        </div> --}}
                         </div>
                         <!-- Add more radio buttons here -->
                     </div>
@@ -249,117 +272,119 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Modèle</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele1"
-                                value="Modèle1">
-                            <label class="form-check-label" for="modele1">Modèle1</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele2"
-                                value="Modèle2">
-                            <label class="form-check-label" for="modele2">Modèle2</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele3"
-                                value="Modèle3">
-                            <label class="form-check-label" for="modele3">Modèle3</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele4"
-                                value="Modèle4">
-                            <label class="form-check-label" for="modele4">Modèle4</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele5"
-                                value="Modèle5">
-                            <label class="form-check-label" for="modele5">Modèle5</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele6"
-                                value="Modèle6">
-                            <label class="form-check-label" for="modele6">Modèle6</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele7"
-                                value="Modèle7">
-                            <label class="form-check-label" for="modele7">Modèle7</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele8"
-                                value="Modèle8">
-                            <label class="form-check-label" for="modele8">Modèle8</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele9"
-                                value="Modèle9">
-                            <label class="form-check-label" for="modele9">Modèle9</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele10"
-                                value="Modèle10">
-                            <label class="form-check-label" for="modele10">Modèle10</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele11"
-                                value="Modèle11">
-                            <label class="form-check-label" for="modele11">Modèle11</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele12"
-                                value="Modèle12">
-                            <label class="form-check-label" for="modele12">Modèle12</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele13"
-                                value="Modèle13">
-                            <label class="form-check-label" for="modele13">Modèle13</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele14"
-                                value="Modèle14">
-                            <label class="form-check-label" for="modele14">Modèle14</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele15"
-                                value="Modèle15">
-                            <label class="form-check-label" for="modele15">Modèle15</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele16"
-                                value="Modèle16">
-                            <label class="form-check-label" for="modele16">Modèle16</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele17"
-                                value="Modèle17">
-                            <label class="form-check-label" for="modele17">Modèle17</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele18"
-                                value="Modèle18">
-                            <label class="form-check-label" for="modele18">Modèle18</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele19"
-                                value="Modèle19">
-                            <label class="form-check-label" for="modele19">Modèle19</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele20"
-                                value="Modèle20">
-                            <label class="form-check-label" for="modele20">Modèle20</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele21"
-                                value="Modèle21">
-                            <label class="form-check-label" for="modele21">Modèle21</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="modele[]" id="modele22"
-                                value="Modèle22">
-                            <label class="form-check-label" for="modele22">Modèle22</label>
-                        </div>
+                        <div class="" id="models">
 
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele1"
+                                    value="Modèle1">
+                                <label class="form-check-label" for="modele1">Modèle1</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele2"
+                                    value="Modèle2">
+                                <label class="form-check-label" for="modele2">Modèle2</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele3"
+                                    value="Modèle3">
+                                <label class="form-check-label" for="modele3">Modèle3</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele4"
+                                    value="Modèle4">
+                                <label class="form-check-label" for="modele4">Modèle4</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele5"
+                                    value="Modèle5">
+                                <label class="form-check-label" for="modele5">Modèle5</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele6"
+                                    value="Modèle6">
+                                <label class="form-check-label" for="modele6">Modèle6</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele7"
+                                    value="Modèle7">
+                                <label class="form-check-label" for="modele7">Modèle7</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele8"
+                                    value="Modèle8">
+                                <label class="form-check-label" for="modele8">Modèle8</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele9"
+                                    value="Modèle9">
+                                <label class="form-check-label" for="modele9">Modèle9</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele10"
+                                    value="Modèle10">
+                                <label class="form-check-label" for="modele10">Modèle10</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele11"
+                                    value="Modèle11">
+                                <label class="form-check-label" for="modele11">Modèle11</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele12"
+                                    value="Modèle12">
+                                <label class="form-check-label" for="modele12">Modèle12</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele13"
+                                    value="Modèle13">
+                                <label class="form-check-label" for="modele13">Modèle13</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele14"
+                                    value="Modèle14">
+                                <label class="form-check-label" for="modele14">Modèle14</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele15"
+                                    value="Modèle15">
+                                <label class="form-check-label" for="modele15">Modèle15</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele16"
+                                    value="Modèle16">
+                                <label class="form-check-label" for="modele16">Modèle16</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele17"
+                                    value="Modèle17">
+                                <label class="form-check-label" for="modele17">Modèle17</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele18"
+                                    value="Modèle18">
+                                <label class="form-check-label" for="modele18">Modèle18</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele19"
+                                    value="Modèle19">
+                                <label class="form-check-label" for="modele19">Modèle19</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele20"
+                                    value="Modèle20">
+                                <label class="form-check-label" for="modele20">Modèle20</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele21"
+                                    value="Modèle21">
+                                <label class="form-check-label" for="modele21">Modèle21</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="modele[]" id="modele22"
+                                    value="Modèle22">
+                                <label class="form-check-label" for="modele22">Modèle22</label>
+                            </div>
+                        </div>
                         <!-- Add more checkboxes here -->
                     </div>
                 </div>
@@ -384,7 +409,8 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Type de véhicule</label>
-                        <div class="form-check">
+                        <div class="" id="type_de_vehicule">
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="typeVehicule[]" id="typeVehicule1"
                                 value="Type 1">
                             <label class="form-check-label" for="typeVehicule1">Type 1</label>
@@ -403,6 +429,7 @@
                             <input class="form-check-input" type="checkbox" name="typeVehicule[]" id="typeVehicule4"
                                 value="Type 4">
                             <label class="form-check-label" for="typeVehicule4">Type 4</label>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
@@ -415,7 +442,9 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Carburant</label>
-                        <div class="form-check">
+                        <div class="" id="carburant">
+
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="carburant[]" id="carburant1"
                                 value="Essence">
                             <label class="form-check-label" for="carburant1">Essence</label>
@@ -434,6 +463,7 @@
                             <input class="form-check-input" type="checkbox" name="carburant[]" id="carburant4"
                                 value="Électrique">
                             <label class="form-check-label" for="carburant4">Électrique</label>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
@@ -446,7 +476,8 @@
                 <!-- Boîte de vitesse -->
                 <div class="mb-1">
                     <label class="form-label">Boîte de vitesse</label>
-                    <div class="form-check">
+                    <div class="" id="boite_vitesse">
+                        {{-- <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="boiteDeVitesse[]" id="boiteManuelle"
                             value="Manuelle">
                         <label class="form-check-label" for="boiteManuelle">Manuelle</label>
@@ -455,6 +486,7 @@
                         <input class="form-check-input" type="checkbox" name="boiteDeVitesse[]" id="boiteAutomatique"
                             value="Automatique">
                         <label class="form-check-label" for="boiteAutomatique">Automatique</label>
+                    </div> --}}
                     </div>
                 </div>
 
@@ -481,7 +513,8 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Crit'air</label>
-                        <div class="form-check">
+                        <div class="" id="crit_air">
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="critair[]" id="critair0"
                                 value="0">
                             <label class="form-check-label" for="critair0">0</label>
@@ -510,6 +543,7 @@
                             <input class="form-check-input" type="checkbox" name="critair[]" id="critair5"
                                 value="5">
                             <label class="form-check-label" for="critair5">5</label>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
@@ -538,7 +572,8 @@
                 <!-- État du véhicule -->
                 <div class="mb-1">
                     <label class="form-label">État du véhicule</label>
-                    <div class="form-check">
+                    <div class="" id="etat_du_vehicule">
+                        {{-- <div class="form-check">
                         <input class="form-check-input" type="radio" name="etatVehicule" id="etatNonEndommage"
                             value="Non endommagé">
                         <label class="form-check-label" for="etatNonEndommage">Non endommagé</label>
@@ -547,6 +582,7 @@
                         <input class="form-check-input" type="radio" name="etatVehicule" id="etatEndommage"
                             value="Endommagé">
                         <label class="form-check-label" for="etatEndommage">Endommagé</label>
+                    </div> --}}
                     </div>
                 </div>
 
@@ -555,7 +591,7 @@
 
 
                 <!-- Première main -->
-                <div class="mb-1">
+                {{-- <div class="mb-1">
                     <label class="form-label">Première main</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="premiereMain" id="premiereMainOui"
@@ -569,7 +605,7 @@
                     </div>
                 </div>
 
-                <hr class="LineHR">
+                <hr class="LineHR"> --}}
 
 
                 <!-- Puissance fiscale -->
@@ -589,9 +625,9 @@
                 <!-- Nombre de portes -->
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
-
                         <label class="form-label canvasedMainLabel">Nombre de portes</label>
-                        <div class="form-check">
+                        <div class="" id="nombre_de_portes">
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="nombrePortes[]" id="portes2"
                                 value="2">
                             <label class="form-check-label" for="portes2">2</label>
@@ -615,6 +651,7 @@
                             <input class="form-check-input" type="checkbox" name="nombrePortes[]" id="portes6Plus"
                                 value="6 ou plus">
                             <label class="form-check-label" for="portes6Plus">6 ou plus</label>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
@@ -624,9 +661,9 @@
                 <!-- Nombre de place(s) -->
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
-
                         <label class="form-label canvasedMainLabel">Nombre de place</label>
-                        <div class="form-check">
+                        <div class="" id="nombre_de_place">
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="nombrePlaces[]" id="places1"
                                 value="1">
                             <label class="form-check-label" for="places1">1</label>
@@ -660,6 +697,7 @@
                             <input class="form-check-input" type="checkbox" name="nombrePlaces[]" id="places7Plus"
                                 value="7 ou plus">
                             <label class="form-check-label" for="places7Plus">7 ou plus</label>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
@@ -672,7 +710,9 @@
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Couleur</label>
-                        <div class="form-check">
+                        <div class="" id="couleur">
+
+                            {{-- <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="couleur[]" id="couleurNoir"
                                 value="Noir">
                             <label class="form-check-label" for="couleurNoir">Noir</label>
@@ -711,7 +751,9 @@
                             <input class="form-check-input" type="checkbox" name="couleur[]" id="couleurMarron"
                                 value="Marron">
                             <label class="form-check-label" for="couleurMarron">Marron</label>
+                        </div> --}}
                         </div>
+
                     </div>
                 </div>
 
@@ -721,7 +763,8 @@
                 <!-- Permis -->
                 <div class="mb-1">
                     <label class="form-label">Permis</label>
-                    <div class="form-check">
+                    <div class="" id="permis">
+                        {{-- <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="permis[]" id="permisAvec"
                             value="Avec permis">
                         <label class="form-check-label" for="permisAvec">Avec permis</label>
@@ -730,6 +773,7 @@
                         <input class="form-check-input" type="checkbox" name="permis[]" id="permisSans"
                             value="Sans permis">
                         <label class="form-check-label" for="permisSans">Sans permis</label>
+                    </div> --}}
                     </div>
                 </div>
 
@@ -774,15 +818,17 @@
                 <!-- Type de vendeurs -->
                 <div class="mb-1">
                     <label class="form-label">Type de vendeurs</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="typeVendeurs[]" id="vendeursParticuliers"
-                            value="Particuliers">
-                        <label class="form-check-label" for="vendeursParticuliers">Particuliers</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
-                            id="vendeursProfessionnels" value="Professionnels">
-                        <label class="form-check-label" for="vendeursProfessionnels">Professionnels</label>
+                    <div class="" id="typeVendeurs">
+                        {{-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="typeVendeurs[]" id="vendeursParticuliers"
+                                value="Particuliers">
+                            <label class="form-check-label" for="vendeursParticuliers">Particuliers</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="typeVendeurs[]"
+                                id="vendeursProfessionnels" value="Professionnels">
+                            <label class="form-check-label" for="vendeursProfessionnels">Professionnels</label>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -951,4 +997,244 @@
 
 @push('third_party_scripts')
     <script src="{{ asset('assets/scripts/ListingFilter.js') }}"></script>
+
+    <script>
+        let filtersData = {
+            location: [],
+            marques: [],
+            models: [],
+            type_de_vehicule: [],
+            carburant: [],
+            boite_vitesse: [],
+            crit_air: [],
+            etat_du_vehicule: [],
+            nombre_de_portes: [],
+            nombre_de_place: [],
+            couleur: [],
+            permis: [],
+            type_de_vendeur: ["particulier", "professionnel"],
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const modelListDiv = document.querySelector(".model-list");
+
+            // Show the loader before making the request
+            modelListDiv.innerHTML = `
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>`;
+
+
+            // Fetch getLocations
+            axios.get('{{ route('getLocations') }}')
+                .then(locationsResponse => {
+                    filtersData.location = [...new Set(locationsResponse.data.map((item) => item
+                        .Localization))];
+
+                    document.querySelectorAll(".autocompleteInput").forEach((container) => {
+                        CreateAutocompleteInput(container);
+                    });
+
+                }).catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+
+            // Fetch getMarques
+            axios.get('{{ route('getMarques') }}').then(marquesResponse => {
+                    filtersData.marques = [...new Set(marquesResponse.data.map((item) => item.category_name))];
+                    populateCheckboxesById('marques', filtersData.marques);
+                })
+                .catch(error => {
+                    console.error("Error fetching Marques data:", error);
+                });
+
+            // Fetch getAttributesOptions
+            axios.get('{{ route('getAttributesOptions') }}').then(attributesOptionsResponse => {
+                    filtersData.type_de_vehicule = attributesOptionsResponse.data.type_vehicule;
+                    filtersData.carburant = attributesOptionsResponse.data.carburant;
+                    filtersData.boite_vitesse = attributesOptionsResponse.data.boite_vitesse;
+                    filtersData.crit_air = attributesOptionsResponse.data.crit_air;
+                    filtersData.etat_du_vehicule = attributesOptionsResponse.data.etat_du_vehicule;
+                    filtersData.nombre_de_portes = attributesOptionsResponse.data.nombre_porte;
+                    filtersData.nombre_de_place = attributesOptionsResponse.data.nombre_place;
+                    filtersData.couleur = attributesOptionsResponse.data.couleur;
+                    filtersData.permis = attributesOptionsResponse.data.permis;
+
+                    // Populate checkboxes
+                    populateCheckboxesById('type_de_vehicule', filtersData.type_de_vehicule);
+                    populateCheckboxesById('carburant', filtersData.carburant);
+                    populateCheckboxesById('boite_vitesse', filtersData.boite_vitesse);
+                    populateCheckboxesById('crit_air', filtersData.crit_air);
+                    populateCheckboxesById('etat_du_vehicule', filtersData.etat_du_vehicule);
+                    populateCheckboxesById('nombre_de_portes', filtersData.nombre_de_portes);
+                    populateCheckboxesById('nombre_de_place', filtersData.nombre_de_place);
+                    populateCheckboxesById('couleur', filtersData.couleur);
+                    populateCheckboxesById('permis', filtersData.permis);
+                    populateCheckboxesById('typeVendeurs', filtersData.type_de_vendeur);
+
+                })
+                .catch(error => {
+                    console.error("Error fetching getAttributesOptions:", error);
+                });
+
+
+
+        });
+
+
+
+        function populateCheckboxesById(containerId, options) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ""; // Clear any existing content
+
+            options.forEach(option => {
+                let optionId, optionValue;
+
+                // Check if the option is an object or a string
+                if (typeof option === 'object') {
+                    optionId = option.id;
+                    optionValue = option.value;
+                } else {
+                    optionId = option;
+                    optionValue = option;
+                }
+
+                const inputType = containerId === 'marques' ? 'radio' : 'checkbox';
+                const inputName = containerId === 'marques' ? 'marque' : `${containerId}[]`;
+                const inputId = `${containerId}_${optionId}`; // Unique ID for the input
+
+                const inputHTML = `
+            <div class="form-check">
+                <input class="form-check-input" type="${inputType}" name="${inputName}" id="${inputId}" value="${optionValue}">
+                <label class="form-check-label" for="${inputId}">${optionValue}</label>
+            </div>`;
+                container.innerHTML += inputHTML;
+            });
+
+            // Add event listener for the container (event delegation)
+            if (containerId === 'marques') {
+                container.addEventListener('change', handleMarqueChange);
+            }
+        }
+
+
+        // function handleMarqueChange(event) {
+        //     if (event.target.classList.contains('form-check-input')) {
+        //         const selectedMarque = event.target.value;
+        //         console.log("Selected Marque:", selectedMarque);
+
+        //         // Send a GET request to fetch models for the selected marque
+        //         axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+        //             .then(response => {
+        //                 // Update filtersData with the received models
+        //                 filtersData.models = [...new Set(response.data.map((item) => item.category_name))];
+        //                 // filtersData.models = response.data.models;
+        //                 console.log(response);
+        //                 updateModelOptions(filtersData.models);
+        //             })
+        //             .catch(error => {
+        //                 console.error("Error fetching models:", error);
+        //             });
+        //     }
+        // }
+
+        function handleMarqueChange(event) {
+            if (event.target.classList.contains('form-check-input')) {
+                const selectedMarque = event.target.value;
+                console.log("Selected Marque:", selectedMarque);
+
+                // Send a GET request to fetch models for the selected marque
+                axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+                    .then(response => {
+                        // Verify the response data structure
+                        console.log("Response Data:", response.data);
+
+                        // Assuming the response data is an array of models
+                        filtersData.models = response.data.map(item => item
+                            .category_name); // Adjust according to actual response structure
+
+                        // Update the UI with the received models
+                        updateModelOptions(filtersData.models);
+                    })
+                    .catch(error => {
+                        console.error("Error fetching models:", error);
+                    });
+            }
+        }
+
+
+
+        function updateModelOptions(models) {
+            const modelContainer = document.getElementById(
+            'models'); // Ensure you have an element with this ID to display models
+            modelContainer.innerHTML = ""; // Clear existing content
+
+            models.forEach((model, index) => {
+                const modelId = `model_${index}`; // Unique ID for each model input
+                // Check if model is an object and use appropriate properties
+                const modelValue = typeof model === 'object' ? model.value : model;
+                const modelLabel = typeof model === 'object' ? model.value : model;
+
+                const modelHTML = `
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="modele[]" id="${modelId}" value="${modelValue}">
+                <label class="form-check-label" for="${modelId}">${modelLabel}</label>
+            </div>`;
+
+                modelContainer.innerHTML += modelHTML;
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function CreateAutocompleteInput(container) {
+            const dataArrayName = container.querySelector("input").getAttribute("data-array");
+            const dataArray = filtersData[dataArrayName];
+            const modelList = container.querySelector(".model-list");
+            const searchInput = container.querySelector(".search-input");
+            const selectedInput = container.querySelector("input");
+
+            function renderLocationList(filter = "") {
+                modelList.innerHTML = "";
+                dataArray
+                    .filter((item) => item.toLowerCase().includes(filter.toLowerCase()))
+                    .forEach((item) => {
+                        const listItem = document.createElement("div");
+                        listItem.classList.add("dropdown-item");
+                        listItem.textContent = item;
+                        listItem.addEventListener("click", () => {
+                            selectedInput.value = item;
+                            container.querySelector(".dropdown-menu").classList.remove("show");
+                        });
+                        modelList.appendChild(listItem);
+                    });
+            }
+
+            searchInput.addEventListener("input", () => {
+                renderLocationList(searchInput.value);
+            });
+
+            selectedInput.addEventListener("focus", () => {
+                container.querySelector(".dropdown-menu").classList.add("show");
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!container.contains(event.target)) {
+                    container.querySelector(".dropdown-menu").classList.remove("show");
+                }
+            });
+
+            renderLocationList();
+        }
+    </script>
 @endpush
