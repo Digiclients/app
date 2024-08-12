@@ -353,7 +353,7 @@
 
         <div class="py-2"></div>
 
-        
+
         <button type="button" class="darkbtn minibtn me-0 me-md-2 my-1"
             onclick="prevStep()">{{ __('input.prev') }}</button>
         <button type="submit" class="successbtn minibtn me-0 me-md-2 my-1">{{ isset($annonce) ? __('input.update') : __('input.next') }}</button>
