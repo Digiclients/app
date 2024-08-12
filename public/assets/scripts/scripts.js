@@ -1,30 +1,54 @@
-// START CODE FOR SEE MORE TEXT I DID USE THE HTML DEMO IN SINGLELISTINGPAGE
+
+// // START CODE FOR SEE MORE TEXT I DID USE THE HTML DEMO IN SINGLELISTINGPAGE
 document.addEventListener('DOMContentLoaded', function () {
   const textElement = document.getElementById('text');
-  const maxWords = parseInt(textElement.getAttribute('data-max-words'), 10);
-  const fullText = textElement.innerText;
+  const seeMoreLink = document.getElementById('seeMoreLink');
+  const maxWords = 50; // Number of words to show initially
+
+  // Get the full text from the paragraph element's innerHTML
+  const fullText = textElement.innerHTML.trim(); // Use trim() to remove any extra whitespace
   const words = fullText.split(' ');
 
-  if (words.length > maxWords) {
-    const initialText = words.slice(0, maxWords).join(' ') + '...';
-    textElement.innerText = initialText;
+  // Create spans
+  const truncatedSpan = document.createElement('span');
+  const fullTextSpan = document.createElement('span');
 
-    document.getElementById('seeMoreLink').addEventListener('click', function (e) {
+  if (words.length > maxWords) {
+    // Set truncated text
+    const truncatedText = words.slice(0, maxWords).join(' ') + '...';
+    truncatedSpan.innerText = truncatedText;
+
+    // Set full text
+    fullTextSpan.innerText = fullText;
+
+    // Clear the paragraph and append spans
+    textElement.innerHTML = ''; // Clear existing content
+    textElement.appendChild(truncatedSpan);
+    textElement.appendChild(fullTextSpan);
+
+    // Hide full text initially
+    fullTextSpan.style.display = 'none';
+
+    // Show "Voir tout" link
+    seeMoreLink.style.display = 'block';
+
+    // Add click event listener to show full text
+    seeMoreLink.addEventListener('click', function (e) {
       e.preventDefault();
-      textElement.innerText = fullText;
-      this.style.display = 'none';
+      truncatedSpan.style.display = 'none'; // Hide truncated text
+      fullTextSpan.style.display = 'inline'; // Show full text
+      this.style.display = 'none'; // Hide the "Voir tout" link
     });
   } else {
-    document.getElementById('seeMoreLink').style.display = 'none';
+    // If text doesn't need truncation, just show it all
+    textElement.innerText = fullText;
+    seeMoreLink.style.display = 'none'; // Hide the link if no truncation needed
   }
 });
-// END CODE FOR SEE MORE TEXT
+
+// // END CODE FOR SEE MORE TEXT
 
 
-
-
-
-   
         // START Function to restrict input to numeric values and decimal point
         function restrictToNumericAndDecimal(event) {
           const input = event.target;
