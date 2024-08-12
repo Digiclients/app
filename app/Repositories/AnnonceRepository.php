@@ -39,49 +39,342 @@ class AnnonceRepository extends BaseRepository
         parent::__construct(new Annonce());
     }
 
-    /**
-     * Create a new annonce with related attributes and images.
-     *
-     * @param array $annonceData
-     * @param array $attributesData
-     * @return Annonce
-     */
-    public function createAnnonce(array $annonceData, array $attributesData): Annonce
+    public function filterAnnonces(array $filters, $perPage = 20)
     {
-        DB::beginTransaction();
+        // $query = Annonce::with([
+        //     'localization',
+        //     'user',
+        //     'images' => function ($query) {
+        //         $query->where('feature_img', 1);
+        //     },
+        // ])->where('status', Annonce::ACTIVE);
+        $query = Annonce::with([
+            'localization', // Location data
+            'user', // User data
+            'images' => function ($query) {
+                $query->where('feature_img', 1); // Only feature images
+            },
+            'attributesValue.attribute', // Load attributes through attributesValue
+            'category', // category data
+        ])->where('status', Annonce::ACTIVE);
 
-        try {
-            // Create the annonce
-            $annonce = parent::create($annonceData);
+        // dd($query->get());
+        $this->applyLocationFilter($query, $filters);
+        $this->applyTitleFilter($query, $filters);
+        $this->applyPriceFilter($query, $filters);
+        $this->applyMarqueFilter($query, $filters);
+        $this->applyModeleFilter($query, $filters);
+        $this->applyAnneeModeleFilter($query, $filters);
+        $this->applyTypeDeVehiculeFilter($query, $filters);
+        $this->applyCarburantFilter($query, $filters);
+        $this->applyBoiteVitesseFilter($query, $filters);
+        $this->applyKilometrageFilter($query, $filters);
+        $this->applyCritAirFilter($query, $filters);
+        // $this->applyPuissanceDinFilter($query, $filters);
+        $this->applyEtatDuVehiculeFilter($query, $filters);
+        // $this->applyPuissanceFiscaleFilter($query, $filters);
+        $this->applyNombrePortesFilter($query, $filters);
+        // $this->applyNombrePlaceFilter($query, $filters);
+        $this->applyCouleurFilter($query, $filters);
+        $this->applyPermisFilter($query, $filters);
+        $this->applytypeVendeurs($query, $filters);
 
-            // Insert attributes values
-            foreach ($attributesData as $attributeData) {
-                $attribute = Attribute::where('slug', $attributeData['slug'])->first();
-                if ($attribute) {
-                    // $option = AttributesOption::where('attribute_id', $attribute->id)
-                    // ->where('optionValue', $attributeData['attributeValue'])
-                    // ->first();
-                    $option = AttributesOption::where('id', $attributeData['attributeOption_id'])->first();
+        return $query->paginate($perPage);
+    }
 
-                    AnnonceAttributesValue::create([
-                        'annonce_id' => $annonce->id,
-                        'attribute_id' => $attribute->id,
-                        'attributeOption_id' => $attributeData['attributeOption_id'] ? $attributeData['attributeOption_id'] : null,
-                        'attributeValue' => $option ? $option->optionValue : $attribute->slug . ' value',
-                    ]);
-                }
-            }
-
-            // dd($annonceAttributesValues);
-
-            DB::commit();
-
-            return $annonce;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
+    private function applyLocationFilter($query, $filters)
+    {
+        // if (!empty($filters['location'])) {
+        //     $location = $filters['location'];
+        //     $query->whereHas('localization', function ($q) use ($location) {
+        //         $q->where('id', $location);
+        //     });
+        // }
+        if (!empty($filters['location'])) {
+            $location = $filters['location'];
+            $query->whereHas('localization', function ($q) use ($location) {
+                $q->where('localization', $location); // Match the localization string
+            });
         }
     }
+
+    private function applyTitleFilter($query, $filters)
+    {
+        if (!empty($filters['title'])) {
+            $title = $filters['title'];
+            $query->where('title', 'like', '%' . $title . '%');
+        }
+    }
+
+    private function applyPriceFilter($query, $filters)
+    {
+        if (!empty($filters['prixMin']) && !empty($filters['prixMax'])) {
+            $query->whereBetween('price', [$filters['prixMin'], $filters['prixMax']]);
+        } elseif (!empty($filters['prixMin'])) {
+            $query->where('price', '>=', $filters['prixMin']);
+        } elseif (!empty($filters['prixMax'])) {
+            $query->where('price', '<=', $filters['prixMax']);
+        }
+    }
+
+    private function applyMarqueFilter($query, $filters)
+    {
+        if (!empty($filters['marque'])) {
+            // Find the marque category by slug or name
+            $marqueCategory = Category::where('category_name', $filters['marque'])->first();
+
+            if ($marqueCategory) {
+                // Get all categories with parent_category_id = $marqueCategory->id
+                $categoryIds = Category::where('parent_category_id', $marqueCategory->id)
+                    ->pluck('id')
+                    ->toArray();
+
+                // Apply the filter using whereHas to filter by category relationship
+                $query->whereHas('category', function ($q) use ($categoryIds) {
+                    $q->whereIn('id', $categoryIds);
+                });
+            }
+        }
+    }
+
+    private function applyModeleFilter($query, $filters)
+    {
+        if (!empty($filters['modele']) && is_array($filters['modele'])) {
+            $modelNames = $filters['modele'];
+
+            // Get all category IDs that match the model names
+            $categoryIds = Category::whereIn('category_name', $modelNames)->pluck('id')->toArray();
+
+            // Apply the filter using whereHas to filter by category relationship
+            $query->whereHas('category', function ($q) use ($categoryIds) {
+                $q->whereIn('id', $categoryIds);
+            });
+        }
+    }
+
+    private function applyAnneeModeleFilter($query, $filters)
+    {
+        if (!empty($filters['anneeModeleMin']) || !empty($filters['anneeModeleMax'])) {
+            // Find the 'annee_modele' attribute
+            $anneeModeleAttribute = Attribute::where('slug', 'annee_modele')->first();
+
+            if ($anneeModeleAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($anneeModeleAttribute, $filters) {
+                    if (!empty($filters['anneeModeleMin']) && !empty($filters['anneeModeleMax'])) {
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->whereBetween('attributeValue', [$filters['anneeModeleMin'], $filters['anneeModeleMax']]);
+                    } elseif (!empty($filters['anneeModeleMin'])) {
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '>=', $filters['anneeModeleMin']);
+                    } elseif (!empty($filters['anneeModeleMax'])) {
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '<=', $filters['anneeModeleMax']);
+                    }
+                });
+            }
+        }
+    }
+
+    private function applyTypeDeVehiculeFilter($query, $filters)
+    {
+        if (!empty($filters['type_de_vehicule']) && is_array($filters['type_de_vehicule'])) {
+            // Find the 'type_de_vehicule' attribute
+            $typeDeVehiculeAttribute = Attribute::where('slug', 'type_vehicule')->first();
+
+            if ($typeDeVehiculeAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($typeDeVehiculeAttribute, $filters) {
+                    $q->where('attribute_id', $typeDeVehiculeAttribute->id)->whereIn('attributeValue', $filters['type_de_vehicule']);
+                });
+            }
+        }
+    }
+
+    private function applyCarburantFilter($query, $filters)
+    {
+        if (!empty($filters['carburant']) && is_array($filters['carburant'])) {
+            // Find the 'carburant' attribute
+            $carburantAttribute = Attribute::where('slug', 'carburant')->first();
+
+            if ($carburantAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($carburantAttribute, $filters) {
+                    $q->where('attribute_id', $carburantAttribute->id)->whereIn('attributeValue', $filters['carburant']);
+                });
+            }
+        }
+    }
+
+    private function applyBoiteVitesseFilter($query, $filters)
+    {
+        if (!empty($filters['boite_vitesse']) && is_array($filters['boite_vitesse'])) {
+            // Find the 'boite_vitesse' attribute
+            $boite_vitesseAttribute = Attribute::where('slug', 'boite_vitesse')->first();
+
+            if ($boite_vitesseAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($boite_vitesseAttribute, $filters) {
+                    $q->where('attribute_id', $boite_vitesseAttribute->id)->whereIn('attributeValue', $filters['boite_vitesse']);
+                });
+            }
+        }
+    }
+
+    private function applyKilometrageFilter($query, $filters)
+    {
+        if (!empty($filters['kilometrageMin']) || !empty($filters['kilometrageMax'])) {
+            // Find the 'kilometrage' attribute
+            $kilometrageAttribute = Attribute::where('slug', 'kilometrage')->first();
+
+            if ($kilometrageAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($kilometrageAttribute, $filters) {
+                    if (!empty($filters['kilometrageMin']) && !empty($filters['kilometrageMax'])) {
+                        $q->where('attribute_id', $kilometrageAttribute->id)->whereBetween('attributeValue', [$filters['kilometrageMin'], $filters['kilometrageMax']]);
+                    } elseif (!empty($filters['kilometrageMin'])) {
+                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '>=', $filters['kilometrageMin']);
+                    } elseif (!empty($filters['kilometrageMax'])) {
+                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '<=', $filters['kilometrageMax']);
+                    }
+                });
+            }
+        }
+    }
+
+    private function applyCritAirFilter($query, $filters)
+    {
+        if (!empty($filters['crit_air']) && is_array($filters['crit_air'])) {
+            // Find the 'crit_air' attribute
+            $crit_airAttribute = Attribute::where('slug', 'crit_air')->first();
+
+            if ($crit_airAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($crit_airAttribute, $filters) {
+                    $q->where('attribute_id', $crit_airAttribute->id)->whereIn('attributeValue', $filters['crit_air']);
+                });
+            }
+        }
+    }
+
+    private function applyPuissanceDinFilter($query, $filters)
+    {
+        if (!empty($filters['puissanceDinMin']) || !empty($filters['puissanceDinMax'])) {
+            // Find the 'puissance_DIN' attribute
+            $puissance_DINAttribute = Attribute::where('slug', 'puissance_DIN')->first();
+            // Build a query to filter based on attributesValue
+            $query->whereHas('attributesValue', function ($q) use ($puissance_DINAttribute, $filters) {
+                if (!empty($filters['puissanceDinMin']) && !empty($filters['puissanceDinMax'])) {
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->whereBetween('attributeValue', [$filters['puissanceDinMin'], $filters['puissanceDinMax']]);
+                } elseif (!empty($filters['puissanceDinMin'])) {
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '>=', $filters['puissanceDinMin']);
+                } elseif (!empty($filters['puissanceDinMax'])) {
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '<=', $filters['puissanceDinMax']);
+                }
+            });
+        }
+    }
+
+    private function applyEtatDuVehiculeFilter($query, $filters)
+    {
+        if (!empty($filters['etat_du_vehicule']) && is_array($filters['etat_du_vehicule'])) {
+            // Find the 'etat_du_vehicule' attribute
+            $etat_vehiculeAttribute = Attribute::where('slug', 'etat_du_vehicule')->first();
+
+            if ($etat_vehiculeAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($etat_vehiculeAttribute, $filters) {
+                    $q->where('attribute_id', $etat_vehiculeAttribute->id)->whereIn('attributeValue', $filters['etat_du_vehicule']);
+                });
+            }
+        }
+    }
+
+    private function applyPuissanceFiscaleFilter($query, $filters)
+    {
+        if (!empty($filters['puissanceFiscaleMin']) || !empty($filters['puissanceFiscaleMax'])) {
+            // Find the 'PuissanceFiscale' attribute
+            $PuissanceFiscaleAttribute = Attribute::where('slug', 'puissance_fiscale')->first();
+            // Build a query to filter based on attributesValue
+            $query->whereHas('attributesValue', function ($q) use ($PuissanceFiscaleAttribute, $filters) {
+                if (!empty($filters['puissanceFiscaleMin']) && !empty($filters['puissanceFiscaleMax'])) {
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->whereBetween('attributeValue', [$filters['puissanceFiscaleMin'], $filters['puissanceFiscaleMax']]);
+                } elseif (!empty($filters['puissanceFiscaleMin'])) {
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '>=', $filters['puissanceFiscaleMin']);
+                } elseif (!empty($filters['puissanceFiscaleMax'])) {
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '<=', $filters['puissanceFiscaleMax']);
+                }
+            });
+        }
+    }
+
+    private function applyNombrePortesFilter($query, $filters)
+    {
+        if (!empty($filters['nombre_de_portes']) && is_array($filters['nombre_de_portes'])) {
+            // Find the 'nombre_de_portes' attribute
+            $nombre_porteAttribute = Attribute::where('slug', 'nombre_porte')->first();
+
+            if ($nombre_porteAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($nombre_porteAttribute, $filters) {
+                    $q->where('attribute_id', $nombre_porteAttribute->id)->whereIn('attributeValue', $filters['nombre_de_portes']);
+                });
+            }
+        }
+    }
+
+    private function applyNombrePlaceFilter($query, $filters)
+    {
+        if (!empty($filters['nombre_de_place']) && is_array($filters['nombre_de_place'])) {
+            // Find the 'nombre_de_place' attribute
+            $NombrePlaceAttribute = Attribute::where('slug', 'nombre_place')->first();
+
+            if ($NombrePlaceAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($NombrePlaceAttribute, $filters) {
+                    $q->where('attribute_id', $NombrePlaceAttribute->id)->whereIn('attributeValue', $filters['nombre_de_place']);
+                });
+            }
+        }
+    }
+
+    private function applyCouleurFilter($query, $filters)
+    {
+        if (!empty($filters['couleur']) && is_array($filters['couleur'])) {
+            // Find the 'couleur' attribute
+            $CouleurAttribute = Attribute::where('slug', 'couleur')->first();
+
+            if ($CouleurAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($CouleurAttribute, $filters) {
+                    $q->where('attribute_id', $CouleurAttribute->id)->whereIn('attributeValue', $filters['couleur']);
+                });
+            }
+        }
+    }
+
+    private function applyPermisFilter($query, $filters)
+    {
+        if (!empty($filters['permis']) && is_array($filters['permis'])) {
+            // Find the 'Permis' attribute
+            $PermisAttribute = Attribute::where('slug', 'permis')->first();
+
+            if ($PermisAttribute) {
+                // Build a query to filter based on attributesValue
+                $query->whereHas('attributesValue', function ($q) use ($PermisAttribute, $filters) {
+                    $q->where('attribute_id', $PermisAttribute->id)->whereIn('attributeValue', $filters['permis']);
+                });
+            }
+        }
+    }
+    private function applytypeVendeurs($query, $filters)
+    {
+        if (!empty($filters['typeVendeurs']) && is_array($filters['typeVendeurs'])) {
+            $sellerTypes = $filters['typeVendeurs'];
+            $query->whereHas('user', function ($q) use ($sellerTypes) {
+                $q->whereIn('id', $sellerTypes);
+
+            });
+        }
+    }
+
     /**
      * Crée un nouvel élément.
      *
@@ -109,85 +402,6 @@ class AnnonceRepository extends BaseRepository
 
         // Call the parent create method with the modified data
         return parent::create($data);
-    }
-
-    public function UpdateStatus($data, $status)
-    {
-        // if (isset($data)) {
-        //     $data["status"] = $status;
-        // }
-        // parent::create($data);
-    }
-
-    public function AnnoncesListings(int $perpage = 10)
-    {
-        // First, get the paginated raw results
-        $paginator = DB::table('annonces as a')
-            ->join('annonce_attributes_values as atv', 'a.id', '=', 'atv.annonce_id')
-            ->join('attributes as att', 'atv.attribute_id', '=', 'att.id')
-            ->join('localizations as l', 'a.localization_id', '=', 'l.id')
-            ->join('users as u', 'a.user_id', '=', 'u.id') // Join with the users table to get sellerType
-            ->leftJoin('images as i', function ($join) {
-                $join->on('a.id', '=', 'i.annonce_id')->where('i.feature_img', '=', 1);
-            })
-            ->whereIn('att.slug', ['annee_modele', 'kilometrage', 'carburant', 'boite_vitesse'])
-            ->where('a.status', '=', Annonce::ACTIVE) // Filter by status
-            ->select(
-                'a.id as annonce_id',
-                'a.user_id',
-                'a.boutique_id',
-                'a.category_id',
-                'a.localization_id',
-                'l.localization',
-                'a.title as annonce_title',
-                'a.price as annonce_price',
-                'a.publication_date as annonce_publication_date',
-                'u.sellerType as seller_type', // Select sellerType from the users table
-                'att.id as attribute_id',
-                'att.name as attribute_name',
-                'att.type as attribute_type',
-                'atv.attributeValue as attribute_value',
-                'i.path as feature_img_path',
-                'i.alt as feature_img_alt',
-            )
-            ->orderBy('a.publication_date', 'desc') // Order by publication date
-            ->paginate($perpage);
-
-        // Get the items from the paginator
-        $rawResults = collect($paginator->items());
-
-        // Group and transform the raw results
-        $transformedResults = $rawResults->groupBy('annonce_id')->map(function ($items) {
-            $firstItem = $items->first(); // Get the first item to extract common fields
-
-            return (object) [
-                'annonce_id' => $firstItem->annonce_id,
-                'user_id' => $firstItem->user_id,
-                'boutique_id' => $firstItem->boutique_id,
-                'category_id' => $firstItem->category_id,
-                'localization_id' => $firstItem->localization_id,
-                'localization' => $firstItem->localization,
-                'annonce_title' => $firstItem->annonce_title,
-                'annonce_price' => $firstItem->annonce_price,
-                'annonce_publication_date' => $firstItem->annonce_publication_date,
-                'seller_type' => $firstItem->seller_type, // Include sellerType
-                'attributes' => $items->map(function ($item) {
-                    return (object) [
-                        'attribute_id' => $item->attribute_id,
-                        'attribute_name' => $item->attribute_name,
-                        'attribute_type' => $item->attribute_type,
-                        'attribute_value' => $item->attribute_value,
-                    ];
-                }),
-                'feature_img_path' => $firstItem->feature_img_path, // Include the featured image path
-                'feature_img_alt' => $firstItem->feature_img_alt, // Include the featured image alt text
-            ];
-        });
-
-        // Replace the items in the paginator with the transformed results
-        $paginator->setCollection($transformedResults);
-
-        return $paginator;
     }
 
     public function getAnnonceDetails($annonceId)
@@ -319,5 +533,4 @@ class AnnonceRepository extends BaseRepository
 
         return null;
     }
-
 }

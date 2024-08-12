@@ -63,9 +63,9 @@
             {{-- </div>  --}}
 
             <div class="autocompleteInput input-container col-sm ">
-                <input type="text" data-array="location" name="location"
+                <input type="text" id="locationInput" data-array="location" name="location"
                     class="form-control @error('location') is-invalid @enderror"
-                    placeholder="{{ __('input.location_placeholder') }}" readonly value="">
+                    placeholder="{{ __('input.location_placeholder') }}" readonly value="{{ request()->input('location') }}">
                 <ul class="dropdown-menu w-100 p-2">
                     <div class="sticky-container">
                         <div class="search-container">
@@ -88,7 +88,7 @@
         {{-- // START ******** TITLE input ********* --}}
         <div class="col-md-4 px-2 my-2">
             <div class="autocompleteSearch input-container">
-                <input type="text" data-array="title" name="title" class="form-control py-2" placeholder="Recherche"
+                <input type="text" id="titleInput" data-array="title" name="title" class="form-control py-2" placeholder="Recherche"
                     value="">
             </div>
         </div>
@@ -212,7 +212,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <form id="filterSearchForm" method="GET" action="#">
+            <form id="filterSearchForm" method="GET" action="{{ route('listings') }}">
                 <hr class="LineHR mt-0 mb-3">
 
                 <!-- Prix -->
@@ -274,7 +274,7 @@
                         <label class="form-label canvasedMainLabel">Modèle</label>
                         <div class="" id="models">
 
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="modele[]" id="modele1"
                                     value="Modèle1">
                                 <label class="form-check-label" for="modele1">Modèle1</label>
@@ -383,7 +383,7 @@
                                 <input class="form-check-input" type="checkbox" name="modele[]" id="modele22"
                                     value="Modèle22">
                                 <label class="form-check-label" for="modele22">Modèle22</label>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- Add more checkboxes here -->
                     </div>
@@ -944,7 +944,7 @@
                                     <div class="">
                                         <p class="m-0 listAttributesColor">{{ $attribute->attribute_name }} : <span
                                                 class="m-0 dark color">{{ $attribute->attribute_value }}</span> </p>
-        
+
                                     </div>
                                 @endforeach
                             </div> --}}
@@ -997,6 +997,28 @@
 
 @push('third_party_scripts')
     <script src="{{ asset('assets/scripts/ListingFilter.js') }}"></script>
+
+    <script>
+        document.getElementById('filterSearchForm').addEventListener('submit', function(event) {
+            var titleInput = document.getElementById('titleInput').value;
+            var locationInput = document.getElementById('locationInput').value;
+            // Create a hidden titleinput
+            var hiddenTitleInput = document.createElement('input');
+            hiddenTitleInput.type = 'hidden';
+            hiddenTitleInput.name = 'title';
+            hiddenTitleInput.value = titleInput;
+
+            // Create a hidden locationInput
+            var hiddenLocationInput = document.createElement('input');
+            hiddenLocationInput.type = 'hidden';
+            hiddenLocationInput.name = 'location';
+            hiddenLocationInput.value = locationInput;
+
+            // Append the hidden input to the form
+            this.appendChild(hiddenTitleInput);
+            this.appendChild(hiddenLocationInput);
+        });
+    </script>
 
     <script>
         let filtersData = {
@@ -1166,7 +1188,7 @@
 
         function updateModelOptions(models) {
             const modelContainer = document.getElementById(
-            'models'); // Ensure you have an element with this ID to display models
+                'models'); // Ensure you have an element with this ID to display models
             modelContainer.innerHTML = ""; // Clear existing content
 
             models.forEach((model, index) => {

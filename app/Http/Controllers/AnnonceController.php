@@ -168,18 +168,25 @@ class AnnonceController extends Controller
         }
     }
 
-    public function listings()
+    public function listings(Request $request)
     {
         // TODO need to hundel exception
-        $annonceListings = Annonce::with([
-            'localization',
-            'user',
-            'images' => function ($query) {
-                $query->where('feature_img', 1);
-            }
-        ])->where('status', Annonce::ACTIVE)->paginate(20);
+        // dd($request);
+        $filters = $request->only(['location', 'title', 'prixMin', 'prixMax', 'marque', 'modele', 'anneeModeleMin', 'anneeModeleMax', 'type_de_vehicule', 'carburant', 'boite_vitesse', 'kilometrageMin', 'kilometrageMax', 'crit_air', 'puissanceDinMin', 'puissanceDinMax', 'etat_du_vehicule', 'puissanceFiscaleMin', 'puissanceFiscaleMax', 'nombre_de_portes', 'nombre_de_place', 'couleur', 'permis', 'tri', 'typeVendeurs']);
+        // $annonceListings = Annonce::with([
+        //     'localization',
+        //     'user',
+        //     'images' => function ($query) {
+        //         $query->where('feature_img', 1);
+        //     },
+        // ])
+        //     ->where('status', Annonce::ACTIVE)
+        //     ->paginate(20);
+        $annonceListings = $this->annonceRepository->filterAnnonces($filters);
+        // dd($annonceListings);
         // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
-        $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+        // $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+        $annoncesCount = $annonceListings->total();
         return view('listings', compact('annonceListings', 'annoncesCount'));
     }
 
