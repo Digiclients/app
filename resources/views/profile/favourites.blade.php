@@ -1,11 +1,11 @@
 @extends('layouts.profile.app')
 
 @push('third_party_stylesheets')
-<style>
-    .CustomPagination nav ul {
-justify-content: end !important;
-}
-</style>
+    <style>
+        .CustomPagination nav ul {
+            justify-content: end !important;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -65,261 +65,150 @@ justify-content: end !important;
             <!-- ################  START list ad-card ################ -->
 
 
+{{-- 
+
+            <div class="table-responsive pt-2">
+                <table class="table CustomTable m-0">
+    
+    
+    
+                    <thead>
+                        <tr>
+                            <th class="text-capitalize "> Titre
+
+    
+                            </th>
+                   
+                            <th class="text-start text-capitalize">Prix
+             
+                            </th>
+                            <th class="text-start d-none d-md-table-cell text-capitalize">Temps de publication
+    
+                            </th>
+    
+                            <th class="text-start text-capitalize">Actions
+    
+    
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        @forelse ($annonces as $annonce)
+                            <tr>
+                                <td>
+                                    <div class="d-flex my-auto">
+                                        <div class="my-auto">
+                                            <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
+                                                alt="{{ $annonce->images->first()->alt }}" class="d-flex mx-auto rounded"
+                                                width="40">
+                                        </div>
+                                        <div class="px-2 my-auto">
+                                            <p class="my-0 fontw600 graycolor AnounceTitle">{{ $annonce->title }}</p>
+                                        </div>
+                                    </div>
+    
+                                </td>
+                                <td class="text-start">{{ number_format($annonce->price, 2, ',', ' ') }} €</td>
+                                <td class="text-start d-none d-md-table-cell">
+                                    {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</td>
+                                <td class="text-start">
+    
+    
+                                    <div class="my-auto d-flex">
+    
+    
+                                        <a href="{{ route('annonce.show', $annonce->id) }}" class=""><iconify-icon
+                                                class="iconify graycolor font22 me-2" icon="tabler:eye"></iconify-icon></a>
+                                        <a href="{{ route('annonce.edit', $annonce->id) }}" class="">
+                                            <iconify-icon class="iconify graycolor font22 mx-2"
+                                                icon="tabler:pencil"></iconify-icon>
+    
+    
+                                        </a>
+    
+                                        <!-- Link with icon -->
+                                        <a href="#" class="delete-confirm">
+                                            <iconify-icon class="iconify graycolor font22 mx-2"
+                                                icon="tabler:trash"></iconify-icon>
+                                        </a>
+    
+                                        <!-- Hidden form -->
+                                        <form action="{{ route('annonce.delete', $annonce->id) }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
+    
+    
+    
+    
+                                </td>
+                            </tr>
+    
+                        @empty
+                        @endforelse
+    
+    
+    
+    
+                    </tbody>
+    
+    
+    
+                </table>
+            </div>
+     --}}
+    
+{{-- 
+        <!-- START Listing Pagination -->
+        <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
+            {{ $annonces->links() }}
+        </div> --}}
 
 
+        {{-- <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.delete-confirm').forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent the default link behavior
+                        if (confirm('Êtes-vous sûr de vouloir supprimer ce annonce ?')) {
+                            // Find the corresponding form and submit it
+                            const form = this.nextElementSibling; // Assumes form is the next sibling
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        </script> --}}
 
 
-            <a href="/singleListPage.html" class="ad-card my-2">
-                <div class="image-container">
-                    <img src="https://img.leboncoin.fr/api/v1/lbcpb1/images/e4/6f/ca/e46fca9b9944d25f0eb95bfaa16e8ff1d8aaf087.jpg?rule=ad-image"
-                        alt="Car">
-                    <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris"
-                        title="Ajouter l’annonce aux favoris">
-                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
-                            style="width: 18px;height: 18px;"></iconify-icon>
-                    </button>
-                </div>
-                <div class="content">
-                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté</h5>
-
-                    <div class="details d-flex gap-3">
-                        <div>
-                            <p class="m-0 listAttributesColor">Année</p>
-                            <p class="m-0">2023</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Kilométrage</p>
-                            <p class="m-0">18500 km</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Carburant</p>
-                            <p class="m-0">Essence</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Boîte de vitesse</p>
-                            <p class="m-0">Manuelle</p>
-                        </div>
-
-
-                    </div>
-
-                    <h6 class="pt-3">15 400 €</h6>
-                    <div>
-                        <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                    </div>
-
-                    <p class="location listAttributesColor">Saint-Jean-de-Luz 64500</p>
-                </div>
-            </a>
-
-            <hr class="ListingLineHR">
-
-            <!-- ################  END list ################ -->
-
-
-            <a href="/singleListPage.html" class="ad-card my-2">
-                <div class="image-container">
-                    <img src="https://img.leboncoin.fr/api/v1/lbcpb1/images/e4/6f/ca/e46fca9b9944d25f0eb95bfaa16e8ff1d8aaf087.jpg?rule=ad-image"
-                        alt="Car">
-                    <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris"
-                        title="Ajouter l’annonce aux favoris">
-                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
-                            style="width: 18px;height: 18px;"></iconify-icon>
-                    </button>
-                </div>
-                <div class="content">
-                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté</h5>
-
-                    <div class="details d-flex gap-3">
-                        <div>
-                            <p class="m-0 listAttributesColor">Année</p>
-                            <p class="m-0">2023</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Kilométrage</p>
-                            <p class="m-0">18500 km</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Carburant</p>
-                            <p class="m-0">Essence</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Boîte de vitesse</p>
-                            <p class="m-0">Manuelle</p>
-                        </div>
-
-
-                    </div>
-
-                    <h6 class="pt-3">15 400 €</h6>
-                    <div>
-                        <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                    </div>
-
-                    <p class="location listAttributesColor">Saint-Jean-de-Luz 64500</p>
-                </div>
-            </a>
-
-            <hr class="ListingLineHR">
-
-
-
-
-
-            <a href="/singleListPage.html" class="ad-card my-2">
-                <div class="image-container">
-                    <img src="https://img.leboncoin.fr/api/v1/lbcpb1/images/e4/6f/ca/e46fca9b9944d25f0eb95bfaa16e8ff1d8aaf087.jpg?rule=ad-image"
-                        alt="Car">
-                    <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris"
-                        title="Ajouter l’annonce aux favoris">
-                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
-                            style="width: 18px;height: 18px;"></iconify-icon>
-                    </button>
-                </div>
-                <div class="content">
-                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté</h5>
-
-                    <div class="details d-flex gap-3">
-                        <div>
-                            <p class="m-0 listAttributesColor">Année</p>
-                            <p class="m-0">2023</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Kilométrage</p>
-                            <p class="m-0">18500 km</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Carburant</p>
-                            <p class="m-0">Essence</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Boîte de vitesse</p>
-                            <p class="m-0">Manuelle</p>
-                        </div>
-
-
-                    </div>
-
-                    <h6 class="pt-3">15 400 €</h6>
-                    <div>
-                        <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                    </div>
-
-                    <p class="location listAttributesColor">Saint-Jean-de-Luz 64500</p>
-                </div>
-            </a>
-
-            <hr class="ListingLineHR">
-
-
-
-
-            <a href="/singleListPage.html" class="ad-card my-2">
-                <div class="image-container">
-                    <img src="https://img.leboncoin.fr/api/v1/lbcpb1/images/e4/6f/ca/e46fca9b9944d25f0eb95bfaa16e8ff1d8aaf087.jpg?rule=ad-image"
-                        alt="Car">
-                    <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris"
-                        title="Ajouter l’annonce aux favoris">
-                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
-                            style="width: 18px;height: 18px;"></iconify-icon>
-                    </button>
-                </div>
-                <div class="content">
-                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté</h5>
+{{-- <script>
+    function limitCharactersByClass(className, maxLength) {
+        const elements = document.querySelectorAll(`.${className}`);
 
-                    <div class="details d-flex gap-3">
-                        <div>
-                            <p class="m-0 listAttributesColor">Année</p>
-                            <p class="m-0">2023</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Kilométrage</p>
-                            <p class="m-0">18500 km</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Carburant</p>
-                            <p class="m-0">Essence</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Boîte de vitesse</p>
-                            <p class="m-0">Manuelle</p>
-                        </div>
+        elements.forEach(element => {
+            const text = element.textContent;
 
+            if (text.length > maxLength) {
+                element.textContent = text.substring(0, maxLength) + '...'; // Adds '...' to indicate truncation
+            }
+        });
+    }
 
-                    </div>
+    document.addEventListener('DOMContentLoaded', () => {
+        limitCharactersByClass('AnounceTitle', 32); // Set maximum characters
+    });
+</script> --}}
 
-                    <h6 class="pt-3">15 400 €</h6>
-                    <div>
-                        <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                    </div>
 
-                    <p class="location listAttributesColor">Saint-Jean-de-Luz 64500</p>
-                </div>
-            </a>
 
-            <hr class="ListingLineHR">
 
 
 
 
-
-            <a href="/singleListPage.html" class="ad-card my-2">
-                <div class="image-container">
-                    <img src="https://img.leboncoin.fr/api/v1/lbcpb1/images/e4/6f/ca/e46fca9b9944d25f0eb95bfaa16e8ff1d8aaf087.jpg?rule=ad-image"
-                        alt="Car">
-                    <button class="favorite-button d-flex align-items-center" aria-label="Ajouter l’annonce aux favoris"
-                        title="Ajouter l’annonce aux favoris">
-                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
-                            style="width: 18px;height: 18px;"></iconify-icon>
-                    </button>
-                </div>
-                <div class="content">
-                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté</h5>
-
-                    <div class="details d-flex gap-3">
-                        <div>
-                            <p class="m-0 listAttributesColor">Année</p>
-                            <p class="m-0">2023</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Kilométrage</p>
-                            <p class="m-0">18500 km</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Carburant</p>
-                            <p class="m-0">Essence</p>
-                        </div>
-                        <div>
-                            <p class="m-0 listAttributesColor">Boîte de vitesse</p>
-                            <p class="m-0">Manuelle</p>
-                        </div>
-
-
-                    </div>
-
-                    <h6 class="pt-3">15 400 €</h6>
-                    <div>
-                        <span class="badge rounded-pill bgBadgeGrayColor darkcolor">Paiement sécurisé</span>
-                    </div>
-
-                    <p class="location listAttributesColor">Saint-Jean-de-Luz 64500</p>
-                </div>
-            </a>
-
-            <hr class="ListingLineHR">
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
 
 
 

@@ -277,11 +277,11 @@
 
 
         /* .anouncePhotos img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        max-height: 320px;
-                    } */
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            max-height: 320px;
+                        } */
 
 
         .anouncePhotos img {
@@ -302,8 +302,15 @@
     </style>
     <style>
         .Attributes .attr {
-            width: 255px;
+            width: 50%;
         }
+
+        @media (max-width: 562px) {
+    /* Your CSS rules here */
+    .Attributes .attr {
+            width: 100%;
+        }
+}
     </style>
 @endpush
 @section('content')
@@ -343,7 +350,7 @@
 
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="col-lg-12 mt-3 mt-lg-0 anouncePhotos pe-3">
+                        <div class="col-lg-12 mt-3 mt-lg-0 anouncePhotos bgLight  pe-3">
                             <div class="swiper ImagesSwiper">
                                 <div class="swiper-wrapper">
                                     <!-- Group images together using the same 'data-fancybox' attribute -->
@@ -384,12 +391,44 @@
                             {{ $annonceDetails->attributes->where('attribute_slug', 'carburant')->first()->attribute_value ?? '' }}
                             • --}}
                                 </p>
-                                <p class="font18 fontwbold">{{ number_format($annonceDetails->annonce_price) }}€</p>
+                                <p class="font24 mb-2 fontwbold">{{ number_format($annonceDetails->annonce_price) }} €</p>
                                 <p class="graycolor font12">{{ $annonceDetails->annonce_publication_date }}</p>
                             </div>
                             <!-- END priceAndTitle -->
                             <hr class="ListingLineHR">
 
+
+                            <!-- Start USERCONTACT -->
+                            <div class="USERCONTACT"> 
+                                <div class="border p-3 bgwhite  rounded d-flex flex-wrap align-items-center justify-content-between">
+
+                                    <div class="d-flex align-items-center gap-3 mx-auto mx-md-0">
+                                        <img class="img-fluid rounded-circle" width="80"
+                                            src="https://img.leboncoin.fr/api/v1/lbcpb1/images/0d/84/76/0d847602-1050-4598-8171-f8e635bf4b20?rule=bo-thumb"
+                                            alt="Chancellor Bell-img">
+
+                                        <div class="pt-2">
+                                            <h4 class="font18 darkcolor fontwbold m-0">Chancellor Bell</h4>
+                                            <p class="m-0">1 annonces</p>
+                                            <div style="width: 55px;">
+                                                <span class="badge proBadge rounded-pill">Pro</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <button type="button" class="primarybtnoutline mb-2 mt-4 mt-md-2 d-block mx-auto mx-md-0"
+                                        id="d-phone" data-phone="+1 (234) 442-7915">Voir le
+                                        numéro</button>
+
+                                </div>
+                            </div>
+
+                            <!-- END  USERCONTACT -->
+
+
+                            <hr class="ListingLineHR">
                             <!-- START Attributes -->
 
                             <div class="Attributes my-4">
@@ -397,9 +436,9 @@
                                 <div class="row">
 
                                     @foreach ($annonceDetails->attributes as $attributes)
-                                        <div class="attr col-sm-4">
-                                            <p class="font12 m-0 graycolor">{{ $attributes->attribute_name }}</p>
-                                            <p class="font16 darkcolor fontw600">{{ $attributes->attribute_value }}</p>
+                                        <div class="attr col-sm-4 px-2 py-1 d-flex align-items-center justify-content-between">
+                                            <p class="font16 darkcolor m-0 fontw600">{{ $attributes->attribute_name }}</p>
+                                            <p class="font16 m-0 graycolor">{{ $attributes->attribute_value }}</p>
                                         </div>
                                     @endforeach
 
@@ -436,7 +475,7 @@
                             <hr class="ListingLineHR">
 
                             <!-- START Anounces Like this -->
-                            <div class="AnouncesLikethis my-4">
+                            <div class="AnouncesLikethis my-4 d-none">
                                 <h3 class="font18 darkcolor py-2">Ces annonces peuvent vous intéresser</h3>
                                 <!-- Swiper -->
                                 <div class="swiper RelatedAnouncesSwiper">
@@ -483,7 +522,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="content">
-                                                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110 cté
+                                                    <h5 class="mt-4 mt-lg-0">Dacia Sandero 2023 stepway expression + 110
+                                                        cté
                                                     </h5>
                                                     <h6>15 400 €</h6>
                                                     <div>
@@ -725,7 +765,7 @@
                     <div class="row col-lg-4 align-content-start">
 
 
-                        <div class="col-lg-12 sticky-top  whitebg mt-3 mt-lg-0  ps-3" style="top: 12%;">
+                        <div class="col-lg-12  d-none sticky-top  whitebg mt-3 mt-lg-0  ps-3" style="top: 12%;">
                             <div class="border p-3 bgwhite  rounded">
 
                                 <div class="d-flex align-items-center gap-3">
@@ -755,7 +795,7 @@
 
 
 
-                        <section class="ADS col-lg-12 px-4 px-xl-0 pt-5 container-fluid row justify-content-center">
+                        <section class="ADS sticky-top col-lg-12 px-4 px-xl-0 pt-5 container-fluid row justify-content-center" style="top: 12%;">
 
                             <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
 

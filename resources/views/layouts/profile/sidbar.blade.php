@@ -19,10 +19,18 @@
                                     @csrf
                                     <div class="upload-link" title="Update" data-bs-toggle="tooltip"
                                         data-placement="right" data-bs-original-title="Update">
-                                        <input type="file" name="avatar" class="update-file"
-                                            onchange="this.form.submit()">
-                                        <i><iconify-icon icon="fluent:camera-16-filled" width="24"
+                                        <i><iconify-icon id="uploadButton" icon="fluent:camera-16-filled" width="24"
                                                 style="width: 22px;height: 20px;"></iconify-icon></i>
+                                        <input id="fileInput" type="file" name="avatar" class="update-file"
+                                            onchange="this.form.submit()">
+                                        <script>
+                                            const uploadButton = document.getElementById('uploadButton');
+                                            const fileInput = document.getElementById('fileInput');
+
+                                            uploadButton.addEventListener('click', function() {
+                                                fileInput.click(); // Trigger the file input click
+                                            });
+                                        </script>
                                     </div>
                                 </form>
                             </div>
@@ -30,7 +38,9 @@
                                 <div class="">
                                     <h4 class="m-b5"><a href="javascript:void(0);"> {{ Auth::user()->name }}</a></h4>
                                     @if (isset($boutique))
-                                        <a href="{{ route('boutique', ['boutiqueId' => $boutique->id, 'slug' => $boutique->slug]) }}">{{$boutique->slug}} <iconify-icon icon="majesticons:open"></iconify-icon></a>
+                                        <a
+                                            href="{{ route('boutique', ['boutiqueId' => $boutique->id, 'slug' => $boutique->slug]) }}">{{ $boutique->slug }}
+                                            <iconify-icon icon="majesticons:open"></iconify-icon></a>
                                     @endif
                                 </div>
                             </div>
@@ -53,7 +63,8 @@
                             <li><a href="{{ route('create-annonce') }}"
                                     class="{{ Request::is('deposer-une-annonce') ? 'active' : '' }}">
                                     <span>Déposer une annonce</span></a></li>
-                            <li><a href="{{ route('logout') }}" class="dangercolor logOut" onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
+                            <li><a href="{{ route('logout') }}" class="dangercolor logOut"
+                                    onclick="event.preventDefault(); document.getElementById('logout_form').submit();">
                                     <span class="dangercolor">Se déconnecter</span></a></li>
                             <form id="logout_form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

@@ -360,3 +360,19 @@
         {{-- <button type="submit" class="btn btn-primary">{{ __('input.next') }}</button> --}}
     </div>
 </form>
+
+
+
+<script>
+     
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.getElementById('annee_modele');
+      const currentYear = new Date().getFullYear();
+      const minYear = 1850;
+      const maxYear = currentYear + 1;
+      
+      input.setAttribute('min', minYear);
+      input.setAttribute('max', maxYear);
+    });
+  
+</script>
