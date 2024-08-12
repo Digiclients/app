@@ -28,18 +28,23 @@ Route::get('/regions', [ApiController::class, 'getRegions'])->name('getRegions')
 Route::get('/search-leboncoin-cities', [ApiController::class, 'searchLeboncoinCities']);
 // Route::get('/search-leboncoin-titles', [ApiController::class, 'searchByTitle']);
 
-
-
 Route::post('/generate-shareable-link', [ShareableLinkController::class, 'generateShareableLink'])->name('generateShareableLink');
 
-Route::get('/marques', [ApiController::class, 'getMarques'])->name('getMarques');
+
+
 
 Route::get('/locations', [ApiController::class, 'getLocations'])->name('getLocations');
 
+Route::get('/marques', [ApiController::class, 'getMarques'])->name('getMarques');
+
 Route::get('/models/{marqueName}', [ApiController::class, 'getModels'])->name('getModels');
 
-
 Route::get('/attributes-options', [ApiController::class, 'getAttributesOptions'])->name('getAttributesOptions');
+
+
+
+
+
 
 
 Route::post('/upload-image/{annonceId}', [AnnonceController::class, 'uploadImage'])->name('uploadImage');

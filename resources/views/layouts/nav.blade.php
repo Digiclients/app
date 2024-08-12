@@ -101,14 +101,12 @@
                                 <hr class="graycolor my-0">
 
                                 <!-- {{-- START profile dropDown item --}} -->
-                                {{-- @hasanyrole('particulier') --}}
-                                    <a href="{{ route('profile.annonces') }}"
-                                        class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
-                                        <div class="w-100 mx-2">
-                                            <p class="darkcolor my-0 text-center">Mes annonces</p>
-                                        </div>
-                                    </a>
-                                {{-- @endhasanyrole --}}
+                                <a href="{{ route('profile.annonces') }}"
+                                    class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
+                                    <div class="w-100 mx-2">
+                                        <p class="darkcolor my-0 text-center">Mes annonces</p>
+                                    </div>
+                                </a>
                                 <!-- {{-- END profile dropDown item --}} -->
 
                                 <hr class="graycolor my-0">

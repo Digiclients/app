@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Image;
 use App\Models\Option;
 use App\Models\Annonce;
+use App\Models\Category;
 use App\Models\Attribute;
 use App\Models\AttributesOption;
 use Illuminate\Support\Facades\DB;
@@ -274,76 +275,49 @@ class AnnonceRepository extends BaseRepository
         return $groupedResults->first();
     }
 
-
-    public function UserAnnonces($user_id, int $perpage = 10)
+    public function getCategoryDetails($annonce)
     {
-        $paginator = DB::table('annonces as a')
-            ->join('annonce_attributes_values as atv', 'a.id', '=', 'atv.annonce_id')
-            ->join('attributes as att', 'atv.attribute_id', '=', 'att.id')
-            ->join('localizations as l', 'a.localization_id', '=', 'l.id')
-            ->join('users as u', 'a.user_id', '=', 'u.id') // Join with the users table to get sellerType
-            ->leftJoin('images as i', function ($join) {
-                $join->on('a.id', '=', 'i.annonce_id')->where('i.feature_img', '=', 1);
-            })
-            ->whereIn('att.slug', ['annee_modele', 'kilometrage', 'carburant', 'boite_vitesse'])
-            ->where('a.status', '=', Annonce::ACTIVE) // Filter by status
-            ->where('a.user_id', '=', $user_id) // Filter by user_id
-            ->select(
-                'a.id as annonce_id',
-                'a.user_id',
-                'a.boutique_id',
-                'a.category_id',
-                'a.localization_id',
-                'l.localization',
-                'a.title as annonce_title',
-                'a.price as annonce_price',
-                'a.publication_date as annonce_publication_date',
-                'u.sellerType as seller_type', // Select sellerType from the users table
-                'att.id as attribute_id',
-                'att.name as attribute_name',
-                'att.type as attribute_type',
-                'atv.attributeValue as attribute_value',
-                'i.path as feature_img_path',
-                'i.alt as feature_img_alt'
-            )
-            ->orderBy('a.publication_date', 'desc') // Order by publication date
-            ->paginate($perpage);
+        // Find the category by ID
+        $category = Category::find($annonce->category_id);
 
-        // Get the items from the paginator
-        $rawResults = collect($paginator->items());
+        if (!$category) {
+            return abort(404, 'Category not found');
+        }
 
-        // Group and transform the raw results
-        $transformedResults = $rawResults->groupBy('annonce_id')->map(function ($items) {
-            $firstItem = $items->first(); // Get the first item to extract common fields
+        // Fetch the category name
+        $categoryName = $category->category_name;
 
-            return (object) [
-                'annonce_id' => $firstItem->annonce_id,
-                'user_id' => $firstItem->user_id,
-                'boutique_id' => $firstItem->boutique_id,
-                'category_id' => $firstItem->category_id,
-                'localization_id' => $firstItem->localization_id,
-                'localization' => $firstItem->localization,
-                'annonce_title' => $firstItem->annonce_title,
-                'annonce_price' => $firstItem->annonce_price,
-                'annonce_publication_date' => $firstItem->annonce_publication_date,
-                'seller_type' => $firstItem->seller_type, // Include sellerType
-                'attributes' => $items->map(function ($item) {
-                    return (object) [
-                        'attribute_id' => $item->attribute_id,
-                        'attribute_name' => $item->attribute_name,
-                        'attribute_type' => $item->attribute_type,
-                        'attribute_value' => $item->attribute_value,
-                    ];
-                }),
-                'feature_img_path' => $firstItem->feature_img_path, // Include the featured image path
-                'feature_img_alt' => $firstItem->feature_img_alt, // Include the featured image alt text
-            ];
-        });
+        // Fetch the first parent category where main_category = 1
+        $parentCategory = $this->findParentCategory($category->parent_category_id);
 
-        // Replace the items in the paginator with the transformed results
-        $paginator->setCollection($transformedResults);
+        // Get the parent category name
+        $parentCategoryName = $parentCategory ? $parentCategory->category_name : null;
 
-        return $paginator;
+        return [
+            'category_name' => $categoryName,
+            'parent_category_id' => $parentCategory ? $parentCategory->id : null,
+            'parent_category_name' => $parentCategoryName,
+        ];
+    }
+
+    private function findParentCategory($parentCategoryId)
+    {
+        while ($parentCategoryId) {
+            $parentCategory = Category::find($parentCategoryId);
+
+            if (!$parentCategory) {
+                return null;
+            }
+
+            if ($parentCategory->main_category == 1) {
+                return $parentCategory;
+            }
+
+            // Move to the next parent in the hierarchy
+            $parentCategoryId = $parentCategory->parent_category_id;
+        }
+
+        return null;
     }
 
 }

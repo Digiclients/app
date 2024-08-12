@@ -2,14 +2,31 @@
 
 
 @push('third_party_stylesheets')
-<style>
-    .CustomPagination nav ul {
-justify-content: end !important;
-}
-</style>
+    <style>
+        .CustomPagination nav ul {
+            justify-content: end !important;
+        }
+    </style>
 @endpush
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endforeach
+    @endif
+
+
     <div class="">
         <h5 class="font-weight-700 float-start text-uppercase">Mes annonces ( <span class="anouncesNumber"></span> )</h5>
         <a href="index.html" class="site-button right-arrow button-sm float-end">Back</a>
@@ -22,9 +39,9 @@ justify-content: end !important;
 
     <div class="rounded text-center border p-4 shadow-sm mt-4">
         <p class="darkcolor font18 fontw600 m-0">Vous n'avez pas d'annonces</p>
-<div class="d-block py-4 mx-auto">
-    <a type="button" href="{{ route('create-annonce') }}" class="primarybtn mt-3  mx-auto">Déposer une annonce</a>
-</div>
+        <div class="d-block py-4 mx-auto">
+            <a type="button" href="{{ route('create-annonce') }}" class="primarybtn mt-3  mx-auto">Déposer une annonce</a>
+        </div>
 
     </div>
     <!-- ################ END IF NO ANOUNCE IS IN THE DB DISPLAY THIS ################# -->
@@ -83,7 +100,7 @@ justify-content: end !important;
 
                         </th>
                         {{-- <th class="text-start text-capitalize">Id --}}
-                            {{-- <div class="sortby ms-auto d-flex float-end">
+                        {{-- <div class="sortby ms-auto d-flex float-end">
                                     <a href="#" class="">
                                         <span class="iconify textcolor font22 me-1" data-rotate="270deg" data-flip="horizontal"
                                             data-icon="material-symbols:arrow-right-alt-rounded"></span>
@@ -126,67 +143,59 @@ justify-content: end !important;
                 <tbody>
 
                     @forelse ($annonces as $annonce)
-
-                    <tr>
-                        <td>
-                            <div class="d-flex my-auto">
-                                <div class="my-auto">
-                                    <img src="{{ asset('storage/' . $annonce->feature_img_path) }}" alt="{{ $annonce->feature_img_alt }}"
-                                        class="d-flex mx-auto rounded" width="40">
+                        <tr>
+                            <td>
+                                <div class="d-flex my-auto">
+                                    <div class="my-auto">
+                                        <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
+                                            alt="{{ $annonce->images->first()->alt }}" class="d-flex mx-auto rounded"
+                                            width="40">
+                                    </div>
+                                    <div class="px-2 my-auto">
+                                        <p class="my-0 fontw600 graycolor">{{ $annonce->title }}</p>
+                                        {{-- <p class="font12 my-0 textcolor">joyboy@joyness.com</p> --}}
+                                    </div>
                                 </div>
-                                <div class="px-2 my-auto">
-                                    <p class="my-0 fontw600 graycolor">{{ $annonce->annonce_title }}</p>
-                                    {{-- <p class="font12 my-0 textcolor">joyboy@joyness.com</p> --}}
-                                </div>
-                            </div>
 
-                        </td>
-                        {{-- <td class="text-start">{{ $annonce->annonce_id }}</td> --}}
-                        <td class="text-start">{{ number_format($annonce->annonce_price, 2, ',', ' ') }} €</td>
-                        <td class="text-start d-none d-md-table-cell"> {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</td>
-                        <td class="text-start">
+                            </td>
+                            {{-- <td class="text-start">{{ $annonce->annonce_id }}</td> --}}
+                            <td class="text-start">{{ number_format($annonce->price, 2, ',', ' ') }} €</td>
+                            <td class="text-start d-none d-md-table-cell">
+                                {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</td>
+                            <td class="text-start">
 
 
-                            <div class="my-auto d-flex">
+                                <div class="my-auto d-flex">
 
 
-                                <a href="{{ route('annonce.show', $annonce->annonce_id) }}" class=""><iconify-icon class="iconify graycolor font22 me-2"
-                                        icon="tabler:eye"></iconify-icon></a>
-                                <a href="{{ route('annonce.edit', $annonce->annonce_id) }}" class="">
-                                    <iconify-icon
-                                        class="iconify graycolor font22 mx-2" icon="tabler:pencil"></iconify-icon>
-
-                                        
-                                    </a>
-
-                                    <a href="{{ route('annonce.edit', $annonce->annonce_id) }}" class="">
-                                        <iconify-icon
-                                            class="iconify graycolor font22 mx-2" icon="tabler:trash"></iconify-icon>
-    
-                                        </a>          
-                                {{-- <div class="dropdown">
-                                    <a href="" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown"
-                                        aria-expanded="false" class="">
+                                    <a href="{{ route('annonce.show', $annonce->id) }}" class=""><iconify-icon
+                                            class="iconify graycolor font22 me-2" icon="tabler:eye"></iconify-icon></a>
+                                    <a href="{{ route('annonce.edit', $annonce->id) }}" class="">
                                         <iconify-icon class="iconify graycolor font22 mx-2"
-                                            icon="material-symbols:more-vert"></iconify-icon>
+                                            icon="tabler:pencil"></iconify-icon>
+
+
                                     </a>
-                                    <ul class="dropdown-menu mt-2 FloatingBlocksBackground dark-box-shadow border-0"
-                                        aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item graycolor"
-                                                href="{{ route('dashboard.Users.View') }}">View</a></li>
-                                        <li><a class="dropdown-item graycolor"
-                                                href="{{ route('dashboard.Users.View') }}">Edit</a></li>
-                                        <li><a class="dropdown-item graycolor" href="#">Delete</a></li>
-                                    </ul>
-                                </div> --}}
 
-                            </div>
+                                    <!-- Link with icon -->
+                                    <a href="#" class="delete-confirm">
+                                        <iconify-icon class="iconify graycolor font22 mx-2"
+                                            icon="tabler:trash"></iconify-icon>
+                                    </a>
+
+                                    <!-- Hidden form -->
+                                    <form action="{{ route('annonce.delete', $annonce->id) }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </div>
 
 
 
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
                     @empty
                     @endforelse
@@ -233,12 +242,12 @@ justify-content: end !important;
                         @endforeach
                     </div>
                     <h6 class="pt-3">{{ number_format($annonce->annonce_price, 2, ',', ' ') }} €</h6>
-      
+
                     <p class="location listAttributesColor my-0">{{ $annonce->localization }}</p>
                     <div class="d-flex gap-2 justify-content-between align-items-center">
                         <p class="location listAttributesColor my-0">
                             {{ \Carbon\Carbon::parse($annonce->annonce_publication_date)->diffForHumans() }}</p>
-                     
+
                         <div class=""><a href="{{ route('annonce.edit', $annonce->annonce_id) }}"
                                 class="primarybtn  minibtn"
                                 style="padding: 8px 12px !important;font-size: 14px;padding: 0;padding-left: 0px;padding-right: 0px;">
@@ -247,7 +256,7 @@ justify-content: end !important;
                     </div>
                 </div>
             </a>
-           
+
         @empty
         @endforelse --}}
 
@@ -259,29 +268,18 @@ justify-content: end !important;
         <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
             {{ $annonces->links() }}
         </div>
-        {{-- <nav>
-            <ul class="pagination CustomPagination mt-5 justify-content-center justify-content-lg-start">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&nbsp;&nbsp;<iconify-icon
-                            icon="iconamoon:arrow-right-2" class="position-absolute" width="28"
-                            style="width: 28px;height: 28px;right: 6px;top:6px;" rotate="180deg"></iconify-icon></a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#">11</a></li>
-                <li class="page-item">
-                    <a class="page-link position-relative" href="#">&nbsp;&nbsp;<iconify-icon
-                            icon="iconamoon:arrow-right-2" class="position-absolute" width="28"
-                            style="width: 28px;height: 28px;right: 6px;top:6px;"></iconify-icon></a>
-                </li>
-            </ul>
-        </nav> --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.delete-confirm').forEach(button => {
+                    button.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent the default link behavior
+                        if (confirm('Êtes-vous sûr de vouloir supprimer ce annonce ?')) {
+                            // Find the corresponding form and submit it
+                            const form = this.nextElementSibling; // Assumes form is the next sibling
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        </script>
     @endsection
