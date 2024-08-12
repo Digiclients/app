@@ -212,9 +212,13 @@ class AnnonceController extends Controller
             return abort(404);
         }
 
+        $annonce = Annonce::with('localization')->where('id', $annonceId)->first();
+
+        $categoryDetails = $this->annonceRepository->getCategoryDetails($annonce);
+
         // Fetch the attributes and their values associated with the annonce
         $attributes = AnnonceAttributesValue::where('annonce_id', $annonceId)
-            ->with(['attribute', 'attributeOption'])
+            // ->with(['attribute', 'attributeOption'])
             ->get();
 
         // Prepare data for the view
@@ -222,18 +226,190 @@ class AnnonceController extends Controller
         foreach ($attributes as $attributeValue) {
             $attributeSlug = $attributeValue->attribute->slug;
             $attributesData[$attributeSlug] = [
+                'id' => $attributeValue->attributeOption_id,
                 'value' => $attributeValue->attributeValue,
-                'option' => $attributeValue->attributeOption ? $attributeValue->attributeOption->id : null,
             ];
         }
 
-
+        // dd($categoryDetails);
         // Return the edit view with all the necessary data
-        return view('edit-annonce', compact('annonce', 'attributesData'));
+        return view('edit-annonce', compact('annonce', 'attributesData', 'categoryDetails'));
     }
 
     public function update(Request $request, int $annonceId)
     {
+        $maxYear = date('Y') + 1;
+        $rules = [
+            'title' => 'required|string|max:255',
+            'marque' => 'required|string|exists:categories,category_name',
+            'modele' => 'required|string|exists:categories,category_name',
+            'price' => 'required|int|min:100',
+            'description' => 'required|string',
+            'annee_modele' => "required|int|min:1850|max:$maxYear",
+            'date_premiere_mise_en_circulation' => 'required|date',
+            'carburant' => 'required|int|exists:attributes_options,id',
+            'boite_vitesse' => 'required|int|exists:attributes_options,id',
+            'kilometrage' => 'required|int',
+            'permis' => 'required|int|exists:attributes_options,id',
+            'etat_du_vehicule' => 'required|int|exists:attributes_options,id',
+            'nombre_place' => 'nullable|int|exists:attributes_options,id',
+            'couleur' => 'nullable|int|exists:attributes_options,id',
+            'nombre_porte' => 'required|int|exists:attributes_options,id',
+            'puissance_fiscale' => 'nullable|int',
+            'puissance_DIN' => 'nullable|int',
+            'matricule' => 'required|string',
+            'crit_air' => 'required|int|exists:attributes_options,id',
+            'type_vehicule' => 'required|int|exists:attributes_options,id',
+            'location' => 'required|exists:localizations,localization',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ];
+
+        // Validate the request
+        $validatedData = $request->validate($rules);
+
+        DB::beginTransaction();
+
+        try {
+            // Find the existing annonce
+            $annonce = $this->annonceRepository->find($annonceId);
+            if (!$annonce) {
+                return abort(404, 'Annonce not found');
+            }
+
+            // Get the boutique ID, category ID, and localization ID
+            $boutique_id = Boutique::where('user_id', Auth::user()->id)
+                ->pluck('id')
+                ->first();
+            $category_id = Category::where('category_name', $request->input('modele'))->pluck('id')->first();
+            $localization_id = Localization::where('localization', $request->input('location'))->pluck('id')->first();
+
+            if (!$category_id || !$localization_id) {
+                return abort(500, 'Invalid category or location');
+            }
+
+            // Prepare annonce data
+            $annonceData = [
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'boutique_id' => $boutique_id ? $boutique_id : null,
+                'category_id' => $category_id,
+                'localization_id' => $localization_id,
+            ];
+
+            // Update the annonce data
+            $annonce->update($annonceData);
+
+            // Initialize an array to hold attribute data
+            $attributesData = [];
+
+            // List of attributes that are integers
+            $integerAttributes = ['carburant', 'boite_vitesse', 'permis', 'etat_du_vehicule', 'nombre_place', 'couleur', 'nombre_porte', 'crit_air', 'type_vehicule'];
+
+            // List of attributes that are strings
+            $stringAttributes = ['matricule', 'annee_modele', 'date_premiere_mise_en_circulation', 'kilometrage', 'puissance_fiscale', 'puissance_DIN'];
+
+            // Process integer attributes
+            foreach ($integerAttributes as $slug) {
+                $attribute = Attribute::where('slug', $slug)->first();
+                if ($attribute) {
+                    $attribute_id = $attribute->id;
+
+                    // Check if the attribute option exists
+                    $attributeOption = AttributesOption::where('attribute_id', $attribute_id)->where('id', $request->input($slug))->first();
+
+                    // Update or create attribute data
+                    AnnonceAttributesValue::updateOrCreate(
+                        [
+                            'annonce_id' => $annonce->id,
+                            'attribute_id' => $attribute_id,
+                            'attributeOption_id' => $attributeOption ? $attributeOption->id : null,
+                        ],
+                        [
+                            'attributeValue' => $attributeOption ? $attributeOption->optionValue : $request->input($slug),
+                        ],
+                    );
+                } else {
+                    return abort(500, 'Attribute not found');
+                }
+            }
+
+            // Process string attributes
+            foreach ($stringAttributes as $slug) {
+                $attribute = Attribute::where('slug', $slug)->first();
+                if ($attribute) {
+                    $attribute_id = $attribute->id;
+
+                    // Update or create attribute data
+                    AnnonceAttributesValue::updateOrCreate(
+                        [
+                            'annonce_id' => $annonce->id,
+                            'attribute_id' => $attribute_id,
+                            'attributeOption_id' => null,
+                        ],
+                        [
+                            'attributeValue' => $request->input($slug),
+                        ],
+                    );
+                } else {
+                    return abort(404, 'Attribute not found');
+                }
+            }
+
+            DB::commit();
+
+            return redirect()
+                ->route('images-annonce', $annonce->id)
+                ->with('success', 'Annonce updated successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update annonce: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy(int $annonceId)
+    {
+        // Start a transaction to ensure all or none of the deletions succeed
+        DB::beginTransaction();
+
+        try {
+            // Find the annonce by ID
+            $annonce = Annonce::findOrFail($annonceId);
+
+            // Delete associated images from the storage
+            $annonce->images->each(function ($image) {
+                // Assuming images are stored in 'public/images'
+                if (Storage::disk('public')->exists($image->path)) {
+                    Storage::disk('public')->delete($image->path);
+                }
+            });
+
+            // Delete associated images from the database
+            $annonce->images()->delete();
+
+            // Delete associated attributes values
+            $annonce->attributesValue()->delete();
+
+            // Delete the annonce itself
+            $annonce->delete();
+
+            // Commit the transaction
+            DB::commit();
+
+            return redirect()->route('profile.annonces')->with('success', 'Annonce deleted successfully.');
+        } catch (\Exception $e) {
+            // Rollback the transaction if something goes wrong
+            DB::rollBack();
+
+            return redirect()
+                ->route('profile.annonces')
+                ->with('error', 'Failed to delete annonce: ' . $e->getMessage());
+        }
     }
 
     public function uploadImage($annonceId, Request $request)

@@ -54,8 +54,10 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
     Route::get('/deposer-une-annonce/{annonceId}/images', [AnnonceController::class, 'validateAnnonce'])->name('images-annonce');
     Route::post('/check-photos/{annonceId}', [AnnonceController::class, 'checkPhotos'])->name('checkPhotos');
 
+    // ************************ ANNONCES ROUTES ****************************
     Route::get('annonce/{annonceId}', [AnnonceController::class, 'edit'])->name('annonce.edit');
-    Route::post('annonce/{annonceId}', [AnnonceController::class, 'update'])->name('annonce.update');
+    Route::put('annonce/{annonceId}', [AnnonceController::class, 'update'])->name('annonce.update');
+    Route::delete('annonce/{annonceId}', [AnnonceController::class, 'destroy'])->name('annonce.delete');
 
 
     // ************************ PROFILE ROUTES ****************************

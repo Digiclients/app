@@ -1,4 +1,4 @@
-<form action="{{ isset($annonce) ? route('update-annonce', $annonce->id) : route('store-annonce') }}" id="multi-step-form" method="POST">
+<form action="{{ isset($annonce) ? route('annonce.update', $annonce->id) : route('store-annonce') }}" id="multi-step-form" method="POST">
     @csrf
     @if(isset($annonce))
         @method('PUT')
@@ -23,7 +23,7 @@
                     class="text-danger">*</span></label>
             <input type="text" data-array="marque" name="marque"
                 class="form-control @error('marque') is-invalid @enderror"
-                placeholder="{{ __('input.placeholder_brand') }}" readonly value="{{ old('marque', $annonce->marque ?? '') }}">
+                placeholder="{{ __('input.placeholder_brand') }}" readonly value="{{ old('marque', $categoryDetails['parent_category_name'] ?? '') }}">
             <ul class="dropdown-menu w-100 p-2">
                 <div class="sticky-container">
                     <div class="search-container">
@@ -50,7 +50,7 @@
                     class="text-danger">*</span></label>
             <input type="text" data-array="modele" name="modele"
                 class="form-control @error('modele') is-invalid @enderror"
-                placeholder="{{ __('input.placeholder_model') }}" readonly value="{{ old('modele', $annonce->modele ?? '') }}">
+                placeholder="{{ __('input.placeholder_model') }}" readonly value="{{ old('modele', $categoryDetails['category_name'] ?? '') }}">
             <ul class="dropdown-menu w-100 p-2">
                 <div class="sticky-container">
                     <div class="search-container">
@@ -116,7 +116,7 @@
                     <input type="number" class="form-control @error('annee_modele') is-invalid @enderror"
                         id="annee_modele" name="annee_modele"
                         placeholder="{{ __('input.annee_model_placeholder') }} "
-                        value="{{ old('annee_modele', $annonce->annee_modele ?? '') }}">
+                        value="{{ old('annee_modele', $attributesData['annee_modele']['value'] ?? '') }}">
                     @error('annee_modele')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -130,7 +130,7 @@
                         class="form-control @error('date_premiere_mise_en_circulation') is-invalid @enderror"
                         id="date_premiere_mise_en_circulation" name="date_premiere_mise_en_circulation"
                         placeholder="{{ __('input.date_premiere_mise_circulation_placeholder') }}"
-                        value="{{ old('date_premiere_mise_en_circulation', $annonce->date_premiere_mise_en_circulation ?? '') }}">
+                        value="{{ old('date_premiere_mise_en_circulation', $attributesData['date_premiere_mise_en_circulation']['value'] ?? '') }}">
                     @error('date_premiere_mise_en_circulation')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -167,7 +167,7 @@
                     <input type="number" class="form-control @error('kilometrage') is-invalid @enderror"
                         id="kilometrage" name="kilometrage" required
                         placeholder="{{ __('input.km_placeholder') }}"
-                        value="{{ old('kilometrage', $annonce->kilometrage ?? '') }}">
+                        value="{{ old('kilometrage', $attributesData['kilometrage']['value'] ?? '') }}">
                     @error('kilometrage')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -178,7 +178,7 @@
                     <label for="permis" class="form-label">{{ __('input.permis') }} <span
                             class="text-danger">*</span></label>
                     <select id="permis" name="permis"
-                        class="form-select @error('kilometrage') is-invalid @enderror">
+                        class="form-select @error('permis') is-invalid @enderror">
                     </select>
                     @error('permis')
                         <span class="invalid-feedback" role="alert">
@@ -239,7 +239,7 @@
                     <input type="number"
                         class="form-control @error('puissance_fiscale') is-invalid @enderror"
                         id="puissance_fiscale" name="puissance_fiscale"
-                        placeholder="Indiquez la puissance fiscale de votre voiture." value="{{ old('puissance_fiscale', $annonce->puissance_fiscale ?? '') }}">
+                        placeholder="Indiquez la puissance fiscale de votre voiture." value="{{ old('puissance_fiscale', $attributesData['puissance_fiscale']['value'] ?? '') }}">
                     @error('puissance_fiscale')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -251,7 +251,7 @@
                     <input type="number"
                         class="form-control @error('puissance_DIN') is-invalid @enderror"
                         id="puissance_DIN" name="puissance_DIN"
-                        placeholder="Indiquez la puissance DIN de votre voiture." value="{{ old('puissance_DIN', $annonce->puissance_DIN ?? '') }}">
+                        placeholder="Indiquez la puissance DIN de votre voiture." value="{{ old('puissance_DIN', $attributesData['puissance_DIN']['value'] ?? '') }}">
                     @error('puissance_DIN')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -263,7 +263,7 @@
                             class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('matricule') is-invalid @enderror"
                         id="matricule" name="matricule"
-                        placeholder="{{ __('input.matricule_placeholder') }}" value="{{ old('matricule_placeholder', $annonce->matricule_placeholder ?? '') }}">
+                        placeholder="{{ __('input.matricule_placeholder') }}" value="{{ old('matricule_placeholder', $attributesData['matricule']['value'] ?? '') }}">
                     @error('matricule')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -309,7 +309,7 @@
             <input type="text" data-array="location" name="location"
                 class="form-control @error('location') is-invalid @enderror"
                 placeholder="{{ __('input.location_placeholder') }}" readonly
-                value="{{ old('location', $annonce->location ?? '') }}">
+                value="{{ old('location', $annonce->localization->localization ?? '') }}">
             <ul class="dropdown-menu w-100 p-2">
                 <div class="search-container">
                     <input type="text" class="form-control search-input"
@@ -353,10 +353,10 @@
 
         <div class="py-2"></div>
 
-        
+
         <button type="button" class="darkbtn minibtn me-0 me-md-2 my-1"
             onclick="prevStep()">{{ __('input.prev') }}</button>
-        <button type="submit" class="successbtn minibtn me-0 me-md-2 my-1">{{ isset($annonce) ? __('input.update') : __('input.next') }}</button>
+        <button type="submit" class="successbtn minibtn me-0 me-md-2 my-1">{{ isset($annonce) ? __('Mise à jour') : __('input.next') }}</button>
         {{-- <button type="submit" class="btn btn-primary">{{ __('input.next') }}</button> --}}
     </div>
 </form>

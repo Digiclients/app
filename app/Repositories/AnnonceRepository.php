@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Image;
 use App\Models\Option;
 use App\Models\Annonce;
+use App\Models\Category;
 use App\Models\Attribute;
 use App\Models\AttributesOption;
 use Illuminate\Support\Facades\DB;
@@ -274,6 +275,50 @@ class AnnonceRepository extends BaseRepository
         return $groupedResults->first();
     }
 
+    public function getCategoryDetails($annonce)
+    {
+        // Find the category by ID
+        $category = Category::find($annonce->category_id);
+
+        if (!$category) {
+            return abort(404, 'Category not found');
+        }
+
+        // Fetch the category name
+        $categoryName = $category->category_name;
+
+        // Fetch the first parent category where main_category = 1
+        $parentCategory = $this->findParentCategory($category->parent_category_id);
+
+        // Get the parent category name
+        $parentCategoryName = $parentCategory ? $parentCategory->category_name : null;
+
+        return [
+            'category_name' => $categoryName,
+            'parent_category_id' => $parentCategory ? $parentCategory->id : null,
+            'parent_category_name' => $parentCategoryName,
+        ];
+    }
+
+    private function findParentCategory($parentCategoryId)
+    {
+        while ($parentCategoryId) {
+            $parentCategory = Category::find($parentCategoryId);
+
+            if (!$parentCategory) {
+                return null;
+            }
+
+            if ($parentCategory->main_category == 1) {
+                return $parentCategory;
+            }
+
+            // Move to the next parent in the hierarchy
+            $parentCategoryId = $parentCategory->parent_category_id;
+        }
+
+        return null;
+    }
 
     // public function UserAnnonces($user_id, int $perpage = 10)
     // {
@@ -355,5 +400,4 @@ class AnnonceRepository extends BaseRepository
 
     //     return $paginator;
     // }
-
 }
