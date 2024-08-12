@@ -152,7 +152,7 @@
                                             width="40">
                                     </div>
                                     <div class="px-2 my-auto">
-                                        <p class="my-0 fontw600 graycolor">{{ $annonce->title }}</p>
+                                        <p class="my-0 fontw600 graycolor AnounceTitle">{{ $annonce->title }}</p>
                                         {{-- <p class="font12 my-0 textcolor">joyboy@joyness.com</p> --}}
                                     </div>
                                 </div>
@@ -282,4 +282,24 @@
                 });
             });
         </script>
+
+
+<script>
+    function limitCharactersByClass(className, maxLength) {
+        const elements = document.querySelectorAll(`.${className}`);
+
+        elements.forEach(element => {
+            const text = element.textContent;
+
+            if (text.length > maxLength) {
+                element.textContent = text.substring(0, maxLength) + '...'; // Adds '...' to indicate truncation
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        limitCharactersByClass('AnounceTitle', 32); // Set maximum characters
+    });
+</script>
+
     @endsection

@@ -931,7 +931,7 @@
                             </div>
                             <div class="content">
                                 <div class="d-flex justify-content-between mt-3">
-                                    <h5 class="mb-0">{{ $annonce->title }}</h5>
+                                    <h5 class="mb-0 AnounceTitle">{{ $annonce->title }}</h5>
                                     @if ($annonce->user->sellerType == 'professionnel')
                                         <div style="width: 55px;">
                                             <span
@@ -1237,4 +1237,25 @@
             renderLocationList();
         }
     </script>
+
+
+
+
+<script>
+    function limitCharactersByClass(className, maxLength) {
+        const elements = document.querySelectorAll(`.${className}`);
+
+        elements.forEach(element => {
+            const text = element.textContent;
+
+            if (text.length > maxLength) {
+                element.textContent = text.substring(0, maxLength) + '...'; // Adds '...' to indicate truncation
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        limitCharactersByClass('AnounceTitle', 60); // Set maximum characters
+    });
+</script>
 @endpush
