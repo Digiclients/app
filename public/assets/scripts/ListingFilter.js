@@ -1,8 +1,232 @@
+// let filtersData = {
+//     location: [],
+//     marques: [],
+//     models: [],
+//     type_de_vehicule: [],
+//     carburant: [],
+//     boite_vitesse: [],
+//     crit_air: [],
+//     etat_du_vehicule: [],
+//     nombre_de_portes: [],
+//     nombre_de_place: [],
+//     couleur: [],
+//     permis: [],
+//     type_de_vendeur: ["particulier", "professionnel"],
+// };
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     const modelListDiv = document.querySelector(".model-list");
+
+//     // Show the loader before making the request
+//     modelListDiv.innerHTML = `
+//     <div class="spinner-border text-primary" role="status">
+//         <span class="sr-only">Loading...</span>
+//     </div>`;
+
+
+//     // Fetch getLocations
+//     axios.get('{{ route('getLocations') }}')
+//         .then(locationsResponse => {
+//             filtersData.location = [...new Set(locationsResponse.data.map((item) => item
+//                 .Localization))];
+
+//             document.querySelectorAll(".autocompleteInput").forEach((container) => {
+//                 CreateAutocompleteInput(container);
+//             });
+
+//         }).catch(error => {
+//             console.error("Error fetching data:", error);
+//         });
+
+//     // Fetch getMarques
+//     axios.get('{{ route('getMarques') }}').then(marquesResponse => {
+//             filtersData.marques = [...new Set(marquesResponse.data.map((item) => item.category_name))];
+//             populateCheckboxesById('marques', filtersData.marques);
+//         })
+//         .catch(error => {
+//             console.error("Error fetching Marques data:", error);
+//         });
+
+//     // Fetch getAttributesOptions
+//     axios.get('{{ route('getAttributesOptions') }}').then(attributesOptionsResponse => {
+//             filtersData.type_de_vehicule = attributesOptionsResponse.data.type_vehicule;
+//             filtersData.carburant = attributesOptionsResponse.data.carburant;
+//             filtersData.boite_vitesse = attributesOptionsResponse.data.boite_vitesse;
+//             filtersData.crit_air = attributesOptionsResponse.data.crit_air;
+//             filtersData.etat_du_vehicule = attributesOptionsResponse.data.etat_du_vehicule;
+//             filtersData.nombre_de_portes = attributesOptionsResponse.data.nombre_porte;
+//             filtersData.nombre_de_place = attributesOptionsResponse.data.nombre_place;
+//             filtersData.couleur = attributesOptionsResponse.data.couleur;
+//             filtersData.permis = attributesOptionsResponse.data.permis;
+
+//             // Populate checkboxes
+//             populateCheckboxesById('type_de_vehicule', filtersData.type_de_vehicule);
+//             populateCheckboxesById('carburant', filtersData.carburant);
+//             populateCheckboxesById('boite_vitesse', filtersData.boite_vitesse);
+//             populateCheckboxesById('crit_air', filtersData.crit_air);
+//             populateCheckboxesById('etat_du_vehicule', filtersData.etat_du_vehicule);
+//             populateCheckboxesById('nombre_de_portes', filtersData.nombre_de_portes);
+//             populateCheckboxesById('nombre_de_place', filtersData.nombre_de_place);
+//             populateCheckboxesById('couleur', filtersData.couleur);
+//             populateCheckboxesById('permis', filtersData.permis);
+//             populateCheckboxesById('typeVendeurs', filtersData.type_de_vendeur);
+
+//         })
+//         .catch(error => {
+//             console.error("Error fetching getAttributesOptions:", error);
+//         });
+
+
+
+// });
+
+
+
+// function populateCheckboxesById(containerId, options) {
+//     const container = document.getElementById(containerId);
+//     container.innerHTML = ""; // Clear any existing content
+
+//     options.forEach(option => {
+//         let optionId, optionValue;
+
+//         // Check if the option is an object or a string
+//         if (typeof option === 'object') {
+//             optionId = option.id;
+//             optionValue = option.value;
+//         } else {
+//             optionId = option;
+//             optionValue = option;
+//         }
+
+//         const inputType = containerId === 'marques' ? 'radio' : 'checkbox';
+//         const inputName = containerId === 'marques' ? 'marque' : `${containerId}[]`;
+//         const inputId = `${containerId}_${optionId}`; // Unique ID for the input
+
+//         const inputHTML = `
+//     <div class="form-check">
+//         <input class="form-check-input" type="${inputType}" name="${inputName}" id="${inputId}" value="${optionValue}">
+//         <label class="form-check-label" for="${inputId}">${optionValue}</label>
+//     </div>`;
+//         container.innerHTML += inputHTML;
+//     });
+
+//     // Add event listener for the container (event delegation)
+//     if (containerId === 'marques') {
+//         container.addEventListener('change', handleMarqueChange);
+//     }
+// }
+
+// function handleMarqueChange(event) {
+//     if (event.target.classList.contains('form-check-input')) {
+//         const selectedMarque = event.target.value;
+//         console.log("Selected Marque:", selectedMarque);
+
+//         // Send a GET request to fetch models for the selected marque
+//         axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+//             .then(response => {
+//                 // Verify the response data structure
+//                 console.log("Response Data:", response.data);
+
+//                 // Assuming the response data is an array of models
+//                 filtersData.models = response.data.map(item => item
+//                     .category_name); // Adjust according to actual response structure
+
+//                 // Update the UI with the received models
+//                 updateModelOptions(filtersData.models);
+//             })
+//             .catch(error => {
+//                 console.error("Error fetching models:", error);
+//             });
+//     }
+// }
+
+
+
+// function updateModelOptions(models) {
+//     const modelContainer = document.getElementById(
+//         'models'); // Ensure you have an element with this ID to display models
+//     modelContainer.innerHTML = ""; // Clear existing content
+
+//     models.forEach((model, index) => {
+//         const modelId = `model_${index}`; // Unique ID for each model input
+//         // Check if model is an object and use appropriate properties
+//         const modelValue = typeof model === 'object' ? model.value : model;
+//         const modelLabel = typeof model === 'object' ? model.value : model;
+
+//         const modelHTML = `
+//     <div class="form-check">
+//         <input class="form-check-input" type="checkbox" name="modele[]" id="${modelId}" value="${modelValue}">
+//         <label class="form-check-label" for="${modelId}">${modelLabel}</label>
+//     </div>`;
+
+//         modelContainer.innerHTML += modelHTML;
+//     });
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function CreateAutocompleteInput(container) {
+//     const dataArrayName = container.querySelector("input").getAttribute("data-array");
+//     const dataArray = filtersData[dataArrayName];
+//     const modelList = container.querySelector(".model-list");
+//     const searchInput = container.querySelector(".search-input");
+//     const selectedInput = container.querySelector("input");
+
+//     function renderLocationList(filter = "") {
+//         modelList.innerHTML = "";
+//         dataArray
+//             .filter((item) => item.toLowerCase().includes(filter.toLowerCase()))
+//             .forEach((item) => {
+//                 const listItem = document.createElement("div");
+//                 listItem.classList.add("dropdown-item");
+//                 listItem.textContent = item;
+//                 listItem.addEventListener("click", () => {
+//                     selectedInput.value = item;
+//                     container.querySelector(".dropdown-menu").classList.remove("show");
+//                 });
+//                 modelList.appendChild(listItem);
+//             });
+//     }
+
+//     searchInput.addEventListener("input", () => {
+//         renderLocationList(searchInput.value);
+//     });
+
+//     selectedInput.addEventListener("focus", () => {
+//         container.querySelector(".dropdown-menu").classList.add("show");
+//     });
+
+//     document.addEventListener("click", (event) => {
+//         if (!container.contains(event.target)) {
+//             container.querySelector(".dropdown-menu").classList.remove("show");
+//         }
+//     });
+
+//     renderLocationList();
+// }
+
+
+
+
+
+
+
+
 // Save form values to localStorage
 document.getElementById('filterSearchForm').addEventListener('submit', function() {
     const formData = new FormData(this);
     const values = {};
-    
+
     // Create an array for checkbox values
     const checkboxValues = {};
 
@@ -432,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // No stored values, use URL parameters
                 const urlParams = getUrlParams();
                 populateFormValues(urlParams);
-        
+
                 // Update .info-selected elements after populating form
                 updateInfoSelected();
     }
