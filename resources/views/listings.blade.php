@@ -919,10 +919,16 @@
                     <!-- ################  START list ad-card ################ -->
 
                     @forelse ($annonceListings as $annonce)
-                        <a href="{{ route('annonce.show', $annonce->id) }}" class="ad-card  col-md-6 col-lg-4 my-2">
+                        @php
+                            // Determine the image to display
+                            $image = $annonce->images->first(); // Get the first image
+                            $imageSrc = $image ? asset('storage/' . $image->path) : 'path/to/default/image.jpg'; // Use a default image path if no image is found
+                            $imageAlt = $image ? $image->alt : 'Default image alt text'; // Use default alt text if no image is found
+                        @endphp
+
+                        <a href="{{ route('annonce.show', $annonce->id) }}" class="ad-card col-md-6 col-lg-4 my-2">
                             <div class="image-container">
-                                <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
-                                    alt="{{ $annonce->images->first()->alt }}" style="">
+                                <img src="{{ $imageSrc }}" alt="{{ $imageAlt }}" style="">
                                 <button class="favorite-button d-flex align-items-center"
                                     aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                     <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
@@ -1166,7 +1172,7 @@
 
         function updateModelOptions(models) {
             const modelContainer = document.getElementById(
-            'models'); // Ensure you have an element with this ID to display models
+                'models'); // Ensure you have an element with this ID to display models
             modelContainer.innerHTML = ""; // Clear existing content
 
             models.forEach((model, index) => {

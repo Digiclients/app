@@ -168,18 +168,50 @@ class AnnonceController extends Controller
         }
     }
 
+    // public function listings()
+    // {
+    //     // TODO need to hundel exception
+    //     $annonceListings = Annonce::with([
+    //         'localization',
+    //         'user',
+    //         'images' => function ($query) {
+    //             $query->where('feature_img', 1);
+    //         }
+    //     ])->where('status', Annonce::ACTIVE)->paginate(20);
+    //     // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
+    //     $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+    //     return view('listings', compact('annonceListings', 'annoncesCount'));
+    // }
+
     public function listings()
     {
-        // TODO need to hundel exception
+        // Fetch active Annonce listings with images, prioritizing featured images
         $annonceListings = Annonce::with([
             'localization',
             'user',
             'images' => function ($query) {
-                $query->where('feature_img', 1);
-            }
-        ])->where('status', Annonce::ACTIVE)->paginate(20);
-        // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
+                $query
+                    ->orderBy('feature_img', 'desc') // Featured images first
+                    ->orderBy('created_at', 'asc'); // Fallback to the earliest image if no featured image
+            },
+        ])
+            ->where('status', Annonce::ACTIVE)
+            ->paginate(20);
+
+        // Count of active Annonce listings
         $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+
+        // Handling images: Ensure fallback to the first image if no featured image is present
+        foreach ($annonceListings as $annonce) {
+            // Check if there's a featured image; otherwise, get the first image
+            if ($annonce->images->isEmpty()) {
+                $annonce->first_image = null;
+            } else {
+                // Get the URL of the first image (either featured or fallback)
+                $annonce->first_image = $annonce->images->first()->path;
+            }
+        }
+
         return view('listings', compact('annonceListings', 'annoncesCount'));
     }
 
