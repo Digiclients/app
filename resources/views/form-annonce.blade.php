@@ -24,7 +24,7 @@
             <input type="text" data-array="marque" name="marque"
                 class="form-control @error('marque') is-invalid @enderror"
                 placeholder="{{ __('input.placeholder_brand') }}" readonly value="{{ old('marque', $categoryDetails['parent_category_name'] ?? '') }}">
-            <ul class="dropdown-menu w-100 p-2">
+            <ul class="dropdown-menu w-100 p-2" style="padding: 0 !important;">
                 <div class="sticky-container">
                     <div class="search-container">
                         <input type="text" class="form-control search-input"
@@ -34,7 +34,7 @@
                         <!-- Selected models will appear here as badges -->
                     </div>
                 </div>
-                <div id="marques" class="model-list">
+                <div id="marques" class="model-list" style="padding: 10px !important;">
                     <!-- Model items will be dynamically inserted here -->
                 </div>
             </ul>
@@ -51,7 +51,7 @@
             <input type="text" data-array="modele" name="modele"
                 class="form-control @error('modele') is-invalid @enderror"
                 placeholder="{{ __('input.placeholder_model') }}" readonly value="{{ old('modele', $categoryDetails['category_name'] ?? '') }}">
-            <ul class="dropdown-menu w-100 p-2">
+            <ul class="dropdown-menu w-100 p-2" style="padding: 0 !important;">
                 <div class="sticky-container">
                     <div class="search-container">
                         <input type="text" class="form-control search-input"
@@ -61,7 +61,7 @@
                         <!-- Selected models will appear here as badges -->
                     </div>
                 </div>
-                <div class="model-list">
+                <div class="model-list" style="padding: 10px !important;">
                     <!-- Model items will be dynamically inserted here -->
                 </div>
             </ul>
@@ -310,12 +310,12 @@
                 class="form-control @error('location') is-invalid @enderror"
                 placeholder="{{ __('input.location_placeholder') }}" readonly
                 value="{{ old('location', $annonce->localization->localization ?? '') }}">
-            <ul class="dropdown-menu w-100 p-2">
+            <ul class="dropdown-menu w-100 p-2" style="padding: 0 !important;">
                 <div class="search-container">
                     <input type="text" class="form-control search-input"
                         placeholder="Rechercher un lieu">
                 </div>
-                <div class="model-list">
+                <div class="model-list" style="padding: 10px !important;;">
                     <!-- Location items will be dynamically inserted here -->
                 </div>
             </ul>

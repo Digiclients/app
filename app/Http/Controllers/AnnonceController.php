@@ -168,52 +168,52 @@ class AnnonceController extends Controller
         }
     }
 
-    // public function listings()
-    // {
-    //     // TODO need to hundel exception
-    //     $annonceListings = Annonce::with([
-    //         'localization',
-    //         'user',
-    //         'images' => function ($query) {
-    //             $query->where('feature_img', 1);
-    //         }
-    //     ])->where('status', Annonce::ACTIVE)->paginate(20);
-    //     // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
-    //     $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
-    //     return view('listings', compact('annonceListings', 'annoncesCount'));
-    // }
-
     public function listings()
     {
-        // Fetch active Annonce listings with images, prioritizing featured images
+        // TODO need to hundel exception
         $annonceListings = Annonce::with([
             'localization',
             'user',
             'images' => function ($query) {
-                $query
-                    ->orderBy('feature_img', 'desc') // Featured images first
-                    ->orderBy('created_at', 'asc'); // Fallback to the earliest image if no featured image
-            },
-        ])
-            ->where('status', Annonce::ACTIVE)
-            ->paginate(20);
-
-        // Count of active Annonce listings
-        $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
-
-        // Handling images: Ensure fallback to the first image if no featured image is present
-        foreach ($annonceListings as $annonce) {
-            // Check if there's a featured image; otherwise, get the first image
-            if ($annonce->images->isEmpty()) {
-                $annonce->first_image = null;
-            } else {
-                // Get the URL of the first image (either featured or fallback)
-                $annonce->first_image = $annonce->images->first()->path;
+                $query->where('feature_img', 1);
             }
-        }
-
+        ])->where('status', Annonce::ACTIVE)->paginate(20);
+        // $annonceListings = $this->annonceRepository->AnnoncesListings(20);
+        $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
         return view('listings', compact('annonceListings', 'annoncesCount'));
     }
+
+    // public function listings()
+    // {
+    //     // Fetch active Annonce listings with images, prioritizing featured images
+    //     $annonceListings = Annonce::with([
+    //         'localization',
+    //         'user',
+    //         'images' => function ($query) {
+    //             $query
+    //                 ->orderBy('feature_img', 'desc') // Featured images first
+    //                 ->orderBy('created_at', 'asc'); // Fallback to the earliest image if no featured image
+    //         },
+    //     ])
+    //         ->where('status', Annonce::ACTIVE)
+    //         ->paginate(20);
+
+    //     // Count of active Annonce listings
+    //     $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
+
+    //     // Handling images: Ensure fallback to the first image if no featured image is present
+    //     foreach ($annonceListings as $annonce) {
+    //         // Check if there's a featured image; otherwise, get the first image
+    //         if ($annonce->images->isEmpty()) {
+    //             $annonce->first_image = null;
+    //         } else {
+    //             // Get the URL of the first image (either featured or fallback)
+    //             $annonce->first_image = $annonce->images->first()->path;
+    //         }
+    //     }
+
+    //     return view('listings', compact('annonceListings', 'annoncesCount'));
+    // }
 
     public function show(int $annonceId)
     {
@@ -613,6 +613,26 @@ class AnnonceController extends Controller
         return view('annonce-images', compact('annonce', 'existingPhotos'));
     }
 
+    // public function checkPhotos(int $annonceId)
+    // {
+    //     // Fetch the annonce
+    //     $annonce = Annonce::where('id', $annonceId)->where('user_id', Auth::id())->first();
+
+    //     if (!$annonce) {
+    //         return abort(404, 'Annonce not found or you do not have permission to access it.');
+    //     }
+
+    //     $images = Image::where('annonce_id', $annonce->id)->get();
+
+    //     if (count($images) > 1) {
+    //         return redirect()->route('profile.annonces')->with('success', 'Annonce enregistrée et publiée avec succès.');
+    //     } else {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors(['error' => 'Vous devez télécharger plus d\'une photo pour publier l\'annonce.']);
+    //     }
+    // }
+
     public function checkPhotos(int $annonceId)
     {
         // Fetch the annonce
@@ -625,7 +645,18 @@ class AnnonceController extends Controller
         $images = Image::where('annonce_id', $annonce->id)->get();
 
         if (count($images) > 1) {
-            return redirect()->route('home')->with('success', 'Annonce enregistrée et publiée avec succès.');
+            // Check if any image has feature_img = 1
+            $featureImage = $images->where('feature_img', 1)->first();
+
+            if (!$featureImage) {
+                // No image has feature_img = 1, so set the first image as feature_img
+                $firstImage = $images->first();
+                if ($firstImage) {
+                    $firstImage->update(['feature_img' => 1]);
+                }
+            }
+
+            return redirect()->route('profile.annonces')->with('success', 'Annonce enregistrée et publiée avec succès.');
         } else {
             return redirect()
                 ->back()
