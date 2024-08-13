@@ -269,7 +269,7 @@
 
 
                 <!-- Modèle (Checkboxes with canvased class) -->
-                <div class="mb-1 canvased">
+                <div class="mb-1 canvased canvasedModels">
                     <div class="RealInputs">
                         <label class="form-label canvasedMainLabel">Modèle</label>
                         <div class="" id="models">
@@ -1020,7 +1020,9 @@
         });
     </script>
 
-    <script>
+     <script>
+
+let isReady = [];
         let filtersData = {
             location: [],
             marques: [],
@@ -1065,6 +1067,9 @@
             axios.get('{{ route('getMarques') }}').then(marquesResponse => {
                     filtersData.marques = [...new Set(marquesResponse.data.map((item) => item.category_name))];
                     populateCheckboxesById('marques', filtersData.marques);
+               
+                    isReady.push("true");
+                    run()
                 })
                 .catch(error => {
                     console.error("Error fetching Marques data:", error);
@@ -1094,6 +1099,8 @@
                     populateCheckboxesById('permis', filtersData.permis);
                     populateCheckboxesById('typeVendeurs', filtersData.type_de_vendeur);
 
+                    isReady.push("true");
+                    run()
                 })
                 .catch(error => {
                     console.error("Error fetching getAttributesOptions:", error);
@@ -1160,13 +1167,52 @@
         //     }
         // }
 
-        function handleMarqueChange(event) {
-            if (event.target.classList.contains('form-check-input')) {
-                const selectedMarque = event.target.value;
-                console.log("Selected Marque:", selectedMarque);
 
-                // Send a GET request to fetch models for the selected marque
-                axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+
+        ///////////////////////////////////////////////////
+
+        // document.getElementById('marques').addEventListener('change', function(event) {
+        //         if (event.target.type === 'radio') {
+        //             const selectedValue = event.target.value;
+        //             console.log('Selected radio button value:', selectedValue);
+
+        //             // You can perform other actions here
+        //         }
+        //     });
+        ///////////////////////////////////////////////////
+
+//         inputElement = document.getElementById('marques'); // Replace with your input's ID
+//  event = new Event('change', { bubbles: true }); // Create a new event
+// inputElement.dispatchEvent(event); // Dispatch the event
+
+        function handleMarqueChange(event) {
+            console.log('mark changed event pfff')
+            // if (event.target.classList.contains('form-check-input')) {
+            //     const selectedMarque = event.target.value;
+            //     console.log("Selected Marque:", selectedMarque);
+
+            //     // Send a GET request to fetch models for the selected marque
+            //     axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+            //         .then(response => {
+            //             // Verify the response data structure
+            //             console.log("Response Data:", response.data);
+
+            //             // Assuming the response data is an array of models
+            //             filtersData.models = response.data.map(item => item
+            //                 .category_name); // Adjust according to actual response structure
+
+            //             // Update the UI with the received models
+            //             updateModelOptions(filtersData.models);
+            //         })
+            //         .catch(error => {
+            //             console.error("Error fetching models:", error);
+            //         });
+            // }
+
+            const selectedMarque = document.querySelector('#marques .form-check-input:checked').value
+               if (selectedMarque != null){
+        // Send a GET request to fetch models for the selected marque
+        axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
                     .then(response => {
                         // Verify the response data structure
                         console.log("Response Data:", response.data);
@@ -1177,11 +1223,12 @@
 
                         // Update the UI with the received models
                         updateModelOptions(filtersData.models);
+                        // TransformThecanvasedModels()
                     })
                     .catch(error => {
                         console.error("Error fetching models:", error);
                     });
-            }
+             }
         }
 
 
@@ -1258,6 +1305,20 @@
 
             renderLocationList();
         }
+
+
+function run(){
+    if(isReady.length == 2){
+        console.log("isReady.length == 2")
+        TransformTheForm()
+        SaveFormDataToLocalStorageOnSubmit()
+        PopulateFormFieldsWithLocalStorageDataOnDOMContentLoaded()
+        PopulateTheformUsingTheURLParams()
+        OnloadMakelabelWorkInsideOffcanvasRight()
+    }
+}
+
+
     </script>
 
 
