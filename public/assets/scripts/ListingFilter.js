@@ -1014,13 +1014,17 @@ function TransformTheForm(){
                 offcanvas.hide();
             }
 
-                        // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+          // ++++++++++++++++++++++++++++++++++++++++++++++++++++
             // START this code is just added to trigger the mark change event
-        inputElement = document.getElementById('marques'); // Replace with your input's ID
+        if ( document.querySelector("#offcanvasRight #marques") != null){
+      
+            inputElement = document.getElementById('marques'); // Replace with your input's ID
         event = new Event('change', { bubbles: true }); // Create a new event
           inputElement.dispatchEvent(event); // Dispatch the event
-            // END this code is just added to trigger the mark change event
+        }
+          // END this code is just added to trigger the mark change event
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+     
         });
   
 
@@ -1267,11 +1271,52 @@ function PopulateTheformUsingTheURLParams(){
 
                 // Update .info-selected elements after populating form
                 updateInfoSelected();
+
+
+             // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+            // START this code is just added to trigger the mark change event      
+            inputElement = document.getElementById('marques'); // Replace with your input's ID
+            event = new Event('change', { bubbles: true }); // Create a new event
+            inputElement.dispatchEvent(event); // Dispatch the event
+            // END this code is just added to trigger the mark change event
+            // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+     
     }
 
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function to populate the models using the URL
+function PopulateTheModelsUsingURL() {
+    // Get the query string from the URL
+    const queryString = window.location.search;
+
+    // Create a URLSearchParams object from the query string
+    const urlParams = new URLSearchParams(queryString);
+
+    // Get all 'modele[]' parameters
+    const modeleParams = urlParams.getAll('modele[]');
+
+    // Check each checkbox based on the 'modele[]' parameters
+    document.querySelectorAll('#models .form-check-input').forEach(checkbox => {
+        // Check if the checkbox value is in the array of modeleParams
+        checkbox.checked = modeleParams.includes(checkbox.value);
+    });
+}
 
 

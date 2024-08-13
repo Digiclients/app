@@ -405,7 +405,7 @@
                                     class="border p-3 bgwhite  rounded d-flex flex-wrap align-items-center justify-content-between">
 
                                     <div class="d-flex align-items-center gap-3 mx-auto mx-md-0">
-                                        <img class="img-fluid rounded-circle" width="80"
+                                        <img class="rounded-circle" width="80"  height="80"
                                             src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
                                             alt="{{ $user->name . '-avt' }}">
 

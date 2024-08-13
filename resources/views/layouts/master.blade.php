@@ -22,6 +22,7 @@
         <script src="{{ asset('build/assets/app-4b7b6c53.js') }}"></script>
     @endproduction
 
+
     @stack('third_party_stylesheets')
     @stack('page_css')
 </head>
