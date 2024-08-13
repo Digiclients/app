@@ -10,11 +10,10 @@
     <section class="pt-5 pb-1 container-fluid row justify-content-center">
 
 
-
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0  rounded-3 px-4 py-2">
             <img src="{{ $boutique->cover  ? asset('storage/' . $boutique->cover ) : "https://via.placeholder.com/1000x300" }} " alt="Banner Image" class="img-fluid w-100 mb-4 rounded">
             <div class="bg-white p-3 rounded-3 shadow-sm d-flex flex-wrap align-items-center">
-                <img src="{{ $user->avatar  ? asset('storage/' . $user->avatar ) : "https://via.placeholder.com/100" }} " alt="avatar" class="me-3">
+                <img src="{{ $user->avatar  ? asset('storage/' . $user->avatar ) : asset('assets/images/default-avatar.png') }} " alt="avatar" class="me-3" style="width: 8rem;">
                 <div class="flex-grow-1">
                     <h1 class="font30  mt-3 mt-md-0">{{$boutique->name}}</h1>
                     <div class="d-flex gap-2">
