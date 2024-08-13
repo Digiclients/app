@@ -81,7 +81,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="FullName" class="form-label">{{ __('Name') }} *</label>
+                            <label for="FullName" class="form-label">{{ __('Nom complet') }} *</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                 id="FullName" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">{{ __('Email Address') }} *</label>
+                            <label for="email" class="form-label">{{ __('Adresse e-mail') }} *</label>
                             <input type="email" name="email" id="email"
                                 class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
                                 required autocomplete="email" autofocus>
@@ -130,7 +130,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="password" class="form-label">{{ __('Password') }} *</label>
+                            <label for="password" class="form-label">{{ __('Mot de passe') }} *</label>
                             <div class="input-group">
                                 <input name="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" id="password1"
@@ -166,10 +166,10 @@
 
 
                         <div class="d-grid">
-                            <button type="submit" class="primarybtn mt-3 d-block mx-auto">{{ __('Register') }}</button>
+                            <button type="submit" class="primarybtn mt-3 d-block mx-auto">{{ __("S'inscrire") }}</button>
                         </div>
                         <div class="text-center mt-3">
-                            <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="fontw600"> Connexion</a>
+                            <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="fontw600">Connexion</a>
                             </p>
                         </div>
                     </form>

@@ -80,7 +80,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                            <label for="email" class="form-label">{{ __('Adresse e-mail') }}</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                                 id="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
@@ -90,7 +90,7 @@
                             @enderror
                         </div>
                         <div class="">
-                            <label for="password" class="form-label">{{ __('Password') }}</label>
+                            <label for="password" class="form-label">{{ __('Mot de passe') }}</label>
                             <div class="input-group">
                                 <input type="password" name="password"
                                     class="form-control @error('password') is-invalid @enderror" id="password1" required
@@ -108,10 +108,10 @@
                         </div>
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}"
-                                class="text-end pt-1 fontw600 font16 text-right d-block">{{ __('Forgot Your Password?') }}</a>
+                                class="text-end pt-1 fontw600 font16 text-right d-block">{{ __('Mot de passe oublié ?') }}</a>
                         @endif
                         <div class="d-grid">
-                            <button type="submit" class="primarybtn mt-3 d-block mx-auto">{{ __('Login') }}</button>
+                            <button type="submit" class="primarybtn mt-3 d-block mx-auto">{{ __('Se connecter') }}</button>
                         </div>
                         <div class="text-center mt-3">
                             <p>Vous n'avez pas de compte ? <a href="{{ route('register') }}"
