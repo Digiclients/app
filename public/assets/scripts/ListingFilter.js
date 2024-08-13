@@ -1014,13 +1014,17 @@ function TransformTheForm(){
                 offcanvas.hide();
             }
 
-                        // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+          // ++++++++++++++++++++++++++++++++++++++++++++++++++++
             // START this code is just added to trigger the mark change event
-        inputElement = document.getElementById('marques'); // Replace with your input's ID
+        if ( document.querySelector("#offcanvasRight #marques") != null){
+      
+            inputElement = document.getElementById('marques'); // Replace with your input's ID
         event = new Event('change', { bubbles: true }); // Create a new event
           inputElement.dispatchEvent(event); // Dispatch the event
-            // END this code is just added to trigger the mark change event
+        }
+          // END this code is just added to trigger the mark change event
             // ++++++++++++++++++++++++++++++++++++++++++++++++++++
+     
         });
   
 

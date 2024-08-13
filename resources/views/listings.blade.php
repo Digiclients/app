@@ -204,6 +204,13 @@
         #canvasRightFilter label {
             width: 80%;
         }
+
+        #canvasRightFilter #models {
+             max-height: 218px;
+             overflow: scroll;
+             padding-right: 10px;
+        }
+
     </style>
     <!-- Off-canvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasRightFilter" aria-labelledby="canvasRightFilterLabel">
@@ -1210,7 +1217,10 @@ let isReady = [];
             // }
 
             const selectedMarque = document.querySelector('#marques .form-check-input:checked').value
-               if (selectedMarque != null){
+             
+           console.log('document.querySelector("#offcanvasRight #marques")')
+           console.log(document.querySelector("#offcanvasRight #marques"))
+            if (selectedMarque != null){
         // Send a GET request to fetch models for the selected marque
         axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
                     .then(response => {
