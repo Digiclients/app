@@ -65,7 +65,8 @@
             <div class="autocompleteInput input-container col-sm ">
                 <input type="text" id="locationInput" data-array="location" name="location"
                     class="form-control @error('location') is-invalid @enderror"
-                    placeholder="{{ __('input.location_placeholder') }}" readonly value="{{ request()->input('location') }}">
+                    placeholder="{{ __('input.location_placeholder') }}" readonly
+                    value="{{ request()->input('location') }}">
                 <ul class="dropdown-menu w-100 p-2">
                     <div class="sticky-container">
                         <div class="search-container">
@@ -88,8 +89,8 @@
         {{-- // START ******** TITLE input ********* --}}
         <div class="col-md-4 px-2 my-2">
             <div class="autocompleteSearch input-container">
-                <input type="text" id="titleInput" data-array="title" name="title" class="form-control py-2" placeholder="Recherche"
-                    value="">
+                <input type="text" id="titleInput" data-array="title" name="title" class="form-control py-2"
+                    placeholder="Recherche" value="">
             </div>
         </div>
         {{-- // END ******** TITLE input ********* --}}
@@ -206,11 +207,10 @@
         }
 
         #canvasRightFilter #models {
-             max-height: 218px;
-             overflow: scroll;
-             padding-right: 10px;
+            max-height: 218px;
+            overflow: scroll;
+            padding-right: 10px;
         }
-
     </style>
     <!-- Off-canvas -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="canvasRightFilter" aria-labelledby="canvasRightFilterLabel">
@@ -218,7 +218,19 @@
             <h5 class="offcanvas-title" id="canvasRightFilterLabel">Tous les filtres</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
+        <div class="offcanvas-body position-relative">
+
+
+            {{-- START Cancasloader --}}
+            <div id="Cancasloader"
+                style="position: absolute;height:  100%;width:  100%;background-color: white;top:  ;padding-top: 50%;padding-left: 39%;z-index: 1;">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            {{-- END Cancasloader --}}
+
+
             <form id="filterSearchForm" method="GET" action="{{ route('listings') }}">
                 <hr class="LineHR mt-0 mb-3">
 
@@ -236,6 +248,9 @@
                 <!-- Marque (Radio buttons with canvased class) -->
                 <div class="mb-1 canvased">
                     <div class="RealInputs">
+                
+
+
                         <label class="form-label canvasedMainLabel">Marque</label>
                         <div class="" id="marques">
 
@@ -276,8 +291,19 @@
 
 
                 <!-- Modèle (Checkboxes with canvased class) -->
-                <div class="mb-1 canvased canvasedModels">
-                    <div class="RealInputs">
+                <div class="mb-1 canvased canvasedModels" style="display: none;">
+                    <div class="RealInputs  position-relative">
+
+                                
+                        {{-- START Cancasloader --}}
+                        <div id="CancasloaderModels"
+                            style="position: absolute;height:  100%;width:  100%;background-color: white;top:  ;padding-top: 0%;padding-left: 39%;z-index: 1;">
+                            <div class="spinner-grow text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        {{-- END Cancasloader --}}
+
                         <label class="form-label canvasedMainLabel">Modèle</label>
                         <div class="" id="models">
 
@@ -959,7 +985,8 @@
                                 {{-- <div style="width: 55px;">
                                 <span class="badge proBadge rounded-pill bgBadgeGrayColor darkcolor d-block">Pro</span>
                             </div> --}}
-                                <p class="location listAttributesColor my-0">{{ $annonce->localization->localization }}</p>
+                                <p class="location listAttributesColor my-0">{{ $annonce->localization->localization }}
+                                </p>
                                 <div class="d-flex gap-2 justify-content-between align-items-center">
                                     <p class="location listAttributesColor my-0">
                                         {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</p>
@@ -1027,9 +1054,8 @@
         });
     </script>
 
-     <script>
-
-let isReady = [];
+    <script>
+        let isReady = [];
         let filtersData = {
             location: [],
             marques: [],
@@ -1074,7 +1100,7 @@ let isReady = [];
             axios.get('{{ route('getMarques') }}').then(marquesResponse => {
                     filtersData.marques = [...new Set(marquesResponse.data.map((item) => item.category_name))];
                     populateCheckboxesById('marques', filtersData.marques);
-               
+
                     isReady.push("true");
                     run()
                 })
@@ -1188,9 +1214,9 @@ let isReady = [];
         //     });
         ///////////////////////////////////////////////////
 
-//         inputElement = document.getElementById('marques'); // Replace with your input's ID
-//  event = new Event('change', { bubbles: true }); // Create a new event
-// inputElement.dispatchEvent(event); // Dispatch the event
+        //         inputElement = document.getElementById('marques'); // Replace with your input's ID
+        //  event = new Event('change', { bubbles: true }); // Create a new event
+        // inputElement.dispatchEvent(event); // Dispatch the event
 
         function handleMarqueChange(event) {
             console.log('mark changed event pfff')
@@ -1217,12 +1243,16 @@ let isReady = [];
             // }
 
             const selectedMarque = document.querySelector('#marques .form-check-input:checked').value
-             
-           console.log('document.querySelector("#offcanvasRight #marques")')
-           console.log(document.querySelector("#offcanvasRight #marques"))
-            if (selectedMarque != null){
-        // Send a GET request to fetch models for the selected marque
-        axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
+
+            console.log('document.querySelector("#offcanvasRight #marques")')
+            console.log(document.querySelector("#offcanvasRight #marques"))
+            if (selectedMarque != null) {
+                
+                // now display the models // only when the marque is selected
+                document.querySelector(".canvasedModels").style.display = "block";
+
+                // Send a GET request to fetch models for the selected marque
+                axios.get(`/api/models/${encodeURIComponent(selectedMarque)}`)
                     .then(response => {
                         // Verify the response data structure
                         console.log("Response Data:", response.data);
@@ -1234,11 +1264,16 @@ let isReady = [];
                         // Update the UI with the received models
                         updateModelOptions(filtersData.models);
                         // TransformThecanvasedModels()
+                        // Call the function to populate model checkboxes
+                        PopulateTheModelsUsingURL();
+                        
+                     document.getElementById("CancasloaderModels").style.display = "none";
+
                     })
                     .catch(error => {
                         console.error("Error fetching models:", error);
                     });
-             }
+            }
         }
 
 
@@ -1317,38 +1352,73 @@ let isReady = [];
         }
 
 
-function run(){
-    if(isReady.length == 2){
-        console.log("isReady.length == 2")
-        TransformTheForm()
-        SaveFormDataToLocalStorageOnSubmit()
-        PopulateFormFieldsWithLocalStorageDataOnDOMContentLoaded()
-        PopulateTheformUsingTheURLParams()
-        OnloadMakelabelWorkInsideOffcanvasRight()
-    }
-}
+        function run() {
+            if (isReady.length == 2) {
+                console.log("isReady.length == 2")
+                TransformTheForm()
+                // SaveFormDataToLocalStorageOnSubmit()
+                // PopulateFormFieldsWithLocalStorageDataOnDOMContentLoaded()
+                PopulateTheformUsingTheURLParams();
+                OnloadMakelabelWorkInsideOffcanvasRight();
 
+                document.getElementById("Cancasloader").style.display = "none";
 
+            }
+        }
     </script>
 
 
 
 
-<script>
-    function limitCharactersByClass(className, maxLength) {
-        const elements = document.querySelectorAll(`.${className}`);
+    <script>
+        function limitCharactersByClass(className, maxLength) {
+            const elements = document.querySelectorAll(`.${className}`);
 
-        elements.forEach(element => {
-            const text = element.textContent;
+            elements.forEach(element => {
+                const text = element.textContent;
 
-            if (text.length > maxLength) {
-                element.textContent = text.substring(0, maxLength) + '...'; // Adds '...' to indicate truncation
-            }
+                if (text.length > maxLength) {
+                    element.textContent = text.substring(0, maxLength) + '...'; // Adds '...' to indicate truncation
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            limitCharactersByClass('AnounceTitle', 60); // Set maximum characters
         });
-    }
+    </script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        limitCharactersByClass('AnounceTitle', 60); // Set maximum characters
-    });
-</script>
+
+
+    <style>
+        /* Loader container */
+        .loader {
+            border: 8px solid #f3f3f3;
+            /* Light gray background */
+            border-top: 8px solid var(--primarycolor);
+            /* Blue color for the top */
+            border-radius: 50%;
+            /* Makes the border circular */
+            width: 50px;
+            /* Size of the loader */
+            height: 50px;
+            /* Size of the loader */
+            animation: spin 1s linear infinite;
+            /* Animation */
+        }
+
+        /* Keyframes for the spinning animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+                /* Start at 0 degrees */
+            }
+
+            100% {
+                transform: rotate(360deg);
+                /* End at 360 degrees */
+            }
+        }
+    </style>
+    <div class="loader"></div>
 @endpush
