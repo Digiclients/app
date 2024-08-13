@@ -1761,4 +1761,4 @@
 
 
 
-    @include('dashboard.inc.DashBoardFooter')
+    @include('Dashboard.inc.DashBoardFooter')
