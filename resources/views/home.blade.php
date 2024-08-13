@@ -1,7 +1,7 @@
 {{-- @dd($error) --}}
 @extends('layouts.app')
 @push('third_party_stylesheets')
-  
+
 @endpush
 
 @section('content')
@@ -280,13 +280,13 @@
             </div>
             @if (isset($priceStatistics))
                 <div class="bgwhite my-5 py-5 rounded" id="averageStatistics">
-                    @if ($priceStatistics->count <= 0)
+                    @if ($priceStatistics->count <= 2)
                         <p class="text-center font18 darkcolor"> Nous n'avons actuellement pas cette configuration dans
                             notre base de données </p>
                     @else
-                        <p class="text-center font18 darkcolor"> Ce prix moyen a été extrait de
+                        {{-- <p class="text-center font18 darkcolor"> Ce prix moyen a été extrait de
                             <span>{{ $priceStatistics->count }}</span>
-                        </p>
+                        </p> --}}
 
                         {{-- result without min --}}
                         <div class="row ThePriceResults text-center mb-4 col-md-9  mx-auto">
