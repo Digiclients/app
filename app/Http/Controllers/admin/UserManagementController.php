@@ -17,7 +17,7 @@ class UserManagementController extends Controller
         $ProUsersCount = User::role(User::PROFESSIONNEL)->count();
         $ManagerUsersCount = User::role(User::MANAGER)->count();
         $users = User::whereNotNull('sellerType')->paginate(20);
-        return view('dashboard.Users.List', compact('UsersCount', 'PrivateUsersCount', 'ProUsersCount', 'ManagerUsersCount', 'users'));
+        return view('Dashboard.Users.List', compact('UsersCount', 'PrivateUsersCount', 'ProUsersCount', 'ManagerUsersCount', 'users'));
     }
 
     public function getRoles()

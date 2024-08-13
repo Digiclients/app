@@ -20,13 +20,13 @@ class AdminDashboardController extends Controller
         $UsersCount = User::count();
         $AveragePricesCount = AveragePrice::count();
         $LeadsCount = LeadsData::count();
-        return view('dashboard.AnalyticsDashboardv2', compact('leboncoinDataCount', 'UsersCount', 'AveragePricesCount', 'LeadsCount'));
+        return view('Dashboard.AnalyticsDashboardv2', compact('leboncoinDataCount', 'UsersCount', 'AveragePricesCount', 'LeadsCount'));
     }
 
     public function options()
     {
         $options = Option::paginate(20);
-        return view('dashboard.options', compact('options'));
+        return view('Dashboard.options', compact('options'));
     }
     public function update_option_value(Request $request)
     {
@@ -68,7 +68,7 @@ class AdminDashboardController extends Controller
             $price_range = PriceRangeData::paginate(10);
         }
 
-        return view('dashboard.dataRanges', compact('price_range', 'brands'));
+        return view('Dashboard.dataRanges', compact('price_range', 'brands'));
     }
 
     public function update_price_range(Request $request)
