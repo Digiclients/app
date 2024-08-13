@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -16,9 +16,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    <div class="my-2  col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+    <div class="my-2  col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="darkcolor m-0 font18 text-capitalize"> Slides only </h3>
@@ -30,7 +30,7 @@
 <hr class="graycolor ">
             <div class="DemoExamples my-3">
 
-                
+
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
@@ -44,10 +44,10 @@
                       </div>
                     </div>
                   </div>
-    
-            
+
+
         </div>
-            
+
 
         </div>
     </div>
@@ -77,9 +77,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> With controls </h3>
@@ -116,7 +116,7 @@
 
 
     </div>
-        
+
 
     </div>
 </div>
@@ -139,9 +139,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> With indicators </h3>
@@ -179,9 +179,9 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -204,9 +204,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> With captions </h3>
@@ -218,7 +218,7 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -257,9 +257,9 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -281,9 +281,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Crossfade </h3>
@@ -295,7 +295,7 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -318,9 +318,9 @@
                 </button>
               </div>
 
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -373,4 +373,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

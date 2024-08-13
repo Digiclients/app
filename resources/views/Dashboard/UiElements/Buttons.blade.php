@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -16,9 +16,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    <div class="my-2  col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+    <div class="my-2  col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="darkcolor m-0 font18 text-capitalize"> Buttons </h3>
@@ -38,10 +38,10 @@
             <button type="button" class="btn btn-info">Info</button>
             <button type="button" class="btn btn-light">Light</button>
             <button type="button" class="btn btn-dark">Dark</button>
-            
+
             <button type="button" class="btn btn-link">Link</button>
         </div>
-            
+
 
         </div>
     </div>
@@ -57,10 +57,10 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    
-    <div class="my-2 col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+
+    <div class="my-2 col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 
             <div class="d-flex justify-content-between align-items-center">
 
@@ -70,7 +70,7 @@
             </div>
             </div>
 <hr class="graycolor">
-           
+
            <div class="DemoExamples my-3">
             <button type="button" class="btn btn-outline-primary">Primary</button>
 <button type="button" class="btn btn-outline-secondary">Secondary</button>
@@ -101,9 +101,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Button tags </h3>
@@ -121,7 +121,7 @@
             <input class="btn btn-primary" type="submit" value="Submit">
             <input class="btn btn-primary" type="reset" value="Reset">
     </div>
-        
+
 
     </div>
 </div>
@@ -140,9 +140,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Sizes </h3>
@@ -163,7 +163,7 @@
 
 
     </div>
-        
+
 
     </div>
 </div>
@@ -182,9 +182,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Block buttons </h3>
@@ -201,9 +201,9 @@
                 <button class="btn btn-primary" type="button">Button</button>
                 <button class="btn btn-primary" type="button">Button</button>
               </div>
-            
+
     </div>
-        
+
 
     </div>
 </div>
@@ -222,9 +222,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Checkbox Button </h3>
@@ -241,7 +241,7 @@
             <input type="checkbox" class="btn-check" id="btn-check-2" checked autocomplete="off">
             <label class="btn btn-primary" for="btn-check-2">Checked</label>
     </div>
-        
+
 
     </div>
 </div>
@@ -264,9 +264,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Radio Button  </h3>
@@ -280,12 +280,12 @@
         <div class="DemoExamples my-3">
             <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
             <label class="btn btn-secondary" for="option1">Checked</label>
-            
+
             <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
             <label class="btn btn-secondary" for="option2">Radio</label>
-            
 
-            
+
+
             <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
             <label class="btn btn-secondary" for="option4">Radio</label>
 
@@ -295,7 +295,7 @@
             <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
             <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
     </div>
-        
+
 
     </div>
 </div>
@@ -334,4 +334,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

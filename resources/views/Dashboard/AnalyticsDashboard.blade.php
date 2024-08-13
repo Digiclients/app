@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -299,7 +299,7 @@
                     <span class="darkcolor font24 fontw600 mx-2">$8,550</span>
                     <span class="successcolor fontw600">
 
-                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>
                         <strong>25%</strong></span>
 
                 </div>
@@ -315,7 +315,7 @@
                     <span class="">Sales</span>
                     <span class="darkcolor font24 fontw600 mx-2">$5,550</span>
                     <span class="dangercolor fontw600">
-                        <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                        <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>
 
                         <strong>15%</strong></span>
 
@@ -593,7 +593,7 @@
 
                     <div class="col-md-8">
 
-                        
+
                         <ul class="nav  customTabs float-end" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link py-0 active text-capitalize" id="pills-today-tab"
@@ -647,7 +647,7 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$8,550</span>
                                 <span class="successcolor fontw600">
-                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>
                                     <strong>25%</strong></span>
 
                             </div>
@@ -662,7 +662,7 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$5,550</span>
                                 <span class="dangercolor fontw600">
-                                    <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                                    <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>
 
                                     <strong>15%</strong></span>
 
@@ -874,7 +874,7 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$8,550</span>
                                 <span class="successcolor fontw600">
-                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                        <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>
 
                                     <strong>25%</strong></span>
 
@@ -890,9 +890,9 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$5,550</span>
                                 <span class="dangercolor fontw600">
-                        <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                        <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>
 
-                                    
+
                                     <strong>15%</strong></span>
 
                             </div>
@@ -1105,7 +1105,7 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$8,550</span>
                                 <span class="successcolor fontw600">
-                                    <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                                    <span class="iconify successcolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="270deg" style='margin-right: -5px;margin-top: -3px;'></span>
                                     <strong>25%</strong></span>
 
                             </div>
@@ -1120,7 +1120,7 @@
 
                                 <span class="darkcolor font16 fontw600 mx-2">$5,550</span>
                                 <span class="dangercolor fontw600">
-                                    <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>     
+                                    <span class="iconify dangercolor font20" data-icon="material-symbols:arrow-right-alt-rounded" data-rotate="90deg" style='margin-right: -5px;margin-top: -3px;'></span>
                                     <strong>15%</strong></span>
 
                             </div>
@@ -1461,9 +1461,9 @@
                                     <div class="col-3 mx-auto my-auto">
 
                                         <span class="dangercolor text-center font16">
-                                         
+
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>5.36%</strong></span>
 
                                     </div>
@@ -1496,7 +1496,7 @@
                                     <div class="col-3 mx-auto my-auto">
 
                                         <span class="successcolor text-center font16">
-                                            
+
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
 
                                             <strong>25.36%</strong></span>
@@ -1533,7 +1533,7 @@
 
                                         <span class="dangercolor text-center font16">
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>8.44%</strong></span>
 
                                     </div>
@@ -1567,7 +1567,7 @@
 
                                         <span class="successcolor text-center font16">
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>25.36%</strong></span>
 
                                     </div>
@@ -1630,7 +1630,7 @@
 
                                         <span class="successcolor text-center font16">
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>25.36%</strong></span>
 
                                     </div>
@@ -1662,7 +1662,7 @@
 
                                         <span class="dangercolor text-center font16">
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>5.36%</strong></span>
 
                                     </div>
@@ -1694,8 +1694,8 @@
 
                                     <div class="col-3 mx-auto my-auto">
 
-                                        <span class="successcolor text-center font16">                                          
-                                            
+                                        <span class="successcolor text-center font16">
+
                                         <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
 
                                             <strong>25.36%</strong></span>
@@ -1732,7 +1732,7 @@
 
                                         <span class="dangercolor text-center font16">
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>8.44%</strong></span>
 
                                     </div>
@@ -1766,7 +1766,7 @@
 
                                         <span class="successcolor text-center font16">
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>25.36%</strong></span>
 
                                     </div>
@@ -1823,7 +1823,7 @@
 
                                         <span class="successcolor text-center font16">
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>25.36%</strong></span>
 
                                     </div>
@@ -1855,7 +1855,7 @@
 
                                         <span class="dangercolor text-center font16">
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>5.36%</strong></span>
 
                                     </div>
@@ -1889,7 +1889,7 @@
 
                                         <span class="successcolor text-center font16">
                                             <span class="iconify font26 successcolor" data-icon="material-symbols:keyboard-arrow-up-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>25.36%</strong></span>
 
                                     </div>
@@ -1923,9 +1923,9 @@
                                     <div class="col-3 mx-auto my-auto">
 
                                         <span class="dangercolor text-center font16">
-                                        
+
                                             <span class="iconify font26 dangercolor" data-icon="material-symbols:keyboard-arrow-down-rounded" style="margin-right: 0px;margin-top: -3px;" ></span>
-                                            
+
                                             <strong>8.44%</strong></span>
 
                                     </div>
@@ -3377,4 +3377,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

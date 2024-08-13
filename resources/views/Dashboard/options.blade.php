@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -157,4 +157,4 @@
     });
 </script>
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

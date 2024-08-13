@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,7 +13,7 @@
 {{-- ######################################################## --}}
 
 
-    
+
 
 <section class="mx-0 mx-sm-3 my-4 px-2 py-4  ">
 
@@ -24,26 +24,26 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
 
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example 1  </h3>
@@ -54,14 +54,14 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
-           
+
+
+
 <div id='SalesGrowth'></div>
 
 
 <script>
-        
+
         var SalesGrowthoptions = {
           series: [
         {
@@ -134,7 +134,7 @@
         "tickAmount": "dataPoints",
 
     },
-    
+
         // title: {
         //   text: 'Forecast',
         //   align: 'left',
@@ -143,7 +143,7 @@
         //     color: 'red'
         //   }
         // },
-       
+
         yaxis: {
           min: 0,
           max: 80,
@@ -164,7 +164,7 @@
             "color":  COLORS["chart_scales_tics_color"],
         },
 
-        
+
         },
         tooltip: {
           y: {
@@ -182,10 +182,10 @@
 
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -205,13 +205,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example 2  </h3>
@@ -222,9 +222,9 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
-           
+
+
+
 
             <div id="UniqueVisitors"></div>
 
@@ -232,10 +232,10 @@
 
 
             <script>
-            
-            
-            
-                  
+
+
+
+
             var UniqueVisitorsChartoptions = {
                       series: [{
                       name: 'Direct',
@@ -264,7 +264,7 @@
                       height: 350
                     },
                     colors: [COLORS["primaryColor"], COLORS["secColor"]],
-            
+
                     plotOptions: {
                       bar: {
                         horizontal: false,
@@ -290,15 +290,15 @@
               },
                       "axisTicks": {
                         "color":  COLORS["chart_scales_tics_color"],
-            
-            
+
+
               "axisBorder": {
                         "color": COLORS["axisBorder"],
                     },
                     },
-            
-            
-            
+
+
+
                     },
                     yaxis: {
                       title: {
@@ -306,7 +306,7 @@
                         style: {
                           color: COLORS["axis_title"],
                       },
-            
+
                       } ,
                       "axisTicks": {
                         "color":  COLORS["chart_scales_tics_color"],
@@ -318,7 +318,7 @@
                 }
               },
               "color":  COLORS["chart_scales_tics_color"],
-            
+
                     },
                     fill: {
                       opacity: 1
@@ -331,20 +331,20 @@
                       }
                     }
                     };
-            
+
                     var chart = new ApexCharts(document.querySelector("#UniqueVisitors"), UniqueVisitorsChartoptions);
                     chart.render();
-                  
-            
-            
+
+
+
             </script>
-            
 
 
-              
-        
+
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -361,13 +361,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> area charts  </h3>
@@ -378,9 +378,9 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
   <div id="area_charts"></div>
-          
+
   <script>
     var options = {
           series: [{
@@ -415,10 +415,10 @@
         chart.render();
   </script>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -437,13 +437,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> line charts gradient  </h3>
@@ -454,8 +454,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <div id="line_charts_gradient"></div>
 
 
@@ -514,11 +514,11 @@
 
         var chart = new ApexCharts(document.querySelector("#line_charts_gradient"), options);
         chart.render();
-      
+
               </script>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -537,13 +537,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> mixed-charts/line-column-area/  </h3>
@@ -554,12 +554,12 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <div id="mixed_charts_line_column_area"></div>
 
             <script>
-                
+
         var options = {
           series: [{
           name: 'TEAM A',
@@ -588,7 +588,7 @@
             columnWidth: '50%'
           }
         },
-        
+
         fill: {
           opacity: [0.85, 0.25, 1],
           gradient: {
@@ -624,7 +624,7 @@
                 return y.toFixed(0) + " points";
               }
               return y;
-        
+
             }
           }
         }
@@ -632,14 +632,14 @@
 
         var chart = new ApexCharts(document.querySelector("#mixed_charts_line_column_area"), options);
         chart.render();
-      
-      
+
+
             </script>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -660,13 +660,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Radial Bar Charts  Multiple  </h3>
@@ -677,12 +677,12 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
   <div id="Radial_Bar_Charts_Multiple"></div>
-         
-  
+
+
   <script>
-    
+
     var options = {
           series: [44, 55, 67, 83],
           chart: {
@@ -714,14 +714,14 @@
 
         var chart = new ApexCharts(document.querySelector("#Radial_Bar_Charts_Multiple"), options);
         chart.render();
-      
-      
+
+
   </script>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -744,13 +744,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Pie Charts  Simple Donut  </h3>
@@ -761,12 +761,12 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
           <div id="Pie_Charts_Simple_Donut"></div>
 
 <script>
-    
+
     var options = {
           series: [44, 55, 41, 17, 15],
           chart: {
@@ -788,10 +788,10 @@
         var chart = new ApexCharts(document.querySelector("#Pie_Charts_Simple_Donut"), options);
         chart.render();
 </script>
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -844,4 +844,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
@@ -1775,4 +1775,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

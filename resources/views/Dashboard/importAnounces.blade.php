@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -12,14 +12,14 @@
     <h1 class="darkcolor font20 mx-2 ">Importer des annonces</h1>
 
 
-    
+
     <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
-    
+
         <p class="darkcolor">UTILISEZ CE FORMULAIRE POUR AJOUTER LA NOUVELLE ANNONCE À LA BASE DE DONNÉES DE LA PLATEFORME.</p>
         <p class="darkcolor">Les annonces ajoutées seront filtrées et les doublons seront supprimés. Si une annonce est déjà dans notre base de données, elle ne sera pas ajoutée, et les voitures accidentées seront automatiquement supprimées.</p>
         <div class="container mt-5">
-           
+
             <form id="file-upload-form" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="fileInput" class="form-label">Choose files</label>
@@ -54,4 +54,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

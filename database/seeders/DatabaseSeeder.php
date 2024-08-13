@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
+        // $this->call(RoleSeeder::class);
+        // $this->call(UserSeeder::class);
         // $this->call(PermissionSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(AttributeSeeder::class);
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(ImageSeeder::class);
         // $this->call(LeboncoinDataSeeder::class);
         // $this->call(PriceRangeDataSeeder::class);
-        $this->call(ParametresSeeder::class);
+        // $this->call(ParametresSeeder::class);
         $this->call(PriceRangeDataSeeder::class);
 
     }

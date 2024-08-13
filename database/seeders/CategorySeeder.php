@@ -104,7 +104,8 @@ class CategorySeeder extends Seeder
         ]);
 
         // Get all distinct u_car_brand and u_car_model combinations
-        $leboncoinMarquesModels = LeboncoinData::select('u_car_brand', 'u_car_model')->distinct()->get();
+        // $leboncoinMarquesModels = LeboncoinData::select('u_car_brand', 'u_car_model')->distinct()->get();
+        $leboncoinMarquesModels = LeboncoinData::select('u_car_brand', 'u_car_model')->whereNotNull('u_car_brand')->whereNotNull('u_car_model')->distinct()->get();
 
         // Loop through each brand and create categories
         foreach ($leboncoinMarquesModels as $data) {
@@ -112,25 +113,31 @@ class CategorySeeder extends Seeder
             $brandSlug = strtolower($data->u_car_brand);
 
             // Check if the brand category exists or create it
-            $brandCategory = Category::firstOrCreate([
-                'slug' => $brandSlug,
-                'parent_category_id' => $voitures->id,
-            ], [
-                'category_name' => $data->u_car_brand,
-                'main_category' => true,
-            ]);
+            $brandCategory = Category::firstOrCreate(
+                [
+                    'slug' => $brandSlug,
+                    'parent_category_id' => $voitures->id,
+                ],
+                [
+                    'category_name' => $data->u_car_brand,
+                    'main_category' => true,
+                ],
+            );
 
             // Create slug for model in the format 'u_car_model-u_car_brand'
             $modelSlug = strtolower($data->u_car_model . '-' . $data->u_car_brand);
 
             // Check if the model category exists or create it
-            Category::firstOrCreate([
-                'slug' => $modelSlug,
-                'parent_category_id' => $brandCategory->id,
-            ], [
-                'category_name' => $data->u_car_model,
-                'main_category' => false,
-            ]);
+            Category::firstOrCreate(
+                [
+                    'slug' => $modelSlug,
+                    'parent_category_id' => $brandCategory->id,
+                ],
+                [
+                    'category_name' => $data->u_car_model,
+                    'main_category' => false,
+                ],
+            );
         }
     }
 }

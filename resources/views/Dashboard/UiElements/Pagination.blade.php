@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -16,9 +16,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    <div class="my-2  col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+    <div class="my-2  col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="darkcolor m-0 font18 text-capitalize"> Example </h3>
@@ -29,8 +29,8 @@
 
 <hr class="graycolor ">
             <div class="DemoExamples my-3">
-      
-                
+
+
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                       <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -42,7 +42,7 @@
                   </nav>
 
         </div>
-            
+
 
         </div>
     </div>
@@ -63,9 +63,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Working with icons </h3>
@@ -76,7 +76,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-  
+
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
@@ -96,7 +96,7 @@
               </nav>
 
     </div>
-        
+
 
     </div>
 </div>
@@ -117,9 +117,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Disabled and active states </h3>
@@ -130,8 +130,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-  
-            
+
+
             <nav aria-label="...">
                 <ul class="pagination">
                   <li class="page-item disabled">
@@ -147,10 +147,10 @@
                   </li>
                 </ul>
               </nav>
-            
+
 
     </div>
-        
+
 
     </div>
 </div>
@@ -170,9 +170,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Sizing </h3>
@@ -183,7 +183,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-  
+
             <nav aria-label="...">
                 <ul class="pagination pagination-lg">
                   <li class="page-item active" aria-current="page">
@@ -209,7 +209,7 @@
 
 
     </div>
-        
+
 
     </div>
 </div>
@@ -229,9 +229,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Alignment </h3>
@@ -242,8 +242,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-  
-            
+
+
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item disabled">
@@ -275,7 +275,7 @@
               </nav>
 
     </div>
-        
+
 
     </div>
 </div>
@@ -335,4 +335,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

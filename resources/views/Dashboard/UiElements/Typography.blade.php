@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -16,9 +16,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    <div class="my-2  col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+    <div class="my-2  col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="darkcolor m-0 font18 text-capitalize"> Display headings </h3>
@@ -37,10 +37,10 @@
                 <h1 class="display-4">Display 4</h1>
                 <h1 class="display-5">Display 5</h1>
                 <h1 class="display-6">Display 6</h1>
-                
+
 
         </div>
-            
+
 
         </div>
     </div>
@@ -58,9 +58,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Lead </h3>
@@ -72,12 +72,12 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <p class="lead">
                 This is a lead paragraph. It stands out from regular paragraphs.
               </p>
     </div>
-        
+
 
     </div>
 </div>
@@ -96,9 +96,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Inline text elements </h3>
@@ -110,7 +110,7 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <p>You can use the mark tag to <mark>highlight</mark> text.</p>
             <p><del>This line of text is meant to be treated as deleted text.</del></p>
             <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
@@ -121,7 +121,7 @@
             <p><em>This line rendered as italicized text.</em></p>
 
     </div>
-        
+
 
     </div>
 </div>
@@ -139,9 +139,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Abbreviations </h3>
@@ -153,12 +153,12 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <p><abbr title="attribute">attr</abbr></p>
             <p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr></p>
 
     </div>
-        
+
 
     </div>
 </div>
@@ -176,9 +176,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Blockquotes </h3>
@@ -193,9 +193,9 @@
             <blockquote class="blockquote">
                 <p>A well-known quote, contained in a blockquote element.</p>
               </blockquote>
-              
+
     </div>
-        
+
 
     </div>
 </div>
@@ -213,9 +213,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Naming a source </h3>
@@ -227,7 +227,7 @@
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
 
-            
+
             <figure>
                 <blockquote class="blockquote">
                   <p>A well-known quote, contained in a blockquote element.</p>
@@ -238,7 +238,7 @@
               </figure>
 
     </div>
-        
+
 
     </div>
 </div>
@@ -256,9 +256,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Alignment </h3>
@@ -291,7 +291,7 @@
 
 
     </div>
-        
+
 
     </div>
 </div>
@@ -346,4 +346,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

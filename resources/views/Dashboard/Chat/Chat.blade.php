@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -1205,10 +1205,10 @@
                         <div class="position-relative RecievierContact">
                             <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg"
                                 class="img-fluid d-flex  mx-auto rounded-circle " alt="receiver profile" width="40">
-                              
+
                                 <span class="position-absolute translate-middle badge rounded-pill bg-danger"><span class="visually-hidden">unread messages</span>
                             </span>
-                       
+
                             </div>
                         <div class="px-2 text-center text-md-none">
                             <h4 class="my-0 h6 darkcolor">Reynante Labares</h4>
@@ -1509,10 +1509,10 @@
                             aria-label="Recipient's username with two button addons">
                         <button class="btn bgwhiteopacity border-0" type="button"> <span
                                 class="iconify font20 textcolor" data-icon="ri:mic-line"></span> </button>
-                     
+
                                 <button class="btn bgwhiteopacity border-0" type="button"> <span
                                     class="iconify font20 textcolor" data-icon="ph:paperclip"></span> </button>
-                         
+
 
                                 <button class="btn bgwhiteopacity border-0" type="button"><span
                                 class="iconify font20 primarycolor" data-icon="ph:paper-plane-tilt"></span></button>
@@ -1761,4 +1761,4 @@
 
 
 
-    @include('dashboard.inc.DashBoardFooter')
+    @include('Dashboard.inc.DashBoardFooter')

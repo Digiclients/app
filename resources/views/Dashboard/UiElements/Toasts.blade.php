@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,18 +13,18 @@
 
     <section class="row pt-4">
 
-        
 
 
-        
 
-        
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example  </h3>
@@ -35,7 +35,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -48,10 +48,10 @@
                   Hello, world! This is a toast message.
                 </div>
               </div>
-  
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -73,13 +73,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Custom content  </h3>
@@ -90,7 +90,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
 
             <div class="toast show align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
@@ -101,9 +101,9 @@
                   <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
               </div>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -124,13 +124,13 @@
 
 
 
- 
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Color schemes  </h3>
@@ -141,7 +141,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
             <div class="toast show align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
@@ -151,9 +151,9 @@
                   <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
               </div>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -196,7 +196,7 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')
 
 
 

@@ -175,7 +175,7 @@ Route::get('/isAuth', [App\Http\Controllers\HomeController::class, 'isAuthentica
 
 
 Route::get('/dashboard/AverageData', function () {
-    return view('dashboard.AverageData');
+    return view('Dashboard.AverageData');
 })->name('dashboard.AverageData');
 
 
@@ -191,16 +191,16 @@ Route::get('/dashboard/AverageData', function () {
 // })->name('dashboard.options');
 
 Route::get('/dashboard/importAnounces', function () {
-    return view('dashboard.importAnounces');
+    return view('Dashboard.importAnounces');
 })->name('dashboard.importAnounces');
 
 
 Route::get('/dashboard/publicite', function () {
-    return view('dashboard.publicite');
+    return view('Dashboard.publicite');
 })->name('dashboard.publicite');
 
 Route::get('/dashboard/leads', function () {
-    return view('dashboard.leads');
+    return view('Dashboard.leads');
 })->name('dashboard.leads');
 
 
@@ -211,13 +211,13 @@ Route::get('/dashboard/leads', function () {
 
 
 Route::get('/dashboard/test', function () {
-    return view('dashboard.pages.TestDashBoard');
+    return view('Dashboard.pages.TestDashBoard');
 })->name('dashboard.test');
 
 
 
 Route::get('/dashboard/analytics', function () {
-    return view('dashboard.AnalyticsDashboard');
+    return view('Dashboard.AnalyticsDashboard');
 })->name('dashboard.analytics');
 
 
@@ -225,7 +225,7 @@ Route::get('/dashboard/analytics', function () {
 
 
 Route::get('/dashboard/analyticsv3', function () {
-    return view('dashboard.AnalyticsDashboardv3');
+    return view('Dashboard.AnalyticsDashboardv3');
 })->name('dashboard.analyticsv3');
 
 
@@ -234,7 +234,7 @@ Route::get('/dashboard/analyticsv3', function () {
 // Start of Chat / navbar list
 
 Route::get('/dashboard/Chat', function () {
-    return view('dashboard.Chat.Chat');
+    return view('Dashboard.Chat.Chat');
 })->name('dashboard.Chat');
 
 // End of Chat / navbar list
@@ -245,16 +245,16 @@ Route::get('/dashboard/Chat', function () {
 // ###############################################################
 
 Route::get('/dashboard/Mail/MailInbox', function () {
-    return view('dashboard.Mail.MailInbox');
+    return view('Dashboard.Mail.MailInbox');
 })->name('dashboard.Mail.MailInbox');
 
 Route::get('/dashboard/Mail/ReadMail', function () {
-    return view('dashboard.Mail.ReadMail');
+    return view('Dashboard.Mail.ReadMail');
 })->name('dashboard.Mail.ReadMail');
 
 
 Route::get('/dashboard/Mail/MailCompose', function () {
-    return view('dashboard.Mail.MailCompose');
+    return view('Dashboard.Mail.MailCompose');
 })->name('dashboard.Mail.MailCompose');
 
 
@@ -269,11 +269,11 @@ Route::get('/dashboard/Mail/MailCompose', function () {
 // ###############################################################
 
 Route::get('/dashboard/Users/List', function () {
-    return view('dashboard.Users.List');
+    return view('Dashboard.Users.List');
 })->name('dashboard.Users.List');
 
 Route::get('/dashboard/Users/View', function () {
-    return view('dashboard.Users.View');
+    return view('Dashboard.Users.View');
 })->name('dashboard.Users.View');
 
 
@@ -294,22 +294,22 @@ Route::get('/dashboard/Users/View', function () {
 // ###############################################################
 
 Route::get('/dashboard/Blog/List', function () {
-    return view('dashboard.Blog.BlogList');
+    return view('Dashboard.Blog.BlogList');
 })->name('dashboard.Blog.BlogList');
 
 Route::get('/dashboard/Blog/Grid', function () {
-    return view('dashboard.Blog.BlogGrid');
+    return view('Dashboard.Blog.BlogGrid');
 })->name('dashboard.Blog.BlogGrid');
 
 
 Route::get('/dashboard/Blog/Details', function () {
-    return view('dashboard.Blog.BlogDetails');
+    return view('Dashboard.Blog.BlogDetails');
 })->name('dashboard.Blog.BlogDetails');
 
 
 
 Route::get('/dashboard/Blog/Add', function () {
-    return view('dashboard.Blog.AddBlog');
+    return view('Dashboard.Blog.AddBlog');
 })->name('dashboard.Blog.AddBlog');
 
 

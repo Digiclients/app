@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,22 +13,6 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
-
-
-
-
-
-
-        
-
-        
 
 
 
@@ -37,13 +21,29 @@
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Custom styles  </h3>
@@ -54,8 +54,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <form class="row g-3 needs-validation" novalidate>
                 <div class="col-md-4">
                   <label for="validationCustom01" class="form-label">First name</label>
@@ -121,7 +121,7 @@
                 </div>
               </form>
 
-              
+
 
 
               <script>
@@ -146,9 +146,9 @@
     })
 })()
               </script>
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -167,13 +167,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Browser defaults  </h3>
@@ -184,8 +184,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <form class="row g-3">
                 <div class="col-md-4">
                   <label for="validationDefault01" class="form-label">First name</label>
@@ -231,10 +231,10 @@
               </form>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -254,13 +254,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Server side  </h3>
@@ -271,7 +271,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
             <form class="row g-3">
                 <div class="col-md-4">
                   <label for="validationServer01" class="form-label">First name</label>
@@ -336,10 +336,10 @@
                   <button class="btn btn-primary" type="submit">Submit form</button>
                 </div>
               </form>
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -358,13 +358,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Supported elements  </h3>
@@ -375,8 +375,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <form class="was-validated">
                 <div class="mb-3">
                   <label for="validationTextarea" class="form-label">Textarea</label>
@@ -385,13 +385,13 @@
                     Please enter a message in the textarea.
                   </div>
                 </div>
-              
+
                 <div class="form-check mb-3">
                   <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
                   <label class="form-check-label" for="validationFormCheck1">Check this checkbox</label>
                   <div class="invalid-feedback">Example invalid feedback text</div>
                 </div>
-              
+
                 <div class="form-check">
                   <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" required>
                   <label class="form-check-label" for="validationFormCheck2">Toggle this radio</label>
@@ -401,7 +401,7 @@
                   <label class="form-check-label" for="validationFormCheck3">Or toggle this other radio</label>
                   <div class="invalid-feedback">More example invalid feedback text</div>
                 </div>
-              
+
                 <div class="mb-3">
                   <select class="form-select" required aria-label="select example">
                     <option value="">Open this select menu</option>
@@ -411,22 +411,22 @@
                   </select>
                   <div class="invalid-feedback">Example invalid select feedback</div>
                 </div>
-              
+
                 <div class="mb-3">
                   <input type="file" class="form-control" aria-label="file example" required>
                   <div class="invalid-feedback">Example invalid form file feedback</div>
                 </div>
-              
+
                 <div class="mb-3">
                   <button class="btn btn-primary" type="submit" disabled>Submit form</button>
                 </div>
               </form>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -488,4 +488,4 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')

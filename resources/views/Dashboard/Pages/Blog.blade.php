@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -645,4 +645,4 @@
 
 
 
-    @include('dashboard.inc.DashBoardFooter')
+    @include('Dashboard.inc.DashBoardFooter')

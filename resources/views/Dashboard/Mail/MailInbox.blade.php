@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -1394,4 +1394,4 @@ transition: all 0.5s ;
 
 
 
-    @include('dashboard.inc.DashBoardFooter')
+    @include('Dashboard.inc.DashBoardFooter')

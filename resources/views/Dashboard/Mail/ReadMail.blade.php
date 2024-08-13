@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -7,7 +7,7 @@
 
 
 <section class="mx-0 mx-sm-3 my-4 px-2 py-4  ">
- 
+
 
 
     <h1  class="darkcolor font20 mx-2 " >Read Mail</h1>
@@ -18,7 +18,7 @@
     {{-- ===================================================================== --}}
     {{-- =========== START OF Read Mail section =================  --}}
     {{-- ===================================================================== --}}
-    
+
 
 
 
@@ -495,32 +495,32 @@
 
 
                 <div class="row">
-                    
+
                     <div class="col-md-6 d-flex">
                         <div class="my-auto">
                             <img src="https://angular.spruko.com/adminor/preview/assets/img/users/2.jpg" class="mx-auto rounded-circle d-flex" alt="receiver profile" width="72">
                         </div>
-                        
+
                         <div class="my-auto mx-3">
-                            <h4 class="my-0 fontw500 font16 darkcolor">Alica Nestle <span>( alicnestle@gmail.com )</span> </h4> 
+                            <h4 class="my-0 fontw500 font16 darkcolor">Alica Nestle <span>( alicnestle@gmail.com )</span> </h4>
                             <p class="font12 graycolor  my-0"> to Adam Cotter ( adamcotter@gmail.com ) </p>
                         </div>
-                        
+
                     </div>
-                    
+
 
 
                     <div class="col-md-6 EmailActions my-auto d-flex justify-content-end">
 
 
-                      <span class="my-auto font13 graycolor mx-2"> Sep 13 , 2019 12:45 pm</span>  
+                      <span class="my-auto font13 graycolor mx-2"> Sep 13 , 2019 12:45 pm</span>
 
                       <a href="#" class=""><span class="iconify textcolor font24 mx-2"     data-icon="material-symbols:star-outline-rounded"></span></a>
                       <a href="#" class=""><span class="iconify textcolor font24 mx-2"    data-icon="ic:baseline-reply"></span></a>
-                     
+
                       <div class="dropdown">
-                 
-                        
+
+
                         <a href="#" id="DropDownMoreOptionsFor" data-bs-toggle="dropdown" aria-expanded="false" class=""><span class="iconify textcolor font24 mx-2"   data-icon="material-symbols:more-horiz"></span></a>
 
 
@@ -534,7 +534,7 @@
 
                         </ul>
                       </div>
-                    
+
                     </div>
 
 
@@ -569,7 +569,7 @@
 
                     <div class="EmailAttachments py-1">
 
-                        <span class="textcolor"> 3 Attachments </span> <a href="#" class="graycolor">View All Images</a> 
+                        <span class="textcolor"> 3 Attachments </span> <a href="#" class="graycolor">View All Images</a>
 
 <div class="">
     <img class="rounded my-1" src="https://angular.spruko.com/adminor/preview/assets/img/photos/1.jpg" width="150" alt="attachment">
@@ -595,7 +595,7 @@
                         <button type="button" class="secbtn mx-1 d-flex  minibtn"> <span class="iconify me-2 font20"    data-icon="ic:baseline-reply"  data-flip="horizontal"></span> <span class="my-auto whitecolor">Forward</span>  </button>
                     </div>
 
-       
+
 
 
             </div>
@@ -624,14 +624,14 @@
     {{-- ===================================================================== --}}
     {{-- =========== END OF Read Mail section =================  --}}
     {{-- ===================================================================== --}}
-    
 
 
 
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+
+@include('Dashboard.inc.DashBoardFooter')
 
 
 

@@ -1,7 +1,7 @@
 
 
 
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -96,7 +96,7 @@
   <br>
   </div>
 
-  
+
 <br>
 <br>
 <br><br>
@@ -297,7 +297,7 @@
 
 
 
-@include('dashboard.inc.DashBoardFooter')
+@include('Dashboard.inc.DashBoardFooter')
 
 
 
