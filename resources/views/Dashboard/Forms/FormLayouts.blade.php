@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,26 +13,26 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
 
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Form grid  </h3>
@@ -43,8 +43,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <div class="row">
                 <div class="col">
                   <input type="text" class="form-control" placeholder="First name" aria-label="First name">
@@ -55,10 +55,10 @@
               </div>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -85,13 +85,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Grid Example  </h3>
@@ -102,8 +102,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <form class="row g-3">
                 <div class="col-md-6">
                   <label for="inputEmail4" class="form-label">Email</label>
@@ -150,10 +150,10 @@
               </form>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -173,13 +173,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Horizontal form  </h3>
@@ -190,8 +190,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <form>
                 <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
@@ -242,10 +242,10 @@
               </form>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -265,13 +265,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Column sizing  </h3>
@@ -282,8 +282,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <div class="row g-3">
                 <div class="col-sm-7">
                   <input type="text" class="form-control" placeholder="City" aria-label="City">
@@ -296,10 +296,10 @@
                 </div>
               </div>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>

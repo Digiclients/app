@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -16,9 +16,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-    <div class="my-2  col-md-6 mx-auto">  
-        
-        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+    <div class="my-2  col-md-6 mx-auto">
+
+        <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
             <h3 class="darkcolor m-0 font18 text-capitalize"> Example </h3>
@@ -35,14 +35,14 @@
                       <li class="breadcrumb-item active" aria-current="page">Home</li>
                     </ol>
                   </nav>
-                  
+
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
                       <li class="breadcrumb-item active" aria-current="page">Library</li>
                     </ol>
                   </nav>
-                  
+
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -51,7 +51,7 @@
                     </ol>
                   </nav>
         </div>
-            
+
 
         </div>
     </div>
@@ -71,9 +71,9 @@
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Dividers </h3>
@@ -91,7 +91,7 @@
                 </ol>
               </nav>
     </div>
-        
+
 
     </div>
 </div>

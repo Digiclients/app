@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,7 +13,7 @@
 
 
     <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
-    
+
 
 <h1>PUT HERE THE AVERAGE SEARCH FORM</h1>
 
@@ -27,7 +27,7 @@
 
     <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
-    
+
         <div class="table-responsive pt-2">
             <table class="table CustomTable m-0">
 
@@ -86,7 +86,7 @@
                                         data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
                             </div>
                         </th>
-                
+
                         <th class="text-start text-capitalize">Actions
 
 
@@ -144,7 +144,7 @@
 
                         </td>
                     </tr>
-          
+
 
 
 

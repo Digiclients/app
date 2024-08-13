@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 

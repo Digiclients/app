@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -14,7 +14,7 @@
 {{-- ######################################################## --}}
 
 
-    
+
 
 <section class="mx-0 mx-sm-3 my-4 px-2 py-4  ">
 
@@ -25,26 +25,26 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
 
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example  </h3>
@@ -55,9 +55,9 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
-         
+
+
+
 
             <div class="row mx-auto col-md-9">
 
@@ -309,10 +309,10 @@
 
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -344,13 +344,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example 2  </h3>
@@ -361,9 +361,9 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
-           
+
+
+
 
                         {{-- START OF  chart legends  --}}
 
@@ -578,10 +578,10 @@
                         </script>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -604,13 +604,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example 3 </h3>
@@ -621,8 +621,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <canvas id="filter-today-Sales-Overview-canvas" class="Sales-Overview-canvas my-3"></canvas>
 
             <div class="row py-2">
@@ -768,10 +768,10 @@
 
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -804,13 +804,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize">  Bar Chart  </h3>
@@ -821,8 +821,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <canvas id="bar-chart" width="800" height="450"></canvas>
             <script>
             // Bar chart
@@ -846,13 +846,13 @@
                   }
                 }
             });
-            
+
 </script>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -876,13 +876,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize">  Line chart   </h3>
@@ -893,8 +893,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <canvas id="line-chart" width="800" height="450"></canvas>
 
 <script>
@@ -902,27 +902,27 @@
   type: 'line',
   data: {
     labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
-    datasets: [{ 
+    datasets: [{
         data: [86,114,106,106,107,111,133,221,783,2478],
         label: "Africa",
         borderColor: "#3e95cd",
         fill: false
-      }, { 
+      }, {
         data: [282,350,411,502,635,809,947,1402,3700,5267],
         label: "Asia",
         borderColor: "#8e5ea2",
         fill: false
-      }, { 
+      }, {
         data: [168,170,178,190,203,276,408,547,675,734],
         label: "Europe",
         borderColor: "#3cba9f",
         fill: false
-      }, { 
+      }, {
         data: [40,20,10,16,24,38,74,167,508,784],
         label: "Latin America",
         borderColor: "#e8c3b9",
         fill: false
-      }, { 
+      }, {
         data: [6,3,2,2,7,26,82,172,312,433],
         label: "North America",
         borderColor: "#c45850",
@@ -939,10 +939,10 @@
 });
 
 </script>
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -961,13 +961,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Pie chart  </h3>
@@ -978,8 +978,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <canvas id="pie-chart" width="800" height="450"></canvas>
 
 <script>
@@ -1002,10 +1002,10 @@
 });
 
 </script>
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -1028,13 +1028,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Radar chart  </h3>
@@ -1045,7 +1045,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
             <canvas id="radar-chart" width="800" height="600"></canvas>
 
             <script>
@@ -1084,10 +1084,10 @@
 
             </script>
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -1109,13 +1109,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Mixed chart  </h3>
@@ -1126,8 +1126,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <canvas id="mixed-chart" width="800" height="450"></canvas>
 
 
@@ -1172,9 +1172,9 @@
 });
 
               </script>
-        
+
     </div>
-        
+
 
     </div>
 </div>

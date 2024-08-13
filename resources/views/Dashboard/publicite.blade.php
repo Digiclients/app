@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -12,7 +12,7 @@
     <h1 class="darkcolor font20 mx-2 ">publicité</h1>
 
 
-    
+
     <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
         <div class="container">
@@ -29,7 +29,7 @@
                         </form>
                     </div>
                 </div>
-    
+
                 <!-- Second Form (Landscape) -->
                 <div class="col-md-8">
                     <div class="form-container">

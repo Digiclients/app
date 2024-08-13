@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,26 +13,26 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
 
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Example  </h3>
@@ -43,8 +43,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <table class="table">
                 <thead>
                   <tr>
@@ -76,10 +76,10 @@
               </table>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -105,13 +105,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Variants  </h3>
@@ -122,8 +122,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-            
+
+
 
 
             <table class="table">
@@ -140,7 +140,7 @@
                     <td>Cell</td>
                     <td>Cell</td>
                   </tr>
-            
+
                     <tr class="table-primary">
                       <th scope="row">Primary</th>
                       <td>Cell</td>
@@ -186,10 +186,10 @@
 
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -205,13 +205,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Striped rows  </h3>
@@ -222,8 +222,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
           <table class="table table-striped">
                 <thead>
                     <tr>
@@ -253,10 +253,10 @@
                     </tr>
                   </tbody>              </table>
 
-                  
 
-                  
-  
+
+
+
           <table class="table  table-dark table-striped">
             <thead>
                 <tr>
@@ -286,12 +286,12 @@
                 </tr>
               </tbody>              </table>
 
-          
 
 
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -306,13 +306,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Bordered tables  </h3>
@@ -323,8 +323,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
           <table class="table table-bordered">
             <thead>
           <tr>
@@ -353,7 +353,7 @@
             <td>@twitter</td>
           </tr>
         </tbody>
-      
+
         </table>
 
         <table class="table table-bordered border-primary">
@@ -384,12 +384,12 @@
           <td>@twitter</td>
         </tr>
       </tbody>
-    
+
       </table>
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -403,13 +403,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Tables without borders  </h3>
@@ -420,8 +420,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
           <table class="table table-borderless">
             <thead>
           <tr>
@@ -450,7 +450,7 @@
             <td>@twitter</td>
           </tr>
         </tbody>
-      
+
         </table>
 
         <table class="table table-dark table-borderless">
@@ -481,14 +481,14 @@
           <td>@twitter</td>
         </tr>
       </tbody>
-    
+
       </table>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -503,13 +503,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Responsive tables  </h3>
@@ -520,7 +520,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -579,10 +579,10 @@
           </div>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>

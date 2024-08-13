@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -21,26 +21,26 @@
 
     <section class="row pt-4">
 
-        
-
-
-        
-
-
-        
 
 
 
 
 
 
-        
+
+
+
+
+
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-xxl-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-xxl-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Bootstrap 5 Example  </h3>
@@ -51,8 +51,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <table id="Bootstrap5Example" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -535,8 +535,8 @@
             </table>
 
 
-              
-        
+
+
 
 
 
@@ -549,7 +549,7 @@
 });
             </script>
     </div>
-        
+
 
     </div>
 </div>
@@ -569,13 +569,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-xxl-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-xxl-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Base style  </h3>
@@ -586,8 +586,8 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <table id="BaseStyle" class="display" style="width:100%">
                 <thead>
                     <tr>
@@ -1079,10 +1079,10 @@
             </script>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -1096,13 +1096,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-xxl-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-xxl-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Scroll Horizontal Example  </h3>
@@ -1113,8 +1113,8 @@
 
 <hr class="graycolor">
         <div class="DemoExamples my-3">
-   
-  
+
+
             <table id="ScrollHorizontalExample"  class="display nowrap" style="width:100px !important">
                 <thead>
                     <tr>
@@ -1769,9 +1769,9 @@ $(document).ready(function () {
     });
 });
               </script>
-        
+
     </div>
-        
+
 
     </div>
 </div>

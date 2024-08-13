@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -12,7 +12,7 @@
     <h1 class="darkcolor font20 mx-2 ">leads</h1>
 
 
-    
+
     <div class="BlocksBackground row justify-content-between dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
         <div class="col-md-6">
@@ -32,7 +32,7 @@
 
     <div class="BlocksBackground dark-box-shadow rounded  p-4 mt-md-3 mb-md-0 m-2 bgwhite">
 
-    
+
         <div class="table-responsive pt-2">
             <table class="table CustomTable m-0">
 
@@ -97,7 +97,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="d-flex my-auto">                 
+                            <div class="d-flex my-auto">
                                 <div class="px-2">
                                     <p class="my-0 fontw600 graycolor">Reynante Labares</p>
                                 </div>
@@ -108,13 +108,13 @@
                         <td class="text-start">066666666</td>
                         <td class="text-start">joyboy@joyness.com</td>
                     </tr>
-          
+
 
 
 
                     <tr>
                         <td>
-                            <div class="d-flex my-auto">                 
+                            <div class="d-flex my-auto">
                                 <div class="px-2">
                                     <p class="my-0 fontw600 graycolor">Reynante Labares</p>
                                 </div>
@@ -125,7 +125,7 @@
                         <td class="text-start">066666666</td>
                         <td class="text-start">joyboy@joyness.com</td>
                     </tr>
-          
+
 
                 </tbody>
 

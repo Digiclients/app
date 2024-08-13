@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -7,7 +7,7 @@
 
 
 <section class="mx-0 mx-sm-3 my-4 px-2 py-4  ">
- 
+
 
 
     <h1  class="darkcolor font20 mx-2 " >Mail Compose</h1>
@@ -18,7 +18,7 @@
     {{-- ===================================================================== --}}
     {{-- =========== START OF Mail Compose section =================  --}}
     {{-- ===================================================================== --}}
-    
+
 
 
 
@@ -532,7 +532,7 @@
                                 <textarea rows="8" id="Message" class="form-control bgwhiteopacity" placeholder="Write your message here..."></textarea>
                             </div>
                         </div>
-                        
+
 
 
 
@@ -541,7 +541,7 @@
                         <div class=" p-4 row flex-nowrap BlocksBackground rounded  border-0">
 
                             <div class="col-md-6 my-auto">
-        
+
                                 <a href="#" class=""><span class="iconify textcolor font24 mx-2"
                                         data-icon="ph:paperclip"></span></a>
                                 <a href="#" class=""><span class="iconify textcolor font24 mx-2"
@@ -552,15 +552,15 @@
                                         data-icon="solar:smile-circle-linear"></span></a>
                                 <a href="#" class=""><span class="iconify textcolor font24 mx-2"
                                         data-icon="mdi:trash-can-outline"></span></a>
-        
-        
+
+
                             </div>
-        
+
                             <div class="col-md-6 d-flex justify-content-end">
                                 <button type="button" class="secbtn mx-2 minibtn"> Discard </button>
                                 <button type="button" class="primarybtn mx-2 minibtn"> Send message </button>
                             </div>
-        
+
                         </div>
 
 
@@ -571,7 +571,7 @@
                     {{-- ------ END Message compose form  ------- --}}
 
 
-           
+
 
 
 
@@ -600,7 +600,7 @@
     {{-- ===================================================================== --}}
     {{-- =========== END OF Mail Compose section =================  --}}
     {{-- ===================================================================== --}}
-    
+
 
 
 

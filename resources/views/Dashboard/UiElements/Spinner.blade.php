@@ -1,4 +1,4 @@
-@include('dashboard.inc.DashBoardNavbars')
+@include('Dashboard.inc.DashBoardNavbars')
 
 
 
@@ -13,18 +13,18 @@
 
     <section class="row pt-4">
 
-        
 
 
-        
 
-        
+
+
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Colors  </h3>
@@ -35,7 +35,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -63,9 +63,9 @@
               </div>
 
 
-        
+
     </div>
-        
+
 
     </div>
 </div>
@@ -83,13 +83,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Growing spinner  </h3>
@@ -100,7 +100,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
             <div class="spinner-grow" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -130,10 +130,10 @@
               <div class="spinner-grow text-dark" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
-  
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -151,13 +151,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Size  </h3>
@@ -168,7 +168,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
 
             <div class="spinner-border spinner-border-sm" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -186,10 +186,10 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
 
-  
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
@@ -208,13 +208,13 @@
 
 
 
-        
+
 {{-- ============================================================ --}}
 {{-- Start of column --}}
 {{-- ============================================================ --}}
-<div class="my-2  col-md-6 mx-auto">  
-        
-    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">  
+<div class="my-2  col-md-6 mx-auto">
+
+    <div class="BlocksBackground dark-box-shadow rounded  p-4 mx-2">
 <div class="d-flex justify-content-between align-items-center">
 
         <h3 class="darkcolor m-0 font18 text-capitalize"> Buttons  </h3>
@@ -225,7 +225,7 @@
 
 <hr class="graycolor ">
         <div class="DemoExamples my-3">
-   
+
             <button class="btn btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 <span class="visually-hidden">Loading...</span>
@@ -246,10 +246,10 @@
               </button>
 
 
-              
-        
+
+
     </div>
-        
+
 
     </div>
 </div>
