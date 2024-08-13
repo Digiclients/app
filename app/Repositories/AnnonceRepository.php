@@ -70,11 +70,11 @@ class AnnonceRepository extends BaseRepository
         $this->applyBoiteVitesseFilter($query, $filters);
         $this->applyKilometrageFilter($query, $filters);
         $this->applyCritAirFilter($query, $filters);
-        // $this->applyPuissanceDinFilter($query, $filters);
+        $this->applyPuissanceDinFilter($query, $filters);
         $this->applyEtatDuVehiculeFilter($query, $filters);
-        // $this->applyPuissanceFiscaleFilter($query, $filters);
+        $this->applyPuissanceFiscaleFilter($query, $filters);
         $this->applyNombrePortesFilter($query, $filters);
-        // $this->applyNombrePlaceFilter($query, $filters);
+        $this->applyNombrePlaceFilter($query, $filters);
         $this->applyCouleurFilter($query, $filters);
         $this->applyPermisFilter($query, $filters);
         $this->applytypeVendeurs($query, $filters);
@@ -109,11 +109,11 @@ class AnnonceRepository extends BaseRepository
     private function applyPriceFilter($query, $filters)
     {
         if (!empty($filters['prixMin']) && !empty($filters['prixMax'])) {
-            $query->whereBetween('price', [$filters['prixMin'], $filters['prixMax']]);
+            $query->whereBetween('price', [(int) $filters['prixMin'], (int) $filters['prixMax']]);
         } elseif (!empty($filters['prixMin'])) {
-            $query->where('price', '>=', $filters['prixMin']);
+            $query->where('price', '>=', (int) $filters['prixMin']);
         } elseif (!empty($filters['prixMax'])) {
-            $query->where('price', '<=', $filters['prixMax']);
+            $query->where('price', '<=', (int) $filters['prixMax']);
         }
     }
 
@@ -162,11 +162,11 @@ class AnnonceRepository extends BaseRepository
                 // Build a query to filter based on attributesValue
                 $query->whereHas('attributesValue', function ($q) use ($anneeModeleAttribute, $filters) {
                     if (!empty($filters['anneeModeleMin']) && !empty($filters['anneeModeleMax'])) {
-                        $q->where('attribute_id', $anneeModeleAttribute->id)->whereBetween('attributeValue', [$filters['anneeModeleMin'], $filters['anneeModeleMax']]);
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->whereBetween('attributeValue', [(int) $filters['anneeModeleMin'], (int) $filters['anneeModeleMax']]);
                     } elseif (!empty($filters['anneeModeleMin'])) {
-                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '>=', $filters['anneeModeleMin']);
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '>=', (int) $filters['anneeModeleMin']);
                     } elseif (!empty($filters['anneeModeleMax'])) {
-                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '<=', $filters['anneeModeleMax']);
+                        $q->where('attribute_id', $anneeModeleAttribute->id)->where('attributeValue', '<=', (int) $filters['anneeModeleMax']);
                     }
                 });
             }
@@ -228,11 +228,11 @@ class AnnonceRepository extends BaseRepository
                 // Build a query to filter based on attributesValue
                 $query->whereHas('attributesValue', function ($q) use ($kilometrageAttribute, $filters) {
                     if (!empty($filters['kilometrageMin']) && !empty($filters['kilometrageMax'])) {
-                        $q->where('attribute_id', $kilometrageAttribute->id)->whereBetween('attributeValue', [$filters['kilometrageMin'], $filters['kilometrageMax']]);
+                        $q->where('attribute_id', $kilometrageAttribute->id)->whereBetween('attributeValue', [(int) $filters['kilometrageMin'], (int) $filters['kilometrageMax']]);
                     } elseif (!empty($filters['kilometrageMin'])) {
-                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '>=', $filters['kilometrageMin']);
+                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '>=', (int) $filters['kilometrageMin']);
                     } elseif (!empty($filters['kilometrageMax'])) {
-                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '<=', $filters['kilometrageMax']);
+                        $q->where('attribute_id', $kilometrageAttribute->id)->where('attributeValue', '<=', (int) $filters['kilometrageMax']);
                     }
                 });
             }
@@ -262,11 +262,11 @@ class AnnonceRepository extends BaseRepository
             // Build a query to filter based on attributesValue
             $query->whereHas('attributesValue', function ($q) use ($puissance_DINAttribute, $filters) {
                 if (!empty($filters['puissanceDinMin']) && !empty($filters['puissanceDinMax'])) {
-                    $q->where('attribute_id', $puissance_DINAttribute->id)->whereBetween('attributeValue', [$filters['puissanceDinMin'], $filters['puissanceDinMax']]);
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->whereBetween('attributeValue', [(int) $filters['puissanceDinMin'], (int) $filters['puissanceDinMax']]);
                 } elseif (!empty($filters['puissanceDinMin'])) {
-                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '>=', $filters['puissanceDinMin']);
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '>=', (int) $filters['puissanceDinMin']);
                 } elseif (!empty($filters['puissanceDinMax'])) {
-                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '<=', $filters['puissanceDinMax']);
+                    $q->where('attribute_id', $puissance_DINAttribute->id)->where('attributeValue', '<=', (int) $filters['puissanceDinMax']);
                 }
             });
         }
@@ -295,11 +295,11 @@ class AnnonceRepository extends BaseRepository
             // Build a query to filter based on attributesValue
             $query->whereHas('attributesValue', function ($q) use ($PuissanceFiscaleAttribute, $filters) {
                 if (!empty($filters['puissanceFiscaleMin']) && !empty($filters['puissanceFiscaleMax'])) {
-                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->whereBetween('attributeValue', [$filters['puissanceFiscaleMin'], $filters['puissanceFiscaleMax']]);
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->whereBetween('attributeValue', [(int) $filters['puissanceFiscaleMin'], (int) $filters['puissanceFiscaleMax']]);
                 } elseif (!empty($filters['puissanceFiscaleMin'])) {
-                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '>=', $filters['puissanceFiscaleMin']);
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '>=', (int) $filters['puissanceFiscaleMin']);
                 } elseif (!empty($filters['puissanceFiscaleMax'])) {
-                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '<=', $filters['puissanceFiscaleMax']);
+                    $q->where('attribute_id', $PuissanceFiscaleAttribute->id)->where('attributeValue', '<=', (int) $filters['puissanceFiscaleMax']);
                 }
             });
         }
@@ -369,11 +369,11 @@ class AnnonceRepository extends BaseRepository
         if (!empty($filters['typeVendeurs']) && is_array($filters['typeVendeurs'])) {
             $sellerTypes = $filters['typeVendeurs'];
             $query->whereHas('user', function ($q) use ($sellerTypes) {
-                $q->whereIn('id', $sellerTypes);
-
+                $q->whereIn('sellerType', $sellerTypes);
             });
         }
     }
+
 
     /**
      * Crée un nouvel élément.
