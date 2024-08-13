@@ -277,11 +277,11 @@
 
 
         /* .anouncePhotos img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            max-height: 320px;
-                        } */
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                max-height: 320px;
+                            } */
 
 
         .anouncePhotos img {
@@ -306,11 +306,12 @@
         }
 
         @media (max-width: 562px) {
-    /* Your CSS rules here */
-    .Attributes .attr {
-            width: 100%;
+
+            /* Your CSS rules here */
+            .Attributes .attr {
+                width: 100%;
+            }
         }
-}
     </style>
 @endpush
 @section('content')
@@ -399,27 +400,31 @@
 
 
                             <!-- Start USERCONTACT -->
-                            <div class="USERCONTACT"> 
-                                <div class="border p-3 bgwhite  rounded d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="USERCONTACT">
+                                <div
+                                    class="border p-3 bgwhite  rounded d-flex flex-wrap align-items-center justify-content-between">
 
                                     <div class="d-flex align-items-center gap-3 mx-auto mx-md-0">
                                         <img class="img-fluid rounded-circle" width="80"
-                                            src="https://img.leboncoin.fr/api/v1/lbcpb1/images/0d/84/76/0d847602-1050-4598-8171-f8e635bf4b20?rule=bo-thumb"
-                                            alt="Chancellor Bell-img">
+                                            src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('assets/images/default-avatar.png') }}"
+                                            alt="{{ $user->name . '-avt' }}">
 
                                         <div class="pt-2">
-                                            <h4 class="font18 darkcolor fontwbold m-0">Chancellor Bell</h4>
-                                            <p class="m-0">1 annonces</p>
-                                            <div style="width: 55px;">
-                                                <span class="badge proBadge rounded-pill">Pro</span>
-                                            </div>
+                                            <h4 class="font18 darkcolor fontwbold m-0">{{ $user->name }}</h4>
+                                            <p class="m-0">{{ $annoncesUserCount }} annonces</p>
+                                            @if ($user->sellerType == 'professionnel')
+                                                <div style="width: 55px;">
+                                                    <span class="badge proBadge rounded-pill">Pro</span>
+                                                </div>
+                                            @endif
 
                                         </div>
                                     </div>
 
 
-                                    <button type="button" class="primarybtnoutline mb-2 mt-4 mt-md-2 d-block mx-auto mx-md-0"
-                                        id="d-phone" data-phone="+1 (234) 442-7915">Voir le
+                                    <button type="button"
+                                        class="primarybtnoutline mb-2 mt-4 mt-md-2 d-block mx-auto mx-md-0" id="d-phone"
+                                        data-phone="+1 (234) 442-7915">Voir le
                                         numéro</button>
 
                                 </div>
@@ -434,9 +439,17 @@
                             <div class="Attributes my-4">
                                 <h3 class="font18 darkcolor py-2">Critères</h3>
                                 <div class="row">
-
+                                    <div class="attr col-sm-4 px-2 py-1 d-flex align-items-center justify-content-between">
+                                        <p class="font16 darkcolor m-0 fontw600">Marque</p>
+                                        <p class="font16 m-0 graycolor">{{ $annonceDetails->parent_category_name }}</p>
+                                    </div>
+                                    <div class="attr col-sm-4 px-2 py-1 d-flex align-items-center justify-content-between">
+                                        <p class="font16 darkcolor m-0 fontw600">Modél</p>
+                                        <p class="font16 m-0 graycolor">{{ $annonceDetails->category_name }}</p>
+                                    </div>
                                     @foreach ($annonceDetails->attributes as $attributes)
-                                        <div class="attr col-sm-4 px-2 py-1 d-flex align-items-center justify-content-between">
+                                        <div
+                                            class="attr col-sm-4 px-2 py-1 d-flex align-items-center justify-content-between">
                                             <p class="font16 darkcolor m-0 fontw600">{{ $attributes->attribute_name }}</p>
                                             <p class="font16 m-0 graycolor">{{ $attributes->attribute_value }}</p>
                                         </div>
@@ -517,7 +530,8 @@
                                                     <button class="favorite-button d-flex align-items-center"
                                                         aria-label="Ajouter l’annonce aux favoris"
                                                         title="Ajouter l’annonce aux favoris">
-                                                        <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
+                                                        <iconify-icon icon="tabler:heart" class="TheFavIcon"
+                                                            height="18"
                                                             style="width: 18px;height: 18px;"></iconify-icon>
                                                     </button>
                                                 </div>
@@ -795,7 +809,9 @@
 
 
 
-                        <section class="ADS sticky-top col-lg-12 px-4 px-xl-0 pt-5 container-fluid row justify-content-center" style="top: 12%;">
+                        <section
+                            class="ADS sticky-top col-lg-12 px-4 px-xl-0 pt-5 container-fluid row justify-content-center"
+                            style="top: 12%;">
 
                             <div class="col-lg-12 col-xl-11 col-xxl-9 py-5 bgLight rounded row px-3 text-center">
 
