@@ -36,8 +36,10 @@ class ProfileController extends Controller
         $annonces = Annonce::with([
             'images' => function ($query) {
                 $query->where('feature_img', 1);
-            }
-        ])->where('user_id', $user->id)->paginate(20);
+            },
+        ])
+            ->where('user_id', $user->id)
+            ->paginate(20);
         // $annonces = $this->annonceRepository->UserAnnonces($user->id, 20);
         return view('profile.annonces', compact('user', 'annonces'));
     }
@@ -53,7 +55,9 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->route('login')->withErrors(['message' => 'You need to log in first.']);
+            return redirect()
+                ->route('login')
+                ->withErrors(['message' => 'You need to log in first.']);
         }
 
         return $user;
@@ -69,7 +73,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function update(Request $request)
     {
         // $validation = [
         //     'name' => ['required', 'string', 'max:255'],
@@ -93,6 +97,8 @@ class ProfileController extends Controller
             $user->sellerType = $request->sellerType;
             $user->save();
 
+            // Update the user's role
+            $user->syncRoles([$request->sellerType]);
             return redirect()->route('profile.home')->with('success', 'Mise à jour du profil réussie.');
         }
 
@@ -105,7 +111,9 @@ class ProfileController extends Controller
             $user = $request->user();
 
             if (!Hash::check($request->current_password, $user->password)) {
-                return redirect()->route('profile.home')->withErrors(['current_password' => 'Ce mot de passe est incorrect.']);
+                return redirect()
+                    ->route('profile.home')
+                    ->withErrors(['current_password' => 'Ce mot de passe est incorrect.']);
             }
 
             $user->password = Hash::make($request->password);
@@ -114,7 +122,9 @@ class ProfileController extends Controller
             return redirect()->route('profile.home')->with('success', 'Mot de passe mis à jour avec succès.');
         }
 
-        return redirect()->route('profile.home')->withErrors(['form_type' => 'Soumission de formulaire non valide.']);
+        return redirect()
+            ->route('profile.home')
+            ->withErrors(['form_type' => 'Soumission de formulaire non valide.']);
     }
 
     public function updateAvatar(Request $request)
@@ -149,9 +159,13 @@ class ProfileController extends Controller
             $errors = $e->errors();
             $fileSizeErrors = $errors['avatar'][0] ?? 'Impossible de mettre à jour l\'avatar. Veuillez réessayer plus tard.';
 
-            return redirect()->route('profile.home')->withErrors(['avatar' => $fileSizeErrors]);
+            return redirect()
+                ->route('profile.home')
+                ->withErrors(['avatar' => $fileSizeErrors]);
         } catch (\Exception $e) {
-            return redirect()->route('profile.home')->withErrors(['avatar' => "Impossible de mettre à jour l'avatar. Veuillez réessayer plus tard."]);
+            return redirect()
+                ->route('profile.home')
+                ->withErrors(['avatar' => "Impossible de mettre à jour l'avatar. Veuillez réessayer plus tard."]);
         }
     }
 
@@ -174,10 +188,10 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function update(Request $request, string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.

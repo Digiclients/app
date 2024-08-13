@@ -23,7 +23,7 @@
 
     <div class="InContainer">
         <div class="py-5">
-            <form action="{{ route('profile.store') }}" method="POST">
+            <form action="{{ route('profile.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="form_type" value="profile_update">
                 <div class="mb-3">
@@ -63,7 +63,7 @@
         <div class="py-4">
 
             <h3 class="font18 darkcolor py-2">Mot de passe :</h3>
-            <form action="{{ route('profile.store') }}" method="POST">
+            <form action="{{ route('profile.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="form_type" value="password_update">
                 <div class="mb-2">

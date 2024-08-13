@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
     // ************************ PROFILE ROUTES ****************************
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('home');
-        Route::post('/', [ProfileController::class, 'store'])->name('store');
+        Route::post('/', [ProfileController::class, 'update'])->name('update');
         Route::post('/avatar', [ProfileController::class, 'updateAvatar'])->name('avatar.update');
 
         Route::get('/annonces', [ProfileController::class, 'annonces'])->name('annonces');
