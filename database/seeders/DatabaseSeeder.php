@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(LeboncoinDataSeeder::class);
         // $this->call(PriceRangeDataSeeder::class);
         $this->call(ParametresSeeder::class);
+        $this->call(PriceRangeDataSeeder::class);
 
     }
 }
