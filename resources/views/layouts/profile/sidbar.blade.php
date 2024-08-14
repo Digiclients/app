@@ -57,9 +57,9 @@
                             <li><a href="{{ route('profile.annonces') }}"
                                     class="{{ Request::is('profile/annonces') ? 'active' : '' }}">
                                     <span>Mes annonces</span></a></li>
-                            <li><a href="{{ route('profile.favourites') }}"
+                            {{-- <li><a href="{{ route('profile.favourites') }}"
                                     class="{{ Request::is('profile/favoris') ? 'active' : '' }}">
-                                    <span>Mes favoris</span></a></li>
+                                    <span>Mes favoris</span></a></li> --}}
                             <li><a href="{{ route('create-annonce') }}"
                                     class="{{ Request::is('deposer-une-annonce') ? 'active' : '' }}">
                                     <span>Déposer une annonce</span></a></li>

@@ -956,11 +956,11 @@
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
                                     alt="{{ $annonce->images->first()->alt }}" style="">
-                                <button class="favorite-button d-flex align-items-center"
+                                {{-- <button class="favorite-button d-flex align-items-center"
                                     aria-label="Ajouter l’annonce aux favoris" title="Ajouter l’annonce aux favoris">
                                     <iconify-icon icon="tabler:heart" class="TheFavIcon" height="18"
                                         style="width: 18px;height: 18px;"></iconify-icon>
-                                </button>
+                                </button> --}}
                             </div>
                             <div class="content">
                                 <div class="d-flex justify-content-between mt-3">
