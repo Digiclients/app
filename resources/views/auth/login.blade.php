@@ -108,7 +108,7 @@
                         </div>
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}"
-                                class="text-end pt-1 fontw600 font16 text-right d-block">{{ __('Mot de passe oublié ?') }}</a>
+                                class="text-end mt-3 fontw600 font16 text-right d-block">{{ __('Mot de passe oublié ?') }}</a>
                         @endif
                         <div class="d-grid">
                             <button type="submit" class="primarybtn mt-3 d-block mx-auto">{{ __('Se connecter') }}</button>

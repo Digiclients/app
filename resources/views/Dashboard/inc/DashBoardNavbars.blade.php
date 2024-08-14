@@ -68,10 +68,11 @@
 
                     <div class="text-center leftsidelogoside bgprimary ">
 
-                        <img width="160" src="{{ asset('assets/DashBoard/images/joyboylogo.png') }}"
+                        {{-- <img width="160" src="{{ asset('assets/DashBoard/images/joyboylogo.png') }}"
                             class=" thelogo mx-auto pt-2 img-fluid  ">
                         <img width="60" src="{{ asset('assets/DashBoard/images/joyboyicon.png') }}"
-                            class=" theicona mx-auto pt-2 img-fluid  ">
+                            class=" theicona mx-auto pt-2 img-fluid  "> --}}
+                            {{-- <p class="whitecolor  font30 fontw600 d-md-block d-none pt-3">LAUTOPRIX</p> --}}
                     </div>
 
 
