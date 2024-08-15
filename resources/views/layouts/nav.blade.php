@@ -113,15 +113,15 @@
 
                                 <!-- {{-- START profile dropDown item --}} -->
 
-                                <a href="{{ route('profile.favourites') }}"
+                                {{-- <a href="{{ route('profile.favourites') }}"
                                     class="dropdown-menu-item  px-1 py-2 d-flex align-items-center">
                                     <div class="w-100 mx-2">
                                         <p class="darkcolor my-0 text-center">Mes favoris</p>
                                     </div>
-                                </a>
+                                </a> --}}
                                 <!-- {{-- END profile dropDown item --}} -->
 
-                                <hr class="graycolor my-0">
+                                {{-- <hr class="graycolor my-0"> --}}
 
                                 <!-- {{-- START profile dropDown item --}} -->
 

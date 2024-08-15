@@ -41,13 +41,6 @@ class AnnonceRepository extends BaseRepository
 
     public function filterAnnonces(array $filters, $perPage = 20)
     {
-        // $query = Annonce::with([
-        //     'localization',
-        //     'user',
-        //     'images' => function ($query) {
-        //         $query->where('feature_img', 1);
-        //     },
-        // ])->where('status', Annonce::ACTIVE);
         $query = Annonce::with([
             'localization', // Location data
             'user', // User data
@@ -58,7 +51,6 @@ class AnnonceRepository extends BaseRepository
             'category', // category data
         ])->where('status', Annonce::ACTIVE);
 
-        // dd($query->get());
         $this->applyLocationFilter($query, $filters);
         $this->applyTitleFilter($query, $filters);
         $this->applyPriceFilter($query, $filters);
@@ -78,6 +70,8 @@ class AnnonceRepository extends BaseRepository
         $this->applyCouleurFilter($query, $filters);
         $this->applyPermisFilter($query, $filters);
         $this->applytypeVendeurs($query, $filters);
+
+        $query->orderBy('created_at', 'desc');
 
         return $query->paginate($perPage);
     }

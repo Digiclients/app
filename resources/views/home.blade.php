@@ -1,7 +1,6 @@
 {{-- @dd($error) --}}
 @extends('layouts.app')
 @push('third_party_stylesheets')
-
 @endpush
 
 @section('content')
@@ -271,6 +270,31 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-2 row d-grid gap-3 d-none">
+                            <div class="col-sm">
+                                <select class="form-select" aria-label="Default select example" name="private">
+                                    <option value="">Select Particulier pourcentage</option>
+                                    <option value="0" {{ request()->input('private') == '0' ? 'selected' : '' }}>0%</option>
+                                    <option value="10" {{ request()->input('private') == '10' ? 'selected' : '' }}>10%</option>
+                                    <option value="25" {{ request()->input('private') == '25' ? 'selected' : '' }}>25%</option>
+                                    <option value="50" {{ request()->input('private') == '50' ? 'selected' : '' }}>50%</option>
+                                    <option value="75" {{ request()->input('private') == '75' ? 'selected' : '' }}>75%</option>
+                                    <option value="100" {{ request()->input('private') == '100' ? 'selected' : '' }}>100%</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <select class="form-select" aria-label="Default select example" name="pro">
+                                    <option value="">Select Professionnel pourcentage</option>
+                                    <option value="0" {{ request()->input('pro') == '0' ? 'selected' : '' }}>0%</option>
+                                    <option value="10" {{ request()->input('pro') == '10' ? 'selected' : '' }}>10%</option>
+                                    <option value="25" {{ request()->input('pro') == '25' ? 'selected' : '' }}>25%</option>
+                                    <option value="50" {{ request()->input('pro') == '50' ? 'selected' : '' }}>50%</option>
+                                    <option value="75" {{ request()->input('pro') == '75' ? 'selected' : '' }}>75%</option>
+                                    <option value="100" {{ request()->input('pro') == '100' ? 'selected' : '' }}>100%</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
                     <br>
@@ -1205,6 +1229,8 @@
                 function handleCheckboxChange(event) {
                     const checkbox = event.target;
 
+                    console.log('Checkbox changed:', checkbox.value, 'Checked:', checkbox.checked);
+
                     updateModeleInputState(); // Update the state of modeleInput based on checked checkboxes
 
                     if (checkbox.checked) {
@@ -1613,32 +1639,53 @@
 
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
-                                // Uncheck all other checkboxes
-                                // modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
-                                //     if (checkbox !== e.target) {
-                                //         checkbox.checked = false;
-                                //     }
-                                // });
-                                // // Clear the set and add the current model
-                                // selectedModelNames.clear();
-                                // Uncheck all other checkboxes
-                                document.querySelector('#marques').querySelectorAll(".form-check-input")
-                                    .forEach((checkbox) => {
-                                        if (checkbox !== e.target) {
-                                            checkbox.checked = false;
-                                        }
-                                    });
-                                // Clear the set and add the current model only if the input's ID includes "check-marque"
-                                if (e.target.id.includes("check-marque")) {
-                                    selectedModelNames.clear();
-                                }
+                                // Uncheck all other checkboxes and clear the set
+                                modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                                    checkbox.checked = false;
+                                });
 
+                                // Clear the set and add the current model
+                                selectedModelNames.clear();
                                 selectedModelNames.add(model);
+
+                                // Recheck the current checkbox
+                                e.target.checked = true;
                             } else {
                                 selectedModelNames.delete(model);
                             }
                             renderSelectedModels();
                         });
+
+
+
+                        // listItem.querySelector("input").addEventListener("change", (e) => {
+                        //     if (e.target.checked) {
+                        //         // Uncheck all other checkboxes
+                        //         modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                        //             if (checkbox !== e.target) {
+                        //                 checkbox.checked = false;
+                        //             }
+                        //         });
+                        //         // // Clear the set and add the current model
+                        //         selectedModelNames.clear();
+                        //         // Uncheck all other checkboxes
+                        //         // document.querySelector('#marques').querySelectorAll(".form-check-input")
+                        //         //     .forEach((checkbox) => {
+                        //         //         if (checkbox !== e.target) {
+                        //         //             checkbox.checked = false;
+                        //         //         }
+                        //         //     });
+                        //         // Clear the set and add the current model only if the input's ID includes "check-marque"
+                        //         // if (e.target.id.includes("check-marque")) {
+                        //         //     selectedModelNames.clear();
+                        //         // }
+
+                        //         selectedModelNames.add(model);
+                        //     } else {
+                        //         selectedModelNames.delete(model);
+                        //     }
+                        //     renderSelectedModels();
+                        // });
                     });
             }
 

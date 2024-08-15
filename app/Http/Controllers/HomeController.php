@@ -11,13 +11,11 @@ use App\Repositories\LeboncoinDataRepository;
 
 class HomeController extends Controller
 {
-
     protected $leboncoinDataRepository;
     public function __construct(LeboncoinDataRepository $leboncoinDataRepository)
     {
         $this->leboncoinDataRepository = $leboncoinDataRepository;
     }
-
 
     public function index(Request $request)
     {
@@ -38,18 +36,8 @@ class HomeController extends Controller
                 }
             }
 
-            $filters = $request->only([
-                'title',
-                'location',
-                'marque',
-                'modele',
-                'annee_modele',
-                'carburant',
-                'boite_vitesse',
-                'kilometrage',
-            ]);
+            $filters = $request->only(['title', 'location', 'marque', 'modele', 'annee_modele', 'carburant', 'boite_vitesse', 'kilometrage', 'pro', 'private']);
 
-            // dd($filters);
 
             // Initialize the priceStatistics variable
             $priceStatistics = null;
@@ -57,12 +45,42 @@ class HomeController extends Controller
             // Call getPriceStatistics only if filters are applied
             if (!empty($filters)) {
                 $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics($filters);
-
-                // Save or update the average price data in the database
+                    // Save or update the average price data in the database
                 if ($priceStatistics) {
                     $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
                 }
             }
+
+            // ********************** THIS FOR GET FROM INPUT THE PORCENTAGE OF PRO AND PRIVATE ************************** //
+            // if (!empty($filters)) {
+            //     // Determine if the owner type filter should be applied
+            //     $applyOwnerTypeFilter = isset($filters['pro']) || isset($filters['private']);
+
+            //     // Set the default percentages
+            //     $proPercentage = 100; // Default to 100% if not provided
+            //     $privatePercentage = 100; // Default to 100% if not provided
+
+            //     // Adjust percentages based on the provided filters
+            //     if (isset($filters['pro'])) {
+            //         $proPercentage = (int) $filters['pro'];
+            //     }
+            //     if (isset($filters['private'])) {
+            //         $privatePercentage = (int) $filters['private'];
+            //     }
+
+            //     // Call the getPriceStatistics method with the determined parameters
+            //     $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics(
+            //         $filters,
+            //         $proPercentage,
+            //         $privatePercentage,
+            //         $applyOwnerTypeFilter
+            //     );
+
+            //     // Save or update the average price if statistics were calculated
+            //     if ($priceStatistics) {
+            //         $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
+            //     }
+            // }
 
             // Return the view with price statistics
             return view('home', compact('priceStatistics'));
@@ -70,7 +88,6 @@ class HomeController extends Controller
             return abort(500);
         }
     }
-
 
     public function saveUserInfo(Request $request)
     {
@@ -88,10 +105,8 @@ class HomeController extends Controller
 
         Cookie::queue('user_access', 'true', 60 * 24 * 30, '/', null, false, false); // 30 days expiry
 
-
         return response()->json(['success' => true]);
     }
-
 
     public function isAuthenticate(Request $request)
     {
@@ -104,7 +119,6 @@ class HomeController extends Controller
             'cookiePresent' => $cookiePresent,
         ]);
     }
-
 
     private function saveOrUpdateAveragePrice($filters, $priceStatistics)
     {
@@ -156,10 +170,9 @@ class HomeController extends Controller
                 'kilometrage_min' => $data['kilometrage_min'],
                 'kilometrage_max' => $data['kilometrage_max'],
             ],
-            $data
+            $data,
         );
     }
-
 
     public function incrementSearchCount(Request $request)
     {
@@ -175,5 +188,4 @@ class HomeController extends Controller
             'searchCount' => $searchCount,
         ]);
     }
-
 }

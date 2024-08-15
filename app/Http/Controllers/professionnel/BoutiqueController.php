@@ -78,7 +78,6 @@ class BoutiqueController extends Controller
             'website' => $validatedData['website'] ?? null,
             'street_address' => $validatedData['street_address'] ?? null,
             'siren' => $validatedData['siren'] ?? null,
-            'cover' => null,
         ]);
 
         // Handle the file upload for couverture if provided
@@ -92,12 +91,11 @@ class BoutiqueController extends Controller
 
             // Generate the new filename using boutiqueId, UUID, and userId
             $filename = "{$boutiqueId}-{$uuid}-{$userId}.{$file->getClientOriginalExtension()}";
-
             // Store the file with the new name
             $path = $file->storeAs('images', $filename, 'public');
 
             // Update the boutique with the path to the couverture
-            $boutique->update(['converment_id' => $path]);
+            $boutique->update(['cover' => $path]);
         }
 
         // Redirect or return a response after successful creation

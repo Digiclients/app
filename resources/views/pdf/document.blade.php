@@ -172,17 +172,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    {{-- <tr>
                         <td>Prix Minimum</td>
-                        <td>{{ $priceStatistics['minPrice'] ?? 'N/A' }} €</td>
-                    </tr>
+                        <td>{{ number_format($priceStatistics['minPrice'], 2, ',', ' ') ?? 'N/A' }}  €</td>
+                    </tr> --}}
                     <tr>
                         <td>Prix moyen</td>
-                        <td>{{ $priceStatistics['avgPrice'] ?? 'N/A' }} €</td>
+                        <td>{{ number_format($priceStatistics['avgPrice'], 2, ',', ' ') ?? 'N/A' }}  €</td>
                     </tr>
                     <tr>
                         <td>Prix maximum</td>
-                        <td>{{ $priceStatistics['maxPrice'] ?? 'N/A' }} €</td>
+                        <td>{{ number_format($priceStatistics['maxPrice'], 2, ',', ' ') ?? 'N/A' }} €</td>
                     </tr>
                 </tbody>
             </table>

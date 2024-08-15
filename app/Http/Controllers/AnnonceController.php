@@ -190,38 +190,6 @@ class AnnonceController extends Controller
         return view('listings', compact('annonceListings', 'annoncesCount'));
     }
 
-    // public function listings()
-    // {
-    //     // Fetch active Annonce listings with images, prioritizing featured images
-    //     $annonceListings = Annonce::with([
-    //         'localization',
-    //         'user',
-    //         'images' => function ($query) {
-    //             $query
-    //                 ->orderBy('feature_img', 'desc') // Featured images first
-    //                 ->orderBy('created_at', 'asc'); // Fallback to the earliest image if no featured image
-    //         },
-    //     ])
-    //         ->where('status', Annonce::ACTIVE)
-    //         ->paginate(20);
-
-    //     // Count of active Annonce listings
-    //     $annoncesCount = Annonce::where('status', Annonce::ACTIVE)->count();
-
-    //     // Handling images: Ensure fallback to the first image if no featured image is present
-    //     foreach ($annonceListings as $annonce) {
-    //         // Check if there's a featured image; otherwise, get the first image
-    //         if ($annonce->images->isEmpty()) {
-    //             $annonce->first_image = null;
-    //         } else {
-    //             // Get the URL of the first image (either featured or fallback)
-    //             $annonce->first_image = $annonce->images->first()->path;
-    //         }
-    //     }
-
-    //     return view('listings', compact('annonceListings', 'annoncesCount'));
-    // }
-
     public function show(int $annonceId)
     {
         // TODO need to hundel exception
@@ -257,6 +225,8 @@ class AnnonceController extends Controller
         if (!$annonce) {
             return abort(404);
         }
+
+        $this->authorize('update', $annonce);
 
         $annonce = Annonce::with('localization')->where('id', $annonceId)->first();
 
@@ -322,6 +292,9 @@ class AnnonceController extends Controller
             if (!$annonce) {
                 return abort(404, 'Annonce not found');
             }
+
+            // Authorize the user to update the annonce
+            $this->authorize('update', $annonce);
 
             // Get the boutique ID, category ID, and localization ID
             $boutique_id = Boutique::where('user_id', Auth::user()->id)
@@ -470,6 +443,12 @@ class AnnonceController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+
+        // Retrieve the annonce
+        $annonce = Annonce::findOrFail($annonceId);
+
+        // Authorization check to ensure the user owns the annonce
+        $this->authorize('update', $annonce);
 
         // Retrieve the validated userId and alt text
         $userId = $request->input('userId');

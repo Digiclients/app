@@ -67,21 +67,14 @@ class LeboncoinDataRepository extends BaseRepository
     //     return $priceStatistics;
     // }
 
-    public function getPriceStatistics($search = [], $ownerTypes = ['pro', 'private'])
+    public function getPriceStatistics($search = [], $proPercentage = 25, $privatePercentage = 100, $applyOwnerTypeFilter = true, $ownerTypes = ['pro', 'private'])
     {
         // Options
-        $proPercentage =
-            (int) (Option::select('value')
-                ->where('option', Option::PROPERCENTAGE)
-                ->first()->value ?? 10);
-        $applyOwnerTypeFilter = filter_var(
-            Option::select('value')
-                ->where('option', Option::APPLYPROPERCENTAGE)
-                ->first()->value ?? true,
-            FILTER_VALIDATE_BOOLEAN,
-        );
+        // $proPercentage =
+        //     (int) (Option::select('value')
+        //         ->where('option', Option::PROPERCENTAGE)
+        //         ->first()->value ?? 10);
 
-        // dd("$proPercentage  - " . var_export($applyOwnerTypeFilter, true));
         // Step 1: Initial query to get all results
         $query = $this->model->newQuery();
 
@@ -90,8 +83,8 @@ class LeboncoinDataRepository extends BaseRepository
             ->leftJoin('price_range_data', function ($join) {
                 $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
             })
-            ->whereNotNull('price_range_data.model-slug')
-            ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
+            ->whereNotNull('price_range_data.model-slug');
+            // ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
 
         // Step 2: Apply filters to the query
         $this->applyLocalizationFilter($query, $search);
@@ -103,12 +96,11 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyMileageFilter($query, $search);
         $this->applyRegdateFilter($query, $search);
 
-        // dd($query);
-        // Step 3: Get the filtered results
-        // $filteredResults = $query->get();
-        $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
+        // dd($proPercentage, $privatePercentage);
 
         if ($applyOwnerTypeFilter) {
+            // Step 3: Get the filtered results
+            $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
             // Separate results by ownerType
             $proResults = $filteredResults->where('ownerType', $ownerTypes[0]);
             $privateResults = $filteredResults->where('ownerType', $ownerTypes[1]);
@@ -117,17 +109,21 @@ class LeboncoinDataRepository extends BaseRepository
             $proCount = $proResults->count();
             $proSubset = $proResults->take(ceil($proCount * ($proPercentage / 100)));
 
-            // Step 5: Merge the subset of PRO results with PRIVATE results
-            $mergedResults = $proSubset->merge($privateResults);
+            // Step 5: Get the subset of PRIVATE results based on the configurable percentage
+            $privateCount = $privateResults->count();
+            $privateSubset = $privateResults->take(ceil($privateCount * ($privatePercentage / 100)));
+
+            // Merge the subsets of PRO and PRIVATE results
+            $mergedResults = $proSubset->merge($privateSubset);
 
             // Convert merged results to array of IDs to filter the new query
             $mergedIds = $mergedResults->pluck('id')->toArray();
             $query = $this->model->newQuery()->whereIn('leboncoin_data.id', $mergedIds);
         }
 
+        // dd($query->get());
         // Step 6: Calculate and return the min, max, average prices, and count of filtered results
         $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')->first();
-
         return $priceStatistics;
     }
 
