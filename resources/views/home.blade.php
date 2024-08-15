@@ -1,7 +1,6 @@
 {{-- @dd($error) --}}
 @extends('layouts.app')
 @push('third_party_stylesheets')
-
 @endpush
 
 @section('content')
@@ -31,7 +30,8 @@
 
             <div class="TheHeading text-center py-4">
 
-                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément sa valeur réelle</h1>
+                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément
+                    sa valeur réelle</h1>
                 {{-- <p class="darkcolor font18 fontw600 m-0">Une analyse des Moyennes de </p>
                 <p class="primarycolor font30 fontw900 m-0">842 985</p>
                 <p class="darkcolor font18 fontw600 m-0">prix d'annonces à travers la France.</p> --}}
@@ -1205,6 +1205,8 @@
                 function handleCheckboxChange(event) {
                     const checkbox = event.target;
 
+                    console.log('Checkbox changed:', checkbox.value, 'Checked:', checkbox.checked);
+
                     updateModeleInputState(); // Update the state of modeleInput based on checked checkboxes
 
                     if (checkbox.checked) {
@@ -1613,32 +1615,53 @@
 
                         listItem.querySelector("input").addEventListener("change", (e) => {
                             if (e.target.checked) {
-                                // Uncheck all other checkboxes
-                                // modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
-                                //     if (checkbox !== e.target) {
-                                //         checkbox.checked = false;
-                                //     }
-                                // });
-                                // // Clear the set and add the current model
-                                // selectedModelNames.clear();
-                                // Uncheck all other checkboxes
-                                document.querySelector('#marques').querySelectorAll(".form-check-input")
-                                    .forEach((checkbox) => {
-                                        if (checkbox !== e.target) {
-                                            checkbox.checked = false;
-                                        }
-                                    });
-                                // Clear the set and add the current model only if the input's ID includes "check-marque"
-                                if (e.target.id.includes("check-marque")) {
-                                    selectedModelNames.clear();
-                                }
+                                // Uncheck all other checkboxes and clear the set
+                                modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                                    checkbox.checked = false;
+                                });
 
+                                // Clear the set and add the current model
+                                selectedModelNames.clear();
                                 selectedModelNames.add(model);
+
+                                // Recheck the current checkbox
+                                e.target.checked = true;
                             } else {
                                 selectedModelNames.delete(model);
                             }
                             renderSelectedModels();
                         });
+
+
+
+                        // listItem.querySelector("input").addEventListener("change", (e) => {
+                        //     if (e.target.checked) {
+                        //         // Uncheck all other checkboxes
+                        //         modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
+                        //             if (checkbox !== e.target) {
+                        //                 checkbox.checked = false;
+                        //             }
+                        //         });
+                        //         // // Clear the set and add the current model
+                        //         selectedModelNames.clear();
+                        //         // Uncheck all other checkboxes
+                        //         // document.querySelector('#marques').querySelectorAll(".form-check-input")
+                        //         //     .forEach((checkbox) => {
+                        //         //         if (checkbox !== e.target) {
+                        //         //             checkbox.checked = false;
+                        //         //         }
+                        //         //     });
+                        //         // Clear the set and add the current model only if the input's ID includes "check-marque"
+                        //         // if (e.target.id.includes("check-marque")) {
+                        //         //     selectedModelNames.clear();
+                        //         // }
+
+                        //         selectedModelNames.add(model);
+                        //     } else {
+                        //         selectedModelNames.delete(model);
+                        //     }
+                        //     renderSelectedModels();
+                        // });
                     });
             }
 
