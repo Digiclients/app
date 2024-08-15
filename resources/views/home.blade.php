@@ -272,7 +272,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center my-2 row d-grid gap-3">
+                        <div class="d-flex justify-content-center my-2 row d-grid gap-3 d-none">
                             <div class="col-sm">
                                 <select class="form-select" aria-label="Default select example" name="private">
                                     <option value="">Select Particulier pourcentage</option>
@@ -295,7 +295,7 @@
                                     <option value="100" {{ request()->input('pro') == '100' ? 'selected' : '' }}>100%</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
                     <br>

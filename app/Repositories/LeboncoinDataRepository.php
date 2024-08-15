@@ -67,7 +67,7 @@ class LeboncoinDataRepository extends BaseRepository
     //     return $priceStatistics;
     // }
 
-    public function getPriceStatistics($search = [], $proPercentage = 100, $privatePercentage = 100, $applyOwnerTypeFilter = false, $ownerTypes = ['pro', 'private'])
+    public function getPriceStatistics($search = [], $proPercentage = 25, $privatePercentage = 100, $applyOwnerTypeFilter = true, $ownerTypes = ['pro', 'private'])
     {
         // Options
         // $proPercentage =
@@ -97,7 +97,7 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyRegdateFilter($query, $search);
 
         // dd($proPercentage, $privatePercentage);
-        
+
         if ($applyOwnerTypeFilter) {
             // Step 3: Get the filtered results
             $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
