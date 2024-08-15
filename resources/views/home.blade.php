@@ -272,6 +272,30 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center my-2 row d-grid gap-3">
+                            <div class="col-sm">
+                                <select class="form-select" aria-label="Default select example" name="private">
+                                    <option selected="">Particulier pourcentage</option>
+                                    <option value="0">0%</option>
+                                    <option value="10">10%</option>
+                                    <option value="25">25%</option>
+                                    <option value="50">50%</option>
+                                    <option value="75">75%</option>
+                                    <option value="100">100%</option>
+                                </select>
+                            </div>
+                            <div class="col-sm">
+                                <select class="form-select" aria-label="Default select example" name="pro">
+                                    <option selected="">Professionnel pourcentage</option>
+                                    <option value="0">0%</option>
+                                    <option value="10">10%</option>
+                                    <option value="25">25%</option>
+                                    <option value="50">50%</option>
+                                    <option value="75">75%</option>
+                                    <option value="100">100%</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <br>
 

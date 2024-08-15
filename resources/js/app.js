@@ -351,7 +351,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function submitFilterForm() {
         const form = document.getElementById("filterForm");
         const inputs = form.querySelectorAll("input[name]");
+        const selects = form.querySelectorAll("select[name]"); // Select all <select> elements
 
+        // Collect query parameters from inputs
         const queryParams = Array.from(inputs)
             .filter((input) => input.value.trim() !== "")
             .map((input) => {
@@ -365,13 +367,44 @@ document.addEventListener("DOMContentLoaded", function () {
                     input.value.trim()
                 )}`;
             })
-            .filter((param) => param !== null)
-            .join("&");
+            .filter((param) => param !== null);
+
+        // Collect query parameters from selects
+        const selectParams = Array.from(selects)
+            .filter((select) => select.value.trim() !== "")
+            .map((select) => `${encodeURIComponent(select.name)}=${encodeURIComponent(select.value.trim())}`);
+
+        // Combine parameters from both inputs and selects
+        const allParams = queryParams.concat(selectParams);
 
         const action = form.getAttribute("action");
-        const queryString = queryParams ? `?${queryParams}` : "";
+        const queryString = allParams.length ? `?${allParams.join("&")}` : "";
         window.location.href = `${action}${queryString}#PrixMoyen`;
     }
+    // function submitFilterForm() {
+    //     const form = document.getElementById("filterForm");
+    //     const inputs = form.querySelectorAll("input[name]");
+
+    //     const queryParams = Array.from(inputs)
+    //         .filter((input) => input.value.trim() !== "")
+    //         .map((input) => {
+    //             if (
+    //                 input.name === "location" &&
+    //                 input.value.trim() === "Toute-la-France"
+    //             ) {
+    //                 return null;
+    //             }
+    //             return `${encodeURIComponent(input.name)}=${encodeURIComponent(
+    //                 input.value.trim()
+    //             )}`;
+    //         })
+    //         .filter((param) => param !== null)
+    //         .join("&");
+
+    //     const action = form.getAttribute("action");
+    //     const queryString = queryParams ? `?${queryParams}` : "";
+    //     window.location.href = `${action}${queryString}#PrixMoyen`;
+    // }
 
     function submitUserInfo() {
         const form = document.getElementById("userInfoForm");

@@ -11,13 +11,11 @@ use App\Repositories\LeboncoinDataRepository;
 
 class HomeController extends Controller
 {
-
     protected $leboncoinDataRepository;
     public function __construct(LeboncoinDataRepository $leboncoinDataRepository)
     {
         $this->leboncoinDataRepository = $leboncoinDataRepository;
     }
-
 
     public function index(Request $request)
     {
@@ -38,39 +36,40 @@ class HomeController extends Controller
                 }
             }
 
-            $filters = $request->only([
-                'title',
-                'location',
-                'marque',
-                'modele',
-                'annee_modele',
-                'carburant',
-                'boite_vitesse',
-                'kilometrage',
-            ]);
+            $filters = $request->only(['title', 'location', 'marque', 'modele', 'annee_modele', 'carburant', 'boite_vitesse', 'kilometrage', 'pro', 'private']);
 
-            // dd($filters);
 
             // Initialize the priceStatistics variable
             $priceStatistics = null;
 
             // Call getPriceStatistics only if filters are applied
-            if (!empty($filters)) {
-                $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics($filters);
+            // if (!empty($filters)) {
+            //     $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics($filters);
+                //     // Save or update the average price data in the database
+            //     if ($priceStatistics) {
+            //         $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
+            //     }
+            // }
 
-                // Save or update the average price data in the database
+            if (!empty($filters)) {
+                $applyOwnerTypeFilter = !empty($filters['pro']) || !empty($filters['private']);
+                $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics(
+                    $filters,
+                    $applyOwnerTypeFilter ? (int) $filters['pro'] : 10, // Default values if not provided
+                    $applyOwnerTypeFilter ? (int) $filters['private'] : 100,
+                    $applyOwnerTypeFilter,
+                );
+
                 if ($priceStatistics) {
                     $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
                 }
             }
-
             // Return the view with price statistics
             return view('home', compact('priceStatistics'));
         } catch (\Exception $e) {
             return abort(500);
         }
     }
-
 
     public function saveUserInfo(Request $request)
     {
@@ -88,10 +87,8 @@ class HomeController extends Controller
 
         Cookie::queue('user_access', 'true', 60 * 24 * 30, '/', null, false, false); // 30 days expiry
 
-
         return response()->json(['success' => true]);
     }
-
 
     public function isAuthenticate(Request $request)
     {
@@ -104,7 +101,6 @@ class HomeController extends Controller
             'cookiePresent' => $cookiePresent,
         ]);
     }
-
 
     private function saveOrUpdateAveragePrice($filters, $priceStatistics)
     {
@@ -156,10 +152,9 @@ class HomeController extends Controller
                 'kilometrage_min' => $data['kilometrage_min'],
                 'kilometrage_max' => $data['kilometrage_max'],
             ],
-            $data
+            $data,
         );
     }
-
 
     public function incrementSearchCount(Request $request)
     {
@@ -175,5 +170,4 @@ class HomeController extends Controller
             'searchCount' => $searchCount,
         ]);
     }
-
 }

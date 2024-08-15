@@ -67,21 +67,14 @@ class LeboncoinDataRepository extends BaseRepository
     //     return $priceStatistics;
     // }
 
-    public function getPriceStatistics($search = [], $ownerTypes = ['pro', 'private'])
+    public function getPriceStatistics($search = [], $proPercentage = 10, $privatePercentage = 100, $applyOwnerTypeFilter = false, $ownerTypes = ['pro', 'private'])
     {
         // Options
-        $proPercentage =
-            (int) (Option::select('value')
-                ->where('option', Option::PROPERCENTAGE)
-                ->first()->value ?? 10);
-        $applyOwnerTypeFilter = filter_var(
-            Option::select('value')
-                ->where('option', Option::APPLYPROPERCENTAGE)
-                ->first()->value ?? true,
-            FILTER_VALIDATE_BOOLEAN,
-        );
+        // $proPercentage =
+        //     (int) (Option::select('value')
+        //         ->where('option', Option::PROPERCENTAGE)
+        //         ->first()->value ?? 10);
 
-        // dd("$proPercentage  - " . var_export($applyOwnerTypeFilter, true));
         // Step 1: Initial query to get all results
         $query = $this->model->newQuery();
 
@@ -103,9 +96,7 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyMileageFilter($query, $search);
         $this->applyRegdateFilter($query, $search);
 
-        // dd($query);
         // Step 3: Get the filtered results
-        // $filteredResults = $query->get();
         $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
 
         if ($applyOwnerTypeFilter) {
@@ -117,17 +108,21 @@ class LeboncoinDataRepository extends BaseRepository
             $proCount = $proResults->count();
             $proSubset = $proResults->take(ceil($proCount * ($proPercentage / 100)));
 
-            // Step 5: Merge the subset of PRO results with PRIVATE results
-            $mergedResults = $proSubset->merge($privateResults);
+            // Step 5: Get the subset of PRIVATE results based on the configurable percentage
+            $privateCount = $privateResults->count();
+            $privateSubset = $privateResults->take(ceil($privateCount * ($privatePercentage / 100)));
+
+            // Merge the subsets of PRO and PRIVATE results
+            $mergedResults = $proSubset->merge($privateSubset);
 
             // Convert merged results to array of IDs to filter the new query
             $mergedIds = $mergedResults->pluck('id')->toArray();
             $query = $this->model->newQuery()->whereIn('leboncoin_data.id', $mergedIds);
         }
 
+        // dd($query->get());
         // Step 6: Calculate and return the min, max, average prices, and count of filtered results
         $priceStatistics = $query->selectRaw('MIN(price) as min_price, MAX(price) as max_price, AVG(price) as avg_price, COUNT(*) as count')->first();
-
         return $priceStatistics;
     }
 
