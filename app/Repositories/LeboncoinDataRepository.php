@@ -67,7 +67,7 @@ class LeboncoinDataRepository extends BaseRepository
     //     return $priceStatistics;
     // }
 
-    public function getPriceStatistics($search = [], $proPercentage = 10, $privatePercentage = 100, $applyOwnerTypeFilter = false, $ownerTypes = ['pro', 'private'])
+    public function getPriceStatistics($search = [], $proPercentage = 100, $privatePercentage = 100, $applyOwnerTypeFilter = false, $ownerTypes = ['pro', 'private'])
     {
         // Options
         // $proPercentage =

@@ -51,20 +51,50 @@ class HomeController extends Controller
             //     }
             // }
 
+            // if (!empty($filters)) {
+            //     $applyOwnerTypeFilter = isset($filters['pro']) || isset($filters['private']);
+            //     // $applyOwnerTypeFilter = !empty($filters['pro']) || !empty($filters['private']);
+            //     $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics(
+            //         $filters,
+            //         $applyOwnerTypeFilter ? (int) $filters['pro'] : 100, // Default values if not provided
+            //         $applyOwnerTypeFilter ? (int) $filters['private'] : 100,
+            //         $applyOwnerTypeFilter,
+            //     );
+
+            //     if ($priceStatistics) {
+            //         $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
+            //     }
+            // }
             if (!empty($filters)) {
+                // Determine if the owner type filter should be applied
                 $applyOwnerTypeFilter = isset($filters['pro']) || isset($filters['private']);
-                // $applyOwnerTypeFilter = !empty($filters['pro']) || !empty($filters['private']);
+            
+                // Set the default percentages
+                $proPercentage = 100; // Default to 100% if not provided
+                $privatePercentage = 100; // Default to 100% if not provided
+            
+                // Adjust percentages based on the provided filters
+                if (isset($filters['pro'])) {
+                    $proPercentage = (int) $filters['pro'];
+                }
+                if (isset($filters['private'])) {
+                    $privatePercentage = (int) $filters['private'];
+                }
+            
+                // Call the getPriceStatistics method with the determined parameters
                 $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics(
                     $filters,
-                    $applyOwnerTypeFilter ? (int) $filters['pro'] : 10, // Default values if not provided
-                    $applyOwnerTypeFilter ? (int) $filters['private'] : 100,
-                    $applyOwnerTypeFilter,
+                    $proPercentage,
+                    $privatePercentage,
+                    $applyOwnerTypeFilter
                 );
-
+            
+                // Save or update the average price if statistics were calculated
                 if ($priceStatistics) {
                     $this->saveOrUpdateAveragePrice($filters, $priceStatistics);
                 }
             }
+            
             // Return the view with price statistics
             return view('home', compact('priceStatistics'));
         } catch (\Exception $e) {
