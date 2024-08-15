@@ -19,7 +19,7 @@
     @endenv
     @production
         <link rel="stylesheet" href="{{ asset('build/assets/app-56d27ad2.css') }}">
-        <script src="{{ asset('build/assets/app-4b7b6c53.js') }}"></script>
+        <script src="{{ asset('build/assets/app-287aaa6c.js') }}"></script>
     @endproduction
 
 
