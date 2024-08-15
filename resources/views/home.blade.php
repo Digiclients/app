@@ -275,26 +275,27 @@
                         <div class="d-flex justify-content-center my-2 row d-grid gap-3">
                             <div class="col-sm">
                                 <select class="form-select" aria-label="Default select example" name="private">
-                                    <option selected="">Particulier pourcentage</option>
-                                    <option value="0">0%</option>
-                                    <option value="10">10%</option>
-                                    <option value="25">25%</option>
-                                    <option value="50">50%</option>
-                                    <option value="75">75%</option>
-                                    <option value="100">100%</option>
+                                    <option value="">Select Particulier pourcentage</option>
+                                    <option value="0" {{ request()->input('private') == '0' ? 'selected' : '' }}>0%</option>
+                                    <option value="10" {{ request()->input('private') == '10' ? 'selected' : '' }}>10%</option>
+                                    <option value="25" {{ request()->input('private') == '25' ? 'selected' : '' }}>25%</option>
+                                    <option value="50" {{ request()->input('private') == '50' ? 'selected' : '' }}>50%</option>
+                                    <option value="75" {{ request()->input('private') == '75' ? 'selected' : '' }}>75%</option>
+                                    <option value="100" {{ request()->input('private') == '100' ? 'selected' : '' }}>100%</option>
                                 </select>
                             </div>
                             <div class="col-sm">
                                 <select class="form-select" aria-label="Default select example" name="pro">
-                                    <option selected="">Professionnel pourcentage</option>
-                                    <option value="0">0%</option>
-                                    <option value="10">10%</option>
-                                    <option value="25">25%</option>
-                                    <option value="50">50%</option>
-                                    <option value="75">75%</option>
-                                    <option value="100">100%</option>
+                                    <option value="">Select Professionnel pourcentage</option>
+                                    <option value="0" {{ request()->input('pro') == '0' ? 'selected' : '' }}>0%</option>
+                                    <option value="10" {{ request()->input('pro') == '10' ? 'selected' : '' }}>10%</option>
+                                    <option value="25" {{ request()->input('pro') == '25' ? 'selected' : '' }}>25%</option>
+                                    <option value="50" {{ request()->input('pro') == '50' ? 'selected' : '' }}>50%</option>
+                                    <option value="75" {{ request()->input('pro') == '75' ? 'selected' : '' }}>75%</option>
+                                    <option value="100" {{ request()->input('pro') == '100' ? 'selected' : '' }}>100%</option>
                                 </select>
                             </div>
+                            
                         </div>
                     </div>
                     <br>

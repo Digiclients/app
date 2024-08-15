@@ -52,7 +52,8 @@ class HomeController extends Controller
             // }
 
             if (!empty($filters)) {
-                $applyOwnerTypeFilter = !empty($filters['pro']) || !empty($filters['private']);
+                $applyOwnerTypeFilter = isset($filters['pro']) || isset($filters['private']);
+                // $applyOwnerTypeFilter = !empty($filters['pro']) || !empty($filters['private']);
                 $priceStatistics = $this->leboncoinDataRepository->getPriceStatistics(
                     $filters,
                     $applyOwnerTypeFilter ? (int) $filters['pro'] : 10, // Default values if not provided

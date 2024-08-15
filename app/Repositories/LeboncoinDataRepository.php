@@ -83,8 +83,8 @@ class LeboncoinDataRepository extends BaseRepository
             ->leftJoin('price_range_data', function ($join) {
                 $join->on('leboncoin_data.model-slug', '=', 'price_range_data.model-slug')->whereColumn('leboncoin_data.price', '>=', 'price_range_data.min-price')->whereColumn('leboncoin_data.price', '<=', 'price_range_data.max-price');
             })
-            ->whereNotNull('price_range_data.model-slug')
-            ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
+            ->whereNotNull('price_range_data.model-slug');
+            // ->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType');
 
         // Step 2: Apply filters to the query
         $this->applyLocalizationFilter($query, $search);
@@ -96,10 +96,11 @@ class LeboncoinDataRepository extends BaseRepository
         $this->applyMileageFilter($query, $search);
         $this->applyRegdateFilter($query, $search);
 
-        // Step 3: Get the filtered results
-        $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
-
+        // dd($proPercentage, $privatePercentage);
+        
         if ($applyOwnerTypeFilter) {
+            // Step 3: Get the filtered results
+            $filteredResults = $query->select('leboncoin_data.id', 'leboncoin_data.price', 'leboncoin_data.ownerType')->get();
             // Separate results by ownerType
             $proResults = $filteredResults->where('ownerType', $ownerTypes[0]);
             $privateResults = $filteredResults->where('ownerType', $ownerTypes[1]);
