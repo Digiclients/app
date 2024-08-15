@@ -31,7 +31,7 @@
 
             <div class="TheHeading text-center py-4">
 
-                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément sa valeur réelle</h1>
+                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément sa valeur réelle sur le marché de l'occasion</h1>
                 {{-- <p class="darkcolor font18 fontw600 m-0">Une analyse des Moyennes de </p>
                 <p class="primarycolor font30 fontw900 m-0">842 985</p>
                 <p class="darkcolor font18 fontw600 m-0">prix d'annonces à travers la France.</p> --}}
