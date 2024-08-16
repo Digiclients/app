@@ -1,4 +1,9 @@
 <form action="{{ isset($annonce) ? route('annonce.update', $annonce->id) : route('store-annonce') }}" id="multi-step-form" method="POST">
+  
+  <div class="validationErrors text-danger text-center">
+
+  </div>
+
     @csrf
     @if(isset($annonce))
         @method('PUT')
@@ -176,7 +181,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="permis" class="form-label">{{ __('input.permis') }} <span
-                            class="text-danger">*</span></label>
+                            class="text-danger"></span></label>
                     <select id="permis" name="permis"
                         class="form-select @error('permis') is-invalid @enderror">
                     </select>
@@ -260,7 +265,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="matricule" class="form-label">{{ __('input.matricule') }} <span
-                            class="text-danger">*</span></label>
+                            class="text-danger"></span></label>
                     <input type="text" class="form-control @error('matricule') is-invalid @enderror"
                         id="matricule" name="matricule"
                         placeholder="{{ __('input.matricule_placeholder') }}" value="{{ old('matricule_placeholder', $attributesData['matricule']['value'] ?? '') }}">
