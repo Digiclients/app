@@ -12,7 +12,7 @@ class LeboncoinDataSeeder extends Seeder
     public function run()
     {
         // Get all JSON files from the directory
-        $jsonFiles = File::allFiles(database_path('data'));
+        $jsonFiles = File::allFiles(database_path('data/PEUGEOT'));
 
         foreach ($jsonFiles as $file) {
             if ($file->getExtension() === 'json') {
@@ -52,16 +52,19 @@ class LeboncoinDataSeeder extends Seeder
             'list_id' => (int) $item['list_id'],
             'subject' => $item['subject'],
             'price' => (int) $item['price'][0],
-            'u_car_brand' => $this->getAttributeValue($item, 'u_car_brand'),
-            'u_car_model' => $this->getAttributeValue($item, 'u_car_model'),
-            'model-slug' => $this->getAttributeValue($item, 'u_car_model', 'value'),
+            // 'u_car_brand' => $this->getAttributeValue($item, 'u_car_brand'),
+            'u_car_brand' => $this->getAttributeValue($item, 'u_utility_brand'),
+            // 'u_car_model' => $this->getAttributeValue($item, 'u_car_model'),
+            'u_car_model' => $this->getAttributeValue($item, 'u_utility_model'),
+            // 'model-slug' => $this->getAttributeValue($item, 'u_car_model', 'value'),
+            'model-slug' => $this->getAttributeValue($item, 'u_utility_model', 'value'),
             'regdate' => $this->getAttributeValue($item, 'regdate', 'value'),
-            'vehicle_type' => $this->getAttributeValue($item, 'vehicle_type'),
+            // 'vehicle_type' => $this->getAttributeValue($item, 'vehicle_type'), // this one is not found in itilitaire
             'fuel' => $this->getAttributeValue($item, 'fuel'),
             'gearbox' => $this->getAttributeValue($item, 'gearbox'),
             'mileage' => $this->getAttributeValue($item, 'mileage', 'value'),
             'horse_power_din' => $this->getAttributeValue($item, 'horse_power_din', 'value'),
-            'vehicle_damage' => $this->getAttributeValue($item, 'vehicle_damage'),
+            // 'vehicle_damage' => $this->getAttributeValue($item, 'vehicle_damage'), // this one is not found in itilitaire
             'horsepower' => $this->getAttributeValue($item, 'horsepower', 'value'),
             'doors' => $this->getAttributeValue($item, 'doors'),
             'seats' => $this->getAttributeValue($item, 'seats'),

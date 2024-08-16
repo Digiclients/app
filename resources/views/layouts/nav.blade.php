@@ -19,7 +19,7 @@
                     <a class="nav-link" href="{{ route('home') }}">Estimation</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('à-propos') ? 'activeNavBarlink' : '' }} ">
-                    <a class="nav-link" href="{{ route('about') }}">à propos</a>
+                    <a class="nav-link" href="{{ route('about') }}">À propos</a>
                 </li>
                 <li class="nav-item NavBarlink {{ Request::is('voitures') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('listings') }}">Acheter</a>
@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{ route('create-annonce') }}">Vendre</a>
                 </li>
                 <li class="nav-item NavBarlink">
-                    <a class="nav-link" href="https://blog.lautoprix.fr/">Vous conseiller</a>
+                    <a class="nav-link" href="https://blog.lautoprix.fr/">Actualités</a>
                 </li>
                 <li class="nav-item  NavBarlink {{ Request::is('Contactez-nous') ? 'activeNavBarlink' : '' }}">
                     <a class="nav-link" href="{{ route('contact') }}">Contactez-nous</a>
