@@ -122,7 +122,27 @@
                                 </a>
                             </li>
 
+                            <li class='sub-menu'>
+                                <a class="sub-menu-container" href='{{ route('dashboard.announces') }}'>
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="mi:list"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">les annonces</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
 
+                            <li class='sub-menu'>
+                                <a class="sub-menu-container" href='{{ route('dashboard.searchHistory') }}'>
+                                    <div class="insideacontainer">
+                                        <i class="iconify iconaside" data-icon="ic:twotone-search"></i>
+                                        <div class="navitem">
+                                            <div class="navlink">les recherches</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
 
                             <li class='sub-menu'>
                                 <a class="sub-menu-container" href='{{ route('admin.range') }}'>

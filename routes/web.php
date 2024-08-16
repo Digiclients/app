@@ -205,7 +205,14 @@ Route::get('/dashboard/leads', function () {
 
 
 
+Route::get('/dashboard/announces', function () {
+    return view('Dashboard.announces');
+})->name('dashboard.announces');
 
+
+Route::get('/dashboard/searchHistory', function () {
+    return view('Dashboard.searchHistory');
+})->name('dashboard.searchHistory');
 
 
 
