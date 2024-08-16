@@ -40,91 +40,36 @@
 
                 <thead>
                     <tr>
-                        <th class="text-capitalize "> User
+                        <th class="text-capitalize">location</th>
+                        <th class="text-start text-capitalize">marque</th>
+                        <th class="text-start text-capitalize">modele</th>
 
-                            <div class="sortby ms-auto d-flex float-end">
-                                <a href="#" class="">
-                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
-                                        data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
-                                </a>
-                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
-                                        data-rotate="90deg" data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
-                            </div>
-
-
-                        </th>
-                        <th class="text-start text-capitalize">id
-                            <div class="sortby ms-auto d-flex float-end">
-                                <a href="#" class="">
-                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
-                                        data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
-                                </a>
-                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
-                                        data-rotate="90deg" data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
-                            </div>
-                        </th>
-                        <th class="text-start text-capitalize">phone
-                            <div class="sortby ms-auto d-flex float-end">
-                                <a href="#" class="">
-                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
-                                        data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
-                                </a>
-                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
-                                        data-rotate="90deg" data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
-                            </div>
-                        </th>
-
-                        <th class="text-start text-capitalize">email
-                            <div class="sortby ms-auto d-flex float-end">
-                                <a href="#" class="">
-                                    <span class="iconify textcolor font22 me-1" data-rotate="270deg"
-                                        data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span>
-                                </a>
-                                <a href="#" class=""><span class="iconify textcolor font22 me-1"
-                                        data-rotate="90deg" data-flip="horizontal"
-                                        data-icon="material-symbols:arrow-right-alt-rounded"></span></a>
-                            </div>
-                        </th>
+                        <th class="text-start text-capitalize">title</th>
+                        <th class="text-start text-capitalize">annee_modele_min-max</th>
+                        <th class="text-start text-capitalize">carburant</th>
+                        <th class="text-start text-capitalize">boite_vitesse</th>
+                        <th class="text-start text-capitalize">kilometrage_min-max</th>
+                        <th class="text-start text-capitalize">views</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex my-auto">
-                                <div class="px-2">
-                                    <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                </div>
-                            </div>
 
-                        </td>
-                        <td class="text-start">1453</td>
-                        <td class="text-start">066666666</td>
-                        <td class="text-start">joyboy@joyness.com</td>
-                    </tr>
+                   
+                        <tr>
+                            <td class="text-capitalize">location</td>
+                            <td class="text-start text-capitalize">marque</td>
+                            <td class="text-start text-capitalize">modele</td>
+                            <td class="text-start text-capitalize">title</td>
+                            <td class="text-start text-capitalize">annee_modele_min-max</td>
+                            <td class="text-start text-capitalize">carburant</td>
+                            <td class="text-start text-capitalize">boite_vitesse</td>
+                            <td class="text-start text-capitalize">kilometrage_min-max</td>
+                            <td class="text-start text-capitalize">500</td>
+                            
+                        </tr>
 
 
 
-
-                    <tr>
-                        <td>
-                            <div class="d-flex my-auto">
-                                <div class="px-2">
-                                    <p class="my-0 fontw600 graycolor">Reynante Labares</p>
-                                </div>
-                            </div>
-
-                        </td>
-                        <td class="text-start">1453</td>
-                        <td class="text-start">066666666</td>
-                        <td class="text-start">joyboy@joyness.com</td>
-                    </tr>
 
 
                 </tbody>
@@ -137,38 +82,13 @@
 
 
 
-
-        <div class="row  py-3">
-
-
-            <div class="col-lg-6 my-auto">
-                <p class="textcolor font14 text-center text-lg-start my-2 my-lg-auto">Showing 21 to 30 of 50
-                    entries</p>
-            </div>
+        </div>
 
 
 
-            <div class="col-lg-6">
-
-
-                <nav>
-                    <ul
-                        class="pagination CustomPagination   my-2 my-lg-auto justify-content-center justify-content-lg-end">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
+        <!-- START Listing Pagination -->
+        <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
+            {{-- {{ $annonces->links() }} --}}
         </div>
 
 

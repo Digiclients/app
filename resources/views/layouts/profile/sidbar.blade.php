@@ -60,6 +60,11 @@
                             {{-- <li><a href="{{ route('profile.favourites') }}"
                                     class="{{ Request::is('profile/favoris') ? 'active' : '' }}">
                                     <span>Mes favoris</span></a></li> --}}
+
+                                     <li><a href="{{ route('profile.Notifications') }}"
+                                    class="{{ Request::is('profile/Notifications') ? 'active' : '' }}">
+                                    <span>Notifications</span></a></li>
+                                    
                             <li><a href="{{ route('create-annonce') }}"
                                     class="{{ Request::is('deposer-une-annonce') ? 'active' : '' }}">
                                     <span>Déposer une annonce</span></a></li>
