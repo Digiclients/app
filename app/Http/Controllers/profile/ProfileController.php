@@ -169,6 +169,18 @@ class ProfileController extends Controller
         }
     }
 
+
+
+        /**
+     * Display the  Notifications.
+     */
+    public function notifications()
+    {
+        $user = $this->getAuthenticatedUser();
+        return view('profile.Notifications', compact('user'));
+    }
+
+
     /**
      * Display the specified resource.
      */

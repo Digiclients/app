@@ -173,6 +173,7 @@
             });
 
             const currentForm = steps[currentStep];
+            console.log(currentStep)
             const requiredInputs = currentForm.querySelectorAll("input[required], textarea[required], select[required]");
             let allValid = true;
 
@@ -185,10 +186,128 @@
                 }
             });
 
-            if (allValid && currentStep < steps.length - 1) {
+            // START CUSTOM FORM VALIDATION
+            let ValidStep = true;
+            validationErrors = document.querySelector(".validationErrors");
+
+
+            if (currentStep == 0) {
+                validationErrors.innerHTML = ""
+                console.log("i will check the 0")
+                // Title validation
+                title = document.querySelector('[name="title"]');
+                console.log(title)
+                if (title.value.length < 10 || title.value.length > 80) {
+                    validationErrors.innerHTML += "Le titre doit comporter entre 10 et 80 caractères. <br> ";
+                    ValidStep = false;
+                }
+
+                // Marque validation
+                marque = document.querySelector('[name="marque"]');
+                if (!marque.value.trim()) {
+                    validationErrors.innerHTML += "La marque est requise. <br> ";
+                    ValidStep = false;
+                }
+
+                // Modèle validation
+                modele = document.querySelector('[name="modele"]');
+                if (!modele.value.trim()) {
+                    validationErrors.innerHTML += "Le modèle est requis. <br> ";
+                    ValidStep = false;
+                }
+
+            }
+
+            if (currentStep == 1) {
+                validationErrors.innerHTML = "";
+                console.log("i will check the 1");
+
+                // Price validation
+                price = document.querySelector('[name="price"]');
+                if (price.value <= 99 ||  !price.value.trim()) {
+                    validationErrors.innerHTML += "Le prix est requis et doit être au moins 100. <br>";
+                    ValidStep = false;
+                }
+
+                // Description validation
+                description = document.querySelector('[name="description"]');
+                if (description.value.trim().length === 0) {
+                    validationErrors.innerHTML += "La description est requise. <br>";
+                    ValidStep = false;
+                }
+            }
+
+
+            if (currentStep == 2) {
+                validationErrors.innerHTML = "";
+                console.log("i will check the 2");
+
+                // Année Modèle validation
+                anneeModele = document.querySelector('[name="annee_modele"]');
+                if (anneeModele.value < 1850 || anneeModele.value > 2025 || !anneeModele.value.trim()) {
+                    validationErrors.innerHTML +=
+                        "L'année modèle est requise et doit être comprise entre 1850 et 2025. <br>";
+                    ValidStep = false;
+                }
+
+                // Carburant validation
+                carburant = document.querySelector('[name="carburant"]');
+                if (!carburant.value.trim()) {
+                    validationErrors.innerHTML += "Le carburant est requis. <br>";
+                    ValidStep = false;
+                }
+
+                // Kilométrage validation
+                kilometrage = document.querySelector('[name="kilometrage"]');
+                if (kilometrage.value <= 0 || !kilometrage.value.trim()) {
+                    validationErrors.innerHTML += "Le kilométrage est requis et doit être supérieur à 0. <br>";
+                    ValidStep = false;
+                }
+
+                // Boîte de vitesses validation
+                boiteVitesse = document.querySelector('[name="boite_vitesse"]');
+                if (!boiteVitesse.value.trim()) {
+                    validationErrors.innerHTML += "La boîte de vitesses est requise. <br>";
+                    ValidStep = false;
+                }
+            }
+
+            // if (currentStep == 3) {
+            //     validationErrors.innerHTML = "";
+            //     console.log("i will check the 3");
+
+            //     // Location validation
+            //     locationInput = document.querySelector('[name="location"]');
+            //     if (!locationInput.value.trim()) {
+            //         validationErrors.innerHTML += "La location est requise. <br>";
+            //         ValidStep = false;
+            //     }
+
+            //     // Email validation
+            //     emailInput = document.querySelector('[name="email"]');
+            //     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
+            //     if (!emailInput.value.trim() || !emailPattern.test(emailInput.value)) {
+            //         validationErrors.innerHTML += "L'email est requis et doit être valide. <br>";
+            //         ValidStep = false;
+            //     }
+
+            //     // Phone validation
+            //     phoneInput = document.querySelector('[name="phone"]');
+            //     const phonePattern = /^\+?[0-9]{10,15}$/; // Regex for international and local phone numbers
+            //     if (!phoneInput.value.trim() || !phonePattern.test(phoneInput.value)) {
+            //         validationErrors.innerHTML += "Le numéro de téléphone est requis et doit être valide. <br>";
+            //         ValidStep = false;
+            //     }
+            // }
+
+            // END CUSTOM FORM VALIDATION
+
+            if (allValid && currentStep < steps.length - 1 && ValidStep) {
                 steps[currentStep].classList.remove("form-step-active");
                 currentStep++;
                 steps[currentStep].classList.add("form-step-active");
+                document.querySelector(".validationErrors").innerHTML = ""
+
                 updateStepProgress();
             }
         }
@@ -228,7 +347,36 @@
                 }
             });
 
-            if (!allValid) {
+
+            ValidSubmitStep = true;
+                validationErrors.innerHTML = "";
+
+                // Location validation
+                locationInput = document.querySelector('[name="location"]');
+                if (!locationInput.value.trim()) {
+                    validationErrors.innerHTML += "La location est requise. <br>";
+                    ValidSubmitStep = false;
+                }
+
+                // Email validation
+                emailInput = document.querySelector('[name="email"]');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for email validation
+                if (!emailInput.value.trim() || !emailPattern.test(emailInput.value)) {
+                    validationErrors.innerHTML += "L'email est requis et doit être valide. <br>";
+                    ValidSubmitStep = false;
+                }
+
+                // Phone validation
+                phoneInput = document.querySelector('[name="phone"]');
+                const phonePattern = /^\+?[0-9]{10,15}$/; // Regex for international and local phone numbers
+                if (!phoneInput.value.trim() || !phonePattern.test(phoneInput.value)) {
+                    validationErrors.innerHTML += "Le numéro de téléphone est requis et doit être valide. <br>";
+                    ValidSubmitStep = false;
+                }
+        
+                
+
+            if (!allValid || !ValidSubmitStep) {
                 event.preventDefault();
             }
         });

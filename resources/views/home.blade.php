@@ -392,7 +392,7 @@
                             <input type="hidden" name="avgPrice" value="{{ $priceStatistics->avg_price }}">
                             <input type="hidden" name="maxPrice" value="{{ $priceStatistics->max_price }}">
 
-                            <button type="submit" class="primarybtn d-block mx-auto mt-2 w-25">Download PDF</button>
+                            <button type="submit" class="primarybtn d-block mx-auto mt-2">Download PDF</button>
                         </form>
                     @endif
                 </div>

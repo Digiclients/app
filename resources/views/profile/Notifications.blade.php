@@ -38,9 +38,9 @@
 
 
     <div class="rounded text-center border p-4 shadow-sm mt-4">
-        <p class="darkcolor font18 fontw600 m-0">Vous n'avez pas d'annonces</p>
+        <p class="darkcolor font18 fontw600 m-0">Vous n'avez pas des notifications</p>
         <div class="d-block py-4 mx-auto">
-            <a type="button" href="{{ route('create-annonce') }}" class="primarybtn mt-3  mx-auto">Déposer une annonce</a>
+            <a type="button" href="{{ route('home') }}" class="primarybtn mt-3 mx-auto">Ajouter une notifications</a>
         </div>
 
     </div>
@@ -73,7 +73,6 @@
 
 
 
-        <!-- ################  START list ad-card ################ -->
 
         <div class="table-responsive pt-2">
             <table class="table CustomTable m-0">
@@ -82,73 +81,51 @@
 
                 <thead>
                     <tr>
-                        <th class="text-capitalize "> Titre
+                        <th class="text-capitalize">location</th>
+                        <th class="text-start text-capitalize">marque</th>
+                        <th class="text-start text-capitalize">modele</th>
 
-
-
-
-                        </th>
-    
-                        <th class="text-start text-capitalize">Prix
-      
-                        </th>
-                        <th class="text-start d-none d-md-table-cell text-capitalize">Temps de publication
-
-                        </th>
-
-                        <th class="text-start text-capitalize">Actions
-
-
-                        </th>
+                        <th class="text-start text-capitalize">title</th>
+                        <th class="text-start text-capitalize">annee_modele_min-max</th>
+                        <th class="text-start text-capitalize">carburant</th>
+                        <th class="text-start text-capitalize">boite_vitesse</th>
+                        <th class="text-start text-capitalize">kilometrage_min-max</th>
+                        <th class="text-start text-capitalize">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @forelse ($annonces as $annonce)
+                   
                         <tr>
-                            <td>
-                                <div class="d-flex my-auto">
-                                    <div class="my-auto">
-                                        <img src="{{ asset('storage/' . $annonce->images->first()->path) }}"
-                                            alt="{{ $annonce->images->first()->alt }}" class="d-flex mx-auto rounded"
-                                            width="40">
-                                    </div>
-                                    <div class="px-2 my-auto">
-                                        <p class="my-0 fontw600 graycolor AnounceTitle">{{ $annonce->title }}</p>
-                                    </div>
-                                </div>
-
-                            </td>
-                            <td class="text-start">{{ number_format($annonce->price, 2, ',', ' ') }} €</td>
-                            <td class="text-start d-none d-md-table-cell">
-                                {{ \Carbon\Carbon::parse($annonce->publication_date)->diffForHumans() }}</td>
+                            <td class="text-capitalize">location</td>
+                            <td class="text-start text-capitalize">marque</td>
+                            <td class="text-start text-capitalize">modele</td>
+                            <td class="text-start text-capitalize">title</td>
+                            <td class="text-start text-capitalize">annee_modele_min-max</td>
+                            <td class="text-start text-capitalize">carburant</td>
+                            <td class="text-start text-capitalize">boite_vitesse</td>
+                            <td class="text-start text-capitalize">kilometrage_min-max</td>
                             <td class="text-start">
 
 
                                 <div class="my-auto d-flex">
 
 
-                                    <a href="{{ route('annonce.show', $annonce->id) }}" class=""><iconify-icon
+                                    <a href="" class=""><iconify-icon
                                             class="iconify graycolor font22 me-2" icon="tabler:eye"></iconify-icon></a>
-                                    <a href="{{ route('annonce.edit', $annonce->id) }}" class="">
-                                        <iconify-icon class="iconify graycolor font22 mx-2"
-                                            icon="tabler:pencil"></iconify-icon>
-
-
-                                    </a>
-
+                 
                                     <!-- Link with icon -->
                                     <a href="#" class="delete-confirm">
                                         <iconify-icon class="iconify graycolor font22 mx-2"
                                             icon="tabler:trash"></iconify-icon>
                                     </a>
 
-                                    <!-- Hidden form -->
+                                    {{-- <!-- Hidden form -->
                                     <form action="{{ route('annonce.delete', $annonce->id) }}" method="POST"
                                         style="display: none;">
                                         @csrf
                                         @method('DELETE')
-                                    </form>
+                                    </form> --}}
                                 </div>
 
 
@@ -157,8 +134,6 @@
                             </td>
                         </tr>
 
-                    @empty
-                    @endforelse
 
 
 
@@ -179,7 +154,7 @@
 
         <!-- START Listing Pagination -->
         <div class="CustomPagination mt-3 justify-content-center justify-content-lg-start">
-            {{ $annonces->links() }}
+            {{-- {{ $annonces->links() }} --}}
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {

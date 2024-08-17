@@ -69,6 +69,15 @@ Route::middleware(['auth', 'role:particulier|professionnel'])->group(function ()
         Route::get('/annonces', [ProfileController::class, 'annonces'])->name('annonces');
 
         Route::get('/favoris', [ProfileController::class, 'favourites'])->name('favourites');
+        
+        
+        Route::get('/Notifications', [ProfileController::class, 'notifications'])->name('Notifications');
+
+        
+        //  Route::get('/Notifications', function () {
+        //     return view('profile.Notifications');
+        // })->name('Notifications');
+
 
         // Route::get('/profile/AnouncePhotos', function () {
         //     return view('profile.AddAndUpdatePhotos');
@@ -205,7 +214,14 @@ Route::get('/dashboard/leads', function () {
 
 
 
+Route::get('/dashboard/announces', function () {
+    return view('Dashboard.announces');
+})->name('dashboard.announces');
 
+
+Route::get('/dashboard/searchHistory', function () {
+    return view('Dashboard.searchHistory');
+})->name('dashboard.searchHistory');
 
 
 
