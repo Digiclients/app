@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\LeboncoinData;
+use App\Models\PriceRangeData;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,15 @@ class LeboncoinDataSeeder extends Seeder
                 foreach ($uniqueData as $item) {
                     $carData = $this->buildLeboncoinDataArrayCars($item);
                     LeboncoinData::updateOrCreate(['list_id' => $carData['list_id']], $carData);
+
+                    // Update or create a PriceRangeData record
+                    PriceRangeData::updateOrCreate(
+                        ['model-slug' => $carData['model-slug']],
+                        [
+                            'min-price' => 100,
+                            'max-price' => 1000000,
+                        ],
+                    );
                 }
             }
         }
