@@ -850,17 +850,31 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.close-icon').forEach(icon => {
                 icon.addEventListener('click', function() {
-                    const input = this.previousElementSibling;
-                    if (input) {
-                        input.value = ''; // Clear the input value
+                    // Find the closest input container
+                    const container = this.closest('.input-container');
+
+                    if (container) {
+                        // Clear the input value
+                        const input = container.querySelector('input');
+                        if (input) {
+                            input.value = '';
+                        }
+
+                        // Uncheck all checkboxes within the related model-list
+                        const modelList = container.querySelector('.model-list');
+                        if (modelList) {
+                            const checkboxes = modelList.querySelectorAll('.form-check-input');
+                            checkboxes.forEach(checkbox => {
+                                checkbox.checked = false;
+                            });
+                        }
+
+                        // Clear the badge container if it exists
+                        const badgeContainer = container.querySelector('.badge-container');
+                        if (badgeContainer) {
+                            badgeContainer.innerHTML = '';
+                        }
                     }
-                    // Uncheck all checkboxes within the #models container
-                    const modelCheckboxes = document.querySelectorAll('#models .form-check-input');
-                    console.log("modelCheckboxes : ", modelCheckboxes)
-                    modelCheckboxes.forEach(checkbox => {
-                        checkbox.checked = false;
-                    });
-                    document.querySelector('.SearchandCheck-models').querySelector('.badge-container').innerHTML = ''
                 });
             });
         });
