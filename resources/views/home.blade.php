@@ -1235,6 +1235,7 @@
 
                     if (checkbox.checked) {
                         console.log(checkbox.checked);
+                        document.querySelector('form').querySelector('[name=modele]').value = ''
                         const url = getModelsRoute.replace(':marque', encodeURIComponent(checkbox.value));
                         modelListDiv.innerHTML = `
                 <div class="spinner-border text-primary" role="status">
