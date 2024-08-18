@@ -20,7 +20,7 @@
     <!-- ################  START MiniHeader ################ -->
 
     <section class="MiniHeader  container-fluid row justify-content-center"
-        style="background-image:url(https://a-propos.lacentrale.fr/wp-content/uploads/sites/3/2024/03/Capture-decran-2024-03-14-a-12.42.52-1-scaled.jpg)">
+    style="background-image:url({{ asset('assets/images/bgSingle.jpg')}})">
         <div class="MiniHeaderLayer w100 py-5  text-center">
 
             <br>
