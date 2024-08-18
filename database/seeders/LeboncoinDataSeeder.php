@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\LeboncoinData;
+use App\Models\PriceRangeData;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -26,6 +27,15 @@ class LeboncoinDataSeeder extends Seeder
                 foreach ($uniqueData as $item) {
                     $carData = $this->buildLeboncoinDataArrayCars($item);
                     LeboncoinData::updateOrCreate(['list_id' => $carData['list_id']], $carData);
+
+                    // Update or create a PriceRangeData record
+                    PriceRangeData::updateOrCreate(
+                        ['model-slug' => $carData['model-slug']],
+                        [
+                            'min-price' => 100,
+                            'max-price' => 1000000,
+                        ],
+                    );
                 }
             }
         }
@@ -46,9 +56,39 @@ class LeboncoinDataSeeder extends Seeder
         return $uniqueData;
     }
 
+    // private function buildLeboncoinDataArrayCars($item)
+    // {
+    //     return [
+    //         'list_id' => (int) $item['list_id'],
+    //         'subject' => $item['subject'],
+    //         'price' => (int) $item['price'][0],
+    //         'u_car_brand' => $this->getAttributeValue($item, 'u_car_brand'),
+    //         'u_car_model' => $this->getAttributeValue($item, 'u_car_model'),
+    //         'model-slug' => $this->getAttributeValue($item, 'u_car_model', 'value'),
+    //         'regdate' => $this->getAttributeValue($item, 'regdate', 'value'),
+    //         'vehicle_type' => $this->getAttributeValue($item, 'vehicle_type'), // this one is not found in itilitaire
+    //         'fuel' => $this->getAttributeValue($item, 'fuel'),
+    //         'gearbox' => $this->getAttributeValue($item, 'gearbox'),
+    //         'mileage' => $this->getAttributeValue($item, 'mileage', 'value'),
+    //         'horse_power_din' => $this->getAttributeValue($item, 'horse_power_din', 'value'),
+    //         'vehicle_damage' => $this->getAttributeValue($item, 'vehicle_damage'), // this one is not found in itilitaire
+    //         'horsepower' => $this->getAttributeValue($item, 'horsepower', 'value'),
+    //         'doors' => $this->getAttributeValue($item, 'doors'),
+    //         'seats' => $this->getAttributeValue($item, 'seats'),
+    //         'vehicule_color' => $this->getAttributeValue($item, 'vehicule_color'),
+    //         'vehicle_vsp' => $this->getAttributeValue($item, 'vehicle_vsp'),
+    //         'ownerType' => $item['owner']['type'],
+    //         'ownerName' => $item['owner']['name'],
+    //         'url' => $item['url'],
+    //         'city' => $item['location']['city'],
+    //         'zipcode' => (int) $item['location']['zipcode'],
+    //     ];
+    // }
+
     private function buildLeboncoinDataArrayCars($item)
     {
-        return [
+        // Initialize the data array
+        $data = [
             'list_id' => (int) $item['list_id'],
             'subject' => $item['subject'],
             'price' => (int) $item['price'][0],
@@ -61,7 +101,6 @@ class LeboncoinDataSeeder extends Seeder
             'gearbox' => $this->getAttributeValue($item, 'gearbox'),
             'mileage' => $this->getAttributeValue($item, 'mileage', 'value'),
             'horse_power_din' => $this->getAttributeValue($item, 'horse_power_din', 'value'),
-            'vehicle_damage' => $this->getAttributeValue($item, 'vehicle_damage'), // this one is not found in itilitaire
             'horsepower' => $this->getAttributeValue($item, 'horsepower', 'value'),
             'doors' => $this->getAttributeValue($item, 'doors'),
             'seats' => $this->getAttributeValue($item, 'seats'),
@@ -73,8 +112,15 @@ class LeboncoinDataSeeder extends Seeder
             'city' => $item['location']['city'],
             'zipcode' => (int) $item['location']['zipcode'],
         ];
-    }
 
+        // Conditionally add 'vehicle_damage' if it is not 'Endommagé'
+        $vehicleDamage = $this->getAttributeValue($item, 'vehicle_damage');
+        if ($vehicleDamage !== 'Endommagé') {
+            $data['vehicle_damage'] = $vehicleDamage;
+        }
+
+        return $data;
+    }
 
     private function buildLeboncoinDataArrayUtility($item)
     {

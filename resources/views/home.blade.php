@@ -30,7 +30,8 @@
 
             <div class="TheHeading text-center py-4">
 
-                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément sa valeur réelle sur le marché de l'occasion</h1>
+                <h1 class="darkcolor fontwbold font30">Entrez les détails de votre véhicule et découvrez instantanément sa
+                    valeur réelle sur le marché de l'occasion</h1>
                 {{-- <p class="darkcolor font18 fontw600 m-0">Une analyse des Moyennes de </p>
                 <p class="primarycolor font30 fontw900 m-0">842 985</p>
                 <p class="darkcolor font18 fontw600 m-0">prix d'annonces à travers la France.</p> --}}
@@ -275,23 +276,35 @@
                             <div class="col-sm">
                                 <select class="form-select" aria-label="Default select example" name="private">
                                     <option value="">Select Particulier pourcentage</option>
-                                    <option value="0" {{ request()->input('private') == '0' ? 'selected' : '' }}>0%</option>
-                                    <option value="10" {{ request()->input('private') == '10' ? 'selected' : '' }}>10%</option>
-                                    <option value="25" {{ request()->input('private') == '25' ? 'selected' : '' }}>25%</option>
-                                    <option value="50" {{ request()->input('private') == '50' ? 'selected' : '' }}>50%</option>
-                                    <option value="75" {{ request()->input('private') == '75' ? 'selected' : '' }}>75%</option>
-                                    <option value="100" {{ request()->input('private') == '100' ? 'selected' : '' }}>100%</option>
+                                    <option value="0" {{ request()->input('private') == '0' ? 'selected' : '' }}>0%
+                                    </option>
+                                    <option value="10" {{ request()->input('private') == '10' ? 'selected' : '' }}>10%
+                                    </option>
+                                    <option value="25" {{ request()->input('private') == '25' ? 'selected' : '' }}>25%
+                                    </option>
+                                    <option value="50" {{ request()->input('private') == '50' ? 'selected' : '' }}>50%
+                                    </option>
+                                    <option value="75" {{ request()->input('private') == '75' ? 'selected' : '' }}>75%
+                                    </option>
+                                    <option value="100" {{ request()->input('private') == '100' ? 'selected' : '' }}>
+                                        100%</option>
                                 </select>
                             </div>
                             <div class="col-sm">
                                 <select class="form-select" aria-label="Default select example" name="pro">
                                     <option value="">Select Professionnel pourcentage</option>
-                                    <option value="0" {{ request()->input('pro') == '0' ? 'selected' : '' }}>0%</option>
-                                    <option value="10" {{ request()->input('pro') == '10' ? 'selected' : '' }}>10%</option>
-                                    <option value="25" {{ request()->input('pro') == '25' ? 'selected' : '' }}>25%</option>
-                                    <option value="50" {{ request()->input('pro') == '50' ? 'selected' : '' }}>50%</option>
-                                    <option value="75" {{ request()->input('pro') == '75' ? 'selected' : '' }}>75%</option>
-                                    <option value="100" {{ request()->input('pro') == '100' ? 'selected' : '' }}>100%</option>
+                                    <option value="0" {{ request()->input('pro') == '0' ? 'selected' : '' }}>0%
+                                    </option>
+                                    <option value="10" {{ request()->input('pro') == '10' ? 'selected' : '' }}>10%
+                                    </option>
+                                    <option value="25" {{ request()->input('pro') == '25' ? 'selected' : '' }}>25%
+                                    </option>
+                                    <option value="50" {{ request()->input('pro') == '50' ? 'selected' : '' }}>50%
+                                    </option>
+                                    <option value="75" {{ request()->input('pro') == '75' ? 'selected' : '' }}>75%
+                                    </option>
+                                    <option value="100" {{ request()->input('pro') == '100' ? 'selected' : '' }}>100%
+                                    </option>
                                 </select>
                             </div>
 
@@ -835,9 +848,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.close-icon').forEach(icon => {
                 icon.addEventListener('click', function() {
-                    const input = this.previousElementSibling;
-                    if (input) {
-                        input.value = ''; // Clear the input value
+                    // Find the closest input container
+                    const container = this.closest('.input-container');
+
+                    if (container) {
+                        // Clear the input value
+                        const input = container.querySelector('input');
+                        if (input) {
+                            input.value = '';
+                        }
+
+                        // Uncheck all checkboxes within the related model-list
+                        const modelList = container.querySelector('.model-list');
+                        if (modelList) {
+                            const checkboxes = modelList.querySelectorAll('.form-check-input');
+                            checkboxes.forEach(checkbox => {
+                                checkbox.checked = false;
+                            });
+                        }
+
+                        // Clear the badge container if it exists
+                        const badgeContainer = container.querySelector('.badge-container');
+                        if (badgeContainer) {
+                            badgeContainer.innerHTML = '';
+                        }
                     }
                 });
             });
@@ -894,159 +928,6 @@
     </script>
 
     <script>
-        // let autocompleteData = {
-        //     location: [],
-        //     marque: [],
-        //     modele: [],
-        //     carburant: [],
-        //     boiteVitesse: [],
-        // };
-
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     // Function to store data in local storage
-        //     function storeAutocompleteData(data) {
-        //         localStorage.setItem('autocompleteData', JSON.stringify(data));
-        //     }
-
-        //     // Function to retrieve data from local storage
-        //     function getAutocompleteData() {
-        //         const storedData = localStorage.getItem('autocompleteData');
-        //         return storedData ? JSON.parse(storedData) : null;
-        //     }
-
-        //     // Function to compare two objects
-        //     function isDataDifferent(data1, data2) {
-        //         return JSON.stringify(data1) !== JSON.stringify(data2);
-        //     }
-
-        //     axios.get('/api/regions')
-        //         .then(response => {
-        //             autocompleteData.location = response.data;
-        //             console.log(response); // Check the loaded data
-        //             // Here you can also initialize your autocomplete component with the data
-        //         })
-        //         .catch(error => {
-        //             console.error('Error fetching regions:', error);
-        //         });
-
-        //     // Check if data is already in local storage
-        //     const storedData = getAutocompleteData();
-        //     if (storedData) {
-        //         autocompleteData = storedData;
-        //         initializeComponents();
-
-        //         // Fetch new data from the API to check for updates
-        //         axios.get('/api/leboncoin-data')
-        //             .then((responseMarque) => {
-        //                 const data = responseMarque.data.LeboncoindData;
-
-        //                 const newAutocompleteData = {
-        //                     location: [...new Set(data.map((item) => item.city))],
-        //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
-        //                     modele: [...new Set(data.map((item) => item.u_car_model))],
-        //                     carburant: [...new Set(data.map((item) => item.fuel))],
-        //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-        //                 };
-
-        //                 // Check if the new data is different from the stored data
-        //                 if (isDataDifferent(autocompleteData, newAutocompleteData)) {
-        //                     // Store the new data in local storage if it's different
-        //                     storeAutocompleteData(newAutocompleteData);
-        //                     autocompleteData = newAutocompleteData;
-        //                     initializeComponents(); // Reinitialize components with new data
-        //                     console.log("autocompleteData has been updated in localStorage.");
-        //                 } else {
-        //                     console.log("No changes detected in autocompleteData.");
-        //                 }
-        //             })
-        //             .catch((error) => {
-        //                 console.error(error);
-        //             });
-        //     } else {
-        //         axios.get('/api/leboncoin-data')
-        //             .then((responseMarque) => {
-        //                 const data = responseMarque.data.LeboncoindData;
-
-        //                 autocompleteData = {
-        //                     location: [...new Set(data.map((item) => item.city))],
-        //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
-        //                     modele: [...new Set(data.map((item) => item.u_car_model))],
-        //                     carburant: [...new Set(data.map((item) => item.fuel))],
-        //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-        //                 };
-
-        //                 // Store the data in local storage if not empty
-        //                 storeAutocompleteData(autocompleteData);
-
-        //                 initializeComponents();
-        //             })
-        //             .catch((error) => {
-        //                 console.error(error);
-        //             });
-        //     }
-
-
-        //     function initializeComponents() {
-
-        //         document.querySelectorAll(".SearchandCheck").forEach((container) => {
-        //             CreateSearchandCheck(container);
-        //         });
-
-        //         document.querySelectorAll(".autocompleteInput").forEach((container) => {
-        //             CreateAutocompleteInput(container);
-        //         });
-
-        //         var getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
-        //         var marquesDiv = document.querySelector('#marques');
-        //         var checkboxes = marquesDiv.querySelectorAll('.form-check-input');
-        //         var modelListDiv = document.querySelector('#models');
-
-        //         checkboxes.forEach(function(checkbox) {
-        //             checkbox.addEventListener('change', function() {
-        //                 checkboxes.forEach(function(cb) {
-        //                     if (cb.checked) {
-        //                         var url = getModelsRoute.replace(':marque',
-        //                             encodeURIComponent(cb.value));
-
-        //                         modelListDiv.innerHTML = `
-    //                                     <div class="spinner-border text-primary" role="status">
-    //                                     <span class="sr-only"></span>
-    //                                     </div>`;
-
-        //                         axios.get(url)
-        //                             .then((responseModeles) => {
-        //                                 autocompleteData.modele = [
-        //                                     ...new Set(responseModeles.data.modeles
-        //                                         .map((item) => item.u_car_model))
-        //                                 ];
-
-        //                                 // Update the stored data in local storage
-        //                                 storeAutocompleteData(autocompleteData);
-
-        //                                 // Clear the loader
-        //                                 modelListDiv.innerHTML = '';
-
-        //                                 document.querySelectorAll(
-        //                                     ".SearchandCheck-models").forEach((
-        //                                     container) => {
-        //                                     CreateSearchandCheck(container);
-        //                                 });
-        //                             })
-        //                             .catch((error) => {
-        //                                 console.error(error);
-        //                                 modelListDiv.innerHTML =
-        //                                     '<p>Failed to load models.</p>';
-        //                             });
-        //                     }
-        //                 });
-        //             });
-        //         });
-        //     }
-        // });
-
-
-
-
         // Data structure to hold autocomplete data
         let autocompleteData = {
             location: [],
@@ -1084,70 +965,6 @@
 
                 setupMarqueCheckboxListeners();
             }
-
-            // Function to setup event listeners for marque checkboxes
-            // function setupMarqueCheckboxListeners() {
-            //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
-            //     const marquesDiv = document.querySelector('#marques');
-            //     const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
-            //     const modelListDiv = document.querySelector('#models');
-            //     const modeleInput = document.querySelector('[name=modele]');
-
-            //     if (modeleInput.value.trim() !== '') {
-            //         modeleInput.disabled = false;
-            //     } else {
-            //         modeleInput.disabled = true;
-            //     }
-            //     checkboxes.forEach((checkbox) => {
-            //         checkbox.addEventListener('change', () => {
-            //             checkboxes.forEach((cb) => {
-            //                 if (cb.checked) {
-            //                     const url = getModelsRoute.replace(':marque',
-            //                         encodeURIComponent(cb.value));
-            //                     modelListDiv.innerHTML = `
-        //                 <div class="spinner-border text-primary" role="status">
-        //                     <span class="sr-only"></span>
-        //                 </div>`;
-
-
-
-            //                     axios.get(url)
-            //                         .then((responseModeles) => {
-            //                             autocompleteData.modele = [...new Set(
-            //                                 responseModeles.data.modeles.map((
-            //                                     item) => item.u_car_model)
-            //                             )];
-
-            //                             modeleInput.value = ''
-            //                             modeleInput.disabled = false;
-
-            //                             // Update the stored data in local storage
-            //                             storeAutocompleteData(autocompleteData);
-
-            //                             // Clear the loader
-            //                             modelListDiv.innerHTML = '';
-
-            //                             document.querySelectorAll(
-            //                                 ".SearchandCheck-models").forEach((
-            //                                 container) => {
-            //                                 CreateSearchandCheck(container);
-            //                             });
-            //                         })
-            //                         .catch((error) => {
-            //                             console.error('Error fetching models:', error);
-            //                             modelListDiv.innerHTML =
-            //                                 '<p>Failed to load models.</p>';
-            //                         });
-            //                 } else {
-            //                     // init input model
-            //                     modeleInput.value = ''
-            //                     modeleInput.disabled = true;
-            //                 }
-            //             });
-            //         });
-            //     });
-            // }
-
 
             // function setupMarqueCheckboxListeners() {
             //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
@@ -1233,6 +1050,7 @@
 
                     if (checkbox.checked) {
                         console.log(checkbox.checked);
+                        document.querySelector('form').querySelector('[name=modele]').value = ''
                         const url = getModelsRoute.replace(':marque', encodeURIComponent(checkbox.value));
                         modelListDiv.innerHTML = `
                 <div class="spinner-border text-primary" role="status">
@@ -1276,42 +1094,6 @@
                 // Initial state of modeleInput
                 updateModeleInputState();
             }
-
-
-
-            // Function to fetch and update autocomplete data
-            // function fetchAndUpdateAutocompleteData() {
-            //     axios.get('/api/leboncoin-data')
-            //         .then((response) => {
-            //             const data = response.data.LeboncoindData;
-
-            //             // Fetch regions first
-            //             regions().then((regionsData) => {
-            //                 const newAutocompleteData = {
-            //                     // location: [...new Set(regionsData.concat(data.map((item) => item
-            //                     //     .city)))],
-            //                     marque: [...new Set(data.map((item) => item.u_car_brand))],
-            //                     modele: [...new Set(data.map((item) => item.u_car_model))],
-            //                     carburant: [...new Set(data.map((item) => item.fuel))],
-            //                     boiteVitesse: [...new Set(data.map((item) => item.gearbox))],
-            //                 };
-
-            //                 // Check if the new data is different from the stored data
-            //                 if (isDataDifferent(autocompleteData, newAutocompleteData)) {
-            //                     // Store the new data in local storage if it's different
-            //                     storeAutocompleteData(newAutocompleteData);
-            //                     autocompleteData = newAutocompleteData;
-            //                     initializeComponents(); // Reinitialize components with new data
-            //                     console.log("autocompleteData has been updated in localStorage.");
-            //                 } else {
-            //                     console.log("No changes detected in autocompleteData.");
-            //                 }
-            //             });
-            //         })
-            //         .catch((error) => {
-            //             console.error('Error fetching leboncoin data:', error);
-            //         });
-            // }
 
             // Fetch leboncoin data and update other fields
             function fetchAndUpdateAutocompleteData() {
