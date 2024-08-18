@@ -88,6 +88,7 @@
             <p class="text-center pt-2 whitecolor">
                 LautoPrix - 2024
             </p>
+            <p class='text-center whitecolor d-none'>  Created by DIGINTAL 2024 , <a class='whitecolor' href="https://digintal.com/">digintal.com</a></p>
         </div>
 
 
