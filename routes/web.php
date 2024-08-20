@@ -141,6 +141,11 @@ Route::get('/isAuth', [App\Http\Controllers\HomeController::class, 'isAuthentica
 
 
 
+      
+         Route::get('/FeaturesSections', function () {
+            return view('FeaturesSections');
+        })->name('FeaturesSections');
+
 
 
 
