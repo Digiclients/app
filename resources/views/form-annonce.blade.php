@@ -1,5 +1,5 @@
 <form action="{{ isset($annonce) ? route('annonce.update', $annonce->id) : route('store-annonce') }}" id="multi-step-form" method="POST">
-  
+
   <div class="validationErrors text-danger text-center">
 
   </div>
@@ -66,7 +66,7 @@
                         <!-- Selected models will appear here as badges -->
                     </div>
                 </div>
-                <div class="model-list" style="padding: 10px !important;">
+                <div id="models" class="model-list" style="padding: 10px !important;">
                     <!-- Model items will be dynamically inserted here -->
                 </div>
             </ul>
@@ -369,15 +369,15 @@
 
 
 <script>
-     
+
     document.addEventListener('DOMContentLoaded', function () {
       const input = document.getElementById('annee_modele');
       const currentYear = new Date().getFullYear();
       const minYear = 1850;
       const maxYear = currentYear + 1;
-      
+
       input.setAttribute('min', minYear);
       input.setAttribute('max', maxYear);
     });
-  
+
 </script>

@@ -968,69 +968,6 @@
                 setupMarqueCheckboxListeners();
             }
 
-            // function setupMarqueCheckboxListeners() {
-            //     const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
-            //     const marquesDiv = document.querySelector('#marques');
-            //     const checkboxes = marquesDiv.querySelectorAll('.form-check-input');
-            //     const modelListDiv = document.querySelector('#models');
-            //     const modeleInput = document.querySelector('[name=modele]');
-
-            //     function updateModeleInputState() {
-            //         const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
-            //         modeleInput.disabled = !anyChecked;
-            //     }
-            //     console.log("checkboxes")
-            //     console.log(checkboxes)
-            //     checkboxes.forEach((checkbox) => {
-            //         checkbox.addEventListener('change', () => {
-            //             updateModeleInputState
-            //                 (); // Update the state of modeleInput based on checked checkboxes
-
-            //             if (checkbox.checked) {
-            //                 console.log(checkbox.checked)
-            //                 const url = getModelsRoute.replace(':marque', encodeURIComponent(
-            //                     checkbox.value));
-            //                 modelListDiv.innerHTML = `
-        //         <div class="spinner-border text-primary" role="status">
-        //             <span class="sr-only"></span>
-        //         </div>`;
-
-            //                 axios.get(url)
-            //                     .then((responseModeles) => {
-            //                         autocompleteData.modele = [...new Set(
-            //                             responseModeles.data.modeles.map(item => item
-            //                                 .u_car_model)
-            //                         )];
-
-            //                         modeleInput.value = ''; // Clear input value
-            //                         // Update the stored data in local storage
-            //                         storeAutocompleteData(autocompleteData);
-
-            //                         // Clear the loader
-            //                         modelListDiv.innerHTML = '';
-
-            //                         document.querySelectorAll(".SearchandCheck-models").forEach(
-            //                             (container) => {
-            //                                 CreateSearchandCheck(container);
-            //                             });
-            //                     })
-            //                     .catch((error) => {
-            //                         console.error('Error fetching models:', error);
-            //                         modelListDiv.innerHTML = '<p>Failed to load models.</p>';
-            //                     });
-            //             } else {
-            //                 console.log("i am in else")
-
-            //                 // Check if there are any other checkboxes still checked
-            //                 updateModeleInputState();
-            //             }
-            //         });
-            //     });
-
-            //     // Initial state of modeleInput
-            //     updateModeleInputState();
-            // }
-
             function setupMarqueCheckboxListeners() {
                 const getModelsRoute = "{{ route('getLeboncoinModeles', ':marque') }}";
                 const marquesDiv = document.querySelector('#marques');
@@ -1199,19 +1136,6 @@
             }
 
             // Check if data is already in local storage
-            // const storedData = getAutocompleteData();
-            // if (storedData) {
-            //     autocompleteData = storedData;
-            //     initializeComponents();
-
-            //     // Fetch new data from the API to check for updates
-            //     fetchAndUpdateAutocompleteData();
-            // } else {
-            //     // Fetch initial data from the API
-            //     fetchAndUpdateAutocompleteData();
-            // }
-
-            // Check if data is already in local storage
             const storedData = getAutocompleteData();
             if (storedData) {
                 autocompleteData = storedData;
@@ -1291,94 +1215,6 @@
         }
 
 
-
-
-
-
-
-
-        // function CreateSearchandCheck(container) {
-        //     const dataArrayName = container.querySelector("input").getAttribute("data-array");
-        //     const models = autocompleteData[dataArrayName];
-        //     const modelList = container.querySelector(".model-list");
-        //     const searchInput = container.querySelector(".search-input");
-        //     const selectedModelsContainer = container.querySelector(".badge-container");
-        //     const selectedModelsInput = container.querySelector("input");
-        //     const selectedModelNames = new Set();
-
-        //     function renderModelList(filter = "") {
-        //         modelList.innerHTML = "";
-        //         models
-        //             .filter((model) => model.toLowerCase().includes(filter.toLowerCase()))
-        //             .forEach((model) => {
-        //                 const listItem = document.createElement("div");
-        //                 listItem.classList.add("form-check");
-        //                 listItem.innerHTML = `
-    //         <input class="form-check-input" type="checkbox" value="${model}" id="check-${dataArrayName}-${model}">
-    //         <label class="form-check-label" for="check-${dataArrayName}-${model}">
-    //             ${model}
-    //         </label>
-    //     `;
-        //                 modelList.appendChild(listItem);
-
-        //                 listItem.querySelector("input").addEventListener("change", (e) => {
-        //                     if (e.target.checked) {
-        //                         // Uncheck all other checkboxes
-        //                         modelList.querySelectorAll(".form-check-input").forEach((checkbox) => {
-        //                             if (checkbox !== e.target) {
-        //                                 checkbox.checked = false;
-        //                             }
-        //                         });
-
-        //                         // Clear the set and add the current model
-        //                         selectedModelNames.clear();
-        //                         selectedModelNames.add(model);
-        //                     } else {
-        //                         selectedModelNames.delete(model);
-        //                     }
-        //                     renderSelectedModels();
-        //                 });
-        //             });
-        //     }
-
-        //     function renderSelectedModels() {
-        //         selectedModelsContainer.innerHTML = "";
-        //         const selectedNamesArray = Array.from(selectedModelNames);
-        //         selectedModelsInput.value = selectedNamesArray.join(", ");
-        //         selectedNamesArray.forEach((name) => {
-        //             const badge = document.createElement("span");
-        //             badge.classList.add("badge", "bg-secondary");
-        //             badge.textContent = name;
-        //             const closeBtn = document.createElement("button");
-        //             closeBtn.classList.add("btn-close", "btn-close-white", "ms-2");
-        //             closeBtn.setAttribute("aria-label", "Close");
-        //             closeBtn.addEventListener("click", () => {
-        //                 selectedModelNames.delete(name);
-        //                 renderSelectedModels();
-        //                 document.getElementById(`check-${dataArrayName}-${name}`).checked = false;
-        //             });
-        //             badge.appendChild(closeBtn);
-        //             selectedModelsContainer.appendChild(badge);
-        //         });
-        //     }
-
-        //     searchInput.addEventListener("input", () => {
-        //         renderModelList(searchInput.value);
-        //     });
-
-        //     selectedModelsInput.addEventListener("focus", () => {
-        //         container.querySelector(".dropdown-menu").classList.add("show");
-        //     });
-
-        //     document.addEventListener("click", (event) => {
-        //         if (!container.contains(event.target)) {
-        //             container.querySelector(".dropdown-menu").classList.remove("show");
-
-        //         }
-        //     });
-
-        //     renderModelList();
-        // }
 
 
         function CreateSearchandCheck(container) {
