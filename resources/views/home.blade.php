@@ -580,8 +580,7 @@
 
 
             <div class="col-lg-5 pe-3">
-                <img class="img-fluid rounded position-relative"
-                    src="{{ asset('assets/images/picture1.jpg') }}"
+                <img class="img-fluid rounded position-relative" src="{{ asset('assets/images/picture1.jpg') }}"
                     alt="">
 
             </div>
@@ -604,7 +603,8 @@
 
                             <h4 class="darkcolor font18 fontw600">Optimisez Vos Transactions de Voitures</h4>
                             <p class="mb-0">
-                                Notre outil analyse plus d'un million d'annonces pour vous offrir une estimation précise et actualisée du prix de votre véhicule, que vous souhaitiez acheter ou vendre.
+                                Notre outil analyse plus d'un million d'annonces pour vous offrir une estimation précise et
+                                actualisée du prix de votre véhicule, que vous souhaitiez acheter ou vendre.
                             </p>
                         </div>
 
@@ -621,14 +621,18 @@
                         <div class="">
 
                             <h4 class="darkcolor font18 fontw600">
-                               Pourquoi LautoPrix est Votre Meilleur Choix ?
-                              </h4>
+                                Pourquoi LautoPrix est Votre Meilleur Choix ?
+                            </h4>
                             <ul class="darkcolor list-unstyled">
-                                <li> <b class="primarycolor fontw900">Données Fiables</b> : Nous exploitons une large base de données pour vous garantir une vision complète du marché de l'occasion en France.
+                                <li> <b class="primarycolor fontw900">Données Fiables</b> : Nous exploitons une large base
+                                    de données pour vous garantir une vision complète du marché de l'occasion en France.
                                 </li>
-                                <li> <b class="primarycolor fontw900">Facilité d'Utilisation</b> : Saisissez simplement quelques détails sur votre véhicule et recevez instantanément une estimation de sa valeur.
+                                <li> <b class="primarycolor fontw900">Facilité d'Utilisation</b> : Saisissez simplement
+                                    quelques détails sur votre véhicule et recevez instantanément une estimation de sa
+                                    valeur.
                                 </li>
-                                <li> <b class="primarycolor fontw900">Décisions Informées</b> : Nos estimations vous permettent de prendre des décisions sûres et informées, en toute confiance.
+                                <li> <b class="primarycolor fontw900">Décisions Informées</b> : Nos estimations vous
+                                    permettent de prendre des décisions sûres et informées, en toute confiance.
                                 </li>
                             </ul>
                         </div>
@@ -724,7 +728,7 @@
 
     <!-- ################  START BLOGS ################ -->
 
-    <section class="SectionsBlog d-none py-5 container-fluid row justify-content-center">
+    <section class="SectionsBlog  py-5 container-fluid row justify-content-center">
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
             <div class="d-block d-lg-flex justify-content-between align-items-end text-center text-lg-left mb-4 pb-1">
                 <h2 class="darkcolor fontwbold font30 mb-0">Plongez au cœur de l'actualité des véhicules d'occasion</h2>
@@ -734,46 +738,46 @@
             <div class="blogCards">
                 <div class="row">
                     <div class="col-lg-6 pe-4 mb-lg-2 mb-4">
-                        <a href="">
+                        <a href="https://blog.lautoprix.fr/2023/04/04/a-new-resource-to-hook-you-up/">
                             <img class="img-fluid rounded"
-                                src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="https://blog.lautoprix.fr/wp-content/uploads/2023/04/ev-1-1250x715.jpg"
                                 alt="">
                             <h4 class="darkcolor font18 fomtw600  mt-3">Fabriquer des voitures électriques chinoises en
                                 Europe :
                                 opportunité ou bombe à retardement ? </h4>
-                            <p class="">
-                                Faut-il se réjouir ou, au contraire, s’inquiéter de l’implantation progressive d’usines
-                                chinoises de
-                                fabrication de voitures électriques en Europe ? S’agit-il réellement d’une aubaine ...
+                            <p class="">Lorsque vous achetez ou vendez une voiture d’occasion, une évaluation précise
+                                est essentielle pour garantir que vous obtenez un prix juste...
                             </p>
                         </a>
                     </div>
 
                     <div class="col-lg-6 row">
-
-
                         <div class="col-md-6 pe-4 mb-lg-2 mb-4">
-                            <a href="">
+                            <a href="https://blog.lautoprix.fr/2023/04/03/new-skills-and-a-snazzy-new-trip/">
                                 <img class="img-fluid rounded"
-                                    src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    src="https://blog.lautoprix.fr/wp-content/uploads/2023/04/ppo-750x575.jpg"
                                     alt="">
-                                <h4 class="darkcolor font18 fontw600 mt-3">Fabriquer des voitures électriques chinoises en
-                                    Europe :
-                                    opportunité ou bombe à retardement ? </h4>
+                                <h4 class="darkcolor font18 fontw600 mt-3">L’Impact des Nouvelles Technologies sur l’Avenir de l’Automobile</h4>
                             </a>
                         </div>
                         <div class="col-md-6 pe-4 mb-lg-2 mb-4">
-                            <a href="">
+                            <a href="https://blog.lautoprix.fr/2023/03/02/how-to-create-dope-content/">
                                 <img class="img-fluid rounded"
-                                    src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    src="https://blog.lautoprix.fr/wp-content/uploads/2023/03/poo-1-750x575.webp"
                                     alt="">
-                                <h4 class="darkcolor font18 fontw600 mt-3">Fabriquer des voitures électriques chinoises en
-                                    Europe :
-                                    opportunité ou bombe à retardement ? </h4>
+                                <h4 class="darkcolor font18 fontw600 mt-3">Top 5 Astuces pour Négocier le Prix d’une Voiture d’Occasion</h4>
                             </a>
                         </div>
 
                         <div class="col-md-6 pe-4 mb-lg-2 mb-4">
+                            <a href="https://blog.lautoprix.fr/2023/03/02/tell-the-world-how-its-great/">
+                                <img class="img-fluid rounded"
+                                    src="https://blog.lautoprix.fr/wp-content/uploads/2023/03/saso-1250x715.jpg"
+                                    alt="">
+                                <h4 class="darkcolor font18 fontw600 mt-3">Que faire avant de mettre votre voiture en Vente?</h4>
+                            </a>
+                        </div>
+                        {{-- <div class="col-md-6 pe-4 mb-lg-2 mb-4">
                             <a href="">
                                 <img class="img-fluid rounded"
                                     src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -782,17 +786,7 @@
                                     Europe :
                                     opportunité ou bombe à retardement ? </h4>
                             </a>
-                        </div>
-                        <div class="col-md-6 pe-4 mb-lg-2 mb-4">
-                            <a href="">
-                                <img class="img-fluid rounded"
-                                    src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    alt="">
-                                <h4 class="darkcolor font18 fontw600 mt-3">Fabriquer des voitures électriques chinoises en
-                                    Europe :
-                                    opportunité ou bombe à retardement ? </h4>
-                            </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
