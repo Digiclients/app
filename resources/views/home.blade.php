@@ -732,7 +732,7 @@
         <div class="col-lg-12 col-xl-11 col-xxl-9 px-4 px-xl-0">
             <div class="d-block d-lg-flex justify-content-between align-items-end text-center text-lg-left mb-4 pb-1">
                 <h2 class="darkcolor fontwbold font30 mb-0">Plongez au cœur de l'actualité des véhicules d'occasion</h2>
-                <a href="" class="SeeMorelink mt-2 mt-lg-0">Voir tous les articles</a>
+                <a href="https://blog.lautoprix.fr/" class="SeeMorelink mt-2 mt-lg-0">Voir tous les articles</a>
             </div>
 
             <div class="blogCards">
