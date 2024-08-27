@@ -79,7 +79,7 @@
 
                 <div class="col-lg-6">
 
-                    <h2 class="darkcolor fontwbold font30 mb-4 mt-4 CustomleftBorder">Notre Mission</h2>
+                    <h2 class="darkcolor fontwbold font30 mb-4 mt-4">Notre Mission</h2>
 
                     <p class="darkcolor font18 fontw600 lh-lg mb-4">
                         Notre mission est de vous offrir un outil innovant pour évaluer précisément la valeur de votre
@@ -130,13 +130,13 @@
             </div>
 
 
-            <div class="col-md-6 px-2 py-2 bgprimary">
+            <div class="col-md-6 px-2 py-2 ">
 
 
-                <h2 class="fontwbold font30 mx-4 mb-4 mt-5 whitecolor">Comment ça marche ?</h2>
+                <h2 class="fontwbold font30 mx-4 mb-4 mt-5 ">Comment ça marche ?</h2>
 
 
-                <p class="whitecolor py-3 mx-4 lh-lg font18 fontw600 lh-lg mb-4">
+                <p class=" py-3 mx-4 lh-lg font18 fontw600 lh-lg mb-4">
                     Notre technologie analyse des milliers d'annonces à travers la France pour vous fournir une estimation
                     instantanée du prix de vente moyen. Il vous suffit d'entrer quelques détails sur votre véhicule —
                     marque, modèle, année, kilométrage — pour recevoir une évaluation précise, facilitant ainsi la vente au
