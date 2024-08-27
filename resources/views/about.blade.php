@@ -689,7 +689,7 @@
                         <p class="darkcolor font18 fontw600 lh-lg mb-4">
                             Vous avez des questions ou des suggestions ? N'hésitez pas à nous contacter. Nous sommes toujours ravis d'échanger avec nos utilisateurs et de vous aider à tirer le meilleur parti de votre expérience avec LautoPrix.
                         </p>
-                        
+
                         <div>
             <a href="{{ route('contact') }}" class="primarybtn  my-3 minibtn">Contactez-nous</a>
 
@@ -731,7 +731,7 @@
                 comment une estimation précise peut transformer vos transactions de véhicules.</h4>
 
             <div>
-                <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto">Obtenir le prix moyen</a>
+                <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto d-block">Obtenir le prix moyen</a>
             </div>
 
 
