@@ -731,7 +731,7 @@
                 comment une estimation précise peut transformer vos transactions de véhicules.</h4>
 
             <div>
-                <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto d-block">Obtenir le prix moyen</a>
+                <a type="button" href="/#PrixMoyen" class="primarybtn my-4 mx-auto col-md-6 col-sm-12 d-block">Obtenir le prix moyen</a>
             </div>
 
 
